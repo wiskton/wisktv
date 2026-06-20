@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="logo2.png">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
@@ -26,6 +27,7 @@
     .content { padding: 0 8px 8px; flex: 1; }
     .table-view { display: none; padding-top: 6px; }
     .table-view.active { display: block; }
+    .table-view { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .trow { display: grid; border: 1px solid #e8c000; border-bottom: none; }
     .trow.header-row { background: #0d1f80; }
     .trow.header-row .cell { color: #fff; font-size: 12px; letter-spacing: 1px; padding: 4px 2px; text-align: center; border-right: 1px solid #e8c000; }
@@ -41,6 +43,28 @@
     .art-cols { grid-template-columns: 42px 1fr 60px 46px; }
     .geral-cols { grid-template-columns: 42px 1fr 60px 46px; }
     .cls-cols { grid-template-columns: 42px 1fr 60px 38px 38px 38px 38px; }
+
+    /* Responsive adjustments for small screens */
+    @media (max-width: 600px) {
+      .header { flex-direction: column; align-items: stretch; padding: 8px; gap: 6px; }
+      .logo-igortv { width: 64px; height: 64px; margin: 0 auto; }
+      .logo-igortv img { object-fit: contain; }
+      .title-block { padding: 6px 10px; }
+      .title-block img { width: 40px; height: 40px; }
+      .title-main { font-size: 20px; white-space: normal; text-align: center; }
+      .header-right { text-align: center; }
+      #header-controls { justify-content: center; flex-wrap: wrap; gap: 6px; }
+      .sections { flex-wrap: wrap; gap: 6px; padding: 6px; }
+      .sec-tab { padding: 6px 10px; font-size: 13px; }
+      .trow.header-row .cell, .trow.data-row .cell { font-size: 11px; padding: 4px 6px; }
+      .art-cols { grid-template-columns: 36px 1fr 48px 40px; }
+      .cls-cols { grid-template-columns: 36px 1fr 48px 30px 30px 30px 30px; }
+      .geral-cols { grid-template-columns: 36px 1fr 48px 30px; }
+      .title-center { padding: 4px 0; }
+      /* Modal full-screen on small devices */
+      #geral-modal { align-items: flex-start; padding-top: 12px; }
+      #geral-modal > div { width: 96%; max-width: 96%; height: calc(100% - 24px); max-height: none; border-radius: 6px; padding: 12px; overflow: auto; }
+    }
     .footer { border-top: 2px solid #e8c000; display: flex; align-items: center; justify-content: center; padding: 4px 12px; background: #0d1f80; }
     .footer-text { font-size: 9px; color: #e8c000; letter-spacing: 2px; }
     .transmissions-container { display: flex; flex-direction: column; gap: 16px; padding: 16px; height: 100%; }
@@ -172,7 +196,7 @@
       },{
         id: 2,
           name: 'MendesCUP - 2ª Edição',
-          image: 'mendes.png',
+          image: 'mendes2.png',
           completed: false,
         players: [
           { name: 'Will 🏆', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
@@ -419,12 +443,19 @@
     function openGeralModal() {
       renderGeralModal();
       const m = document.getElementById('geral-modal');
-      if (m) m.style.display = 'flex';
+      if (m) {
+        m.style.display = 'flex';
+        // prevent background scroll while modal is open
+        document.body.style.overflow = 'hidden';
+      }
     }
 
     function closeGeralModal() {
       const m = document.getElementById('geral-modal');
-      if (m) m.style.display = 'none';
+      if (m) {
+        m.style.display = 'none';
+        document.body.style.overflow = '';
+      }
     }
 
     function renderGeralModal() {
@@ -455,6 +486,14 @@
         html += `<div class="trow data-row geral-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${brazilFlag()} ${r.name.toUpperCase()}</div><div class="cell">${r.campeao}</div><div class="cell">${r.artilheiro}</div></div>`;
       });
       const root = document.getElementById('geral-modal-root'); if (root) root.innerHTML = html;
+    }
+
+    // close modal when clicking on backdrop (use capture to ensure it runs before inner clicks)
+    const geralModalEl = document.getElementById('geral-modal');
+    if (geralModalEl) {
+      geralModalEl.addEventListener('click', (e) => {
+        if (e.target && e.target.id === 'geral-modal') closeGeralModal();
+      });
     }
 
     // deleteTournament function removed
