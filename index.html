@@ -16,6 +16,7 @@
     body {
       background: #091880;
       font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
     }
 
     .screen {
@@ -73,7 +74,7 @@
     }
 
     .title-main {
-      font-size: 32px;
+      font-size: 36px;
       color: #fff;
       letter-spacing: 2px;
       text-shadow: 2px 2px #000, -1px -1px #000;
@@ -122,8 +123,8 @@
     }
 
     .sec-tab {
-      padding: 5px 18px;
-      font-size: 13px;
+      padding: 6px 18px;
+      font-size: 14px;
       letter-spacing: 1px;
       cursor: pointer;
       border: 2px solid #e8c000;
@@ -146,6 +147,7 @@
 
     .table-view {
       display: none;
+      padding-top: 6px;
     }
 
     .table-view.active {
@@ -167,7 +169,7 @@
 
     .trow.header-row .cell {
       color: #fff;
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 1px;
       padding: 4px 2px;
       text-align: center;
@@ -200,8 +202,8 @@
     }
 
     .trow.data-row .cell {
-      padding: 3px 2px;
-      font-size: 11px;
+      padding: 4px 4px;
+      font-size: 12px;
       text-align: center;
       border-right: 1px solid #2a44bb;
       color: #f0d000;
@@ -224,7 +226,7 @@
       padding-left: 4px;
       gap: 5px;
       color: #fff;
-      font-size: 11px;
+      font-size: 12px;
     }
 
     .trow.data-row.empty .cell {
@@ -293,7 +295,7 @@
     }
 
     .channel-name {
-      font-size: 18px;
+      font-size: 20px;
       color: #f0d000;
       font-weight: bold;
       letter-spacing: 1px;
@@ -301,7 +303,7 @@
     }
 
     .channel-desc {
-      font-size: 12px;
+      font-size: 13px;
       color: #90b8ff;
       letter-spacing: 0.5px;
     }
@@ -309,11 +311,11 @@
     .youtube-link {
       background: #ff0000;
       color: #fff;
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 4px;
       text-decoration: none;
       font-weight: bold;
-      font-size: 13px;
+      font-size: 14px;
       transition: background 0.3s ease;
       margin-left: 12px;
       display: inline-block;
@@ -324,6 +326,46 @@
 
     .youtube-link:hover {
       background: #cc0000;
+    }
+    
+      /* CLASSIFICAÇÃO DESCRIPTION */
+      .cls-desc {
+        background: rgba(0,0,0,0.18);
+        border: 1px solid #3355cc;
+        color: #e8c000;
+        padding: 10px 14px;
+        border-radius: 6px;
+        font-size: 14px; /* Changed from 13px to 14px */
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+    
+      /* FOOTER */
+      .footer {
+        border-top: 2px solid #e8c000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 12px;
+        background: #0d1f80;
+      }
+    
+      .footer-text {
+        font-size: 10px; /* Changed from 9px to 10px */
+        color: #e8c000;
+        letter-spacing: 2px;
+      }
+
+    /* CLASSIFICAÇÃO DESCRIPTION */
+    .cls-desc {
+      background: rgba(0,0,0,0.18);
+      border: 1px solid #3355cc;
+      color: #e8c000;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      margin-bottom: 8px;
+      line-height: 1.3;
     }
   </style>
 </head>
@@ -364,6 +406,9 @@
       </div>
       <!-- CLASSIFICAÇÃO -->
       <div class="table-view" id="tab-cls">
+        <div class="cls-desc">
+          <strong>Como funciona a Classificação Geral:</strong> A tabela mostra a posição, número de jogos, vitórias (V), empates (E), derrotas (D), pontos (PTS) e pontos bônus (PTS BÔNUS). Os <em>PTS BÔNUS</em> representam pontos de participação — cada jogador que participou recebe +1 ponto por presença, que é somado aos seus pontos totais na tabela.
+        </div>
         <div id="cls-root"></div>
       </div>
       <!-- TRANSMISSÕES -->
