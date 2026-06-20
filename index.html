@@ -39,6 +39,7 @@
     .trow.data-row .cell.cpos { font-weight: bold; }
     .trow.data-row .cell.cname { text-align: left; justify-content: flex-start; padding-left: 4px; gap: 5px; color: #fff; font-size: 12px; }
     .art-cols { grid-template-columns: 42px 1fr 60px 46px; }
+    .geral-cols { grid-template-columns: 42px 1fr 60px 46px; }
     .cls-cols { grid-template-columns: 42px 1fr 60px 38px 38px 38px 38px; }
     .footer { border-top: 2px solid #e8c000; display: flex; align-items: center; justify-content: center; padding: 4px 12px; background: #0d1f80; }
     .footer-text { font-size: 9px; color: #e8c000; letter-spacing: 2px; }
@@ -69,21 +70,31 @@
         <span class="iss-label">INTERNATIONAL</span>
         <span class="iss-label">SUPER STAR SOCCER</span>
         <span class="deluxe-label">DELUXE<span class="tm">™</span></span>
+        <div id="header-controls" style="margin-top:8px; display:flex; gap:8px; align-items:center; justify-content:flex-end;">
+          <select id="tournament-select" style="padding:6px 8px; background:#0d1f80; color:#f0d000; border:2px solid #e8c000;"> </select>
+          <!-- botões de criar/duplicar removidos; JSON será criado manualmente -->
+          <input id="tournament-image-input" type="file" accept="image/*" style="display:none" />
+          <button id="open-geral-modal" style="padding:6px 8px; background:#0a7eff; border:0; color:#fff; cursor:pointer;">Ver Ranking Geral</button>
+        </div>
       </div>
     </div>
 
     <div class="sections">
       <div class="sec-tab active" onclick="showTab('art')">⚽ ARTILHARIA</div>
+      <!-- Assistências removidas -->
       <div class="sec-tab" onclick="showTab('cls')">🏆 CLASSIFICAÇÃO</div>
+      <!-- GERAL removido daqui (é global, exibido no cabeçalho) -->
       <div class="sec-tab" onclick="showTab('trans')">📹 TRANSMISSÕES</div>
     </div>
 
     <div class="content">
       <div class="table-view active" id="tab-art"><div id="art-root"></div></div>
+      <!-- tab-assists removed (assistências removidas) -->
       <div class="table-view" id="tab-cls">
         <div class="cls-desc"><strong>Como funciona a pontuação:</strong> A pontuação final é calculada seguindo a fórmula: (3 x Vitórias) + (1 x Empates) + (1 x Jogos).</div>
         <div id="cls-root"></div>
       </div>
+      <!-- tab-geral removido (ranking geral é global e mostrado no cabeçalho) -->
       <div class="table-view" id="tab-trans">
         <div class="transmissions-container">
           <div class="channel-card">
@@ -107,41 +118,98 @@
     <div class="footer"><span class="footer-text">⚽ &nbsp; INTERNATIONAL SUPERSTAR SOCCER DELUXE — WiskTV &nbsp; ⚽</span></div>
   </div>
 
+  <!-- Modal for full winners ranking -->
+  <div id="geral-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; z-index:9999;">
+    <div style="background:linear-gradient(90deg,#0d1f80,#1535c8); padding:18px; border-radius:8px; width:90%; max-width:900px; max-height:85%; overflow:auto; border:3px solid #e8c000;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h2 style="color:#fff; margin:0;">Ranking Geral — Vencedores por Torneio</h2>
+        <div>
+          <button id="close-geral-modal" style="padding:6px 10px; background:#e8c000; border:0; cursor:pointer;">Fechar</button>
+        </div>
+      </div>
+      <div id="geral-modal-root"></div>
+    </div>
+  </div>
+
   <script>
-    const raw = [
-      { name: 'Will', jogos: 6, v: 4, e: 0, d: 2, gols: 23, pts: 18 },
-      { name: 'Lê', jogos: 5, v: 4, e: 0, d: 1, gols: 17, pts: 17 },
-      { name: 'Mendes', jogos: 6, v: 4, e: 0, d: 2, gols: 23, pts: 18 },
-      { name: 'Celo', jogos: 3, v: 3, e: 0, d: 0, gols: 5, pts: 12 },
-      { name: 'Igor', jogos: 7, v: 3, e: 0, d: 4, gols: 1, pts: 16 },
-      { name: 'Pedrin', jogos: 5, v: 2, e: 0, d: 3, gols: 13, pts: 11 },
-      { name: 'Fábio', jogos: 5, v: 4, e: 0, d: 1, gols: 7, pts: 14 },
-      { name: 'P2', jogos: 3, v: 2, e: 0, d: 1, gols: 6, pts: 9 },
-      { name: 'Vitera', jogos: 2, v: 2, e: 0, d: 0, gols: 5, pts: 8 },
-      { name: 'Luiz', jogos: 2, v: 2, e: 0, d: 0, gols: 3, pts: 8 },
-      { name: 'Pedrão', jogos: 4, v: 2, e: 0, d: 2, gols: 2, pts: 10 },
-      { name: 'Nill', jogos: 4, v: 2, e: 0, d: 2, gols: 0, pts: 10 },
-      { name: 'Luis', jogos: 3, v: 2, e: 0, d: 1, gols: 0, pts: 9 },
-      { name: 'Boy', jogos: 5, v: 1, e: 0, d: 4, gols: 25, pts: 8 },
-      { name: 'Wesley', jogos: 5, v: 1, e: 0, d: 4, gols: 12, pts: 8 },
-      { name: 'Ronin', jogos: 8, v: 1, e: 0, d: 7, gols: 8, pts: 11 },
-      { name: 'Jackson', jogos: 2, v: 1, e: 0, d: 1, gols: 4, pts: 5 },
-      { name: 'Lucas', jogos: 3, v: 1, e: 0, d: 2, gols: 3, pts: 6 },
-      { name: 'Caio', jogos: 1, v: 1, e: 0, d: 0, gols: 3, pts: 4 },
-      { name: 'Welinton', jogos: 1, v: 1, e: 0, d: 0, gols: 3, pts: 4 },
-      { name: 'Francis', jogos: 4, v: 1, e: 0, d: 3, gols: 1, pts: 7 },
-      { name: 'Tchelo', jogos: 3, v: 1, e: 0, d: 2, gols: 1, pts: 6 },
-      { name: 'Shitake', jogos: 2, v: 0, e: 0, d: 2, gols: 2, pts: 2 },
-      { name: 'Brunim', jogos: 2, v: 1, e: 0, d: 1, gols: 2, pts: 5 },
-      { name: 'Luiz Gatti', jogos: 1, v: 0, e: 0, d: 1, gols: 0, pts: 1 },
-      { name: 'Iuri', jogos: 1, v: 1, e: 0, d: 0, gols: 1, pts: 4 },
-      { name: 'Vitor', jogos: 1, v: 1, e: 0, d: 0, gols: 4, pts: 4 },
-      { name: 'Caio 2', jogos: 1, v: 1, e: 0, d: 0, gols: 0, pts: 4 },
-      { name: 'Raul', jogos: 1, v: 0, e: 0, d: 1, gols: 2, pts: 1 },
+    // Estrutura de torneios com histórico.
+    const tournaments = [
+      {
+        id: 1,
+          name: 'IgorTV CUP - 1ª Edição',
+          image: 'logo.png',
+          completed: true,
+        players: [
+          { name: 'Will 🏆', jogos: 6, v: 4, e: 0, d: 2, gols: 23, pts: 18, assists: 0 },
+          { name: 'Lê', jogos: 5, v: 4, e: 0, d: 1, gols: 17, pts: 17, assists: 0 },
+          { name: 'Mendes 🏆', jogos: 6, v: 4, e: 0, d: 2, gols: 23, pts: 18, assists: 0 },
+          { name: 'Celo', jogos: 3, v: 3, e: 0, d: 0, gols: 5, pts: 12, assists: 0 },
+          { name: 'Igor', jogos: 7, v: 3, e: 0, d: 4, gols: 1, pts: 16, assists: 0 },
+          { name: 'Pedrin', jogos: 5, v: 2, e: 0, d: 3, gols: 13, pts: 11, assists: 0 },
+          { name: 'Fábio', jogos: 5, v: 4, e: 0, d: 1, gols: 7, pts: 14, assists: 0 },
+          { name: 'P2', jogos: 3, v: 2, e: 0, d: 1, gols: 6, pts: 9, assists: 0 },
+          { name: 'Vitera', jogos: 2, v: 2, e: 0, d: 0, gols: 5, pts: 8, assists: 0 },
+          { name: 'Luiz', jogos: 2, v: 2, e: 0, d: 0, gols: 3, pts: 8, assists: 0 },
+          { name: 'Pedrão', jogos: 4, v: 2, e: 0, d: 2, gols: 2, pts: 10, assists: 0 },
+          { name: 'Nill', jogos: 4, v: 2, e: 0, d: 2, gols: 0, pts: 10, assists: 0 },
+          { name: 'Luis', jogos: 3, v: 2, e: 0, d: 1, gols: 0, pts: 9, assists: 0 },
+          { name: 'Boy ⚽', jogos: 5, v: 1, e: 0, d: 4, gols: 25, pts: 8, assists: 0 },
+          { name: 'Wesley', jogos: 5, v: 1, e: 0, d: 4, gols: 12, pts: 8, assists: 0 },
+          { name: 'Ronin', jogos: 8, v: 1, e: 0, d: 7, gols: 8, pts: 11, assists: 0 },
+          { name: 'Jackson', jogos: 2, v: 1, e: 0, d: 1, gols: 4, pts: 5, assists: 0 },
+          { name: 'Lucas', jogos: 3, v: 1, e: 0, d: 2, gols: 3, pts: 6, assists: 0 },
+          { name: 'Caio', jogos: 1, v: 1, e: 0, d: 0, gols: 3, pts: 4, assists: 0 },
+          { name: 'Welinton', jogos: 1, v: 1, e: 0, d: 0, gols: 3, pts: 4, assists: 0 },
+          { name: 'Francis', jogos: 4, v: 1, e: 0, d: 3, gols: 1, pts: 7, assists: 0 },
+          { name: 'Tchelo', jogos: 3, v: 1, e: 0, d: 2, gols: 1, pts: 6, assists: 0 },
+          { name: 'Shitake', jogos: 2, v: 0, e: 0, d: 2, gols: 2, pts: 2, assists: 0 },
+          { name: 'Brunim', jogos: 2, v: 1, e: 0, d: 1, gols: 2, pts: 5, assists: 0 },
+          { name: 'Luiz Gatti', jogos: 1, v: 0, e: 0, d: 1, gols: 0, pts: 1, assists: 0 },
+          { name: 'Iuri', jogos: 1, v: 1, e: 0, d: 0, gols: 1, pts: 4, assists: 0 },
+          { name: 'Vitor', jogos: 1, v: 1, e: 0, d: 0, gols: 4, pts: 4, assists: 0 },
+          { name: 'Caio 2', jogos: 1, v: 1, e: 0, d: 0, gols: 0, pts: 4, assists: 0 },
+          { name: 'Raul', jogos: 1, v: 0, e: 0, d: 1, gols: 2, pts: 1, assists: 0 },
+        ]
+      },{
+        id: 2,
+          name: 'Mendes CUP - 2ª Edição',
+          image: 'mendes.png',
+          completed: false,
+        players: [
+          { name: 'Will 🏆', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Lê', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Mendes 🏆', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Celo', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Igor', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Pedrin', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Fábio', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'P2', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Vitera', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Luiz', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Pedrão', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Nill', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Luis', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Boy ⚽', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Wesley', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Ronin', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Jackson', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Lucas', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Caio', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Welinton', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Francis', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Tchelo', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Shitake', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Brunim', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Luiz Gatti', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Iuri', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Vitor', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Caio 2', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+          { name: 'Raul', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
+        ]
+      }
     ];
 
-    const artilharia = [...raw].sort((a, b) => b.gols - a.gols);
-    const classificacao = [...raw].sort((a, b) => b.pts - a.pts);
+    let currentTournament = 0; // index in tournaments
 
     function getPosColor(i) {
       if (i < 5) return '#00FF00';
@@ -152,24 +220,252 @@
 
     function brazilFlag() { return `<svg width="20" height="13" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg"><rect width="22" height="15" fill="#009c3b"/><polygon points="11,1.5 20.5,7.5 11,13.5 1.5,7.5" fill="#FFDF00"/><circle cx="11" cy="7.5" r="3.2" fill="#002776"/><path d="M8 7.2 Q11 5.5 14 7.2" stroke="#fff" stroke-width="0.9" fill="none"/></svg>`; }
 
-    let artHtml = `<div class="trow header-row art-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">GOLS</div><div class="cell">JOGOS</div></div>`;
-    artilharia.forEach((p, i) => {
-      artHtml += `<div class="trow data-row art-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${brazilFlag()} ${p.name.toUpperCase()}</div><div class="cell">${p.gols}</div><div class="cell">${p.jogos}</div></div>`;
-    });
-    document.getElementById('art-root').innerHTML = artHtml;
+    function renderTournament(idx) {
+      const t = tournaments[idx];
+      if (!t) return;
+      document.querySelector('.title-main').textContent = t.name;
 
-    let clsHtml = `<div class="trow header-row cls-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">PONTOS</div><div class="cell">JOGOS</div><div class="cell">V</div><div class="cell">E</div><div class="cell">D</div></div>`;
-    classificacao.forEach((p, i) => {
-      clsHtml += `<div class="trow data-row cls-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${brazilFlag()} ${p.name.toUpperCase()}</div><div class="cell" style="color:#7fff7f">${p.pts}</div><div class="cell">${p.jogos}</div><div class="cell">${p.v}</div><div class="cell">${p.e}</div><div class="cell">${p.d}</div></div>`;
-    });
-    document.getElementById('cls-root').innerHTML = clsHtml;
+      // artilharia
+      const artilharia = [...t.players].sort((a, b) => b.gols - a.gols || b.jogos - a.jogos);
+      let artHtml = `<div class="trow header-row art-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">GOLS</div><div class="cell">JOGOS</div></div>`;
+      artilharia.forEach((p, i) => {
+        artHtml += `<div class="trow data-row art-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${brazilFlag()} ${p.name.toUpperCase()}</div><div class="cell">${p.gols}</div><div class="cell">${p.jogos}</div></div>`;
+      });
+      document.getElementById('art-root').innerHTML = artHtml;
+
+      // assistências removidas — não renderizar tabela específica
+
+      // classificacao
+      const classificacao = [...t.players].sort((a, b) => b.pts - a.pts || b.gols - a.gols);
+      let clsHtml = `<div class="trow header-row cls-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">PONTOS</div><div class="cell">JOGOS</div><div class="cell">V</div><div class="cell">E</div><div class="cell">D</div></div>`;
+      classificacao.forEach((p, i) => {
+        clsHtml += `<div class="trow data-row cls-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${brazilFlag()} ${p.name.toUpperCase()}</div><div class="cell" style="color:#7fff7f">${p.pts}</div><div class="cell">${p.jogos}</div><div class="cell">${p.v}</div><div class="cell">${p.e}</div><div class="cell">${p.d}</div></div>`;
+      });
+      document.getElementById('cls-root').innerHTML = clsHtml;
+    }
+
+    let tempNewTournamentName = null;
+    let tempCopyFromIndex = null;
+
+    function populateTournamentSelect() {
+      const sel = document.getElementById('tournament-select');
+      if (!sel) return;
+      sel.innerHTML = '';
+      tournaments.forEach((t, i) => {
+        const opt = document.createElement('option'); opt.value = i; opt.text = t.name + (t.completed === false ? ' (andamento)' : ''); sel.appendChild(opt);
+      });
+      sel.value = currentTournament;
+      sel.onchange = () => { currentTournament = Number(sel.value); renderTournament(currentTournament); renderAggregate(); };
+      // update header logo when switching
+      sel.addEventListener('change', () => updateLogoImage());
+    }
+
+    function updateLogoImage() {
+      const logoEl = document.querySelector('.logo-igortv img');
+      const titleImgEl = document.querySelector('.title-block img');
+      const t = tournaments[currentTournament];
+      if (t && t.image) {
+        logoEl.src = t.image;
+        if (titleImgEl) titleImgEl.src = t.image;
+      } else {
+        logoEl.src = 'logo3.png';
+        if (titleImgEl) titleImgEl.src = 'logo.png';
+      }
+    }
+
+    function incrementEditionName(name) {
+      const m = name.match(/(\d+)ª Edição/);
+      if (m) {
+        const n = Number(m[1]) + 1;
+        return name.replace(/(\d+)ª Edição/, `${n}ª Edição`);
+      }
+      // fallback: append edição
+      return name + ' - Próxima Edição';
+    }
+
+    function createDuplicateTournament() {
+      beginCreateTournament(currentTournament);
+    }
+
+    function beginCreateTournament(copyFromIndex = null) {
+      // ask for name
+      const defaultName = copyFromIndex != null ? incrementEditionName(tournaments[copyFromIndex].name) : `Novo Torneio`;
+      const name = prompt('Nome do torneio:', defaultName);
+      if (!name) return;
+      tempNewTournamentName = name;
+      // if attempting to copy from an ongoing tournament, pick last completed instead
+      if (copyFromIndex != null && tournaments[copyFromIndex] && tournaments[copyFromIndex].completed === false) {
+        const lastCompleted = tournaments.map((t,idx)=>({t,idx})).reverse().find(x=>x.t.completed!==false);
+        if (!lastCompleted) { alert('Não há torneio concluído para copiar. Criação cancelada.'); return; }
+        alert('O torneio selecionado está em andamento. Vou copiar do último torneio concluído: ' + lastCompleted.t.name);
+        tempCopyFromIndex = lastCompleted.idx;
+      } else {
+        tempCopyFromIndex = copyFromIndex;
+      }
+      // trigger file select for image (optional)
+      const input = document.getElementById('tournament-image-input');
+      input.value = null;
+      input.click();
+    }
+
+    function finalizeCreateTournament(imageDataUrl) {
+      let copy = { id: Date.now(), name: tempNewTournamentName || 'Sem nome', image: imageDataUrl || null, players: [] };
+      if (tempCopyFromIndex != null) {
+        const src = tournaments[tempCopyFromIndex];
+        copy.id = Date.now();
+        copy.name = tempNewTournamentName || src.name;
+        copy.image = imageDataUrl || src.image || null;
+        // new created/duplicated tournament starts as ongoing
+        copy.completed = false;
+        // copy roster but reset all numeric stats for a clean new tournament
+        copy.players = (src.players || []).map(p => ({
+          name: p.name,
+          jogos: 0,
+          v: 0,
+          e: 0,
+          d: 0,
+          gols: 0,
+          pts: 0,
+          assists: 0
+        }));
+      } else {
+        copy.players = [];
+        copy.completed = false;
+      }
+      tournaments.push(copy);
+      currentTournament = tournaments.length - 1;
+      populateTournamentSelect();
+      renderTournament(currentTournament);
+      renderAggregate();
+      updateLogoImage();
+      tempNewTournamentName = null; tempCopyFromIndex = null;
+    }
+
+    function renderAggregate() {
+      // Compute totals: campeon titles and artilheiro titles (count of top-scorer trophies)
+      const campeaoCounts = {};
+      const artilheiroCounts = {};
+      const namesSet = new Set();
+
+      // only include completed tournaments in aggregates
+      tournaments.filter(t => t.completed !== false).forEach(t => {
+        // artilheiro(s): max gols in tournament
+        const maxG = Math.max(...t.players.map(p => p.gols || 0));
+        t.players.filter(p => (p.gols || 0) === maxG).forEach(p => { artilheiroCounts[p.name] = (artilheiroCounts[p.name] || 0) + 1; namesSet.add(p.name); });
+        // campeao(s) por pontos
+        const maxPts = Math.max(...t.players.map(p => p.pts || 0));
+        t.players.filter(p => (p.pts || 0) === maxPts).forEach(p => { campeaoCounts[p.name] = (campeaoCounts[p.name] || 0) + 1; namesSet.add(p.name); });
+      });
+
+      // Build array of players with aggregated data
+      const players = Array.from(namesSet).map(name => ({
+        name,
+        campeoes: campeaoCounts[name] || 0,
+        artilheiro: artilheiroCounts[name] || 0
+      }));
+
+      // sort by campeoes desc, artilheiro desc
+      players.sort((a,b) => b.campeoes - a.campeoes || b.artilheiro - a.artilheiro || a.name.localeCompare(b.name));
+
+      // build table HTML similar to classificacao/artilharia (columns: POS, JOGADOR, 🏆, ⚽)
+      let html = `<div class="trow header-row geral-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">🏆</div><div class="cell">⚽</div></div>`;
+      players.forEach((p, i) => {
+        html += `<div class="trow data-row geral-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${brazilFlag()} ${p.name.toUpperCase()}</div><div class="cell">${p.campeoes}</div><div class="cell">${p.artilheiro}</div></div>`;
+      });
+      const gr = document.getElementById('geral-root'); if (gr) gr.innerHTML = html;
+      // populate compact winners table in header (only campeoes)
+      const headerRoot = document.getElementById('geral-header-root');
+      if (headerRoot) {
+        const camArr = Object.entries(campeaoCounts).sort((a,b)=>b[1]-a[1]);
+        let headerHtml = `<div class="trow header-row cls-cols" style="font-size:12px; margin-bottom:6px;"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">TÍTULOS</div></div>`;
+        if (camArr.length===0) {
+          headerHtml += `<div style="color:#f0d000">(Nenhum registro)</div>`;
+        } else {
+          camArr.forEach(([name,c], i) => {
+            headerHtml += `<div class="trow data-row cls-cols" style="font-size:12px;"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${brazilFlag()} ${name.toUpperCase()}</div><div class="cell">${c}</div></div>`;
+          });
+        }
+        headerRoot.innerHTML = headerHtml;
+      }
+    }
 
     function showTab(tab) {
       document.querySelectorAll('.table-view').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.sec-tab').forEach(el => el.classList.remove('active'));
       document.getElementById('tab-' + tab).classList.add('active');
-      event.target.classList.add('active');
+      // when clicked from header, event.target might be the element; safe guard
+      try { event.target.classList.add('active'); } catch(e){}
     }
+
+    // file input handler for tournament image selection
+    const fileInput = document.getElementById('tournament-image-input');
+    fileInput.addEventListener('change', (ev) => {
+      const f = ev.target.files && ev.target.files[0];
+      if (!f) {
+        finalizeCreateTournament(null);
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => finalizeCreateTournament(reader.result);
+      reader.readAsDataURL(f);
+    });
+
+    // header buttons
+    // new/dup tournament buttons removed; creation handled via manual JSON
+    // open geral modal
+    document.getElementById('open-geral-modal').addEventListener('click', () => openGeralModal());
+    document.getElementById('close-geral-modal').addEventListener('click', () => closeGeralModal());
+    // delete-tournament removed
+
+    function openGeralModal() {
+      renderGeralModal();
+      const m = document.getElementById('geral-modal');
+      if (m) m.style.display = 'flex';
+    }
+
+    function closeGeralModal() {
+      const m = document.getElementById('geral-modal');
+      if (m) m.style.display = 'none';
+    }
+
+    function renderGeralModal() {
+      // compute aggregated counts from completed tournaments only
+      const artilheiroCounts = {};
+      const campeaoCounts = {};
+      const names = new Set();
+      tournaments.filter(t=>t.completed!==false).forEach(t=>{
+        // artilheiro(s): max gols in tournament
+        const maxG = Math.max(...t.players.map(p=>p.gols||0));
+        t.players.filter(p=> (p.gols||0)===maxG ).forEach(p=>{ artilheiroCounts[p.name]=(artilheiroCounts[p.name]||0)+1; names.add(p.name); });
+        // campeao(s)
+        const maxP = Math.max(...t.players.map(p=>p.pts||0));
+        t.players.filter(p=> (p.pts||0)===maxP ).forEach(p=>{ campeaoCounts[p.name]=(campeaoCounts[p.name]||0)+1; names.add(p.name); });
+      });
+
+      const rows = Array.from(names).map(name=>({
+        name,
+        artilheiro: artilheiroCounts[name]||0,
+        campeao: campeaoCounts[name]||0
+      }));
+      // sort by campeao desc, gols desc
+      rows.sort((a,b)=> b.campeao - a.campeao || b.artilheiro - a.artilheiro || a.name.localeCompare(b.name));
+
+      // columns order: TROFÉU, GOLS (assistências removidas)
+      let html = `<div class="trow header-row geral-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">🏆</div><div class="cell">⚽</div></div>`;
+      rows.forEach((r,i)=>{
+        html += `<div class="trow data-row geral-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${brazilFlag()} ${r.name.toUpperCase()}</div><div class="cell">${r.campeao}</div><div class="cell">${r.artilheiro}</div></div>`;
+      });
+      const root = document.getElementById('geral-modal-root'); if (root) root.innerHTML = html;
+    }
+
+    // deleteTournament function removed
+
+    // init - garantir que o primeiro torneio esteja ativo (restaurado)
+    currentTournament = 0;
+    populateTournamentSelect();
+    renderTournament(currentTournament);
+    renderAggregate();
+    updateLogoImage();
   </script>
 </body>
 </html>
