@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="logo2.png">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
@@ -37,8 +38,8 @@
     }
 
     .logo-igortv {
-      width: 68px;
-      height: 68px;
+      width: 100px;
+      height: 100px;
       flex-shrink: 0;
       background: #fff;
       border-radius: 8px;
@@ -72,7 +73,7 @@
     }
 
     .title-main {
-      font-size: 22px;
+      font-size: 32px;
       color: #fff;
       letter-spacing: 2px;
       text-shadow: 2px 2px #000, -1px -1px #000;
@@ -151,12 +152,7 @@
       display: block;
     }
 
-    /* Two-col layout for artilharia */
-    .two-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 8px;
-    }
+
 
     /* Table common */
     .trow {
@@ -272,11 +268,11 @@
 
     <div class="header">
       <div class="logo-igortv">
-        <img src="logo.png" alt="IgorTV" />
+        <img src="logo2.png" alt="IgorTV" />
       </div>
       <div class="title-center">
         <div class="title-block">
-          <span style="font-size:22px">⚽</span>
+          <img src="logo.png" alt="Logo" style="width:50px;height:50px;" />
           <div>
             <div class="title-main">IgorTV CUP - 1ª Edição</div>
             <div class="speed-lines"></div>
@@ -298,7 +294,7 @@
     <div class="content">
       <!-- ARTILHARIA -->
       <div class="table-view active" id="tab-art">
-        <div class="two-cols" id="art-root"></div>
+        <div id="art-root"></div>
       </div>
       <!-- CLASSIFICAÇÃO -->
       <div class="table-view" id="tab-cls">
@@ -307,7 +303,7 @@
     </div>
 
     <div class="footer">
-      <span class="footer-text">⚽ &nbsp; INTERNATIONAL SUPERSTAR SOCCER DELUXE — IGORTV &nbsp; ⚽</span>
+      <span class="footer-text">⚽ &nbsp; INTERNATIONAL SUPERSTAR SOCCER DELUXE — WiskTV &nbsp; ⚽</span>
     </div>
   </div>
 
@@ -350,10 +346,10 @@
 
     function posColor(pos, total) {
       const t = (pos - 1) / (total - 1);
-      if (t < 0.33) return '#60aaff';
+      if (t < 0.33) return '#60ff60';
       else if (t < 0.55) return '#f0d000';
-      else if (t < 0.78) return '#ff5040';
-      else return '#aaaaaa';
+      else if (t < 0.78) return '#ffffff';
+      else return '#ff5040';
     }
 
     function brazilFlag() {
@@ -397,10 +393,8 @@
     }
 
     artilharia.forEach((p, i) => p._pos = i + 1);
-    const half = Math.ceil(artilharia.length / 2);
     document.getElementById('art-root').innerHTML =
-      buildArtCol(artilharia.slice(0, half), half) +
-      buildArtCol(artilharia.slice(half), half);
+      buildArtCol(artilharia, artilharia.length);
 
     // ---- CLASSIFICAÇÃO ----
     classificacao.forEach((p, i) => p._cpos = i + 1);
