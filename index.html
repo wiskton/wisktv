@@ -260,6 +260,71 @@
       color: #e8c000;
       letter-spacing: 2px;
     }
+
+    /* TRANSMISSÕES */
+    .transmissions-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 16px;
+      height: 100%;
+    }
+
+    .channel-card {
+      background: linear-gradient(135deg, #1535c8, #0d1f80);
+      border: 2px solid #e8c000;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .channel-card:hover {
+      background: linear-gradient(135deg, #2244dd, #1830d8);
+      transform: scale(1.02);
+      box-shadow: 0 0 15px #e8c000;
+    }
+
+    .channel-info {
+      flex: 1;
+    }
+
+    .channel-name {
+      font-size: 18px;
+      color: #f0d000;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .channel-desc {
+      font-size: 12px;
+      color: #90b8ff;
+      letter-spacing: 0.5px;
+    }
+
+    .youtube-link {
+      background: #ff0000;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13px;
+      transition: background 0.3s ease;
+      margin-left: 12px;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 1px;
+    }
+
+    .youtube-link:hover {
+      background: #cc0000;
+    }
   </style>
 </head>
 
@@ -289,6 +354,7 @@
     <div class="sections">
       <div class="sec-tab active" onclick="showTab('art')">⚽ ARTILHARIA</div>
       <div class="sec-tab" onclick="showTab('cls')">🏆 CLASSIFICAÇÃO</div>
+      <div class="sec-tab" onclick="showTab('trans')">📹 TRANSMISSÕES</div>
     </div>
 
     <div class="content">
@@ -299,6 +365,25 @@
       <!-- CLASSIFICAÇÃO -->
       <div class="table-view" id="tab-cls">
         <div id="cls-root"></div>
+      </div>
+      <!-- TRANSMISSÕES -->
+      <div class="table-view" id="tab-trans">
+        <div class="transmissions-container">
+          <div class="channel-card">
+            <div class="channel-info">
+              <div class="channel-name">🎥 NILL FERREIRA</div>
+              <div class="channel-desc">Transmissões ao vivo dos jogos e análises</div>
+            </div>
+            <a href="https://www.youtube.com/@NillFerreira" target="_blank" class="youtube-link">INSCREVER</a>
+          </div>
+          <div class="channel-card">
+            <div class="channel-info">
+              <div class="channel-name">⚽ WISK FUT</div>
+              <div class="channel-desc">Cobertura completa e bastidores da IgorTV CUP</div>
+            </div>
+            <a href="https://www.youtube.com/@WiskFut" target="_blank" class="youtube-link">INSCREVER</a>
+          </div>
+        </div>
       </div>
     </div>
 
