@@ -24,10 +24,12 @@
     .sections { display: flex; gap: 0; padding: 8px 8px 0; }
     .sec-tab { padding: 6px 18px; font-size: 14px; letter-spacing: 1px; cursor: pointer; border: 2px solid #e8c000; border-bottom: none; background: #0d1f80; color: #90b8ff; transition: background 0.2s; }
     .sec-tab.active { background: #1535c8; color: #f0d000; }
-    .content { padding: 0 8px 8px; flex: 1; max-width: 820px; width: 100%; margin: 0 auto; }
+    .content { padding: 0 8px 8px; flex: 1; max-width: 400px; width: 100%; margin: 0 auto; }
     .table-view { display: none; padding-top: 6px; }
     .table-view.active { display: block; }
     .table-view { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    #tab-art { max-width: 250px; margin: 0 auto; }
+    #geral-modal-root { width: 100%; margin: 0 auto; }
     .trow { display: grid; border: 1px solid #e8c000; border-bottom: none; }
     .trow.header-row { background: #0d1f80; }
     .trow.header-row .cell { color: #fff; font-size: 14px; letter-spacing: 1px; padding: 3px 2px; text-align: center; border-right: 1px solid #e8c000; }
@@ -40,9 +42,9 @@
     .trow.data-row .cell:last-child { border-right: none; }
     .trow.data-row .cell.cpos { font-weight: bold; }
     .trow.data-row .cell.cname { text-align: left; justify-content: flex-start; padding: 0 10px; gap: 3px; color: #fff; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-    .art-cols { grid-template-columns: 32px auto 44px 34px; }
-    .geral-cols { grid-template-columns: 32px auto 44px 34px; }
-    .cls-cols { grid-template-columns: 32px auto 42px 30px 26px 26px 26px; }
+    .art-cols { grid-template-columns: 32px 120px minmax(0, 1fr) minmax(0, 1fr); }
+    .geral-cols { grid-template-columns: 32px 180px 40px 34px; }
+    .cls-cols { grid-template-columns: 32px 120px minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); }
 
     /* Responsive adjustments for small screens */
     @media (max-width: 600px) {
@@ -58,9 +60,9 @@
       .sec-tab { padding: 6px 10px; font-size: 13px; }
       .trow.header-row .cell, .trow.data-row .cell { font-size: 14px; padding: 3px 3px; }
       .trow.data-row .cell.cname { font-size: 14px; }
-      .art-cols { grid-template-columns: 30px auto 40px 32px; }
-      .cls-cols { grid-template-columns: 30px auto 40px 28px 24px 24px 24px; }
-      .geral-cols { grid-template-columns: 30px auto 40px 32px; }
+      .art-cols { grid-template-columns: 30px 160px minmax(0, 1fr) minmax(0, 1fr); }
+      .cls-cols { grid-template-columns: 30px 160px minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); }
+      .geral-cols { grid-template-columns: 30px 160px 40px 34px; }
       .title-center { padding: 4px 0; }
       /* Modal full-screen on small devices */
       #geral-modal { align-items: flex-start; padding-top: 12px; }
@@ -144,7 +146,7 @@
 
   <!-- Modal for full winners ranking -->
   <div id="geral-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; z-index:9999;">
-    <div style="background:linear-gradient(90deg,#0d1f80,#1535c8); padding:18px; border-radius:8px; width:90%; max-width:900px; max-height:85%; overflow:auto; border:3px solid #e8c000;">
+    <div style="background:linear-gradient(90deg,#0d1f80,#1535c8); padding:18px; border-radius:8px; width:min(90%,340px); max-width:340px; max-height:85%; overflow:auto; border:3px solid #e8c000;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
         <h2 style="color:#fff; margin:0;">Ranking Geral — Vencedores por Torneio</h2>
         <div>
