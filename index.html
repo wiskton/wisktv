@@ -8,7 +8,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #091880; font-family: 'Bebas Neue', sans-serif; font-size: 16px; }
+    body { background: #091880; font-family: 'Bebas Neue', sans-serif; font-size: 18px; line-height: 1.1; }
     .screen { background: linear-gradient(160deg, #1a3fd4 0%, #0d25a0 60%, #091880 100%); border: 3px solid #e8c000; min-height: 100vh; display: flex; flex-direction: column; }
     .header { display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; background: linear-gradient(90deg, #0a1e8a 0%, #1535c0 50%, #0a1e8a 100%); border-bottom: 3px solid #e8c000; gap: 10px; }
     .logo-igortv { width: 100px; height: 100px; flex-shrink: 0; background: #fff; border-radius: 8px; overflow: hidden; border: 2px solid #e8c000; display: flex; align-items: center; justify-content: center; }
@@ -24,25 +24,25 @@
     .sections { display: flex; gap: 0; padding: 8px 8px 0; }
     .sec-tab { padding: 6px 18px; font-size: 14px; letter-spacing: 1px; cursor: pointer; border: 2px solid #e8c000; border-bottom: none; background: #0d1f80; color: #90b8ff; transition: background 0.2s; }
     .sec-tab.active { background: #1535c8; color: #f0d000; }
-    .content { padding: 0 8px 8px; flex: 1; }
+    .content { padding: 0 8px 8px; flex: 1; max-width: 820px; width: 100%; margin: 0 auto; }
     .table-view { display: none; padding-top: 6px; }
     .table-view.active { display: block; }
     .table-view { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .trow { display: grid; border: 1px solid #e8c000; border-bottom: none; }
     .trow.header-row { background: #0d1f80; }
-    .trow.header-row .cell { color: #fff; font-size: 12px; letter-spacing: 1px; padding: 4px 2px; text-align: center; border-right: 1px solid #e8c000; }
+    .trow.header-row .cell { color: #fff; font-size: 14px; letter-spacing: 1px; padding: 3px 2px; text-align: center; border-right: 1px solid #e8c000; }
     .trow.header-row .cell:last-child { border-right: none; }
     .trow.header-row .cell.cname { text-align: left; padding-left: 6px; }
-    .trow.data-row { background: #1535c8; border: 1px solid #3355cc; border-bottom: none; min-height: 23px; align-items: center; }
+    .trow.data-row { background: #1535c8; border: 1px solid #3355cc; border-bottom: none; min-height: 22px; align-items: center; }
     .trow.data-row:nth-child(even) { background: #1830d8; }
     .trow.data-row:hover { background: #2244dd; }
-    .trow.data-row .cell { padding: 4px 4px; font-size: 12px; text-align: center; border-right: 1px solid #2a44bb; color: #f0d000; display: flex; align-items: center; justify-content: center; }
+    .trow.data-row .cell { padding: 2px 3px; font-size: 14px; text-align: center; border-right: 1px solid #2a44bb; color: #f0d000; display: flex; align-items: center; justify-content: center; }
     .trow.data-row .cell:last-child { border-right: none; }
     .trow.data-row .cell.cpos { font-weight: bold; }
-    .trow.data-row .cell.cname { text-align: left; justify-content: flex-start; padding-left: 4px; gap: 5px; color: #fff; font-size: 12px; }
-    .art-cols { grid-template-columns: 42px 1fr 60px 46px; }
-    .geral-cols { grid-template-columns: 42px 1fr 60px 46px; }
-    .cls-cols { grid-template-columns: 42px 1fr 60px 38px 38px 38px 38px; }
+    .trow.data-row .cell.cname { text-align: left; justify-content: flex-start; padding: 0 10px; gap: 3px; color: #fff; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+    .art-cols { grid-template-columns: 32px auto 44px 34px; }
+    .geral-cols { grid-template-columns: 32px auto 44px 34px; }
+    .cls-cols { grid-template-columns: 32px auto 42px 30px 26px 26px 26px; }
 
     /* Responsive adjustments for small screens */
     @media (max-width: 600px) {
@@ -56,10 +56,11 @@
       #header-controls { justify-content: center; flex-wrap: wrap; gap: 6px; }
       .sections { flex-wrap: wrap; gap: 6px; padding: 6px; }
       .sec-tab { padding: 6px 10px; font-size: 13px; }
-      .trow.header-row .cell, .trow.data-row .cell { font-size: 11px; padding: 4px 6px; }
-      .art-cols { grid-template-columns: 36px 1fr 48px 40px; }
-      .cls-cols { grid-template-columns: 36px 1fr 48px 30px 30px 30px 30px; }
-      .geral-cols { grid-template-columns: 36px 1fr 48px 30px; }
+      .trow.header-row .cell, .trow.data-row .cell { font-size: 14px; padding: 3px 3px; }
+      .trow.data-row .cell.cname { font-size: 14px; }
+      .art-cols { grid-template-columns: 30px auto 40px 32px; }
+      .cls-cols { grid-template-columns: 30px auto 40px 28px 24px 24px 24px; }
+      .geral-cols { grid-template-columns: 30px auto 40px 32px; }
       .title-center { padding: 4px 0; }
       /* Modal full-screen on small devices */
       #geral-modal { align-items: flex-start; padding-top: 12px; }
@@ -499,8 +500,8 @@
 
     // deleteTournament function removed
 
-    // init - garantir que o primeiro torneio esteja ativo (restaurado)
-    currentTournament = 0;
+    // init - abrir no último torneio cadastrado por padrão
+    currentTournament = Math.max(0, tournaments.length - 1);
     populateTournamentSelect();
     renderTournament(currentTournament);
     renderAggregate();
