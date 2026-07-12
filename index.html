@@ -189,9 +189,9 @@
           { name: 'Francis', jogos: 4, v: 1, e: 0, d: 3, gols: 1, pts: 7, assists: 0 },
           { name: 'Tchelo', jogos: 3, v: 1, e: 0, d: 2, gols: 1, pts: 6, assists: 0 },
           { name: 'Shitake', jogos: 2, v: 0, e: 0, d: 2, gols: 2, pts: 2, assists: 0 },
-          { name: 'Brunim', jogos: 2, v: 1, e: 0, d: 1, gols: 2, pts: 5, assists: 0 },
+          { name: 'Brunin', jogos: 2, v: 1, e: 0, d: 1, gols: 2, pts: 5, assists: 0 },
           { name: 'Luiz Gatti', jogos: 1, v: 0, e: 0, d: 1, gols: 0, pts: 1, assists: 0 },
-          { name: 'Iuri', jogos: 1, v: 1, e: 0, d: 0, gols: 1, pts: 4, assists: 0 },
+          { name: 'Iury', jogos: 1, v: 1, e: 0, d: 0, gols: 1, pts: 4, assists: 0 },
           { name: 'Vitor', jogos: 1, v: 1, e: 0, d: 0, gols: 4, pts: 4, assists: 0 },
           { name: 'Caio Camargo', jogos: 1, v: 1, e: 0, d: 0, gols: 0, pts: 4, assists: 0 },
           { name: 'Raul', jogos: 1, v: 0, e: 0, d: 1, gols: 2, pts: 1, assists: 0 },
@@ -224,9 +224,9 @@
           { name: 'Francis', jogos: 3, v: 1, e: 0, d: 2, gols: 8, pts: 6, assists: 0 },
           { name: 'Tchelo', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
           { name: 'Fábio Shitake', jogos: 2, v: 1, e: 0, d: 1, gols: 0, pts: 5, assists: 0 },
-          { name: 'Brunim', jogos: 2, v: 0, e: 0, d: 2, gols: 4, pts: 2, assists: 0 },
+          { name: 'Brunin', jogos: 2, v: 0, e: 0, d: 2, gols: 4, pts: 2, assists: 0 },
           { name: 'Luiz Gatti', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
-          { name: 'Iuri', jogos: 2, v: 0, e: 0, d: 2, gols: 0, pts: 2, assists: 0 },
+          { name: 'Iury', jogos: 2, v: 0, e: 0, d: 2, gols: 0, pts: 2, assists: 0 },
           { name: 'Vitor', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
           { name: 'Caio Camargo', jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, assists: 0 },
           { name: 'Raul', jogos: 1, v: 1, e: 0, d: 0, gols: 2, pts: 4, assists: 0 },
@@ -248,6 +248,15 @@
 
     function brazilFlag() { return `<svg width="20" height="13" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg"><rect width="22" height="15" fill="#009c3b"/><polygon points="11,1.5 20.5,7.5 11,13.5 1.5,7.5" fill="#FFDF00"/><circle cx="11" cy="7.5" r="3.2" fill="#002776"/><path d="M8 7.2 Q11 5.5 14 7.2" stroke="#fff" stroke-width="0.9" fill="none"/></svg>`; }
 
+    function scotlandFlag() {
+      return `<svg width="20" height="13" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg"><rect width="22" height="15" fill="#005EB8"/><polygon points="1,1 21,1 21,14 1,14" fill="#005EB8"/><polygon points="0,0 8,0 8,1 2,1 2,6 0,6" fill="#FFFFFF"/><polygon points="0,0 2,0 2,7 0,7" fill="#FFFFFF"/><polygon points="1,0 8,0 8,1 2,1 2,6 1,6" fill="#FFFFFF"/><polygon points="22,0 14,0 14,1 20,1 20,6 22,6" fill="#FFFFFF"/><polygon points="22,0 20,0 20,7 22,7" fill="#FFFFFF"/><polygon points="1,14 8,14 8,13 2,13 2,8 1,8" fill="#FFFFFF"/><polygon points="0,14 2,14 2,7 0,7" fill="#FFFFFF"/><polygon points="22,14 14,14 14,13 20,13 20,8 22,8" fill="#FFFFFF"/><polygon points="22,14 20,14 20,7 22,7" fill="#FFFFFF"/><polygon points="0,0 22,15" stroke="#FFFFFF" stroke-width="1.5"/><polygon points="22,0 0,15" stroke="#FFFFFF" stroke-width="1.5"/><polygon points="0,0 22,15" stroke="#D81E05" stroke-width="0.8"/><polygon points="22,0 0,15" stroke="#D81E05" stroke-width="0.8"/></svg>`;
+    }
+
+    function getPlayerFlag(name) {
+      const normalized = String(name || '').trim().toLowerCase();
+      return normalized.includes('scot') ? scotlandFlag() : brazilFlag();
+    }
+
     function renderTournament(idx) {
       const t = tournaments[idx];
       if (!t) return;
@@ -257,7 +266,7 @@
       const artilharia = [...t.players].sort((a, b) => b.gols - a.gols || b.jogos - a.jogos);
       let artHtml = `<div class="trow header-row art-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">GOLS</div><div class="cell">JOGOS</div></div>`;
       artilharia.forEach((p, i) => {
-        artHtml += `<div class="trow data-row art-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${brazilFlag()} ${p.name.toUpperCase()}</div><div class="cell">${p.gols}</div><div class="cell">${p.jogos}</div></div>`;
+        artHtml += `<div class="trow data-row art-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${getPlayerFlag(p.name)} ${p.name.toUpperCase()}</div><div class="cell">${p.gols}</div><div class="cell">${p.jogos}</div></div>`;
       });
       document.getElementById('art-root').innerHTML = artHtml;
 
@@ -265,9 +274,9 @@
 
       // classificacao
       const classificacao = [...t.players].sort((a, b) => b.pts - a.pts || b.gols - a.gols);
-      let clsHtml = `<div class="trow header-row cls-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">PONTOS</div><div class="cell">JOGOS</div><div class="cell">V</div><div class="cell">E</div><div class="cell">D</div></div>`;
+      let clsHtml = `<div class="trow header-row cls-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">P</div><div class="cell">J</div><div class="cell">V</div><div class="cell">E</div><div class="cell">D</div></div>`;
       classificacao.forEach((p, i) => {
-        clsHtml += `<div class="trow data-row cls-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${brazilFlag()} ${p.name.toUpperCase()}</div><div class="cell" style="color:#7fff7f">${p.pts}</div><div class="cell">${p.jogos}</div><div class="cell">${p.v}</div><div class="cell">${p.e}</div><div class="cell">${p.d}</div></div>`;
+        clsHtml += `<div class="trow data-row cls-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${getPlayerFlag(p.name)} ${p.name.toUpperCase()}</div><div class="cell" style="color:#7fff7f">${p.pts}</div><div class="cell">${p.jogos}</div><div class="cell">${p.v}</div><div class="cell">${p.e}</div><div class="cell">${p.d}</div></div>`;
       });
       document.getElementById('cls-root').innerHTML = clsHtml;
     }
@@ -398,7 +407,7 @@
       // build table HTML similar to classificacao/artilharia (columns: POS, JOGADOR, 🏆, ⚽)
       let html = `<div class="trow header-row geral-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">🏆</div><div class="cell">⚽</div></div>`;
       players.forEach((p, i) => {
-        html += `<div class="trow data-row geral-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${brazilFlag()} ${p.name.toUpperCase()}</div><div class="cell">${p.campeoes}</div><div class="cell">${p.artilheiro}</div></div>`;
+        html += `<div class="trow data-row geral-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${getPlayerFlag(p.name)} ${p.name.toUpperCase()}</div><div class="cell">${p.campeoes}</div><div class="cell">${p.artilheiro}</div></div>`;
       });
       const gr = document.getElementById('geral-root'); if (gr) gr.innerHTML = html;
       // populate compact winners table in header (only campeoes)
@@ -410,7 +419,7 @@
           headerHtml += `<div style="color:#f0d000">(Nenhum registro)</div>`;
         } else {
           camArr.forEach(([name,c], i) => {
-            headerHtml += `<div class="trow data-row cls-cols" style="font-size:12px;"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${brazilFlag()} ${name.toUpperCase()}</div><div class="cell">${c}</div></div>`;
+            headerHtml += `<div class="trow data-row cls-cols" style="font-size:12px;"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${getPlayerFlag(name)} ${name.toUpperCase()}</div><div class="cell">${c}</div></div>`;
           });
         }
         headerRoot.innerHTML = headerHtml;
@@ -488,7 +497,7 @@
       // columns order: TROFÉU, GOLS (assistências removidas)
       let html = `<div class="trow header-row geral-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">🏆</div><div class="cell">⚽</div></div>`;
       rows.forEach((r,i)=>{
-        html += `<div class="trow data-row geral-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${brazilFlag()} ${r.name.toUpperCase()}</div><div class="cell">${r.campeao}</div><div class="cell">${r.artilheiro}</div></div>`;
+        html += `<div class="trow data-row geral-cols"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${getPlayerFlag(r.name)} ${r.name.toUpperCase()}</div><div class="cell">${r.campeao}</div><div class="cell">${r.artilheiro}</div></div>`;
       });
       const root = document.getElementById('geral-modal-root'); if (root) root.innerHTML = html;
     }

@@ -682,6 +682,21 @@
   </svg>`;
     }
 
+    function scotlandFlag() {
+      return `<svg width="22" height="15" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg">
+    <rect width="22" height="15" fill="#005EB8"/>
+    <path d="M0 0 L22 15" stroke="#FFFFFF" stroke-width="3"/>
+    <path d="M22 0 L0 15" stroke="#FFFFFF" stroke-width="3"/>
+    <path d="M0 0 L22 15" stroke="#D81E05" stroke-width="1"/>
+    <path d="M22 0 L0 15" stroke="#D81E05" stroke-width="1"/>
+  </svg>`;
+    }
+
+    function getPlayerFlag(name) {
+      const normalized = String(name || '').trim().toLowerCase();
+      return normalized.includes('scot') ? scotlandFlag() : brazilFlag();
+    }
+
     function posColor(pos, total) {
       const t = (pos - 1) / (total - 1);
       if (t < 0.33) return '#60aaff';
@@ -717,7 +732,7 @@
 
       return `<div class="trow data-row view-${viewName}${isLast ? ' last-row' : ''}">
     <div class="cell cpos" style="color:${posColor(p.pos, total)}">${p.pos}º</div>
-    <div class="cell cname">${brazilFlag()} ${p.name} ${trophy}</div>
+    <div class="cell cname">${getPlayerFlag(p.name)} ${p.name} ${trophy}</div>
     ${columnsHtml}
   </div>`;
     }
