@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Tema Ultimate — inspirado na UI atual do EA FC (Ultimate Team/Carreira):
+   quase preto, verde-menta e roxo, cantos arredondados, brilho radial
+   duplo no fundo. Só redefine as variáveis de themes/default.css (precisa
+   estar carregado antes deste arquivo). */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap');
+[data-theme="ultimate"] {
+  --bg-page:
+    radial-gradient(ellipse 800px 500px at 10% -5%, rgba(47, 230, 176, 0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 900px 600px at 100% 25%, rgba(124, 92, 255, 0.16) 0%, transparent 55%),
+    #0a0e14;
+  --bg-screen-1: #1b2230;
+  --bg-screen-2: #12161f;
+  --bg-screen-3: #0a0e14;
+  --border-accent: #2fe6b0;
+
+  --header-grad-1: #10141c;
+  --header-grad-2: #1b2230;
+
+  --brand-grad-1: #2fe6b0;
+  --brand-grad-2: #7c5cff;
+
+  --text-strong: #f0f3f7;
+  --text-muted: #8b95a5;
+  --text-soft: #c7ccd6;
+  --accent-bright: #2fe6b0;
+  --accent-glow: #7c5cff;
+
+  --tab-bg: #161b22;
+  --tab-active-bg: #1f2733;
+  --gold-text: #2fe6b0;
+  --link-btn: #7c5cff;
+
+  --row-border: #232a35;
+  --row-alt-bg: #12161f;
+  --row-hover-bg: #29323f;
+  --cell-border: #232a35;
+
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --radius-soft: 12px;
+  --radius-btn: 10px;
+  --radius-panel: 16px;
+}
+
+[data-theme="ultimate"] body {
+  background: var(--bg-page);
+  background-attachment: fixed;
+}

@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Tema Moderno — inspirado no EA Sports FC/FUT clássico: verde escuro,
+   dourado, cantos arredondados e um brilho radial sutil no fundo. Só
+   redefine as variáveis de themes/default.css (precisa estar carregado
+   antes deste arquivo). */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap');
+[data-theme="moderno"] {
+  --bg-page:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(47, 191, 113, 0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 10%, rgba(212, 175, 55, 0.10) 0%, transparent 55%),
+    #0a130d;
+  --bg-screen-1: #1c3a26;
+  --bg-screen-2: #142a1e;
+  --bg-screen-3: #0a130d;
+  --border-accent: #d4af37;
+
+  --header-grad-1: #0f2016;
+  --header-grad-2: #1c3a26;
+
+  --brand-grad-1: #2fbf71;
+  --brand-grad-2: #1c8a4f;
+
+  --text-strong: #ffffff;
+  --text-muted: #a9b6ac;
+  --text-soft: #cfe0d2;
+  --accent-bright: #f2c94c;
+  --accent-glow: #d4af37;
+
+  --tab-bg: #142a1e;
+  --tab-active-bg: #1c3a26;
+  --gold-text: #f2c94c;
+  --link-btn: #2fbf71;
+
+  --row-border: #24422f;
+  --row-alt-bg: #0f2016;
+  --row-hover-bg: #1e4530;
+  --cell-border: #24422f;
+
+  --font-body: "Rajdhani", "Segoe UI", system-ui, sans-serif;
+  --radius-soft: 14px;
+  --radius-btn: 10px;
+  --radius-panel: 16px;
+}
+
+[data-theme="moderno"] body {
+  background: var(--bg-page);
+  background-attachment: fixed;
+}

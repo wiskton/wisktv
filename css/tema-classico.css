@@ -1,0 +1,39 @@
+/* ==========================================================================
+   Tema Clássico — inspirado na tela de abertura do Elifoot 98: verde e
+   amarelo, cantos retos. Só redefine as variáveis de themes/default.css
+   (que precisa estar carregado antes deste arquivo) — nenhuma regra de
+   layout é duplicada aqui. */
+[data-theme="classico"] {
+  --bg-page: #0b3d0b;
+  --bg-screen-1: #1f7a1f;
+  --bg-screen-2: #0f5c0f;
+  --bg-screen-3: #0b3d0b;
+  --border-accent: #f7e017;
+
+  --header-grad-1: #0b5c1f;
+  --header-grad-2: #147a2c;
+
+  --brand-grad-1: #0b6e2e;
+  --brand-grad-2: #147a2c;
+
+  --text-strong: #ffffff;
+  --text-muted: #c9e8a0;
+  --text-soft: #eaffcf;
+  --accent-bright: #ffe600;
+  --accent-glow: #d4c400;
+
+  --tab-bg: #0b5c1f;
+  --tab-active-bg: #147a2c;
+  --gold-text: #ffe600;
+  --link-btn: #2f8f4f;
+
+  --row-border: #1f7a1f;
+  --row-alt-bg: #0f6b20;
+  --row-hover-bg: #1d8a35;
+  --cell-border: #145c22;
+
+  --font-body: Arial, Helvetica, sans-serif;
+  --radius-soft: 0px;
+  --radius-btn: 0px;
+  --radius-panel: 0px;
+}

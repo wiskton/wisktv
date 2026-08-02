@@ -1,0 +1,51 @@
+/* ==========================================================================
+   Tema Deluxe — inspirado no International Superstar Soccer Deluxe do
+   Super Nintendo: azul royal mais profundo, dourado mais quente e uma
+   textura diagonal sutil no fundo. Só redefine as variáveis de
+   themes/default.css (precisa estar carregado antes deste arquivo). */
+[data-theme="deluxe"] {
+  --bg-page:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 2px,
+      transparent 2px,
+      transparent 7px
+    ),
+    linear-gradient(180deg, #12207a 0%, #060b3a 100%);
+  --bg-screen-1: #24409e;
+  --bg-screen-2: #16266b;
+  --bg-screen-3: #0d1660;
+  --border-accent: #ffd23f;
+
+  --header-grad-1: #0a1150;
+  --header-grad-2: #2946b8;
+
+  --brand-grad-1: #1a8a1a;
+  --brand-grad-2: #2db82d;
+
+  --text-strong: #ffffff;
+  --text-muted: #aab8e6;
+  --text-soft: #cfd8f5;
+  --accent-bright: #ffe27a;
+  --accent-glow: #ffd23f;
+
+  --tab-bg: #16266b;
+  --tab-active-bg: #1e3a8f;
+  --gold-text: #ffd23f;
+  --link-btn: #2946b8;
+
+  --row-border: #2946b8;
+  --row-alt-bg: #16266b;
+  --row-hover-bg: #3355c9;
+  --cell-border: #24409e;
+
+  --radius-soft: 4px;
+  --radius-btn: 4px;
+  --radius-panel: 4px;
+}
+
+[data-theme="deluxe"] body {
+  background: var(--bg-page);
+  background-attachment: fixed;
+}
