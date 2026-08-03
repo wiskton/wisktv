@@ -134,7 +134,9 @@
       minute: 0,
       running: false,
       review: null,
-      notice: ''
+      notice: '',
+      atraso: 0,
+      duracaoPartida: 60
     };
 
     const DIAS_SEMANA = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
@@ -475,6 +477,30 @@
       return teamPlayers[teamPlayers.length - 1];
     }
 
+    // Sorteia um atraso de 0 a 15 minutos antes da partida começar — simula jogadores chegando
+    // atrasados, o que encurta o tempo de jogo (a partida passa a ter 60 - atraso minutos).
+    // Distribuição triangular (min/pico/max): concentra os valores perto do "pico" em vez de
+    // uniforme — usado pro atraso ficar geralmente perto de 5 min, com atrasos maiores (até 15)
+    // bem mais raros.
+    function sortearTriangular(min, pico, max) {
+      const u = Math.random();
+      const c = (pico - min) / (max - min);
+      if (u < c) return min + Math.sqrt(u * (max - min) * (pico - min));
+      return max - Math.sqrt((1 - u) * (max - min) * (max - pico));
+    }
+
+    function sortearAtrasoPartida(teams) {
+      const atraso = Math.round(sortearTriangular(0, 5, 15));
+      if (atraso === 0) {
+        return { atraso, mensagem: '✅ Todo mundo chegou no horário! Partida com os 60 minutos completos.' };
+      }
+      const todosJogadores = [...((teams && teams.teamA) || []), ...((teams && teams.teamB) || [])];
+      const atrasado = todosJogadores.length ? todosJogadores[Math.floor(Math.random() * todosJogadores.length)] : null;
+      const duracao = 60 - atraso;
+      const quem = atrasado ? `${atrasado.name.toUpperCase()} se atrasou!` : 'Um jogador se atrasou!';
+      return { atraso, mensagem: `⏰ ${quem} A partida começou ${atraso} min atrasada e vai ter só ${duracao} minutos de jogo.` };
+    }
+
     function getSimulatorPositionLabel(posicao) {
       const map = { GOL: 'Goleiros', ZAG: 'Zagueiros', MEI: 'Meias', ATA: 'Atacantes' };
       return map[posicao] || 'Outros';
@@ -587,10 +613,11 @@
       `;
 
       if (simulatorState.running) {
+        const duracao = simulatorState.duracaoPartida || 60;
         html += `
           <div class="simulator-live">
-            <div class="simulator-live-title">⏱️ Cronômetro — ${simulatorState.minute} min</div>
-            <div class="simulator-live-bar"><div class="simulator-live-fill" style="width:${(simulatorState.minute / 60) * 100}%"></div></div>
+            <div class="simulator-live-title">⏱️ Cronômetro — ${simulatorState.minute} / ${duracao} min${simulatorState.atraso ? ` (atraso de ${simulatorState.atraso} min)` : ''}</div>
+            <div class="simulator-live-bar"><div class="simulator-live-fill" style="width:${(simulatorState.minute / duracao) * 100}%"></div></div>
           </div>
         `;
       }
@@ -717,24 +744,29 @@
             return;
           }
           if (simulatorState.running) return;
+
+          const { atraso, mensagem } = sortearAtrasoPartida(simulatorState.teams);
+          simulatorState.atraso = atraso;
+          simulatorState.duracaoPartida = 60 - atraso;
           simulatorState.running = true;
           simulatorState.events = [];
           simulatorState.score = { teamA: 0, teamB: 0 };
           simulatorState.minute = 0;
           simulatorState.review = null;
-          simulatorState.notice = 'Partida em andamento...';
+          simulatorState.notice = mensagem;
           renderSimulador();
 
           const timer = window.setInterval(() => {
-            if (simulatorState.minute >= 60) {
+            if (simulatorState.minute >= simulatorState.duracaoPartida) {
               window.clearInterval(timer);
               simulatorState.running = false;
               const winner = simulatorState.score.teamA === simulatorState.score.teamB ? 'Empate' : (simulatorState.score.teamA > simulatorState.score.teamB ? 'Time A' : 'Time B');
               const scorers = simulatorState.events.slice().sort((a, b) => b.minute - a.minute);
               const mvp = scorers.length ? scorers[0].scorer : (simulatorState.teams.teamA[0] || simulatorState.teams.teamB[0]);
+              const textoAtraso = simulatorState.atraso ? ` A partida teve só ${simulatorState.duracaoPartida} minutos por causa do atraso de ${simulatorState.atraso} min.` : '';
               simulatorState.review = {
                 score: simulatorState.score,
-                text: `${winner} levou a melhor nesta partida. O ritmo foi intenso e a disputa ficou equilibrada até o apito final.`,
+                text: `${winner} levou a melhor nesta partida. O ritmo foi intenso e a disputa ficou equilibrada até o apito final.${textoAtraso}`,
                 mvp
               };
               simulatorState.notice = 'Partida finalizada. Confira o review abaixo.';
