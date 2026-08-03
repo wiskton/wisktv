@@ -123,6 +123,7 @@
     // horarios, campeonatos, partidas, escalações e jogadores).
     let tournaments = [];
     let playersDirectory = {}; // jogador.pk -> perfil agregado (jogos, torneios, histórico)
+    let allSimulatorPlayers = []; // todo jogador cadastrado, sem filtro (inclui goleiros e inativos)
     let globalTitles = { campeaoCounts: {}, artilheiroCounts: {} };
     let currentTournament = 0; // index in tournaments
     let simulatorState = {
@@ -209,6 +210,22 @@
 
       // garante que todo jogador elegível apareça no diretório, mesmo sem partidas
       Object.keys(jogadoresById).forEach(jid => { if (!isExcludedPlayer(jid)) getPlayerEntry(jid); });
+
+      // lista completa e sem filtro (inclui goleiros e inativos) — usada só pelo simulador,
+      // que deve poder montar times com todo mundo, mesmo quem fica fora das estatísticas/ranking.
+      const allPlayers = Object.keys(jogadoresById).map(jid => {
+        const j = jogadoresById[jid] || {};
+        return {
+          id: Number(jid),
+          name: j.nome || `Jogador ${jid}`,
+          foto: j.foto || '',
+          fotoSecundaria: j.foto_secundaria || '',
+          posicao: j.posicao || '',
+          pais: j.pais,
+          ativo: j.ativo,
+          nivel: j.nivel != null ? Number(j.nivel) : null
+        };
+      });
 
       const tournaments = campeonatosRaw.map(camp => {
         const partidas = partidasRaw
@@ -312,7 +329,7 @@
         p.matches.sort((a, b) => new Date(a.data) - new Date(b.data));
       });
 
-      return { tournaments, playersDirectory: directory };
+      return { tournaments, playersDirectory: directory, allPlayers };
     }
 
     function computeGlobalTitles() {
@@ -403,11 +420,14 @@
     }
 
     function getSimulatorPlayers() {
-      return Object.values(playersDirectory)
-        .filter(p => p && p.name && p.ativo !== false)
+      // o simulador lista TODO jogador cadastrado, inclusive goleiros e inativos — só as
+      // estatísticas/ranking do site é que ficam restritas aos jogadores elegíveis.
+      return allSimulatorPlayers
+        .filter(p => p && p.name)
         .map(p => {
-          const jogosReais = (p.matches || []).length;
-          const golsReais = (p.matches || []).reduce((s, m) => s + m.meusGols, 0);
+          const dirEntry = playersDirectory[String(p.id)];
+          const jogosReais = dirEntry ? (dirEntry.matches || []).length : 0;
+          const golsReais = dirEntry ? (dirEntry.matches || []).reduce((s, m) => s + m.meusGols, 0) : 0;
           return {
             id: p.id,
             name: p.name,
@@ -438,7 +458,11 @@
     function pickSimulatorScorerByNivel(teamPlayers) {
       // Combina nível, posição e o histórico real de gols do jogador (gols por partida nas
       // partidas de verdade) — quem mais marca de verdade tem mais chance de marcar na simulação.
+      // Goleiro é tratado à parte: nível de goleiro mede outra coisa (não finalização), então
+      // não deixamos o nível dele aumentar a chance de gol — mesmo um goleiro de nível altíssimo
+      // continua quase impossível de marcar.
       const weights = teamPlayers.map(p => {
+        if (p.posicao === 'GOL') return 1;
         const historicoFator = 1 + (p.golsPorJogo || 0) * 0.3;
         return Math.max(5, p.nivel || 50) * getSimulatorPositionGoalWeight(p.posicao) * historicoFator;
       });
@@ -511,7 +535,7 @@
               <div class="simulator-title">🎯 Montar times</div>
               <div class="simulator-subtitle">Selecione jogadores por posição, conte quantos foram escolhidos e sorteie os times para a partida.</div>
             </div>
-            <div class="simulator-counter">${selectedCount} / 12 selecionados</div>
+            <div class="simulator-counter">${selectedCount} / 14 selecionados</div>
           </div>
           ${simulatorState.notice ? `<div class="simulator-notice">${simulatorState.notice}</div>` : ''}
           <div class="simulator-controls">
@@ -642,37 +666,49 @@
             renderSimulador();
             return;
           }
-          // Sorteio equilibrado por nível: embaralha primeiro (pra não repetir sempre a mesma
-          // dupla nos empates de nível) e depois distribui em ordem decrescente de nível,
-          // sempre colocando o próximo jogador no time com menor soma de nível até agora —
-          // mantém os times parelhos em vez de puramente aleatórios.
+          // Sorteio equilibrado por posição e nível: agrupa por posição (ZAG/MEI/ATA/...) e,
+          // dentro de cada grupo, embaralha (pra não repetir sempre a mesma dupla nos empates)
+          // e distribui em ordem decrescente de nível, sempre colocando o próximo jogador no
+          // time com menor soma de nível até agora. Processar por posição garante que os dois
+          // times fiquem com uma mistura parecida de zagueiros/meias/atacantes, não só o mesmo
+          // nível total.
           const totalPlayers = selected.length;
           const teamSizeA = Math.floor(totalPlayers / 2);
           const teamSizeB = totalPlayers - teamSizeA;
           const pool = selected.map(id => getSimulatorPlayerById(id)).filter(Boolean);
-          const shuffledPool = [...pool].sort(() => Math.random() - 0.5);
-          const sortedByNivel = shuffledPool.sort((a, b) => (b.nivel || 50) - (a.nivel || 50));
+
+          const porPosicao = {};
+          pool.forEach(player => {
+            const pos = player.posicao || 'OUT';
+            (porPosicao[pos] = porPosicao[pos] || []).push(player);
+          });
+
           const teamA = [];
           const teamB = [];
           let somaA = 0;
           let somaB = 0;
-          sortedByNivel.forEach(player => {
-            const podeA = teamA.length < teamSizeA;
-            const podeB = teamB.length < teamSizeB;
-            if (podeA && (!podeB || somaA <= somaB)) {
-              teamA.push(player);
-              somaA += player.nivel || 50;
-            } else {
-              teamB.push(player);
-              somaB += player.nivel || 50;
-            }
+          Object.values(porPosicao).forEach(grupo => {
+            const grupoOrdenado = [...grupo].sort(() => Math.random() - 0.5).sort((a, b) => (b.nivel || 50) - (a.nivel || 50));
+            grupoOrdenado.forEach(player => {
+              const podeA = teamA.length < teamSizeA;
+              const podeB = teamB.length < teamSizeB;
+              if (podeA && (!podeB || somaA <= somaB)) {
+                teamA.push(player);
+                somaA += player.nivel || 50;
+              } else {
+                teamB.push(player);
+                somaB += player.nivel || 50;
+              }
+            });
           });
           simulatorState.teams = { teamA, teamB };
           simulatorState.events = [];
           simulatorState.score = { teamA: 0, teamB: 0 };
           simulatorState.minute = 0;
           simulatorState.review = null;
-          simulatorState.notice = 'Times sorteados com sucesso.';
+          const mediaA = (somaA / (teamA.length || 1)).toFixed(1);
+          const mediaB = (somaB / (teamB.length || 1)).toFixed(1);
+          simulatorState.notice = `Times sorteados com sucesso. Nível médio — Time A: ${mediaA} pts | Time B: ${mediaB} pts.`;
           renderSimulador();
         } else if (action === 'play') {
           if (!simulatorState.teams) {
@@ -1110,6 +1146,7 @@
         const result = await loadTournaments();
         tournaments = result.tournaments;
         playersDirectory = result.playersDirectory;
+        allSimulatorPlayers = result.allPlayers;
       } catch (err) {
         console.error('Falha ao carregar data.json', err);
         const content = document.querySelector('.content');

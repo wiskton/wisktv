@@ -22,6 +22,106 @@
   },
   {
     "model": "jogadores.jogador",
+    "pk": 112,
+    "fields": {
+      "horario": 68,
+      "nome": "Hiago",
+      "pais": "br",
+      "foto": "imgs/112.jpg",
+      "foto_secundaria": "imgs/secundarias/112.jpg",
+      "numero": 15,
+      "posicao": "GOL",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.366Z",
+      "nivel": "85.0",
+      "GP": 109,
+      "GC": 101,
+      "SG": 8
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 134,
+    "fields": {
+      "horario": 68,
+      "nome": "Gessé",
+      "pais": "br",
+      "foto": "imgs/134.jpg",
+      "foto_secundaria": "imgs/secundarias/134.jpg",
+      "numero": null,
+      "posicao": "GOL",
+      "ativo": false,
+      "usuario": null,
+      "criado_em": "2026-07-27T02:50:45.277Z",
+      "nivel": "80.0",
+      "GP": 14,
+      "GC": 10,
+      "SG": 4
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 113,
+    "fields": {
+      "horario": 68,
+      "nome": "Júlio",
+      "pais": "br",
+      "foto": "imgs/113.jpg",
+      "foto_secundaria": "imgs/secundarias/113.jpg",
+      "numero": 16,
+      "posicao": "GOL",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.369Z",
+      "nivel": "80.0",
+      "GP": 90,
+      "GC": 94,
+      "SG": -4
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 131,
+    "fields": {
+      "horario": 68,
+      "nome": "Júlio Silva",
+      "pais": "br",
+      "foto": "imgs/131.jpg",
+      "foto_secundaria": "imgs/secundarias/131.jpg",
+      "numero": null,
+      "posicao": "GOL",
+      "ativo": false,
+      "usuario": null,
+      "criado_em": "2026-07-27T02:15:39.761Z",
+      "nivel": "80.0",
+      "GP": 29,
+      "GC": 27,
+      "SG": 2
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 130,
+    "fields": {
+      "horario": 68,
+      "nome": "Júlio Silva",
+      "pais": "br",
+      "foto": "imgs/130.jpg",
+      "foto_secundaria": "imgs/secundarias/130.jpg",
+      "numero": null,
+      "posicao": "GOL",
+      "ativo": false,
+      "usuario": null,
+      "criado_em": "2026-07-27T02:03:46.642Z",
+      "nivel": "80.0",
+      "GP": 0,
+      "GC": 0,
+      "SG": 0
+    }
+  },
+  {
+    "model": "jogadores.jogador",
     "pk": 100,
     "fields": {
       "horario": 68,
@@ -122,6 +222,26 @@
   },
   {
     "model": "jogadores.jogador",
+    "pk": 117,
+    "fields": {
+      "horario": 68,
+      "nome": "Fábio Gatti",
+      "pais": "br",
+      "foto": "imgs/117.jpg",
+      "foto_secundaria": "imgs/secundarias/117.jpg",
+      "numero": 20,
+      "posicao": "GOL",
+      "ativo": false,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.380Z",
+      "nivel": "60.0",
+      "GP": 8,
+      "GC": 12,
+      "SG": -4
+    }
+  },
+  {
+    "model": "jogadores.jogador",
     "pk": 121,
     "fields": {
       "horario": 68,
@@ -138,6 +258,26 @@
       "GP": 25,
       "GC": 24,
       "SG": 1
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 132,
+    "fields": {
+      "horario": 68,
+      "nome": "Júlio Valera",
+      "pais": "br",
+      "foto": "imgs/132.jpg",
+      "foto_secundaria": "imgs/secundarias/132.jpg",
+      "numero": null,
+      "posicao": "GOL",
+      "ativo": false,
+      "usuario": null,
+      "criado_em": "2026-07-27T02:19:13.274Z",
+      "nivel": "60.0",
+      "GP": 40,
+      "GC": 46,
+      "SG": -6
     }
   },
   {

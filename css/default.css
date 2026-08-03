@@ -127,6 +127,7 @@ body { background: var(--bg-page); font-family: var(--font-body); font-size: 19p
 .simulator-notice { padding: 8px 12px; background: rgba(255,255,255,0.08); border: 1px dashed var(--border-accent); color: var(--gold-text); border-radius: var(--radius-soft); font-size: 14px; }
 .simulator-player-groups { display: flex; flex-direction: column; gap: 10px; }
 .simulator-group { background: rgba(0,0,0,0.15); border: 1px solid var(--row-border); border-radius: var(--radius-soft); padding: 10px; }
+.simulator-group-gol { background: rgba(147, 51, 234, 0.28); border-color: rgba(147, 51, 234, 0.6); }
 .simulator-group-zag { background: rgba(30, 90, 200, 0.28); border-color: rgba(30, 90, 200, 0.6); }
 .simulator-group-mei { background: rgba(30, 160, 90, 0.28); border-color: rgba(30, 160, 90, 0.6); }
 .simulator-group-ata { background: rgba(230, 130, 20, 0.28); border-color: rgba(230, 130, 20, 0.6); }
