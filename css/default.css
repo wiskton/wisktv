@@ -70,28 +70,41 @@ body { background: var(--bg-page); font-family: var(--font-body); font-size: 19p
 .sections { display: flex; gap: 0; padding: 8px 8px 0; }
 .sec-tab { padding: 7px 18px; font-size: 16px; letter-spacing: 1px; cursor: pointer; border: 2px solid var(--border-accent); border-bottom: none; background: var(--tab-bg); color: var(--text-muted); transition: background 0.2s; }
 .sec-tab.active { background: var(--tab-active-bg); color: var(--gold-text); }
-.content { padding: 0 8px 8px; flex: 1; max-width: 480px; width: 100%; margin: 0 auto; }
-.content.wide-tab { max-width: 780px; }
+.content { padding: 0 10px 10px; flex: 1; max-width: 760px; width: 100%; margin: 0 auto; }
+.content.wide-tab { max-width: 800px; }
 .table-view { display: none; padding-top: 6px; }
 .table-view.active { display: block; }
 .table-view { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-#tab-art { max-width: 250px; margin: 0 auto; }
+#tab-art { max-width: 100%; margin: 0 auto; }
 #geral-modal-root { width: 100%; margin: 0 auto; }
-.trow { display: grid; border: 1px solid var(--border-accent); border-bottom: none; }
+.trow { display: grid; border: 1px solid var(--border-accent); border-bottom: none; column-gap: 10px; }
 .trow.header-row { background: var(--tab-bg); }
-.trow.header-row .cell { color: var(--text-strong); font-size: 16px; letter-spacing: 1px; padding: 4px 2px; text-align: center; border-right: 1px solid var(--border-accent); }
+.trow.header-row .cell { color: var(--text-strong); font-size: 16px; letter-spacing: 1px; padding: 6px 14px; text-align: center; border-right: 1px solid var(--border-accent); }
 .trow.header-row .cell:last-child { border-right: none; }
-.trow.header-row .cell.cname { text-align: left; padding-left: 6px; }
-.trow.data-row { background: var(--tab-active-bg); border: 1px solid var(--row-border); border-bottom: none; min-height: 26px; align-items: center; }
+.trow.header-row .cell.cname { text-align: left; padding-left: 14px; }
+.trow.header-row .cell:not(.cname) { text-align: center; }
+.trow.data-row { background: var(--tab-active-bg); border: 1px solid var(--row-border); border-bottom: none; min-height: 30px; align-items: center; }
 .trow.data-row:nth-child(even) { background: var(--row-alt-bg); }
 .trow.data-row:hover { background: var(--row-hover-bg); }
-.trow.data-row .cell { padding: 3px 3px; font-size: 16px; text-align: center; border-right: 1px solid var(--cell-border); color: var(--gold-text); display: flex; align-items: center; justify-content: center; }
+.trow.data-row .cell { padding: 6px 14px; font-size: 16px; text-align: center; border-right: 1px solid var(--cell-border); color: var(--gold-text); display: flex; align-items: center; justify-content: center; }
 .trow.data-row .cell:last-child { border-right: none; }
 .trow.data-row .cell.cpos { font-weight: bold; }
-.trow.data-row .cell.cname { text-align: left; justify-content: flex-start; padding: 0 10px; gap: 3px; color: var(--text-strong); font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-.art-cols { grid-template-columns: 36px 120px minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); }
-.geral-cols { grid-template-columns: 36px 180px 42px 36px; }
-.cls-cols { grid-template-columns: 36px 120px minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); }
+.trow.data-row .cell.cname { text-align: left; justify-content: flex-start; padding: 0 14px; gap: 8px; color: var(--text-strong); font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.art-cols { grid-template-columns: 36px minmax(160px, 1.2fr) 56px 56px 56px 56px; }
+.geral-cols { grid-template-columns: 36px minmax(200px, 1.4fr) 52px 52px; }
+.cls-cols { grid-template-columns: 36px minmax(200px, 1.4fr) 48px 48px 48px 48px 48px 48px; }
+
+.player-table, .data-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+.player-table th, .data-table th,
+.player-table td, .data-table td { padding: 10px 12px; border: 1px solid var(--border-accent); }
+.player-table th, .data-table th { background: var(--tab-bg); color: var(--text-strong); font-weight: bold; text-align: center; }
+[data-theme="ultimate"] .player-table th, [data-theme="ultimate"] .data-table th { background: var(--table-header-bg); }
+.player-table td, .data-table td { color: var(--text-strong); text-align: center; }
+.player-table th.cname, .data-table th.cname,
+.player-table td.cname, .data-table td.cname { text-align: left; }
+.player-table tbody tr:nth-child(even) td, .data-table tbody tr:nth-child(even) td { background: var(--row-alt-bg); }
+.player-table tbody tr:hover td, .data-table tbody tr:hover td { background: var(--row-hover-bg); }
+.data-table tr { cursor: pointer; }
 
 /* Controles de cabeçalho (seletor de torneio/tema, botões) e modais —
    reutilizam as mesmas variáveis, então trocar de tema também reskina isso. */
@@ -170,8 +183,8 @@ body { background: var(--bg-page); font-family: var(--font-body); font-size: 19p
 .pitch-player .goals-badge { position: absolute; top: -6px; right: -8px; background: var(--gold-text); color: #000; font-size: 11px; border-radius: 50%; width: 19px; height: 19px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1px solid #000; z-index: 3; }
 .bench-list { font-size: 12px; color: var(--text-soft); margin-top: 4px; line-height: 1.4; }
 .bench-list strong { color: var(--text-muted); }
-.jog-cols { grid-template-columns: 36px minmax(110px, 1fr) 34px 44px 44px 40px 44px 48px 44px 34px 34px; min-width: 512px; }
-.torneio-cols { grid-template-columns: minmax(0, 1.1fr) 32px 32px 28px 28px 28px 28px 36px; }
+.jog-cols { grid-template-columns: 36px minmax(120px, 1fr) 38px 48px 48px 44px 48px 52px 48px 40px 40px; min-width: 512px; }
+.torneio-cols { grid-template-columns: minmax(0, 1.1fr) 36px 36px 32px 32px 32px 32px 42px; }
 .torneio-cols .cell { font-size: 12px; }
 .player-avatar-lg { position: relative; width: 120px; height: 120px; border-radius: 50%; background: var(--tab-bg); border: 3px solid var(--border-accent); overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .player-avatar-lg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2; }

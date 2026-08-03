@@ -105,7 +105,7 @@
 
   <!-- Modal for player profile -->
   <div id="player-modal" class="modal-backdrop">
-    <div class="modal-box" style="padding:20px; width:min(96%,540px); max-width:540px; max-height:92%; overflow:auto;">
+    <div class="modal-box" style="padding:20px; width:min(96%,680px); max-width:680px; max-height:92%; overflow:auto;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
         <h2 class="modal-title" style="font-size:20px;">Perfil do Jogador</h2>
         <button id="close-player-modal" class="btn-solid">Fechar</button>
@@ -313,10 +313,10 @@
     }
 
     function getPosColor(i) {
-      if (i < 5) return '#00FF00';
-      if (i < 10) return '#FFFF00';
+      if (i < 5) return '#007f00';
+      if (i < 10) return '#ff8c00';
       if (i < 15) return '#FFFFFF';
-      return '#FF0000';
+      return '#b30000';
     }
 
     function brazilFlag() { return `<svg width="20" height="13" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg"><rect width="22" height="15" fill="#009c3b"/><polygon points="11,1.5 20.5,7.5 11,13.5 1.5,7.5" fill="#FFDF00"/><circle cx="11" cy="7.5" r="3.2" fill="#002776"/><path d="M8 7.2 Q11 5.5 14 7.2" stroke="#fff" stroke-width="0.9" fill="none"/></svg>`; }
@@ -340,19 +340,21 @@
 
       // artilharia
       const artilharia = [...t.players].sort((a, b) => b.gols - a.gols || b.jogos - a.jogos);
-      let artHtml = `<div class="trow header-row art-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">GOLS</div><div class="cell">JOGOS</div><div class="cell">GPJ</div></div>`;
+      let artHtml = `<table class="data-table art-table"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>GOLS</th><th>JOGOS</th><th>GPJ</th></tr></thead><tbody>`;
       artilharia.forEach((p, i) => {
         const gpj = p.jogos ? p.gols / p.jogos : 0;
-        artHtml += `<div class="trow data-row art-cols" style="cursor:pointer" onclick="openPlayerModal(${p.id})"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</div><div class="cell">${p.gols}</div><div class="cell">${p.jogos}</div><div class="cell">${gpj.toFixed(1)}</div></div>`;
+        artHtml += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.gols}</td><td>${p.jogos}</td><td>${gpj.toFixed(1)}</td></tr>`;
       });
+      artHtml += `</tbody></table>`;
       document.getElementById('art-root').innerHTML = artHtml;
 
       // classificacao
       const classificacao = [...t.players].sort((a, b) => b.pts - a.pts || b.gols - a.gols);
-      let clsHtml = `<div class="trow header-row cls-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">P</div><div class="cell">J</div><div class="cell">V</div><div class="cell">E</div><div class="cell">D</div></div>`;
+      let clsHtml = `<table class="data-table cls-table"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th></tr></thead><tbody>`;
       classificacao.forEach((p, i) => {
-        clsHtml += `<div class="trow data-row cls-cols" style="cursor:pointer" onclick="openPlayerModal(${p.id})"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</div><div class="cell" style="color:var(--win-color)">${p.pts}</div><div class="cell">${p.jogos}</div><div class="cell">${p.v}</div><div class="cell">${p.e}</div><div class="cell">${p.d}</div></div>`;
+        clsHtml += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td style="color:var(--win-color)">${p.pts}</td><td>${p.jogos}</td><td>${p.v}</td><td>${p.e}</td><td>${p.d}</td></tr>`;
       });
+      clsHtml += `</tbody></table>`;
       document.getElementById('cls-root').innerHTML = clsHtml;
     }
 
@@ -453,26 +455,12 @@
         })
         .sort((a, b) => b.pts - a.pts || b.gols - a.gols || a.name.localeCompare(b.name));
 
-      let html = `<div class="trow header-row jog-cols">
-        <div class="cell">POS</div><div class="cell cname">JOGADOR</div>
-        <div class="cell">J</div><div class="cell">GOLS</div><div class="cell">GPJ</div><div class="cell">GP</div><div class="cell">GC</div><div class="cell">SG</div><div class="cell">PTS</div><div class="cell">🏆</div><div class="cell">⚽</div>
-      </div>`;
+      let html = `<table class="data-table jog-table"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>J</th><th>GOLS</th><th>GPJ</th><th>GP</th><th>GC</th><th>SG</th><th>PTS</th><th>🏆</th><th>⚽</th></tr></thead><tbody>`;
       list.forEach((p, i) => {
         const sgColor = p.sg > 0 ? 'var(--win-color)' : (p.sg < 0 ? 'var(--loss-color)' : '#fff');
-        html += `<div class="trow data-row jog-cols" style="cursor:pointer" onclick="openPlayerModal(${p.id})">
-          <div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div>
-          <div class="cell cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</div>
-          <div class="cell">${p.jogos}</div>
-          <div class="cell">${p.gols}</div>
-          <div class="cell">${p.gpj.toFixed(1)}</div>
-          <div class="cell">${p.gp != null ? p.gp : '-'}</div>
-          <div class="cell">${p.gc != null ? p.gc : '-'}</div>
-          <div class="cell" style="color:${sgColor}">${p.sg != null ? (p.sg > 0 ? '+' : '') + p.sg : '-'}</div>
-          <div class="cell" style="color:var(--win-color)">${p.pts}</div>
-          <div class="cell">${p.titulos}</div>
-          <div class="cell">${p.artilheiro}</div>
-        </div>`;
+        html += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.jogos}</td><td>${p.gols}</td><td>${p.gpj.toFixed(1)}</td><td>${p.gp != null ? p.gp : '-'}</td><td>${p.gc != null ? p.gc : '-'}</td><td style="color:${sgColor}">${p.sg != null ? (p.sg > 0 ? '+' : '') + p.sg : '-'}</td><td style="color:var(--win-color)">${p.pts}</td><td>${p.titulos}</td><td>${p.artilheiro}</td></tr>`;
       });
+      html += `</tbody></table>`;
       root.innerHTML = html || `<div class="cls-desc">Nenhum jogador encontrado.</div>`;
     }
 
@@ -520,24 +508,26 @@
       players.sort((a,b) => b.campeoes - a.campeoes || b.artilheiro - a.artilheiro || a.name.localeCompare(b.name));
 
       // build table HTML similar to classificacao/artilharia (columns: POS, JOGADOR, 🏆, ⚽)
-      let html = `<div class="trow header-row geral-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">🏆</div><div class="cell">⚽</div></div>`;
+      let html = `<table class="data-table geral-table"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>🏆</th><th>⚽</th></tr></thead><tbody>`;
       players.forEach((p, i) => {
-        html += `<div class="trow data-row geral-cols" style="cursor:pointer" onclick="openPlayerModal(${p.id})"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</div><div class="cell">${p.campeoes}</div><div class="cell">${p.artilheiro}</div></div>`;
+        html += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.campeoes}</td><td>${p.artilheiro}</td></tr>`;
       });
+      html += `</tbody></table>`;
       const gr = document.getElementById('geral-root'); if (gr) gr.innerHTML = html;
       // populate compact winners table in header (only campeoes)
       const headerRoot = document.getElementById('geral-header-root');
       if (headerRoot) {
         const camArr = Object.entries(campeaoCounts).sort((a,b)=>b[1]-a[1]);
-        let headerHtml = `<div class="trow header-row cls-cols" style="font-size:13px; margin-bottom:6px;"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">TÍTULOS</div></div>`;
+        let headerHtml = `<table class="data-table header-winners-table" style="font-size:13px; margin-bottom:6px;"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>TÍTULOS</th></tr></thead><tbody>`;
         if (camArr.length===0) {
-          headerHtml += `<div style="color:var(--gold-text)">(Nenhum registro)</div>`;
+          headerHtml += `<tr><td colspan="3" style="color:var(--gold-text); text-align:center;">(Nenhum registro)</td></tr>`;
         } else {
           camArr.forEach(([id,c], i) => {
             const p = playersDirectory[String(id)] || {};
-            headerHtml += `<div class="trow data-row cls-cols" style="font-size:13px; cursor:pointer" onclick="openPlayerModal(${id})"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${flagByCountryCode(p.pais)} ${(p.name||'').toUpperCase()}</div><div class="cell">${c}</div></div>`;
+            headerHtml += `<tr onclick="openPlayerModal(${id})" style="cursor:pointer"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${(p.name||'').toUpperCase()}</td><td>${c}</td></tr>`;
           });
         }
+        headerHtml += `</tbody></table>`;
         headerRoot.innerHTML = headerHtml;
       }
     }
@@ -588,10 +578,11 @@
       rows.sort((a,b)=> b.campeao - a.campeao || b.artilheiro - a.artilheiro || a.name.localeCompare(b.name));
 
       // columns order: TROFÉU, GOLS (assistências removidas)
-      let html = `<div class="trow header-row geral-cols"><div class="cell">POS</div><div class="cell cname">JOGADOR</div><div class="cell">🏆</div><div class="cell">⚽</div></div>`;
+      let html = `<table class="data-table geral-table"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>🏆</th><th>⚽</th></tr></thead><tbody>`;
       rows.forEach((r,i)=>{
-        html += `<div class="trow data-row geral-cols" style="cursor:pointer" onclick="openPlayerModal(${r.id})"><div class="cell cpos" style="color:${getPosColor(i)}">${i+1}º</div><div class="cell cname">${flagByCountryCode(r.pais)} ${r.name.toUpperCase()}</div><div class="cell">${r.campeao}</div><div class="cell">${r.artilheiro}</div></div>`;
+        html += `<tr onclick="openPlayerModal(${r.id})"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(r.pais)} ${r.name.toUpperCase()}</td><td>${r.campeao}</td><td>${r.artilheiro}</td></tr>`;
       });
+      html += `</tbody></table>`;
       const root = document.getElementById('geral-modal-root'); if (root) root.innerHTML = html;
     }
 
@@ -642,13 +633,44 @@
           <div>⚽ Artilheiro: <strong>${artTitulos}</strong></div>
         </div>
         <div class="pitch-label">📊 TOTAL GERAL</div>
-        <div class="trow header-row total-cols"><div class="cell">J</div><div class="cell">GOLS</div><div class="cell">V</div><div class="cell">E</div><div class="cell">D</div></div>
-        <div class="trow data-row total-cols"><div class="cell">${totalJogos}</div><div class="cell">${totalGols}</div><div class="cell">${totalV}</div><div class="cell">${totalE}</div><div class="cell">${totalD}</div></div>
+        <table class="player-table">
+          <thead>
+            <tr>
+              <th>J</th>
+              <th>GOLS</th>
+              <th>V</th>
+              <th>E</th>
+              <th>D</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>${totalJogos}</td>
+              <td>${totalGols}</td>
+              <td>${totalV}</td>
+              <td>${totalE}</td>
+              <td>${totalD}</td>
+            </tr>
+          </tbody>
+        </table>
       `;
 
       if (p.tournaments.length) {
         html += `<div class="pitch-label" style="margin-top:10px;">DESEMPENHO POR TORNEIO</div>
-          <div class="trow header-row torneio-cols"><div class="cell cname">TORNEIO</div><div class="cell">POS</div><div class="cell">P</div><div class="cell">J</div><div class="cell">V</div><div class="cell">E</div><div class="cell">D</div><div class="cell">GOLS</div></div>`;
+          <table class="player-table">
+            <thead>
+              <tr>
+                <th class="cname">TORNEIO</th>
+                <th>POS</th>
+                <th>P</th>
+                <th>J</th>
+                <th>V</th>
+                <th>E</th>
+                <th>D</th>
+                <th>GOLS</th>
+              </tr>
+            </thead>
+            <tbody>`;
         p.tournaments.forEach(pt => {
           const t = tournaments.find(x => x.id === pt.id);
           let posClassLabel = '-';
@@ -662,8 +684,9 @@
             if ((pt.pts || 0) === maxPts) badges += ' 🏆';
             if ((pt.gols || 0) === maxGols) badges += ' ⚽';
           }
-          html += `<div class="trow data-row torneio-cols"><div class="cell cname">${pt.name}${badges}${pt.completed === false ? ' 🔸' : ''}</div><div class="cell" style="color:${posClassLabel==='1º' ? 'var(--win-color)' : 'var(--text-strong)'}">${posClassLabel}</div><div class="cell" style="color:var(--win-color)">${pt.pts}</div><div class="cell">${pt.jogos}</div><div class="cell">${pt.v}</div><div class="cell">${pt.e}</div><div class="cell">${pt.d}</div><div class="cell">${pt.gols}</div></div>`;
+          html += `<tr><td class="cell cname">${pt.name}${badges}${pt.completed === false ? ' 🔸' : ''}</td><td class="cell" style="color:${posClassLabel==='1º' ? 'var(--win-color)' : 'var(--text-strong)'}">${posClassLabel}</td><td class="cell" style="color:var(--win-color)">${pt.pts}</td><td class="cell">${pt.jogos}</td><td class="cell">${pt.v}</td><td class="cell">${pt.e}</td><td class="cell">${pt.d}</td><td class="cell">${pt.gols}</td></tr>`;
         });
+        html += `</tbody></table>`;
       } else {
         html += `<div class="cls-desc">Este jogador ainda não disputou nenhuma partida.</div>`;
       }

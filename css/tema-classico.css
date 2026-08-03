@@ -1,39 +1,135 @@
 /* ==========================================================================
-   Tema Clássico — inspirado na tela de abertura do Elifoot 98: verde e
-   amarelo, cantos retos. Só redefine as variáveis de themes/default.css
+   Tema Clássico — inspirado nas cores do Brasil: amarelo vibrante e verde,
+   com cantos retos. Só redefine as variáveis de themes/default.css
    (que precisa estar carregado antes deste arquivo) — nenhuma regra de
    layout é duplicada aqui. */
 [data-theme="classico"] {
-  --bg-page: #0b3d0b;
-  --bg-screen-1: #1f7a1f;
-  --bg-screen-2: #0f5c0f;
-  --bg-screen-3: #0b3d0b;
-  --border-accent: #f7e017;
+  --bg-page: #ffdc00;
+  --bg-screen-1: #ffdc00;
+  --bg-screen-2: #ffdc00;
+  --bg-screen-3: #ffdc00;
+  --border-accent: #005a2b;
 
-  --header-grad-1: #0b5c1f;
-  --header-grad-2: #147a2c;
+  --header-grad-1: #005a2b;
+  --header-grad-2: #00723a;
 
-  --brand-grad-1: #0b6e2e;
-  --brand-grad-2: #147a2c;
+  --brand-grad-1: #005a2b;
+  --brand-grad-2: #00723a;
 
-  --text-strong: #ffffff;
-  --text-muted: #c9e8a0;
-  --text-soft: #eaffcf;
-  --accent-bright: #ffe600;
-  --accent-glow: #d4c400;
+  --text-strong: #005a2b;
+  --text-muted: #0b4d1f;
+  --text-soft: #3f7f45;
+  --accent-bright: #005a2b;
+  --accent-glow: #0a7030;
 
-  --tab-bg: #0b5c1f;
-  --tab-active-bg: #147a2c;
-  --gold-text: #ffe600;
-  --link-btn: #2f8f4f;
+  --tab-bg: #005a2b;
+  --tab-active-bg: #ffd000;
+  --gold-text: #ffdc00;
+  --link-btn: #005a2b;
 
-  --row-border: #1f7a1f;
-  --row-alt-bg: #0f6b20;
-  --row-hover-bg: #1d8a35;
-  --cell-border: #145c22;
+  --row-border: #005a2b;
+  --row-bg: #ffcd00;
+  --row-alt-bg: #ffdc00;
+  --row-hover-bg: #ffcd00;
+  --cell-border: #0b4a1d;
+
+  --win-color: #1c7a1c;
+  --loss-color: #b00f0f;
+  --win-bg: #1e6b1e;
+  --loss-bg: #7a1212;
 
   --font-body: Arial, Helvetica, sans-serif;
   --radius-soft: 0px;
   --radius-btn: 0px;
   --radius-panel: 0px;
+}
+
+[data-theme="classico"] .header {
+  background: linear-gradient(90deg, #ffdc00 0%, #ffdc00 100%);
+}
+
+[data-theme="classico"] .trow.header-row {
+  background: #005a2b;
+}
+
+[data-theme="classico"] .trow.header-row .cell {
+  color: #ffffff;
+}
+
+[data-theme="classico"] .data-table th,
+[data-theme="classico"] .player-table th {
+  color: #ffffff;
+}
+
+[data-theme="classico"] .title-main {
+  color: var(--gold-text);
+}
+
+[data-theme="classico"] #player-modal .modal-box {
+  background: linear-gradient(90deg, #c59e00, var(--tab-active-bg));
+}
+
+[data-theme="classico"] .trow.data-row {
+  background: var(--row-bg);
+}
+
+[data-theme="classico"] .trow.data-row .cell {
+  color: #005a2b;
+  font-weight: bold;
+}
+
+[data-theme="classico"] .trow.data-row:nth-child(even) {
+  background: var(--row-alt-bg);
+}
+
+[data-theme="classico"] .trow.data-row:hover {
+  background: #f7e000;
+}
+
+[data-theme="classico"] .match-card {
+  background: rgba(198, 150, 0, 0.16);
+  border-color: #c59e00;
+}
+
+[data-theme="classico"] .match-header,
+[data-theme="classico"] .match-scorers {
+  color: #003d12;
+}
+
+[data-theme="classico"] .match-score .score,
+[data-theme="classico"] .match-score .team-name {
+  color: #000000;
+}
+
+[data-theme="classico"] .match-score .team-name.b {
+  color: #000000;
+}
+
+[data-theme="classico"] .sec-tab {
+  background: #005a2b;
+  color: #ffffff;
+  border-color: #005a2b;
+}
+
+[data-theme="classico"] .select-control,
+[data-theme="classico"] #jogadores-search {
+  color: #ffffff;
+}
+
+[data-theme="classico"] .select-control::placeholder,
+[data-theme="classico"] #jogadores-search::placeholder {
+  color: rgba(255,255,255,0.75);
+}
+
+[data-theme="classico"] .sec-tab.active {
+  background: #00723a;
+  color: #ffdc00;
+}
+
+[data-theme="classico"] .channel-name {
+  color: #0b4d1f;
+}
+
+[data-theme="classico"] .footer-text {
+  color: #ffdc00;
 }

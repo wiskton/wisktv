@@ -36,6 +36,8 @@
   --row-hover-bg: #29323f;
   --cell-border: #232a35;
 
+  --table-header-bg: var(--border-accent);
+
   --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
   --radius-soft: 12px;
   --radius-btn: 10px;
