@@ -450,6 +450,25 @@
       return teamPlayers.reduce((sum, p) => sum + (p.nivel || 50), 0) / teamPlayers.length;
     }
 
+    function getSimulatorTeamTotalNivel(teamPlayers) {
+      if (!teamPlayers || !teamPlayers.length) return 0;
+      return teamPlayers.reduce((sum, p) => sum + (p.nivel || 50), 0);
+    }
+
+    function getSimulatorTeamStrength(teamPlayers) {
+      // Força do time é a soma de níveis dividida pelo número de jogadores,
+      // de modo que o time mais forte por pontos e tamanho tenha vantagem.
+      if (!teamPlayers || !teamPlayers.length) return 0;
+      return getSimulatorTeamTotalNivel(teamPlayers) / teamPlayers.length;
+    }
+
+    function getSimulatorTeamGoalsPerGame(teamPlayers) {
+      // Soma da média real de gols por partida de cada jogador — mede o poder de ataque
+      // "de verdade" do time (histórico real), separado do nível cadastrado dele.
+      if (!teamPlayers || !teamPlayers.length) return 0;
+      return teamPlayers.reduce((sum, p) => sum + Math.max(0, p.golsPorJogo || 0), 0);
+    }
+
     // Multiplicador por posição: meias e atacantes têm mais chance de marcar que zagueiros.
     const SIMULATOR_POSITION_GOAL_WEIGHT = { ATA: 3, MEI: 2, ZAG: 0.3, GOL: 0.05 };
 
@@ -465,7 +484,8 @@
       // continua quase impossível de marcar.
       const weights = teamPlayers.map(p => {
         if (p.posicao === 'GOL') return 1;
-        const historicoFator = 1 + (p.golsPorJogo || 0) * 0.3;
+        const golsPorPartida = Math.max(0, p.golsPorJogo || 0);
+        const historicoFator = 1 + golsPorPartida * 0.5;
         return Math.max(5, p.nivel || 50) * getSimulatorPositionGoalWeight(p.posicao) * historicoFator;
       });
       const total = weights.reduce((a, b) => a + b, 0);
@@ -652,13 +672,21 @@
         </div>
         <div class="simulator-teams">
           <div class="simulator-team-card">
-            <div class="simulator-team-header">TIME A</div>
+            <div class="simulator-team-header">
+              TIME A
+              <span class="simulator-team-header-meta">${simulatorState.teams ? `${getSimulatorTeamTotalNivel(simulatorState.teams.teamA)} pts` : '0 pts'}</span>
+            </div>
             <div class="simulator-team-count">${simulatorState.teams ? simulatorState.teams.teamA.length : 0} jogadores</div>
+            <div class="simulator-team-meta">Média de nível por jogador: ${simulatorState.teams ? getSimulatorTeamStrength(simulatorState.teams.teamA).toFixed(1) : '0.0'}</div>
             ${simulatorState.teams ? buildSimulatorLineup(simulatorState.teams.teamA, 'team-a') : '<div class="simulator-lineup"></div>'}
           </div>
           <div class="simulator-team-card">
-            <div class="simulator-team-header">TIME B</div>
+            <div class="simulator-team-header">
+              TIME B
+              <span class="simulator-team-header-meta">${simulatorState.teams ? `${getSimulatorTeamTotalNivel(simulatorState.teams.teamB)} pts` : '0 pts'}</span>
+            </div>
             <div class="simulator-team-count">${simulatorState.teams ? simulatorState.teams.teamB.length : 0} jogadores</div>
+            <div class="simulator-team-meta">Média de nível por jogador: ${simulatorState.teams ? getSimulatorTeamStrength(simulatorState.teams.teamB).toFixed(1) : '0.0'}</div>
             ${simulatorState.teams ? buildSimulatorLineup(simulatorState.teams.teamB, 'team-b') : '<div class="simulator-lineup"></div>'}
           </div>
         </div>
@@ -843,13 +871,30 @@
 
             simulatorState.minute += 1;
             if (Math.random() < 0.32) {
-              // Time com nível médio maior tem mais chance de marcar o gol, e dentro do time
-              // os jogadores de nível mais alto têm mais chance de ser o autor — mais realista
-              // que sortear tudo com a mesma probabilidade.
-              const avgA = getSimulatorTeamAverageNivel(simulatorState.teams.teamA);
-              const avgB = getSimulatorTeamAverageNivel(simulatorState.teams.teamB);
-              const totalAvg = (avgA + avgB) || 1;
-              const side = Math.random() < (avgA / totalAvg) ? 'A' : 'B';
+              // Dois fatores decidem qual time tem mais chance de marcar, cada um como uma
+              // razão (0 a 1) elevada a um expoente — quanto maior o expoente, mais uma
+              // vantagem naquele fator domina o resultado:
+              //  1) pontos do time (soma de nível, o "pts" do cabeçalho);
+              //  2) média real de gols por partida dos jogadores (histórico de verdade),
+              //     que pesa MAIS que os pontos, pois reflete quem realmente costuma marcar.
+              const totalPtsA = Math.max(1, getSimulatorTeamTotalNivel(simulatorState.teams.teamA));
+              const totalPtsB = Math.max(1, getSimulatorTeamTotalNivel(simulatorState.teams.teamB));
+              const totalGolsA = getSimulatorTeamGoalsPerGame(simulatorState.teams.teamA) + 0.1;
+              const totalGolsB = getSimulatorTeamGoalsPerGame(simulatorState.teams.teamB) + 0.1;
+
+              const ptsRatioA = totalPtsA / (totalPtsA + totalPtsB);
+              const golsRatioA = totalGolsA / (totalGolsA + totalGolsB);
+              const ptsRatioB = 1 - ptsRatioA;
+              const golsRatioB = 1 - golsRatioA;
+
+              const EXPOENTE_PONTOS = 6;
+              const EXPOENTE_GOLS = 12; // fator maior que a pontuação, conforme pedido
+
+              const powA = Math.pow(ptsRatioA, EXPOENTE_PONTOS) * Math.pow(golsRatioA, EXPOENTE_GOLS);
+              const powB = Math.pow(ptsRatioB, EXPOENTE_PONTOS) * Math.pow(golsRatioB, EXPOENTE_GOLS);
+              const baseProbA = powA / (powA + powB);
+              const cappedProbA = Math.max(0.05, Math.min(0.95, baseProbA));
+              const side = Math.random() < cappedProbA ? 'A' : 'B';
               const teamPlayers = side === 'A' ? simulatorState.teams.teamA : simulatorState.teams.teamB;
               const scorer = pickSimulatorScorerByNivel(teamPlayers);
               if (scorer) {

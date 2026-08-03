@@ -140,8 +140,10 @@ body { background: var(--bg-page); font-family: var(--font-body); font-size: 19p
 .simulator-checkbox { accent-color: var(--border-accent); }
 .simulator-teams { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .simulator-team-card { background: rgba(0,0,0,0.18); border: 1px solid var(--row-border); border-radius: var(--radius-soft); padding: 10px; }
-.simulator-team-header { text-align: center; color: var(--gold-text); font-size: 16px; letter-spacing: 1px; margin-bottom: 4px; }
+.simulator-team-header { text-align: center; color: var(--gold-text); font-size: 16px; letter-spacing: 1px; margin-bottom: 4px; display: flex; justify-content: center; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.simulator-team-header-meta { font-size: 12px; color: var(--text-muted); font-weight: normal; }
 .simulator-team-count { text-align: center; color: var(--text-muted); font-size: 13px; margin-bottom: 6px; }
+.simulator-team-meta { text-align: center; color: var(--text-soft); font-size: 13px; margin-bottom: 8px; }
 .simulator-lineup { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
 .simulator-lineup-row { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); border: 1px solid var(--cell-border); color: var(--text-soft); font-size: 12px; cursor: grab; transition: background 0.15s, border-color 0.15s; }
 .simulator-lineup-row[draggable="true"]:active { cursor: grabbing; }
