@@ -191,10 +191,12 @@
             id: Number(jid),
             name: j.nome || `Jogador ${jid}`,
             foto: j.foto || '',
+            fotoSecundaria: j.foto_secundaria || '',
             posicao: j.posicao || '',
             numero: j.numero,
             pais: j.pais,
             ativo: j.ativo,
+            nivel: j.nivel != null ? Number(j.nivel) : null,
             gp: j.GP != null ? Number(j.GP) : null,
             gc: j.GC != null ? Number(j.GC) : null,
             sg: j.SG != null ? Number(j.SG) : null,
@@ -403,14 +405,50 @@
     function getSimulatorPlayers() {
       return Object.values(playersDirectory)
         .filter(p => p && p.name && p.ativo !== false)
-        .map(p => ({
-          id: p.id,
-          name: p.name,
-          posicao: p.posicao || 'OUT',
-          pais: p.pais,
-          foto: p.foto || ''
-        }))
+        .map(p => {
+          const jogosReais = (p.matches || []).length;
+          const golsReais = (p.matches || []).reduce((s, m) => s + m.meusGols, 0);
+          return {
+            id: p.id,
+            name: p.name,
+            posicao: p.posicao || 'OUT',
+            pais: p.pais,
+            foto: p.foto || '',
+            fotoSecundaria: p.fotoSecundaria || '',
+            nivel: p.nivel != null ? p.nivel : 50,
+            // histórico real do jogador (gols por partida), usado pra deixar a simulação mais assertiva
+            golsPorJogo: jogosReais ? golsReais / jogosReais : 0
+          };
+        })
         .sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    function getSimulatorTeamAverageNivel(teamPlayers) {
+      if (!teamPlayers || !teamPlayers.length) return 0;
+      return teamPlayers.reduce((sum, p) => sum + (p.nivel || 50), 0) / teamPlayers.length;
+    }
+
+    // Multiplicador por posição: meias e atacantes têm mais chance de marcar que zagueiros.
+    const SIMULATOR_POSITION_GOAL_WEIGHT = { ATA: 3, MEI: 2, ZAG: 0.3, GOL: 0.05 };
+
+    function getSimulatorPositionGoalWeight(posicao) {
+      return SIMULATOR_POSITION_GOAL_WEIGHT[posicao] || 1;
+    }
+
+    function pickSimulatorScorerByNivel(teamPlayers) {
+      // Combina nível, posição e o histórico real de gols do jogador (gols por partida nas
+      // partidas de verdade) — quem mais marca de verdade tem mais chance de marcar na simulação.
+      const weights = teamPlayers.map(p => {
+        const historicoFator = 1 + (p.golsPorJogo || 0) * 0.3;
+        return Math.max(5, p.nivel || 50) * getSimulatorPositionGoalWeight(p.posicao) * historicoFator;
+      });
+      const total = weights.reduce((a, b) => a + b, 0);
+      let r = Math.random() * total;
+      for (let i = 0; i < teamPlayers.length; i++) {
+        r -= weights[i];
+        if (r <= 0) return teamPlayers[i];
+      }
+      return teamPlayers[teamPlayers.length - 1];
     }
 
     function getSimulatorPositionLabel(posicao) {
@@ -418,15 +456,27 @@
       return map[posicao] || 'Outros';
     }
 
+    const SIMULATOR_GROUP_SLUG = { Goleiros: 'gol', Zagueiros: 'zag', Meias: 'mei', Atacantes: 'ata' };
+    function getSimulatorGroupSlug(positionLabel) {
+      return SIMULATOR_GROUP_SLUG[positionLabel] || 'out';
+    }
+
     function getSimulatorPlayerById(id) {
       return getSimulatorPlayers().find(p => p.id === id) || null;
     }
 
     function buildSimulatorLineup(teamPlayers, side) {
+      // Time A usa a foto principal; Time B usa a foto secundária (com fallback pra principal quando não houver).
+      const foto = (player) => side === 'team-b' ? (player.fotoSecundaria || player.foto) : player.foto;
       const rows = (teamPlayers || []).map(player => {
         const goals = simulatorState.events.filter(ev => ev.scorer && ev.scorer.id === player.id).length;
+        const fotoPlayer = foto(player);
         return `
           <div class="simulator-lineup-row ${side}">
+            <span class="simulator-lineup-avatar">
+              ${fotoPlayer ? `<img src="${fotoPlayer}" alt="${player.name}" onerror="this.style.display='none'" />` : ''}
+              <span class="simulator-lineup-initials">${initials(player.name)}</span>
+            </span>
             <span class="simulator-lineup-name">${player.name.toUpperCase()}</span>
             <span class="simulator-lineup-goals">⚽ ${goals}</span>
           </div>
@@ -474,7 +524,7 @@
 
       positions.forEach(position => {
         html += `
-          <div class="simulator-group">
+          <div class="simulator-group simulator-group-${getSimulatorGroupSlug(position)}">
             <div class="simulator-group-title">${position}</div>
             <div class="simulator-player-list">
         `;
@@ -525,11 +575,26 @@
         html += `
           <div class="simulator-events">
             <div class="simulator-team-header">⚽ GOLS E EVENTOS</div>
-            ${simulatorState.events.slice(-8).reverse().map(ev => `
-              <div class="simulator-event">
-                <strong>${ev.minute}'</strong> — ${ev.team} ${ev.scorer ? `${ev.scorer.name.toUpperCase()} marcou` : 'bola em jogo'}
-              </div>
-            `).join('')}
+            ${simulatorState.events.slice(-8).reverse().map(ev => {
+              if (!ev.scorer) {
+                return `<div class="simulator-event"><strong>${ev.minute}'</strong> — bola em jogo</div>`;
+              }
+              // mesma regra do time: Time A (amarelo) usa a foto principal, Time B (azul) usa a secundária.
+              const isTeamB = ev.team === 'TIME B';
+              const fotoEvento = isTeamB ? (ev.scorer.fotoSecundaria || ev.scorer.foto) : ev.scorer.foto;
+              return `
+                <div class="simulator-event ${isTeamB ? 'team-b' : 'team-a'}">
+                  <strong>${ev.minute}'</strong>
+                  <span class="simulator-event-scorer">
+                    <span class="simulator-lineup-avatar">
+                      ${fotoEvento ? `<img src="${fotoEvento}" alt="${ev.scorer.name}" onerror="this.style.display='none'" />` : ''}
+                      <span class="simulator-lineup-initials">${initials(ev.scorer.name)}</span>
+                    </span>
+                    ${ev.scorer.name.toUpperCase()} marcou
+                  </span>
+                </div>
+              `;
+            }).join('')}
           </div>
         `;
       }
@@ -577,11 +642,31 @@
             renderSimulador();
             return;
           }
-          const shuffled = [...selected].sort(() => Math.random() - 0.5);
+          // Sorteio equilibrado por nível: embaralha primeiro (pra não repetir sempre a mesma
+          // dupla nos empates de nível) e depois distribui em ordem decrescente de nível,
+          // sempre colocando o próximo jogador no time com menor soma de nível até agora —
+          // mantém os times parelhos em vez de puramente aleatórios.
           const totalPlayers = selected.length;
-          const teamSize = Math.floor(totalPlayers / 2);
-          const teamA = shuffled.slice(0, teamSize).map(id => getSimulatorPlayerById(id)).filter(Boolean);
-          const teamB = shuffled.slice(teamSize, totalPlayers).map(id => getSimulatorPlayerById(id)).filter(Boolean);
+          const teamSizeA = Math.floor(totalPlayers / 2);
+          const teamSizeB = totalPlayers - teamSizeA;
+          const pool = selected.map(id => getSimulatorPlayerById(id)).filter(Boolean);
+          const shuffledPool = [...pool].sort(() => Math.random() - 0.5);
+          const sortedByNivel = shuffledPool.sort((a, b) => (b.nivel || 50) - (a.nivel || 50));
+          const teamA = [];
+          const teamB = [];
+          let somaA = 0;
+          let somaB = 0;
+          sortedByNivel.forEach(player => {
+            const podeA = teamA.length < teamSizeA;
+            const podeB = teamB.length < teamSizeB;
+            if (podeA && (!podeB || somaA <= somaB)) {
+              teamA.push(player);
+              somaA += player.nivel || 50;
+            } else {
+              teamB.push(player);
+              somaB += player.nivel || 50;
+            }
+          });
           simulatorState.teams = { teamA, teamB };
           simulatorState.events = [];
           simulatorState.score = { teamA: 0, teamB: 0 };
@@ -623,9 +708,15 @@
 
             simulatorState.minute += 1;
             if (Math.random() < 0.32) {
-              const side = Math.random() < 0.5 ? 'A' : 'B';
+              // Time com nível médio maior tem mais chance de marcar o gol, e dentro do time
+              // os jogadores de nível mais alto têm mais chance de ser o autor — mais realista
+              // que sortear tudo com a mesma probabilidade.
+              const avgA = getSimulatorTeamAverageNivel(simulatorState.teams.teamA);
+              const avgB = getSimulatorTeamAverageNivel(simulatorState.teams.teamB);
+              const totalAvg = (avgA + avgB) || 1;
+              const side = Math.random() < (avgA / totalAvg) ? 'A' : 'B';
               const teamPlayers = side === 'A' ? simulatorState.teams.teamA : simulatorState.teams.teamB;
-              const scorer = teamPlayers[Math.floor(Math.random() * teamPlayers.length)];
+              const scorer = pickSimulatorScorerByNivel(teamPlayers);
               if (scorer) {
                 simulatorState.events.push({ minute: simulatorState.minute, team: side === 'A' ? 'TIME A' : 'TIME B', scorer });
                 if (side === 'A') simulatorState.score.teamA += 1;

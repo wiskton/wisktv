@@ -40,8 +40,10 @@
   --pitch-grad-1: #1a9a44;
   --pitch-grad-2: #167c38;
   --pitch-border: #e8f0e0;
-  --team-a: #1535c8;
-  --team-b: #c81515;
+  --team-a: #f0c419;
+  --team-a-text: #1a1a1a;
+  --team-b: #1535c8;
+  --team-b-text: #ffffff;
 
   --win-color: #7fff7f;
   --loss-color: #ff8080;
@@ -125,6 +127,9 @@ body { background: var(--bg-page); font-family: var(--font-body); font-size: 19p
 .simulator-notice { padding: 8px 12px; background: rgba(255,255,255,0.08); border: 1px dashed var(--border-accent); color: var(--gold-text); border-radius: var(--radius-soft); font-size: 14px; }
 .simulator-player-groups { display: flex; flex-direction: column; gap: 10px; }
 .simulator-group { background: rgba(0,0,0,0.15); border: 1px solid var(--row-border); border-radius: var(--radius-soft); padding: 10px; }
+.simulator-group-zag { background: rgba(30, 90, 200, 0.28); border-color: rgba(30, 90, 200, 0.6); }
+.simulator-group-mei { background: rgba(30, 160, 90, 0.28); border-color: rgba(30, 160, 90, 0.6); }
+.simulator-group-ata { background: rgba(230, 130, 20, 0.28); border-color: rgba(230, 130, 20, 0.6); }
 .simulator-group-title { color: var(--gold-text); font-size: 15px; margin-bottom: 8px; letter-spacing: 1px; }
 .simulator-player-list { display: flex; flex-wrap: wrap; gap: 8px; }
 .simulator-player-card { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border: 1px solid var(--row-border); border-radius: var(--radius-soft); background: rgba(255,255,255,0.06); color: var(--text-soft); cursor: pointer; }
@@ -137,11 +142,14 @@ body { background: var(--bg-page); font-family: var(--font-body); font-size: 19p
 .simulator-team-header { text-align: center; color: var(--gold-text); font-size: 16px; letter-spacing: 1px; margin-bottom: 4px; }
 .simulator-team-count { text-align: center; color: var(--text-muted); font-size: 13px; margin-bottom: 6px; }
 .simulator-lineup { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
-.simulator-lineup-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); border: 1px solid var(--cell-border); color: var(--text-soft); font-size: 12px; }
+.simulator-lineup-row { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); border: 1px solid var(--cell-border); color: var(--text-soft); font-size: 12px; }
 .simulator-lineup-row.team-a { border-left: 3px solid var(--team-a); }
 .simulator-lineup-row.team-b { border-left: 3px solid var(--team-b); }
-.simulator-lineup-name { color: var(--text-strong); font-size: 12px; }
-.simulator-lineup-goals { color: var(--gold-text); font-weight: bold; white-space: nowrap; }
+.simulator-lineup-avatar { position: relative; width: 26px; height: 26px; border-radius: 50%; background: var(--tab-bg); overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.simulator-lineup-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; z-index: 2; }
+.simulator-lineup-initials { position: relative; z-index: 1; font-size: 9px; color: var(--gold-text); }
+.simulator-lineup-name { color: var(--text-strong); font-size: 12px; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.simulator-lineup-goals { color: var(--gold-text); font-weight: bold; white-space: nowrap; margin-left: auto; }
 .simulator-scoreboard { background: rgba(0,0,0,0.22); border: 1px solid var(--border-accent); border-radius: var(--radius-soft); padding: 10px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .simulator-score { color: var(--gold-text); font-size: 28px; letter-spacing: 1px; }
 .simulator-play-button { min-width: 180px; }
@@ -152,8 +160,10 @@ body { background: var(--bg-page); font-family: var(--font-body); font-size: 19p
 .simulator-live-title { color: var(--gold-text); font-size: 15px; margin-bottom: 6px; }
 .simulator-live-bar { height: 8px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden; }
 .simulator-live-fill { height: 100%; background: linear-gradient(90deg, var(--brand-grad-1), var(--gold-text)); }
-.simulator-event { color: var(--text-soft); font-size: 13px; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.simulator-event { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; color: var(--text-soft); font-size: 13px; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
 .simulator-event:last-child { border-bottom: none; }
+.simulator-event-scorer { display: inline-flex; align-items: center; gap: 6px; }
+.simulator-event.team-b .simulator-event-scorer { margin-left: auto; }
 .simulator-review-score { font-size: 24px; color: var(--gold-text); margin: 6px 0; }
 .simulator-review-text { color: var(--text-soft); font-size: 13px; margin-top: 4px; }
 
@@ -216,8 +226,8 @@ body { background: var(--bg-page); font-family: var(--font-body); font-size: 19p
 .pitch .pitch-goal.pitch-goal-bottom { bottom: 0; border-bottom: none; }
 .pitch-player { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; z-index: 1; }
 .pitch-player .dot { position: relative; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: bold; color: #fff; border: 2px solid rgba(255,255,255,0.9); box-shadow: 0 0 4px rgba(0,0,0,0.7); }
-.pitch-player.team-a .dot { background: var(--team-a); }
-.pitch-player.team-b .dot { background: var(--team-b); }
+.pitch-player.team-a .dot { background: var(--team-a); color: var(--team-a-text, #fff); }
+.pitch-player.team-b .dot { background: var(--team-b); color: var(--team-b-text, #fff); }
 .pitch-player .dot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; z-index: 2; }
 .pitch-player .dot-label { position: relative; z-index: 1; }
 .pitch-player .pname { font-size: 10px; color: #fff; text-shadow: 1px 1px 1px #000; white-space: nowrap; margin-top: 2px; max-width: 62px; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.5px; }

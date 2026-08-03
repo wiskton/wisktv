@@ -133,3 +133,99 @@
 [data-theme="classico"] .footer-text {
   color: #ffdc00;
 }
+
+/* Botões do simulador (Selecionar todos/Limpar/Sortear/Simular): fundo
+   verde (já vem de --border-accent) com texto branco por cima. */
+[data-theme="classico"] .btn-solid {
+  color: #ffffff;
+}
+
+/* Títulos do simulador: verde em vez de amarelo — amarelo em cima do
+   fundo amarelo da tela ficava difícil de enxergar. */
+[data-theme="classico"] .simulator-group-title,
+[data-theme="classico"] .simulator-live-title,
+[data-theme="classico"] .simulator-notice,
+[data-theme="classico"] .simulator-score {
+  color: #005a2b;
+}
+
+/* Blocos gerais do simulador (posições, placar, cronômetro, eventos,
+   review): fundo amarelo igual ao da tela, só a borda em verde — em
+   vez do overlay escuro padrão que ficava esmaecido em cima do
+   amarelo. */
+[data-theme="classico"] .simulator-group,
+[data-theme="classico"] .simulator-group-zag,
+[data-theme="classico"] .simulator-group-mei,
+[data-theme="classico"] .simulator-group-ata,
+[data-theme="classico"] .simulator-scoreboard,
+[data-theme="classico"] .simulator-live,
+[data-theme="classico"] .simulator-events,
+[data-theme="classico"] .simulator-review {
+  background: #ffdc00;
+  border-color: #005a2b;
+}
+
+/* Bloco "Montar times": fundo verde com texto branco. */
+[data-theme="classico"] .simulator-summary {
+  background: #005a2b;
+  border-color: #005a2b;
+}
+[data-theme="classico"] .simulator-summary .simulator-title,
+[data-theme="classico"] .simulator-summary .simulator-subtitle {
+  color: #ffffff;
+}
+
+/* Botões/cartões de jogador (montar times): fundo branco em vez do
+   amarelo, com o cargo (ZAG/MEI/ATA) também em verde pra continuar
+   legível. Selecionado ganha uma borda mais forte pra se destacar. */
+[data-theme="classico"] .simulator-player-card {
+  background: #ffffff;
+  color: #005a2b;
+  border-color: #005a2b;
+}
+[data-theme="classico"] .simulator-player-role {
+  color: #005a2b;
+}
+[data-theme="classico"] .simulator-player-card.selected {
+  background: #005a2b;
+  color: #ffffff;
+  border-color: #005a2b;
+  border-width: 2px;
+}
+[data-theme="classico"] .simulator-player-card.selected .simulator-player-role {
+  color: #ffffff;
+}
+
+/* Janela da escalação (simulador): fundo branco, com os jogadores em
+   fundo verde e texto branco dentro dela. */
+[data-theme="classico"] .simulator-team-card {
+  background: #ffffff;
+  border-color: #005a2b;
+}
+
+[data-theme="classico"] .simulator-team-header {
+  color: #005a2b;
+}
+
+[data-theme="classico"] .simulator-team-count {
+  color: #0b4d1f;
+}
+
+[data-theme="classico"] .simulator-lineup-row {
+  background: #005a2b;
+  color: #ffffff;
+  border-color: #00381b;
+}
+
+[data-theme="classico"] .simulator-lineup-name,
+[data-theme="classico"] .simulator-lineup-goals {
+  color: #ffffff;
+}
+
+[data-theme="classico"] .simulator-lineup-avatar {
+  background: #ffffff;
+}
+
+[data-theme="classico"] .simulator-lineup-initials {
+  color: #005a2b;
+}
