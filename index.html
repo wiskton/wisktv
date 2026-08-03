@@ -47,6 +47,7 @@
       <!-- Assistências removidas -->
       <div class="sec-tab" onclick="showTab('cls')">🏆 CLASSIFICAÇÃO</div>
       <div class="sec-tab" onclick="showTab('jogos')">📅 JOGOS</div>
+      <div class="sec-tab" onclick="showTab('simulador')">⚽ SIMULADOR</div>
       <div class="sec-tab" onclick="showTab('jogadores')">🌍 RANKING GERAL</div>
       <!-- GERAL removido daqui (é global, exibido no cabeçalho) -->
       <div class="sec-tab" onclick="showTab('trans')">📹 TRANSMISSÕES</div>
@@ -61,6 +62,9 @@
       </div>
       <div class="table-view" id="tab-jogos">
         <div id="jogos-root"></div>
+      </div>
+      <div class="table-view" id="tab-simulador">
+        <div id="simulador-root"></div>
       </div>
       <div class="table-view" id="tab-jogadores">
         <input id="jogadores-search" type="text" placeholder="🔎 Buscar jogador..." autocomplete="off" class="select-control" style="width:100%; margin-bottom:8px; font-size:16px;" oninput="renderJogadoresList(this.value)" />
@@ -121,6 +125,16 @@
     let playersDirectory = {}; // jogador.pk -> perfil agregado (jogos, torneios, histórico)
     let globalTitles = { campeaoCounts: {}, artilheiroCounts: {} };
     let currentTournament = 0; // index in tournaments
+    let simulatorState = {
+      selectedIds: [],
+      teams: null,
+      events: [],
+      score: { teamA: 0, teamB: 0 },
+      minute: 0,
+      running: false,
+      review: null,
+      notice: ''
+    };
 
     const DIAS_SEMANA = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
     const TOURNAMENT_IMAGES = { 11: 'imgs/igor.jpeg', 12: 'imgs/mendes2.png' };
@@ -384,6 +398,258 @@
       }
 
       return html;
+    }
+
+    function getSimulatorPlayers() {
+      return Object.values(playersDirectory)
+        .filter(p => p && p.name && p.ativo !== false)
+        .map(p => ({
+          id: p.id,
+          name: p.name,
+          posicao: p.posicao || 'OUT',
+          pais: p.pais,
+          foto: p.foto || ''
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    function getSimulatorPositionLabel(posicao) {
+      const map = { GOL: 'Goleiros', ZAG: 'Zagueiros', MEI: 'Meias', ATA: 'Atacantes' };
+      return map[posicao] || 'Outros';
+    }
+
+    function getSimulatorPlayerById(id) {
+      return getSimulatorPlayers().find(p => p.id === id) || null;
+    }
+
+    function buildSimulatorLineup(teamPlayers, side) {
+      const rows = (teamPlayers || []).map(player => {
+        const goals = simulatorState.events.filter(ev => ev.scorer && ev.scorer.id === player.id).length;
+        return `
+          <div class="simulator-lineup-row ${side}">
+            <span class="simulator-lineup-name">${player.name.toUpperCase()}</span>
+            <span class="simulator-lineup-goals">⚽ ${goals}</span>
+          </div>
+        `;
+      });
+      return `<div class="simulator-lineup">${rows.join('')}</div>`;
+    }
+
+    function renderSimulador() {
+      const root = document.getElementById('simulador-root');
+      if (!root) return;
+
+      const allPlayers = getSimulatorPlayers();
+      const selectedIds = new Set(simulatorState.selectedIds);
+      const selectedCount = simulatorState.selectedIds.length;
+      const playersByPosition = allPlayers.reduce((acc, player) => {
+        const key = getSimulatorPositionLabel(player.posicao);
+        if (!acc[key]) acc[key] = [];
+        acc[key].push(player);
+        return acc;
+      }, {});
+
+      const positions = Object.keys(playersByPosition).sort((a, b) => {
+        const order = { Goleiros: 0, Zagueiros: 1, Meias: 2, Atacantes: 3, Outros: 4 };
+        return (order[a] ?? 99) - (order[b] ?? 99);
+      });
+
+      let html = `
+        <div class="simulator-shell">
+          <div class="simulator-summary">
+            <div>
+              <div class="simulator-title">🎯 Montar times</div>
+              <div class="simulator-subtitle">Selecione jogadores por posição, conte quantos foram escolhidos e sorteie os times para a partida.</div>
+            </div>
+            <div class="simulator-counter">${selectedCount} / 12 selecionados</div>
+          </div>
+          ${simulatorState.notice ? `<div class="simulator-notice">${simulatorState.notice}</div>` : ''}
+          <div class="simulator-controls">
+            <button class="btn-solid" data-action="select-all">Selecionar todos</button>
+            <button class="btn-solid" data-action="clear">Limpar</button>
+            <button class="btn-solid" data-action="draw">Sortear times</button>
+          </div>
+          <div class="simulator-player-groups">
+      `;
+
+      positions.forEach(position => {
+        html += `
+          <div class="simulator-group">
+            <div class="simulator-group-title">${position}</div>
+            <div class="simulator-player-list">
+        `;
+        playersByPosition[position].forEach(player => {
+          const isSelected = selectedIds.has(player.id);
+          html += `
+            <label class="simulator-player-card ${isSelected ? 'selected' : ''}">
+              <input type="checkbox" class="simulator-checkbox" data-player-checkbox="${player.id}" ${isSelected ? 'checked' : ''} />
+              <span class="simulator-player-name">${player.name.toUpperCase()}</span>
+              <span class="simulator-player-role">${player.posicao}</span>
+            </label>
+          `;
+        });
+        html += `</div></div>`;
+      });
+
+      html += `</div>`;
+
+      html += `
+        <div class="simulator-scoreboard">
+          <div class="simulator-score">TIME A <strong>${simulatorState.score.teamA}</strong> x <strong>${simulatorState.score.teamB}</strong> TIME B</div>
+          <button class="btn-solid simulator-play-button" data-action="play">${simulatorState.running ? 'Partida em andamento' : 'Simular partida'}</button>
+        </div>
+        <div class="simulator-teams">
+          <div class="simulator-team-card">
+            <div class="simulator-team-header">TIME A</div>
+            <div class="simulator-team-count">${simulatorState.teams ? simulatorState.teams.teamA.length : 0} jogadores</div>
+            ${simulatorState.teams ? buildSimulatorLineup(simulatorState.teams.teamA, 'team-a') : '<div class="simulator-lineup"></div>'}
+          </div>
+          <div class="simulator-team-card">
+            <div class="simulator-team-header">TIME B</div>
+            <div class="simulator-team-count">${simulatorState.teams ? simulatorState.teams.teamB.length : 0} jogadores</div>
+            ${simulatorState.teams ? buildSimulatorLineup(simulatorState.teams.teamB, 'team-b') : '<div class="simulator-lineup"></div>'}
+          </div>
+        </div>
+      `;
+
+      if (simulatorState.running) {
+        html += `
+          <div class="simulator-live">
+            <div class="simulator-live-title">⏱️ Cronômetro — ${simulatorState.minute} min</div>
+            <div class="simulator-live-bar"><div class="simulator-live-fill" style="width:${(simulatorState.minute / 60) * 100}%"></div></div>
+          </div>
+        `;
+      }
+
+      if (simulatorState.events.length) {
+        html += `
+          <div class="simulator-events">
+            <div class="simulator-team-header">⚽ GOLS E EVENTOS</div>
+            ${simulatorState.events.slice(-8).reverse().map(ev => `
+              <div class="simulator-event">
+                <strong>${ev.minute}'</strong> — ${ev.team} ${ev.scorer ? `${ev.scorer.name.toUpperCase()} marcou` : 'bola em jogo'}
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      if (simulatorState.review) {
+        html += `
+          <div class="simulator-review">
+            <div class="simulator-team-header">📝 REVIEW FINAL</div>
+            <div class="simulator-review-score">${simulatorState.review.score.teamA} x ${simulatorState.review.score.teamB}</div>
+            <div class="simulator-review-text">${simulatorState.review.text}</div>
+            <div class="simulator-review-text"><strong>Melhor jogador:</strong> ${simulatorState.review.mvp.name.toUpperCase()}</div>
+          </div>
+        `;
+      }
+
+      html += `</div>`;
+      root.innerHTML = html;
+
+      root.onclick = (event) => {
+        const button = event.target.closest('[data-action]');
+        if (!button) return;
+        const action = button.getAttribute('data-action');
+        if (action === 'select-all') {
+          simulatorState.selectedIds = getSimulatorPlayers().map(p => p.id);
+          simulatorState.notice = 'Todos os jogadores foram selecionados.';
+          renderSimulador();
+        } else if (action === 'clear') {
+          simulatorState.selectedIds = [];
+          simulatorState.teams = null;
+          simulatorState.events = [];
+          simulatorState.score = { teamA: 0, teamB: 0 };
+          simulatorState.minute = 0;
+          simulatorState.review = null;
+          simulatorState.notice = 'Seleção limpa.';
+          renderSimulador();
+        } else if (action === 'draw') {
+          const selected = simulatorState.selectedIds.slice();
+          if (selected.length < 10) {
+            simulatorState.notice = 'Selecione pelo menos 10 jogadores para sortear os times.';
+            renderSimulador();
+            return;
+          }
+          if (selected.length > 14) {
+            simulatorState.notice = 'Selecione no máximo 14 jogadores para manter a formação de 5 a 7 por time.';
+            renderSimulador();
+            return;
+          }
+          const shuffled = [...selected].sort(() => Math.random() - 0.5);
+          const totalPlayers = selected.length;
+          const teamSize = Math.floor(totalPlayers / 2);
+          const teamA = shuffled.slice(0, teamSize).map(id => getSimulatorPlayerById(id)).filter(Boolean);
+          const teamB = shuffled.slice(teamSize, totalPlayers).map(id => getSimulatorPlayerById(id)).filter(Boolean);
+          simulatorState.teams = { teamA, teamB };
+          simulatorState.events = [];
+          simulatorState.score = { teamA: 0, teamB: 0 };
+          simulatorState.minute = 0;
+          simulatorState.review = null;
+          simulatorState.notice = 'Times sorteados com sucesso.';
+          renderSimulador();
+        } else if (action === 'play') {
+          if (!simulatorState.teams) {
+            simulatorState.notice = 'Sorteie os times antes de simular.';
+            renderSimulador();
+            return;
+          }
+          if (simulatorState.running) return;
+          simulatorState.running = true;
+          simulatorState.events = [];
+          simulatorState.score = { teamA: 0, teamB: 0 };
+          simulatorState.minute = 0;
+          simulatorState.review = null;
+          simulatorState.notice = 'Partida em andamento...';
+          renderSimulador();
+
+          const timer = window.setInterval(() => {
+            if (simulatorState.minute >= 60) {
+              window.clearInterval(timer);
+              simulatorState.running = false;
+              const winner = simulatorState.score.teamA === simulatorState.score.teamB ? 'Empate' : (simulatorState.score.teamA > simulatorState.score.teamB ? 'Time A' : 'Time B');
+              const scorers = simulatorState.events.slice().sort((a, b) => b.minute - a.minute);
+              const mvp = scorers.length ? scorers[0].scorer : (simulatorState.teams.teamA[0] || simulatorState.teams.teamB[0]);
+              simulatorState.review = {
+                score: simulatorState.score,
+                text: `${winner} levou a melhor nesta partida. O ritmo foi intenso e a disputa ficou equilibrada até o apito final.`,
+                mvp
+              };
+              simulatorState.notice = 'Partida finalizada. Confira o review abaixo.';
+              renderSimulador();
+              return;
+            }
+
+            simulatorState.minute += 1;
+            if (Math.random() < 0.32) {
+              const side = Math.random() < 0.5 ? 'A' : 'B';
+              const teamPlayers = side === 'A' ? simulatorState.teams.teamA : simulatorState.teams.teamB;
+              const scorer = teamPlayers[Math.floor(Math.random() * teamPlayers.length)];
+              if (scorer) {
+                simulatorState.events.push({ minute: simulatorState.minute, team: side === 'A' ? 'TIME A' : 'TIME B', scorer });
+                if (side === 'A') simulatorState.score.teamA += 1;
+                else simulatorState.score.teamB += 1;
+              }
+            }
+            renderSimulador();
+          }, 1000);
+        }
+      };
+
+      root.onchange = (event) => {
+        const checkbox = event.target.closest('[data-player-checkbox]');
+        if (!checkbox) return;
+        const playerId = Number(checkbox.getAttribute('data-player-checkbox'));
+        const checked = checkbox.checked;
+        if (checked) {
+          if (!simulatorState.selectedIds.includes(playerId)) simulatorState.selectedIds.push(playerId);
+        } else {
+          simulatorState.selectedIds = simulatorState.selectedIds.filter(id => id !== playerId);
+        }
+        simulatorState.notice = `Você selecionou ${simulatorState.selectedIds.length} jogadores.`;
+        renderSimulador();
+      };
     }
 
     function renderJogos(idx) {
@@ -764,6 +1030,7 @@
       populateTournamentSelect();
       renderTournament(currentTournament);
       renderJogos(currentTournament);
+      renderSimulador();
       renderJogadoresList('');
       renderAggregate();
       updateLogoImage();

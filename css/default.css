@@ -116,6 +116,47 @@ body { background: var(--bg-page); font-family: var(--font-body); font-size: 19p
 .modal-title { color: var(--text-strong); margin: 0; }
 
 /* Responsive adjustments for small screens */
+.simulator-shell { display: flex; flex-direction: column; gap: 12px; }
+.simulator-summary { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 14px; background: rgba(0,0,0,0.18); border: 1px solid var(--row-border); border-radius: var(--radius-soft); }
+.simulator-title { font-size: 22px; color: var(--gold-text); letter-spacing: 1px; }
+.simulator-subtitle { color: var(--text-soft); font-size: 14px; margin-top: 2px; }
+.simulator-counter { background: var(--tab-active-bg); color: var(--text-strong); padding: 8px 12px; border: 1px solid var(--border-accent); border-radius: var(--radius-soft); font-size: 16px; }
+.simulator-controls { display: flex; flex-wrap: wrap; gap: 8px; }
+.simulator-notice { padding: 8px 12px; background: rgba(255,255,255,0.08); border: 1px dashed var(--border-accent); color: var(--gold-text); border-radius: var(--radius-soft); font-size: 14px; }
+.simulator-player-groups { display: flex; flex-direction: column; gap: 10px; }
+.simulator-group { background: rgba(0,0,0,0.15); border: 1px solid var(--row-border); border-radius: var(--radius-soft); padding: 10px; }
+.simulator-group-title { color: var(--gold-text); font-size: 15px; margin-bottom: 8px; letter-spacing: 1px; }
+.simulator-player-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.simulator-player-card { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border: 1px solid var(--row-border); border-radius: var(--radius-soft); background: rgba(255,255,255,0.06); color: var(--text-soft); cursor: pointer; }
+.simulator-player-card.selected { border-color: var(--border-accent); background: rgba(240, 208, 0, 0.18); color: var(--text-strong); }
+.simulator-player-name { font-size: 13px; }
+.simulator-player-role { font-size: 11px; color: var(--gold-text); text-transform: uppercase; }
+.simulator-checkbox { accent-color: var(--border-accent); }
+.simulator-teams { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.simulator-team-card { background: rgba(0,0,0,0.18); border: 1px solid var(--row-border); border-radius: var(--radius-soft); padding: 10px; }
+.simulator-team-header { text-align: center; color: var(--gold-text); font-size: 16px; letter-spacing: 1px; margin-bottom: 4px; }
+.simulator-team-count { text-align: center; color: var(--text-muted); font-size: 13px; margin-bottom: 6px; }
+.simulator-lineup { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.simulator-lineup-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); border: 1px solid var(--cell-border); color: var(--text-soft); font-size: 12px; }
+.simulator-lineup-row.team-a { border-left: 3px solid var(--team-a); }
+.simulator-lineup-row.team-b { border-left: 3px solid var(--team-b); }
+.simulator-lineup-name { color: var(--text-strong); font-size: 12px; }
+.simulator-lineup-goals { color: var(--gold-text); font-weight: bold; white-space: nowrap; }
+.simulator-scoreboard { background: rgba(0,0,0,0.22); border: 1px solid var(--border-accent); border-radius: var(--radius-soft); padding: 10px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.simulator-score { color: var(--gold-text); font-size: 28px; letter-spacing: 1px; }
+.simulator-play-button { min-width: 180px; }
+.simulator-team-players { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.simulator-player-pill { padding: 6px 8px; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--text-soft); font-size: 11px; border: 1px solid var(--cell-border); }
+.simulator-player-pill.scored { background: rgba(240,208,0,0.18); color: var(--text-strong); border-color: var(--border-accent); }
+.simulator-live, .simulator-events, .simulator-review { background: rgba(0,0,0,0.16); border: 1px solid var(--row-border); border-radius: var(--radius-soft); padding: 10px; }
+.simulator-live-title { color: var(--gold-text); font-size: 15px; margin-bottom: 6px; }
+.simulator-live-bar { height: 8px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden; }
+.simulator-live-fill { height: 100%; background: linear-gradient(90deg, var(--brand-grad-1), var(--gold-text)); }
+.simulator-event { color: var(--text-soft); font-size: 13px; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.simulator-event:last-child { border-bottom: none; }
+.simulator-review-score { font-size: 24px; color: var(--gold-text); margin: 6px 0; }
+.simulator-review-text { color: var(--text-soft); font-size: 13px; margin-top: 4px; }
+
 @media (max-width: 600px) {
   .header { flex-direction: column; align-items: stretch; padding: 8px; gap: 6px; }
   .logo-igortv { width: 64px; height: 64px; margin: 0 auto; }
