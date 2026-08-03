@@ -518,11 +518,18 @@
     function buildSimulatorLineup(teamPlayers, side) {
       // Time A usa a foto principal; Time B usa a foto secundária (com fallback pra principal quando não houver).
       const foto = (player) => side === 'team-b' ? (player.fotoSecundaria || player.foto) : player.foto;
+      const podeArrastar = !!simulatorState.teams && !simulatorState.running;
       const rows = (teamPlayers || []).map(player => {
         const goals = simulatorState.events.filter(ev => ev.scorer && ev.scorer.id === player.id).length;
         const fotoPlayer = foto(player);
         return `
-          <div class="simulator-lineup-row ${side}">
+          <div class="simulator-lineup-row ${side}"
+               draggable="${podeArrastar}"
+               data-player-id="${player.id}"
+               ondragstart="simulatorHandleDragStart(event, ${player.id})"
+               ondragover="simulatorHandleDragOver(event)"
+               ondragleave="this.classList.remove('drag-over')"
+               ondrop="simulatorHandleDrop(event, ${player.id})">
             <span class="simulator-lineup-avatar">
               ${fotoPlayer ? `<img src="${fotoPlayer}" alt="${player.name}" onerror="this.style.display='none'" />` : ''}
               <span class="simulator-lineup-initials">${initials(player.name)}</span>
@@ -533,6 +540,50 @@
         `;
       });
       return `<div class="simulator-lineup">${rows.join('')}</div>`;
+    }
+
+    // Arrastar um jogador em cima de outro (do mesmo time ou do time adversário) troca os dois
+    // de lugar — se forem de times diferentes, isso efetivamente troca cada um pro time do outro.
+    function simulatorHandleDragStart(event, playerId) {
+      event.dataTransfer.setData('text/plain', String(playerId));
+      event.dataTransfer.effectAllowed = 'move';
+    }
+
+    function simulatorHandleDragOver(event) {
+      event.preventDefault();
+      event.currentTarget.classList.add('drag-over');
+    }
+
+    function simulatorFindPlayerTeam(playerId) {
+      if (!simulatorState.teams) return null;
+      const { teamA, teamB } = simulatorState.teams;
+      let idx = teamA.findIndex(p => p.id === playerId);
+      if (idx !== -1) return { team: teamA, idx, nome: 'A' };
+      idx = teamB.findIndex(p => p.id === playerId);
+      if (idx !== -1) return { team: teamB, idx, nome: 'B' };
+      return null;
+    }
+
+    function simulatorHandleDrop(event, targetPlayerId) {
+      event.preventDefault();
+      event.currentTarget.classList.remove('drag-over');
+      if (simulatorState.running) return;
+      const draggedId = Number(event.dataTransfer.getData('text/plain'));
+      if (!draggedId || draggedId === targetPlayerId) return;
+
+      const dragged = simulatorFindPlayerTeam(draggedId);
+      const target = simulatorFindPlayerTeam(targetPlayerId);
+      if (!dragged || !target) return;
+
+      const draggedPlayer = dragged.team[dragged.idx];
+      const targetPlayer = target.team[target.idx];
+      dragged.team[dragged.idx] = targetPlayer;
+      target.team[target.idx] = draggedPlayer;
+
+      simulatorState.notice = dragged.nome === target.nome
+        ? `${draggedPlayer.name.toUpperCase()} e ${targetPlayer.name.toUpperCase()} trocaram de posição no Time ${dragged.nome}.`
+        : `${draggedPlayer.name.toUpperCase()} e ${targetPlayer.name.toUpperCase()} trocaram de time!`;
+      renderSimulador();
     }
 
     function renderSimulador() {
@@ -567,6 +618,7 @@
           <div class="simulator-controls">
             <button class="btn-solid" data-action="select-all">Selecionar todos</button>
             <button class="btn-solid" data-action="clear">Limpar</button>
+            <button class="btn-solid" data-action="random14">Marcar 14 aleatórios</button>
             <button class="btn-solid" data-action="draw">Sortear times</button>
           </div>
           <div class="simulator-player-groups">
@@ -680,6 +732,21 @@
           simulatorState.minute = 0;
           simulatorState.review = null;
           simulatorState.notice = 'Seleção limpa.';
+          renderSimulador();
+        } else if (action === 'random14') {
+          const embaralhar = (arr) => [...arr].sort(() => Math.random() - 0.5);
+          const todos = getSimulatorPlayers();
+          const goleiros = todos.filter(p => p.posicao === 'GOL');
+          const outros = todos.filter(p => p.posicao !== 'GOL');
+          // sempre inclui pelo menos 2 goleiros (ou todos os disponíveis, se houver menos de 2)
+          const minGoleiros = Math.min(2, goleiros.length);
+          const golSelecionados = embaralhar(goleiros).slice(0, minGoleiros);
+          const vagasRestantes = Math.max(0, 14 - golSelecionados.length);
+          const outrosSelecionados = embaralhar(outros).slice(0, vagasRestantes);
+          const selecionados = [...golSelecionados, ...outrosSelecionados];
+          simulatorState.selectedIds = selecionados.map(p => p.id);
+          const avisoPoucosGoleiros = goleiros.length < 2 ? ` (só há ${goleiros.length} goleiro(s) cadastrado(s))` : '';
+          simulatorState.notice = `${selecionados.length} jogadores marcados aleatoriamente, incluindo ${golSelecionados.length} goleiro(s)${avisoPoucosGoleiros}.`;
           renderSimulador();
         } else if (action === 'draw') {
           const selected = simulatorState.selectedIds.slice();

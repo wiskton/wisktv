@@ -143,7 +143,9 @@ body { background: var(--bg-page); font-family: var(--font-body); font-size: 19p
 .simulator-team-header { text-align: center; color: var(--gold-text); font-size: 16px; letter-spacing: 1px; margin-bottom: 4px; }
 .simulator-team-count { text-align: center; color: var(--text-muted); font-size: 13px; margin-bottom: 6px; }
 .simulator-lineup { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
-.simulator-lineup-row { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); border: 1px solid var(--cell-border); color: var(--text-soft); font-size: 12px; }
+.simulator-lineup-row { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); border: 1px solid var(--cell-border); color: var(--text-soft); font-size: 12px; cursor: grab; transition: background 0.15s, border-color 0.15s; }
+.simulator-lineup-row[draggable="true"]:active { cursor: grabbing; }
+.simulator-lineup-row.drag-over { background: rgba(240, 208, 0, 0.22); border-color: var(--border-accent); }
 .simulator-lineup-row.team-a { border-left: 3px solid var(--team-a); }
 .simulator-lineup-row.team-b { border-left: 3px solid var(--team-b); }
 .simulator-lineup-avatar { position: relative; width: 26px; height: 26px; border-radius: 50%; background: var(--tab-bg); overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
