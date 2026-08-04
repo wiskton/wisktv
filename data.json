@@ -22,6 +22,66 @@
   },
   {
     "model": "jogadores.jogador",
+    "pk": 1,
+    "fields": {
+      "horario": 1,
+      "nome": "Abrahão",
+      "pais": "br",
+      "foto": "imgs/1.jpg",
+      "foto_secundaria": "imgs/secundarias/1.jpg",
+      "numero": 10,
+      "posicao": "LEGEND",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.366Z",
+      "nivel": "99.0",
+      "GP": 0,
+      "GC": 0,
+      "SG": 0
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 2,
+    "fields": {
+      "horario": 1,
+      "nome": "Pelé",
+      "pais": "br",
+      "foto": "imgs/2.jpg",
+      "foto_secundaria": "imgs/secundarias/2.jpg",
+      "numero": 10,
+      "posicao": "LEGEND",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.366Z",
+      "nivel": "99.0",
+      "GP": 0,
+      "GC": 0,
+      "SG": 0
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 3,
+    "fields": {
+      "horario": 1,
+      "nome": "Ronaldinho Gaucho",
+      "pais": "br",
+      "foto": "imgs/3.jpg",
+      "foto_secundaria": "imgs/secundarias/3.jpg",
+      "numero": 10,
+      "posicao": "LEGEND",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.366Z",
+      "nivel": "99.0",
+      "GP": 0,
+      "GC": 0,
+      "SG": 0
+    }
+  },
+  {
+    "model": "jogadores.jogador",
     "pk": 112,
     "fields": {
       "horario": 68,

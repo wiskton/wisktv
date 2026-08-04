@@ -511,7 +511,7 @@
       const goleiroAdv = goleiroAdversarioNivel || 50;
       const zagueiroAdv = zagueiroAdversarioNivel || 50;
       const defesaAdversaria = goleiroAdv * 0.6 + zagueiroAdv * 0.4;
-      const weights = teamPlayers.map(p => {
+      const pesosBase = teamPlayers.map(p => {
         if (p.posicao === 'GOL') return 1;
         const golsPorPartida = Math.max(0, p.golsPorJogo || 0);
         // O histórico real de gols agora é o fator DOMINANTE: um jogador que realmente
@@ -535,6 +535,12 @@
 
         return nivelFator * posicaoFator * historicoFator * fatorFadiga;
       });
+
+      // LEGEND é categoria suprema — jogador "com cheat": tem sempre 5x MAIS chance que o
+      // melhor peso entre os outros jogadores do time (ou seja, 6x o peso normal), não
+      // importa nível/posição/histórico.
+      const maiorPesoNormal = Math.max(...teamPlayers.map((p, i) => p.posicao === 'LEGEND' ? 0 : pesosBase[i]), 0);
+      const weights = teamPlayers.map((p, i) => p.posicao === 'LEGEND' ? (maiorPesoNormal || pesosBase[i]) * 6 : pesosBase[i]);
       const total = weights.reduce((a, b) => a + b, 0);
       let r = Math.random() * total;
       for (let i = 0; i < teamPlayers.length; i++) {
@@ -569,11 +575,11 @@
     }
 
     function getSimulatorPositionLabel(posicao) {
-      const map = { GOL: 'Goleiros', ZAG: 'Zagueiros', MEI: 'Meias', ATA: 'Atacantes' };
+      const map = { LEGEND: 'Lendas', GOL: 'Goleiros', ZAG: 'Zagueiros', MEI: 'Meias', ATA: 'Atacantes' };
       return map[posicao] || 'Outros';
     }
 
-    const SIMULATOR_GROUP_SLUG = { Goleiros: 'gol', Zagueiros: 'zag', Meias: 'mei', Atacantes: 'ata' };
+    const SIMULATOR_GROUP_SLUG = { Lendas: 'legend', Goleiros: 'gol', Zagueiros: 'zag', Meias: 'mei', Atacantes: 'ata' };
     function getSimulatorGroupSlug(positionLabel) {
       return SIMULATOR_GROUP_SLUG[positionLabel] || 'out';
     }
@@ -582,9 +588,9 @@
       return getSimulatorPlayers().find(p => p.id === id) || null;
     }
 
-    // Ordem de exibição na escalação: goleiros primeiro, depois zagueiros, meias e por
-    // último os atacantes.
-    const SIMULATOR_LINEUP_POSITION_ORDER = { GOL: 0, ZAG: 1, MEI: 2, ATA: 3 };
+    // Ordem de exibição na escalação: LEGEND é categoria suprema e aparece primeiro, depois
+    // goleiros, zagueiros, meias e por último os atacantes.
+    const SIMULATOR_LINEUP_POSITION_ORDER = { LEGEND: -1, GOL: 0, ZAG: 1, MEI: 2, ATA: 3 };
     function getSimulatorLineupPositionOrder(posicao) {
       const ordem = SIMULATOR_LINEUP_POSITION_ORDER[posicao];
       return ordem !== undefined ? ordem : 4;
@@ -611,7 +617,7 @@
               <span class="simulator-lineup-initials">${initials(player.name)}</span>
             </span>
             <span class="simulator-lineup-name">${player.name.toUpperCase()}</span>
-            <span class="simulator-lineup-position">${player.posicao || ''}</span>
+            <span class="simulator-lineup-position${player.posicao === 'LEGEND' ? ' legend' : ''}">${player.posicao || ''}</span>
             <span class="simulator-lineup-goals">⚽ ${goals}</span>
           </div>
         `;
