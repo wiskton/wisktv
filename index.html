@@ -182,9 +182,17 @@
 
       campeonatosRaw.sort((a, b) => a.pk - b.pk);
 
-      // goleiros e jogadores inativos ficam fora das estatísticas, rankings e do mapa do campo
-      // (jogadores removidos do cadastro mas ainda referenciados em escalações antigas também são ignorados)
-      const isExcludedPlayer = (jid) => {
+      // jogadores inativos (ou removidos do cadastro, mas ainda referenciados em escalações
+      // antigas) ficam fora de tudo, inclusive do mapa do campo.
+      const isInactivePlayer = (jid) => {
+        const j = jogadoresById[jid];
+        if (!j) return true;
+        return j.ativo === false;
+      };
+
+      // goleiros ficam fora das estatísticas e rankings (não fazem sentido nesse contexto),
+      // mas continuam aparecendo no mapa do campo — por isso essa exclusão é separada da acima.
+      const isStatsExcludedPlayer = (jid) => {
         const j = jogadoresById[jid];
         if (!j) return true;
         return j.posicao === 'GOL' || j.ativo === false;
@@ -216,7 +224,8 @@
       }
 
       // garante que todo jogador elegível apareça no diretório, mesmo sem partidas
-      Object.keys(jogadoresById).forEach(jid => { if (!isExcludedPlayer(jid)) getPlayerEntry(jid); });
+      // (inclui goleiros, para que o modal deles funcione ao clicar no mapa do campo)
+      Object.keys(jogadoresById).forEach(jid => { if (!isInactivePlayer(jid)) getPlayerEntry(jid); });
 
       // lista completa e sem filtro (inclui goleiros e inativos) — usada só pelo simulador,
       // que deve poder montar times com todo mundo, mesmo quem fica fora das estatísticas/ranking.
@@ -239,7 +248,10 @@
           .filter(p => p.campeonato === camp.pk)
           .sort((a, b) => a.numero - b.numero);
         const partidaIds = new Set(partidas.map(p => p.pk));
-        const escalacoes = escalacoesRaw.filter(e => partidaIds.has(e.partida) && !isExcludedPlayer(e.jogador));
+        // escalações completas (inclui goleiros) — usadas para montar o mapa do campo de cada partida
+        const escalacoesLineup = escalacoesRaw.filter(e => partidaIds.has(e.partida) && !isInactivePlayer(e.jogador));
+        // escalações sem goleiros — usadas só para estatísticas/rankings do campeonato
+        const escalacoes = escalacoesLineup.filter(e => !isStatsExcludedPlayer(e.jogador));
 
         // estatísticas por jogador dentro deste campeonato (a partir das partidas/escalações reais)
         const statsByPlayer = {};
@@ -294,7 +306,7 @@
         } : null;
 
         const matches = partidas.map(p => {
-          const lineup = escalacoes.filter(e => e.partida === p.pk);
+          const lineup = escalacoesLineup.filter(e => e.partida === p.pk);
           const porTime = (time) => lineup
             .filter(e => e.time === time)
             .map(e => {
