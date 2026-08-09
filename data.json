@@ -1152,8 +1152,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "51.01",
+      "posicao_y": "66.77"
     }
   },
   {
@@ -1165,8 +1165,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "49.74",
+      "posicao_y": "88.69"
     }
   },
   {
@@ -1178,8 +1178,8 @@
       "time": "B",
       "gols": 3,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "39.17",
+      "posicao_y": "44.66"
     }
   },
   {
@@ -1191,8 +1191,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "51.11",
+      "posicao_y": "67.46"
     }
   },
   {
@@ -1204,8 +1204,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "66.67",
+      "posicao_y": "15.94"
     }
   },
   {
@@ -1217,8 +1217,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "50.58",
+      "posicao_y": "41.07"
     }
   },
   {
@@ -1230,8 +1230,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "83.22",
+      "posicao_y": "44.80"
     }
   },
   {
@@ -1243,8 +1243,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "77.16",
+      "posicao_y": "44.71"
     }
   },
   {
@@ -1256,8 +1256,8 @@
       "time": "A",
       "gols": 4,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "39.00",
+      "posicao_y": "17.15"
     }
   },
   {
@@ -1269,8 +1269,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "51.96",
+      "posicao_y": "19.64"
     }
   },
   {
@@ -1282,8 +1282,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "49.19",
+      "posicao_y": "86.96"
     }
   },
   {
@@ -1295,8 +1295,8 @@
       "time": "B",
       "gols": 6,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "14.66",
+      "posicao_y": "42.27"
     }
   },
   {
@@ -1308,8 +1308,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "26.69",
+      "posicao_y": "46.31"
     }
   },
   {
@@ -1321,8 +1321,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "60.53",
+      "posicao_y": "43.40"
     }
   },
   {
@@ -1334,8 +1334,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "18.45",
-      "posicao_y": "32.45"
+      "posicao_x": "19.16",
+      "posicao_y": "29.21"
     }
   },
   {
@@ -1347,8 +1347,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "49.91",
-      "posicao_y": "13.36"
+      "posicao_x": "51.09",
+      "posicao_y": "13.40"
     }
   },
   {
@@ -1360,8 +1360,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "82.27",
-      "posicao_y": "40.51"
+      "posicao_x": "82.31",
+      "posicao_y": "42.23"
     }
   },
   {
@@ -1373,8 +1373,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "28.27",
-      "posicao_y": "65.92"
+      "posicao_x": "28.65",
+      "posicao_y": "61.82"
     }
   },
   {
@@ -1386,8 +1386,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "49.73",
-      "posicao_y": "88.38"
+      "posicao_x": "50.40",
+      "posicao_y": "84.95"
     }
   },
   {
@@ -1399,8 +1399,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "50.27",
-      "posicao_y": "40.78"
+      "posicao_x": "49.33",
+      "posicao_y": "35.37"
     }
   },
   {
@@ -1412,8 +1412,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "81.00",
-      "posicao_y": "32.99"
+      "posicao_x": "80.22",
+      "posicao_y": "31.06"
     }
   },
   {
@@ -1425,8 +1425,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "49.73",
-      "posicao_y": "89.57"
+      "posicao_x": "50.07",
+      "posicao_y": "88.72"
     }
   },
   {
@@ -1438,8 +1438,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "29.98",
+      "posicao_y": "12.68"
     }
   },
   {
@@ -1451,8 +1451,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "70.64",
-      "posicao_y": "66.45"
+      "posicao_x": "72.69",
+      "posicao_y": "64.92"
     }
   },
   {
@@ -1464,8 +1464,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "49.91",
-      "posicao_y": "42.26"
+      "posicao_x": "48.96",
+      "posicao_y": "40.62"
     }
   },
   {
@@ -1477,8 +1477,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "50.09",
-      "posicao_y": "66.45"
+      "posicao_x": "49.30",
+      "posicao_y": "63.52"
     }
   },
   {
@@ -1490,8 +1490,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "67.11",
+      "posicao_y": "12.51"
     }
   },
   {
@@ -1503,8 +1503,8 @@
       "time": "B",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "17.73",
-      "posicao_y": "40.24"
+      "posicao_x": "16.59",
+      "posicao_y": "40.59"
     }
   },
   {
@@ -1516,8 +1516,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "50.77",
-      "posicao_y": "47.80"
+      "posicao_x": "50.96",
+      "posicao_y": "43.25"
     }
   },
   {
@@ -1529,8 +1529,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "71.00",
-      "posicao_y": "13.09"
+      "posicao_x": "74.11",
+      "posicao_y": "11.85"
     }
   },
   {
@@ -1542,8 +1542,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "51.00",
-      "posicao_y": "87.96"
+      "posicao_x": "48.84",
+      "posicao_y": "86.99"
     }
   },
   {
@@ -1555,8 +1555,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "27.18",
-      "posicao_y": "32.45"
+      "posicao_x": "27.43",
+      "posicao_y": "24.60"
     }
   },
   {
@@ -1568,8 +1568,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "74.82",
-      "posicao_y": "32.58"
+      "posicao_x": "79.40",
+      "posicao_y": "29.58"
     }
   },
   {
@@ -1581,8 +1581,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "51.18",
-      "posicao_y": "63.50"
+      "posicao_x": "50.98",
+      "posicao_y": "58.82"
     }
   },
   {
@@ -1594,8 +1594,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "72.27",
-      "posicao_y": "71.43"
+      "posicao_x": "73.48",
+      "posicao_y": "68.49"
     }
   },
   {
@@ -1607,8 +1607,8 @@
       "time": "B",
       "gols": 4,
       "reserva": false,
-      "posicao_x": "23.55",
-      "posicao_y": "48.98"
+      "posicao_x": "20.60",
+      "posicao_y": "44.29"
     }
   },
   {
@@ -1620,8 +1620,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "49.36",
+      "posicao_y": "86.87"
     }
   },
   {
@@ -1633,8 +1633,8 @@
       "time": "B",
       "gols": 10,
       "reserva": false,
-      "posicao_x": "30.64",
-      "posicao_y": "12.83"
+      "posicao_x": "23.78",
+      "posicao_y": "11.41"
     }
   },
   {
@@ -1646,8 +1646,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "49.55",
-      "posicao_y": "10.94"
+      "posicao_x": "52.02",
+      "posicao_y": "15.34"
     }
   },
   {
@@ -1659,8 +1659,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "78.82",
-      "posicao_y": "49.92"
+      "posicao_x": "83.84",
+      "posicao_y": "43.08"
     }
   },
   {
@@ -1672,8 +1672,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "51.73",
-      "posicao_y": "34.47"
+      "posicao_x": "51.63",
+      "posicao_y": "30.31"
     }
   },
   {
@@ -1685,8 +1685,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "30.50",
-      "posicao_y": "71.20"
+      "posicao_x": "24.33",
+      "posicao_y": "67.36"
     }
   },
   {
@@ -1698,8 +1698,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "28.64",
-      "posicao_y": "66.19"
+      "posicao_x": "26.96",
+      "posicao_y": "63.67"
     }
   },
   {
@@ -1711,8 +1711,8 @@
       "time": "A",
       "gols": 4,
       "reserva": false,
-      "posicao_x": "51.36",
-      "posicao_y": "11.35"
+      "posicao_x": "50.96",
+      "posicao_y": "16.37"
     }
   },
   {
@@ -1724,8 +1724,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "49.73",
-      "posicao_y": "88.23"
+      "posicao_x": "50.36",
+      "posicao_y": "86.24"
     }
   },
   {
@@ -1737,8 +1737,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "72.64",
-      "posicao_y": "66.19"
+      "posicao_x": "73.06",
+      "posicao_y": "65.21"
     }
   },
   {
@@ -1750,8 +1750,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "67.73",
-      "posicao_y": "65.92"
+      "posicao_x": "70.75",
+      "posicao_y": "67.42"
     }
   },
   {
@@ -1763,8 +1763,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "50.45",
-      "posicao_y": "46.16"
+      "posicao_x": "49.31",
+      "posicao_y": "45.33"
     }
   },
   {
@@ -1776,8 +1776,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "48.82",
-      "posicao_y": "88.63"
+      "posicao_x": "50.37",
+      "posicao_y": "87.92"
     }
   },
   {
@@ -1789,8 +1789,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "18.82",
-      "posicao_y": "27.74"
+      "posicao_x": "18.84",
+      "posicao_y": "27.11"
     }
   },
   {
@@ -1802,8 +1802,8 @@
       "time": "A",
       "gols": 5,
       "reserva": false,
-      "posicao_x": "23.91",
-      "posicao_y": "32.18"
+      "posicao_x": "27.14",
+      "posicao_y": "27.93"
     }
   },
   {
@@ -1815,8 +1815,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "81.18",
-      "posicao_y": "28.95"
+      "posicao_x": "80.23",
+      "posicao_y": "28.14"
     }
   },
   {
@@ -1828,8 +1828,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "50.45",
-      "posicao_y": "44.95"
+      "posicao_x": "48.98",
+      "posicao_y": "43.16"
     }
   },
   {
@@ -1841,8 +1841,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "79.73",
-      "posicao_y": "31.91"
+      "posicao_x": "77.87",
+      "posicao_y": "30.48"
     }
   },
   {
@@ -1854,8 +1854,8 @@
       "time": "B",
       "gols": 4,
       "reserva": false,
-      "posicao_x": "50.82",
-      "posicao_y": "11.21"
+      "posicao_x": "49.52",
+      "posicao_y": "14.66"
     }
   },
   {
@@ -1867,8 +1867,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "31.55",
-      "posicao_y": "65.65"
+      "posicao_x": "26.77",
+      "posicao_y": "66.94"
     }
   },
   {
@@ -1880,8 +1880,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "29.73",
-      "posicao_y": "63.63"
+      "posicao_x": "29.83",
+      "posicao_y": "61.44"
     }
   },
   {
@@ -1893,8 +1893,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "82.09",
-      "posicao_y": "27.74"
+      "posicao_x": "85.46",
+      "posicao_y": "27.60"
     }
   },
   {
@@ -1906,8 +1906,8 @@
       "time": "B",
       "gols": 5,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "32.44",
+      "posicao_y": "15.73"
     }
   },
   {
@@ -1919,8 +1919,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "71.55",
-      "posicao_y": "63.90"
+      "posicao_x": "68.25",
+      "posicao_y": "60.64"
     }
   },
   {
@@ -1932,8 +1932,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "71.66",
+      "posicao_y": "65.64"
     }
   },
   {
@@ -1945,8 +1945,8 @@
       "time": "B",
       "gols": 3,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "66.89",
+      "posicao_y": "15.68"
     }
   },
   {
@@ -1958,8 +1958,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "19.91",
-      "posicao_y": "27.34"
+      "posicao_x": "21.17",
+      "posicao_y": "29.18"
     }
   },
   {
@@ -1971,8 +1971,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "83.33",
+      "posicao_y": "40.50"
     }
   },
   {
@@ -1984,8 +1984,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "49.84",
+      "posicao_y": "39.64"
     }
   },
   {
@@ -1997,8 +1997,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "48.11",
+      "posicao_y": "88.53"
     }
   },
   {
@@ -2010,8 +2010,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "49.91",
-      "posicao_y": "10.81"
+      "posicao_x": "50.30",
+      "posicao_y": "11.36"
     }
   },
   {
@@ -2023,8 +2023,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "30.83",
+      "posicao_y": "64.43"
     }
   },
   {
@@ -2036,8 +2036,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "51.29",
+      "posicao_y": "85.91"
     }
   },
   {
@@ -2049,8 +2049,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "16.79",
+      "posicao_y": "41.16"
     }
   },
   {
@@ -2062,8 +2062,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "49.91",
-      "posicao_y": "39.44"
+      "posicao_x": "52.57",
+      "posicao_y": "35.66"
     }
   },
   {
@@ -2075,8 +2075,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "50.00",
-      "posicao_y": "39.46"
+      "posicao_x": "49.53",
+      "posicao_y": "38.47"
     }
   },
   {
@@ -2088,8 +2088,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "49.91",
-      "posicao_y": "37.42"
+      "posicao_x": "49.48",
+      "posicao_y": "39.03"
     }
   },
   {
@@ -2101,8 +2101,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "82.09",
-      "posicao_y": "39.04"
+      "posicao_x": "78.69",
+      "posicao_y": "39.01"
     }
   },
   {
@@ -2114,8 +2114,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "17.80",
-      "posicao_y": "39.18"
+      "posicao_x": "21.06",
+      "posicao_y": "41.46"
     }
   },
   {
@@ -2127,8 +2127,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "67.36",
-      "posicao_y": "11.62"
+      "posicao_x": "67.64",
+      "posicao_y": "11.42"
     }
   },
   {
@@ -2140,8 +2140,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "49.47",
+      "posicao_y": "88.73"
     }
   },
   {
@@ -2153,8 +2153,8 @@
       "time": "B",
       "gols": 10,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "33.08",
+      "posicao_y": "10.57"
     }
   },
   {
@@ -2166,8 +2166,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "17.00",
-      "posicao_y": "36.88"
+      "posicao_x": "18.78",
+      "posicao_y": "36.16"
     }
   },
   {
@@ -2179,8 +2179,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "48.22",
+      "posicao_y": "88.28"
     }
   },
   {
@@ -2192,8 +2192,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "84.27",
-      "posicao_y": "37.29"
+      "posicao_x": "81.03",
+      "posicao_y": "36.71"
     }
   },
   {
@@ -2205,8 +2205,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "70.59",
+      "posicao_y": "13.87"
     }
   },
   {
@@ -2218,8 +2218,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "49.73",
-      "posicao_y": "63.09"
+      "posicao_x": "47.18",
+      "posicao_y": "62.96"
     }
   },
   {
@@ -2231,8 +2231,8 @@
       "time": "A",
       "gols": 6,
       "reserva": false,
-      "posicao_x": "35.91",
-      "posicao_y": "11.08"
+      "posicao_x": "37.30",
+      "posicao_y": "11.74"
     }
   },
   {
@@ -2244,8 +2244,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "49.55",
-      "posicao_y": "64.04"
+      "posicao_x": "51.13",
+      "posicao_y": "64.54"
     }
   },
   {
@@ -2257,8 +2257,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "17.36",
-      "posicao_y": "28.15"
+      "posicao_x": "19.71",
+      "posicao_y": "26.51"
     }
   },
   {
@@ -2270,8 +2270,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "47.79",
+      "posicao_y": "89.21"
     }
   },
   {
@@ -2283,8 +2283,8 @@
       "time": "B",
       "gols": 4,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "69.71",
+      "posicao_y": "15.49"
     }
   },
   {
@@ -2296,8 +2296,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "84.27",
-      "posicao_y": "28.28"
+      "posicao_x": "84.60",
+      "posicao_y": "26.53"
     }
   },
   {
@@ -2309,8 +2309,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "48.62",
+      "posicao_y": "64.17"
     }
   },
   {
@@ -2322,8 +2322,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "49.91",
-      "posicao_y": "88.90"
+      "posicao_x": "50.90",
+      "posicao_y": "88.09"
     }
   },
   {
@@ -2335,8 +2335,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "70.82",
-      "posicao_y": "64.17"
+      "posicao_x": "73.16",
+      "posicao_y": "63.80"
     }
   },
   {
@@ -2348,8 +2348,8 @@
       "time": "B",
       "gols": 4,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "28.94",
+      "posicao_y": "15.70"
     }
   },
   {
@@ -2361,8 +2361,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "30.27",
-      "posicao_y": "64.44"
+      "posicao_x": "30.58",
+      "posicao_y": "62.37"
     }
   },
   {
@@ -2374,8 +2374,8 @@
       "time": "A",
       "gols": 4,
       "reserva": false,
-      "posicao_x": "49.73",
-      "posicao_y": "10.67"
+      "posicao_x": "49.98",
+      "posicao_y": "11.10"
     }
   },
   {
@@ -2387,8 +2387,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "20.54",
+      "posicao_y": "41.18"
     }
   },
   {
@@ -2400,8 +2400,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "50.27",
-      "posicao_y": "39.44"
+      "posicao_x": "49.37",
+      "posicao_y": "35.58"
     }
   },
   {
@@ -2413,8 +2413,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "48.60",
+      "posicao_y": "39.41"
     }
   },
   {
@@ -2426,8 +2426,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "77.83",
+      "posicao_y": "44.62"
     }
   },
   {
@@ -2439,8 +2439,8 @@
       "time": "B",
       "gols": 6,
       "reserva": false,
-      "posicao_x": "50.45",
-      "posicao_y": "39.17"
+      "posicao_x": "50.87",
+      "posicao_y": "38.95"
     }
   },
   {
@@ -2452,8 +2452,8 @@
       "time": "A",
       "gols": 4,
       "reserva": false,
-      "posicao_x": "81.00",
-      "posicao_y": "39.17"
+      "posicao_x": "80.23",
+      "posicao_y": "35.73"
     }
   },
   {
@@ -2465,8 +2465,8 @@
       "time": "A",
       "gols": 4,
       "reserva": false,
-      "posicao_x": "48.82",
-      "posicao_y": "38.63"
+      "posicao_x": "51.53",
+      "posicao_y": "40.47"
     }
   },
   {
@@ -2478,8 +2478,8 @@
       "time": "B",
       "gols": 5,
       "reserva": false,
-      "posicao_x": "20.82",
-      "posicao_y": "38.90"
+      "posicao_x": "21.62",
+      "posicao_y": "37.61"
     }
   },
   {
@@ -2491,8 +2491,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "17.73",
-      "posicao_y": "38.90"
+      "posicao_x": "21.33",
+      "posicao_y": "37.08"
     }
   },
   {
@@ -2504,8 +2504,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "48.64",
-      "posicao_y": "12.29"
+      "posicao_x": "48.36",
+      "posicao_y": "11.12"
     }
   },
   {
@@ -2517,8 +2517,8 @@
       "time": "B",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "49.73",
-      "posicao_y": "12.29"
+      "posicao_x": "52.90",
+      "posicao_y": "15.04"
     }
   },
   {
@@ -2530,8 +2530,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "74.45",
-      "posicao_y": "67.66"
+      "posicao_x": "76.16",
+      "posicao_y": "66.80"
     }
   },
   {
@@ -2543,8 +2543,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "52.00",
+      "posicao_y": "86.85"
     }
   },
   {
@@ -2556,8 +2556,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "51.19",
+      "posicao_y": "89.32"
     }
   },
   {
@@ -2569,8 +2569,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "26.09",
-      "posicao_y": "67.53"
+      "posicao_x": "27.14",
+      "posicao_y": "66.32"
     }
   },
   {
@@ -2582,8 +2582,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "29.73",
-      "posicao_y": "65.92"
+      "posicao_x": "28.49",
+      "posicao_y": "65.89"
     }
   },
   {
@@ -2595,8 +2595,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "70.09",
-      "posicao_y": "66.19"
+      "posicao_x": "70.68",
+      "posicao_y": "65.94"
     }
   },
   {
@@ -2608,8 +2608,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "81.36",
-      "posicao_y": "38.90"
+      "posicao_x": "81.21",
+      "posicao_y": "37.08"
     }
   },
   {
@@ -2621,8 +2621,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "51.73",
-      "posicao_y": "88.23"
+      "posicao_x": "51.59",
+      "posicao_y": "88.85"
     }
   },
   {
@@ -2634,8 +2634,8 @@
       "time": "B",
       "gols": 6,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "37.06",
+      "posicao_y": "10.49"
     }
   },
   {
@@ -2647,8 +2647,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "67.65",
+      "posicao_y": "12.77"
     }
   },
   {
@@ -2660,8 +2660,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "29.73",
-      "posicao_y": "65.78"
+      "posicao_x": "30.89",
+      "posicao_y": "63.88"
     }
   },
   {
@@ -2673,8 +2673,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "49.70",
+      "posicao_y": "88.52"
     }
   },
   {
@@ -2686,8 +2686,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "49.91",
-      "posicao_y": "45.08"
+      "posicao_x": "51.34",
+      "posicao_y": "40.15"
     }
   },
   {
@@ -2699,8 +2699,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "81.73",
-      "posicao_y": "36.21"
+      "posicao_x": "81.93",
+      "posicao_y": "35.35"
     }
   },
   {
@@ -2712,7 +2712,7 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "78.09",
+      "posicao_x": "79.77",
       "posicao_y": "35.14"
     }
   },
@@ -2725,8 +2725,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "18.64",
-      "posicao_y": "35.81"
+      "posicao_x": "18.44",
+      "posicao_y": "36.09"
     }
   },
   {
@@ -2738,8 +2738,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "70.09",
-      "posicao_y": "65.92"
+      "posicao_x": "71.90",
+      "posicao_y": "64.76"
     }
   },
   {
@@ -2751,8 +2751,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "50.27",
-      "posicao_y": "47.37"
+      "posicao_x": "49.70",
+      "posicao_y": "46.40"
     }
   },
   {
@@ -2764,8 +2764,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "28.20",
-      "posicao_y": "70.29"
+      "posicao_x": "26.93",
+      "posicao_y": "68.81"
     }
   },
   {
@@ -2777,8 +2777,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "21.00",
-      "posicao_y": "34.06"
+      "posicao_x": "20.81",
+      "posicao_y": "33.83"
     }
   },
   {
@@ -2790,8 +2790,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "71.96",
-      "posicao_y": "70.62"
+      "posicao_x": "72.53",
+      "posicao_y": "71.24"
     }
   },
   {
@@ -2803,8 +2803,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "50.42",
+      "posicao_y": "15.19"
     }
   },
   {
@@ -2816,8 +2816,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "50.27",
-      "posicao_y": "11.75"
+      "posicao_x": "50.59",
+      "posicao_y": "12.40"
     }
   },
   {
@@ -2829,8 +2829,8 @@
       "time": "B",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "52.09",
-      "posicao_y": "11.88"
+      "posicao_x": "51.33",
+      "posicao_y": "10.63"
     }
   },
   {
@@ -2842,8 +2842,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "81.91",
-      "posicao_y": "29.49"
+      "posicao_x": "81.51",
+      "posicao_y": "25.50"
     }
   },
   {
@@ -2855,8 +2855,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "50.79",
+      "posicao_y": "88.59"
     }
   },
   {
@@ -2868,8 +2868,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "20.82",
-      "posicao_y": "30.16"
+      "posicao_x": "20.74",
+      "posicao_y": "30.49"
     }
   },
   {
@@ -2881,8 +2881,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "50.45",
-      "posicao_y": "42.40"
+      "posicao_x": "50.53",
+      "posicao_y": "39.43"
     }
   },
   {
@@ -2894,8 +2894,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "50.64",
-      "posicao_y": "44.55"
+      "posicao_x": "52.82",
+      "posicao_y": "43.54"
     }
   },
   {
@@ -2907,8 +2907,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "19.00",
-      "posicao_y": "28.82"
+      "posicao_x": "18.03",
+      "posicao_y": "26.67"
     }
   },
   {
@@ -2920,8 +2920,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "51.39",
+      "posicao_y": "88.52"
     }
   },
   {
@@ -2933,8 +2933,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "28.82",
-      "posicao_y": "64.84"
+      "posicao_x": "29.22",
+      "posicao_y": "63.36"
     }
   },
   {
@@ -2946,8 +2946,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "25.18",
-      "posicao_y": "65.11"
+      "posicao_x": "26.91",
+      "posicao_y": "65.22"
     }
   },
   {
@@ -2959,8 +2959,8 @@
       "time": "B",
       "gols": 4,
       "reserva": false,
-      "posicao_x": "81.73",
-      "posicao_y": "30.84"
+      "posicao_x": "85.04",
+      "posicao_y": "29.46"
     }
   },
   {
@@ -2972,8 +2972,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "71.91",
-      "posicao_y": "64.98"
+      "posicao_x": "72.11",
+      "posicao_y": "64.25"
     }
   },
   {
@@ -2985,8 +2985,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "77.36",
-      "posicao_y": "65.38"
+      "posicao_x": "78.43",
+      "posicao_y": "65.58"
     }
   },
   {
@@ -2998,8 +2998,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "50.32",
+      "posicao_y": "87.60"
     }
   },
   {
@@ -3011,8 +3011,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "27.18",
-      "posicao_y": "67.40"
+      "posicao_x": "25.93",
+      "posicao_y": "64.34"
     }
   },
   {
@@ -3024,8 +3024,8 @@
       "time": "B",
       "gols": 4,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "21.68",
+      "posicao_y": "15.19"
     }
   },
   {
@@ -3037,8 +3037,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "76.28",
+      "posicao_y": "16.36"
     }
   },
   {
@@ -3050,8 +3050,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "27.51",
+      "posicao_y": "43.23"
     }
   },
   {
@@ -3063,8 +3063,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "70.22",
+      "posicao_y": "44.75"
     }
   },
   {
@@ -3076,8 +3076,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "50.71",
+      "posicao_y": "88.26"
     }
   },
   {
@@ -3089,8 +3089,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "50.82",
+      "posicao_y": "64.83"
     }
   },
   {
@@ -3102,8 +3102,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "51.18",
-      "posicao_y": "12.83"
+      "posicao_x": "55.39",
+      "posicao_y": "15.49"
     }
   },
   {
@@ -3115,8 +3115,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "50.09",
-      "posicao_y": "45.76"
+      "posicao_x": "51.29",
+      "posicao_y": "42.89"
     }
   },
   {
@@ -3128,8 +3128,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "15.55",
-      "posicao_y": "35.54"
+      "posicao_x": "15.46",
+      "posicao_y": "38.97"
     }
   },
   {
@@ -3141,8 +3141,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "49.62",
+      "posicao_y": "13.94"
     }
   },
   {
@@ -3154,8 +3154,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "72.64",
-      "posicao_y": "68.07"
+      "posicao_x": "73.60",
+      "posicao_y": "66.86"
     }
   },
   {
@@ -3167,8 +3167,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "84.27",
-      "posicao_y": "35.54"
+      "posicao_x": "86.28",
+      "posicao_y": "38.45"
     }
   },
   {
@@ -3180,8 +3180,8 @@
       "time": "B",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "17.18",
-      "posicao_y": "15.78"
+      "posicao_x": "16.69",
+      "posicao_y": "15.07"
     }
   },
   {
@@ -3193,8 +3193,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "20.45",
-      "posicao_y": "68.74"
+      "posicao_x": "18.46",
+      "posicao_y": "69.40"
     }
   },
   {
@@ -3206,8 +3206,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "84.64",
-      "posicao_y": "30.03"
+      "posicao_x": "84.49",
+      "posicao_y": "29.61"
     }
   },
   {
@@ -3219,8 +3219,8 @@
       "time": "B",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "50.64",
-      "posicao_y": "12.56"
+      "posicao_x": "50.27",
+      "posicao_y": "12.22"
     }
   },
   {
@@ -3232,8 +3232,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "49.31",
+      "posicao_y": "89.27"
     }
   },
   {
@@ -3245,8 +3245,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "34.09",
-      "posicao_y": "40.78"
+      "posicao_x": "32.37",
+      "posicao_y": "40.25"
     }
   },
   {
@@ -3258,8 +3258,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "51.36",
-      "posicao_y": "35.54"
+      "posicao_x": "52.13",
+      "posicao_y": "34.03"
     }
   },
   {
@@ -3271,8 +3271,8 @@
       "time": "B",
       "gols": 4,
       "reserva": false,
-      "posicao_x": "83.73",
-      "posicao_y": "16.19"
+      "posicao_x": "84.77",
+      "posicao_y": "14.56"
     }
   },
   {
@@ -3284,8 +3284,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "51.18",
-      "posicao_y": "55.70"
+      "posicao_x": "50.66",
+      "posicao_y": "55.58"
     }
   },
   {
@@ -3297,8 +3297,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "78.27",
-      "posicao_y": "67.53"
+      "posicao_x": "78.56",
+      "posicao_y": "68.16"
     }
   },
   {
@@ -3310,8 +3310,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "23.36",
-      "posicao_y": "66.32"
+      "posicao_x": "24.68",
+      "posicao_y": "65.43"
     }
   },
   {
@@ -3323,8 +3323,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "51.73",
-      "posicao_y": "11.08"
+      "posicao_x": "52.31",
+      "posicao_y": "11.52"
     }
   },
   {
@@ -3336,8 +3336,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "51.53",
+      "posicao_y": "89.03"
     }
   },
   {
@@ -3349,8 +3349,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "68.27",
-      "posicao_y": "41.05"
+      "posicao_x": "66.62",
+      "posicao_y": "41.29"
     }
   },
   {
@@ -3362,8 +3362,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "18.64",
-      "posicao_y": "28.42"
+      "posicao_x": "17.95",
+      "posicao_y": "28.22"
     }
   },
   {
@@ -3375,8 +3375,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "79.55",
-      "posicao_y": "68.87"
+      "posicao_x": "79.90",
+      "posicao_y": "68.79"
     }
   },
   {
@@ -3388,8 +3388,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "50.64",
-      "posicao_y": "88.23"
+      "posicao_x": "48.15",
+      "posicao_y": "88.96"
     }
   },
   {
@@ -3401,8 +3401,8 @@
       "time": "A",
       "gols": 6,
       "reserva": false,
-      "posicao_x": "49.57",
-      "posicao_y": "49.55"
+      "posicao_x": "49.92",
+      "posicao_y": "49.82"
     }
   },
   {
@@ -3414,8 +3414,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "81.91",
-      "posicao_y": "33.93"
+      "posicao_x": "79.98",
+      "posicao_y": "34.60"
     }
   },
   {
@@ -3427,8 +3427,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "80.52",
-      "posicao_y": "70.53"
+      "posicao_x": "79.21",
+      "posicao_y": "71.00"
     }
   },
   {
@@ -3440,8 +3440,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "15.91",
-      "posicao_y": "33.93"
+      "posicao_x": "19.99",
+      "posicao_y": "35.97"
     }
   },
   {
@@ -3453,8 +3453,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "18.69",
-      "posicao_y": "70.10"
+      "posicao_x": "19.52",
+      "posicao_y": "70.27"
     }
   },
   {
@@ -3466,8 +3466,8 @@
       "time": "B",
       "gols": 4,
       "reserva": false,
-      "posicao_x": "69.18",
-      "posicao_y": "12.42"
+      "posicao_x": "67.23",
+      "posicao_y": "13.87"
     }
   },
   {
@@ -3479,8 +3479,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "48.09",
-      "posicao_y": "88.09"
+      "posicao_x": "46.19",
+      "posicao_y": "88.50"
     }
   },
   {
@@ -3492,8 +3492,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "29.00",
-      "posicao_y": "39.17"
+      "posicao_x": "25.42",
+      "posicao_y": "39.98"
     }
   },
   {
@@ -3505,8 +3505,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "27.91",
-      "posicao_y": "65.78"
+      "posicao_x": "27.63",
+      "posicao_y": "65.83"
     }
   },
   {
@@ -3518,8 +3518,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "72.32",
-      "posicao_y": "39.10"
+      "posicao_x": "72.07",
+      "posicao_y": "40.33"
     }
   },
   {
@@ -3531,8 +3531,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "72.09",
-      "posicao_y": "66.19"
+      "posicao_x": "66.94",
+      "posicao_y": "66.10"
     }
   },
   {
@@ -3557,8 +3557,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "49.18",
-      "posicao_y": "12.96"
+      "posicao_x": "49.93",
+      "posicao_y": "14.46"
     }
   },
   {
@@ -3570,8 +3570,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "32.27",
-      "posicao_y": "12.29"
+      "posicao_x": "32.52",
+      "posicao_y": "14.56"
     }
   },
   {
@@ -3583,8 +3583,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "51.80",
+      "posicao_y": "88.69"
     }
   },
   {
@@ -3609,8 +3609,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "66.95",
+      "posicao_y": "66.59"
     }
   },
   {
@@ -3635,8 +3635,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "80.58",
-      "posicao_y": "65.39"
+      "posicao_x": "76.33",
+      "posicao_y": "68.65"
     }
   },
   {
@@ -3648,8 +3648,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "26.41",
+      "posicao_y": "39.67"
     }
   },
   {
@@ -3661,8 +3661,8 @@
       "time": "B",
       "gols": 7,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "30.02",
+      "posicao_y": "17.84"
     }
   },
   {
@@ -3674,8 +3674,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "49.76",
+      "posicao_y": "89.85"
     }
   },
   {
@@ -3713,8 +3713,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "53.18",
-      "posicao_y": "55.50"
+      "posicao_x": "50.43",
+      "posicao_y": "59.25"
     }
   },
   {
@@ -3726,8 +3726,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "31.25",
+      "posicao_y": "65.47"
     }
   },
   {
@@ -3739,8 +3739,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "70.58",
+      "posicao_y": "40.04"
     }
   },
   {
@@ -3752,8 +3752,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "67.61",
+      "posicao_y": "18.15"
     }
   },
   {
@@ -3765,8 +3765,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "48.77",
+      "posicao_y": "90.01"
     }
   },
   {
@@ -3778,8 +3778,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "51.90",
+      "posicao_y": "15.41"
     }
   },
   {
@@ -3791,8 +3791,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "38.99",
+      "posicao_y": "16.81"
     }
   },
   {
@@ -3804,8 +3804,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "63.72",
+      "posicao_y": "47.39"
     }
   },
   {
@@ -3817,8 +3817,8 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "83.94",
+      "posicao_y": "43.34"
     }
   },
   {
@@ -3830,8 +3830,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "37.75",
+      "posicao_y": "48.66"
     }
   },
   {
@@ -3843,8 +3843,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "30.77",
+      "posicao_y": "73.84"
     }
   },
   {
@@ -3856,8 +3856,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "69.88",
+      "posicao_y": "73.49"
     }
   },
   {
@@ -3869,8 +3869,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "51.13",
+      "posicao_y": "89.14"
     }
   },
   {
@@ -3882,8 +3882,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "70.11",
+      "posicao_y": "16.83"
     }
   },
   {
@@ -3895,8 +3895,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "17.72",
+      "posicao_y": "41.40"
     }
   },
   {
@@ -3908,8 +3908,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "50.47",
+      "posicao_y": "40.87"
     }
   },
   {
@@ -3921,8 +3921,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "74.34",
+      "posicao_y": "46.74"
     }
   },
   {
@@ -3934,8 +3934,8 @@
       "time": "B",
       "gols": 3,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "23.63",
+      "posicao_y": "45.64"
     }
   },
   {
@@ -3947,8 +3947,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": null,
-      "posicao_y": null
+      "posicao_x": "51.55",
+      "posicao_y": "67.70"
     }
   },
   {
