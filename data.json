@@ -10,13 +10,12 @@
       "dia_semana": 5,
       "horario": "15:00:00",
       "local": "Sport Ball",
-      "proprietario": 36,
+      "proprietario": 37,
       "goleiros_fora_da_classificacao": true,
       "criado_em": "2026-07-26T06:54:53.329Z",
       "admins": [
-        1,
         35,
-        37
+        36
       ]
     }
   },
@@ -29,15 +28,55 @@
       "pais": "br",
       "foto": "imgs/112.jpg",
       "foto_secundaria": "imgs/secundarias/112.jpg",
+      "chute": "4.0",
+      "toque_de_bola": "4.5",
+      "drible": "4.0",
+      "posicionamento": "4.5",
+      "defesa": "4.5",
+      "marcacao": "4.5",
+      "velocidade": "4.5",
+      "movimentacao": "4.5",
+      "visao_de_jogo": "4.5",
+      "energia": "4.5",
       "numero": 15,
       "posicao": "GOL",
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-07-26T06:54:53.366Z",
+      "nivel": "90.0",
+      "GP": 131,
+      "GC": 127,
+      "SG": 4
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 113,
+    "fields": {
+      "horario": 68,
+      "nome": "Júlio",
+      "pais": "br",
+      "foto": "imgs/113.jpg",
+      "foto_secundaria": "imgs/secundarias/113.jpg",
+      "chute": "4.0",
+      "toque_de_bola": "4.0",
+      "drible": "4.0",
+      "posicionamento": "4.0",
+      "defesa": "4.5",
+      "marcacao": "4.5",
+      "velocidade": "4.0",
+      "movimentacao": "4.5",
+      "visao_de_jogo": "4.0",
+      "energia": "4.0",
+      "numero": 16,
+      "posicao": "GOL",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.369Z",
       "nivel": "85.0",
-      "GP": 122,
-      "GC": 113,
-      "SG": 9
+      "GP": 116,
+      "GC": 116,
+      "SG": 0
     }
   },
   {
@@ -49,6 +88,16 @@
       "pais": "br",
       "foto": "imgs/134.jpg",
       "foto_secundaria": "imgs/secundarias/134.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": null,
       "posicao": "GOL",
       "ativo": false,
@@ -62,46 +111,6 @@
   },
   {
     "model": "jogadores.jogador",
-    "pk": 113,
-    "fields": {
-      "horario": 68,
-      "nome": "Júlio",
-      "pais": "br",
-      "foto": "imgs/113.jpg",
-      "foto_secundaria": "imgs/secundarias/113.jpg",
-      "numero": 16,
-      "posicao": "GOL",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.369Z",
-      "nivel": "80.0",
-      "GP": 102,
-      "GC": 107,
-      "SG": -5
-    }
-  },
-  {
-    "model": "jogadores.jogador",
-    "pk": 131,
-    "fields": {
-      "horario": 68,
-      "nome": "Júlio Silva",
-      "pais": "br",
-      "foto": "imgs/131.jpg",
-      "foto_secundaria": "imgs/secundarias/131.jpg",
-      "numero": null,
-      "posicao": "GOL",
-      "ativo": false,
-      "usuario": null,
-      "criado_em": "2026-07-27T02:15:39.761Z",
-      "nivel": "80.0",
-      "GP": 29,
-      "GC": 27,
-      "SG": 2
-    }
-  },
-  {
-    "model": "jogadores.jogador",
     "pk": 130,
     "fields": {
       "horario": 68,
@@ -109,6 +118,16 @@
       "pais": "br",
       "foto": "imgs/130.jpg",
       "foto_secundaria": "imgs/secundarias/130.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": null,
       "posicao": "GOL",
       "ativo": false,
@@ -122,22 +141,32 @@
   },
   {
     "model": "jogadores.jogador",
-    "pk": 100,
+    "pk": 131,
     "fields": {
       "horario": 68,
-      "nome": "Boy",
+      "nome": "Júlio Silva",
       "pais": "br",
-      "foto": "imgs/100.jpg",
-      "foto_secundaria": "imgs/secundarias/100.jpg",
-      "numero": 3,
-      "posicao": "ATA",
-      "ativo": true,
+      "foto": "imgs/131.jpg",
+      "foto_secundaria": "imgs/secundarias/131.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
+      "numero": null,
+      "posicao": "GOL",
+      "ativo": false,
       "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.340Z",
-      "nivel": "62.5",
-      "GP": 97,
-      "GC": 101,
-      "SG": -4
+      "criado_em": "2026-07-27T02:15:39.761Z",
+      "nivel": "80.0",
+      "GP": 29,
+      "GC": 27,
+      "SG": 2
     }
   },
   {
@@ -149,12 +178,22 @@
       "pais": "br",
       "foto": "imgs/142.jpg",
       "foto_secundaria": "imgs/secundarias/142.jpg",
+      "chute": "4.0",
+      "toque_de_bola": "4.0",
+      "drible": "4.0",
+      "posicionamento": "4.0",
+      "defesa": "2.5",
+      "marcacao": "2.5",
+      "velocidade": "4.0",
+      "movimentacao": "3.5",
+      "visao_de_jogo": "4.0",
+      "energia": "4.0",
       "numero": null,
       "posicao": "ATA",
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-08-01T00:18:19.051Z",
-      "nivel": "62.5",
+      "nivel": "76.4",
       "GP": 9,
       "GC": 9,
       "SG": 0
@@ -169,35 +208,85 @@
       "pais": "br",
       "foto": "imgs/108.jpg",
       "foto_secundaria": "imgs/secundarias/108.jpg",
+      "chute": "4.0",
+      "toque_de_bola": "4.0",
+      "drible": "4.5",
+      "posicionamento": "4.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.5",
+      "movimentacao": "3.5",
+      "visao_de_jogo": "5.0",
+      "energia": "3.5",
       "numero": 10,
       "posicao": "MEI",
       "ativo": true,
       "usuario": 37,
       "criado_em": "2026-07-26T06:54:53.358Z",
-      "nivel": "62.5",
-      "GP": 102,
-      "GC": 92,
-      "SG": 10
+      "nivel": "76.2",
+      "GP": 111,
+      "GC": 106,
+      "SG": 5
     }
   },
   {
     "model": "jogadores.jogador",
-    "pk": 107,
+    "pk": 100,
     "fields": {
       "horario": 68,
-      "nome": "Caio",
+      "nome": "Boy",
       "pais": "br",
-      "foto": "imgs/107.jpg",
-      "foto_secundaria": "imgs/secundarias/107.jpg",
-      "numero": 10,
+      "foto": "imgs/100.jpg",
+      "foto_secundaria": "imgs/secundarias/100.jpg",
+      "chute": "5.0",
+      "toque_de_bola": "4.0",
+      "drible": "4.0",
+      "posicionamento": "4.5",
+      "defesa": "1.0",
+      "marcacao": "1.0",
+      "velocidade": "3.5",
+      "movimentacao": "3.5",
+      "visao_de_jogo": "4.0",
+      "energia": "4.0",
+      "numero": 3,
+      "posicao": "ATA",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.340Z",
+      "nivel": "75.9",
+      "GP": 111,
+      "GC": 110,
+      "SG": 1
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 122,
+    "fields": {
+      "horario": 68,
+      "nome": "Luiz",
+      "pais": "br",
+      "foto": "imgs/122.jpg",
+      "foto_secundaria": "imgs/secundarias/122.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.5",
+      "drible": "3.0",
+      "posicionamento": "4.0",
+      "defesa": "4.0",
+      "marcacao": "4.0",
+      "velocidade": "4.0",
+      "movimentacao": "4.0",
+      "visao_de_jogo": "3.0",
+      "energia": "5.0",
+      "numero": 25,
       "posicao": "MEI",
       "ativo": true,
       "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.356Z",
-      "nivel": "60.0",
-      "GP": 29,
-      "GC": 15,
-      "SG": 14
+      "criado_em": "2026-07-26T06:54:53.391Z",
+      "nivel": "75.8",
+      "GP": 49,
+      "GC": 34,
+      "SG": 15
     }
   },
   {
@@ -209,15 +298,265 @@
       "pais": "br",
       "foto": "imgs/109.jpg",
       "foto_secundaria": "imgs/secundarias/109.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "4.0",
+      "drible": "3.0",
+      "posicionamento": "3.5",
+      "defesa": "3.5",
+      "marcacao": "4.0",
+      "velocidade": "3.0",
+      "movimentacao": "4.0",
+      "visao_de_jogo": "5.0",
+      "energia": "3.5",
       "numero": 12,
       "posicao": "MEI",
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-07-26T06:54:53.360Z",
-      "nivel": "60.0",
+      "nivel": "74.6",
       "GP": 55,
       "GC": 50,
       "SG": 5
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 137,
+    "fields": {
+      "horario": 68,
+      "nome": "Douglas",
+      "pais": "br",
+      "foto": "imgs/137.jpg",
+      "foto_secundaria": "imgs/secundarias/137.jpg",
+      "chute": "3.5",
+      "toque_de_bola": "4.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.5",
+      "velocidade": "4.0",
+      "movimentacao": "4.0",
+      "visao_de_jogo": "4.0",
+      "energia": "4.5",
+      "numero": null,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-08-01T00:11:09.610Z",
+      "nivel": "73.8",
+      "GP": 23,
+      "GC": 18,
+      "SG": 5
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 121,
+    "fields": {
+      "horario": 68,
+      "nome": "Jackson",
+      "pais": "br",
+      "foto": "imgs/121.jpg",
+      "foto_secundaria": "imgs/secundarias/121.jpg",
+      "chute": "4.0",
+      "toque_de_bola": "3.5",
+      "drible": "3.5",
+      "posicionamento": "3.5",
+      "defesa": "3.5",
+      "marcacao": "3.0",
+      "velocidade": "4.0",
+      "movimentacao": "3.5",
+      "visao_de_jogo": "4.0",
+      "energia": "4.0",
+      "numero": 24,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.389Z",
+      "nivel": "72.7",
+      "GP": 25,
+      "GC": 24,
+      "SG": 1
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 98,
+    "fields": {
+      "horario": 68,
+      "nome": "Igor",
+      "pais": "br",
+      "foto": "imgs/98.jpg",
+      "foto_secundaria": "imgs/secundarias/98.jpg",
+      "chute": "2.5",
+      "toque_de_bola": "4.0",
+      "drible": "1.0",
+      "posicionamento": "4.0",
+      "defesa": "5.0",
+      "marcacao": "5.0",
+      "velocidade": "2.5",
+      "movimentacao": "2.5",
+      "visao_de_jogo": "4.0",
+      "energia": "2.5",
+      "numero": 7,
+      "posicao": "ZAG",
+      "ativo": true,
+      "usuario": 35,
+      "criado_em": "2026-07-26T06:54:53.333Z",
+      "nivel": "72.5",
+      "GP": 122,
+      "GC": 145,
+      "SG": -23
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 107,
+    "fields": {
+      "horario": 68,
+      "nome": "Caio",
+      "pais": "br",
+      "foto": "imgs/107.jpg",
+      "foto_secundaria": "imgs/secundarias/107.jpg",
+      "chute": "3.5",
+      "toque_de_bola": "3.5",
+      "drible": "3.0",
+      "posicionamento": "3.5",
+      "defesa": "4.0",
+      "marcacao": "4.0",
+      "velocidade": "3.5",
+      "movimentacao": "3.5",
+      "visao_de_jogo": "3.5",
+      "energia": "4.0",
+      "numero": 10,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.356Z",
+      "nivel": "72.3",
+      "GP": 29,
+      "GC": 15,
+      "SG": 14
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 143,
+    "fields": {
+      "horario": 68,
+      "nome": "Murillo",
+      "pais": "br",
+      "foto": "imgs/143.jpg",
+      "foto_secundaria": "imgs/secundarias/143.jpg",
+      "chute": "4.0",
+      "toque_de_bola": "4.0",
+      "drible": "4.0",
+      "posicionamento": "4.0",
+      "defesa": "2.0",
+      "marcacao": "2.0",
+      "velocidade": "3.5",
+      "movimentacao": "4.0",
+      "visao_de_jogo": "4.0",
+      "energia": "4.0",
+      "numero": null,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-08-10T05:11:21.740Z",
+      "nivel": "71.5",
+      "GP": 14,
+      "GC": 9,
+      "SG": 5
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 139,
+    "fields": {
+      "horario": 68,
+      "nome": "Marlon",
+      "pais": "br",
+      "foto": "imgs/139.jpg",
+      "foto_secundaria": "imgs/secundarias/139.jpg",
+      "chute": "4.0",
+      "toque_de_bola": "4.0",
+      "drible": "3.0",
+      "posicionamento": "4.0",
+      "defesa": "4.0",
+      "marcacao": "4.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
+      "numero": null,
+      "posicao": "ZAG",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-08-01T00:13:42.893Z",
+      "nivel": "71.0",
+      "GP": 13,
+      "GC": 12,
+      "SG": 1
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 103,
+    "fields": {
+      "horario": 68,
+      "nome": "Nill",
+      "pais": "br",
+      "foto": "imgs/103.jpg",
+      "foto_secundaria": "imgs/secundarias/103.jpg",
+      "chute": "2.0",
+      "toque_de_bola": "3.0",
+      "drible": "1.0",
+      "posicionamento": "3.5",
+      "defesa": "5.0",
+      "marcacao": "5.0",
+      "velocidade": "2.5",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
+      "numero": 6,
+      "posicao": "ZAG",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.347Z",
+      "nivel": "69.5",
+      "GP": 91,
+      "GC": 85,
+      "SG": 6
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 138,
+    "fields": {
+      "horario": 68,
+      "nome": "Nê",
+      "pais": "br",
+      "foto": "imgs/138.jpg",
+      "foto_secundaria": "imgs/secundarias/138.jpg",
+      "chute": "5.0",
+      "toque_de_bola": "5.0",
+      "drible": "4.0",
+      "posicionamento": "3.0",
+      "defesa": "2.0",
+      "marcacao": "2.0",
+      "velocidade": "2.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "5.0",
+      "energia": "3.0",
+      "numero": null,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-08-01T00:12:23.742Z",
+      "nivel": "68.5",
+      "GP": 21,
+      "GC": 22,
+      "SG": -1
     }
   },
   {
@@ -229,6 +568,16 @@
       "pais": "br",
       "foto": "imgs/117.jpg",
       "foto_secundaria": "imgs/secundarias/117.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 20,
       "posicao": "GOL",
       "ativo": false,
@@ -242,26 +591,6 @@
   },
   {
     "model": "jogadores.jogador",
-    "pk": 121,
-    "fields": {
-      "horario": 68,
-      "nome": "Jackson",
-      "pais": "br",
-      "foto": "imgs/121.jpg",
-      "foto_secundaria": "imgs/secundarias/121.jpg",
-      "numero": 24,
-      "posicao": "MEI",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.389Z",
-      "nivel": "60.0",
-      "GP": 25,
-      "GC": 24,
-      "SG": 1
-    }
-  },
-  {
-    "model": "jogadores.jogador",
     "pk": 132,
     "fields": {
       "horario": 68,
@@ -269,6 +598,16 @@
       "pais": "br",
       "foto": "imgs/132.jpg",
       "foto_secundaria": "imgs/secundarias/132.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": null,
       "posicao": "GOL",
       "ativo": false,
@@ -282,42 +621,32 @@
   },
   {
     "model": "jogadores.jogador",
-    "pk": 122,
+    "pk": 101,
     "fields": {
       "horario": 68,
-      "nome": "Luiz",
+      "nome": "Fábio",
       "pais": "br",
-      "foto": "imgs/122.jpg",
-      "foto_secundaria": "imgs/secundarias/122.jpg",
-      "numero": 25,
+      "foto": "imgs/101.jpg",
+      "foto_secundaria": "imgs/secundarias/101.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "1.0",
+      "marcacao": "2.0",
+      "velocidade": "4.0",
+      "movimentacao": "4.0",
+      "visao_de_jogo": "1.0",
+      "energia": "5.0",
+      "numero": 4,
       "posicao": "MEI",
       "ativo": true,
       "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.391Z",
-      "nivel": "60.0",
-      "GP": 49,
-      "GC": 34,
-      "SG": 15
-    }
-  },
-  {
-    "model": "jogadores.jogador",
-    "pk": 138,
-    "fields": {
-      "horario": 68,
-      "nome": "Nê",
-      "pais": "br",
-      "foto": "imgs/138.jpg",
-      "foto_secundaria": "imgs/secundarias/138.jpg",
-      "numero": null,
-      "posicao": "MEI",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-08-01T00:12:23.742Z",
-      "nivel": "60.0",
-      "GP": 21,
-      "GC": 22,
-      "SG": -1
+      "criado_em": "2026-07-26T06:54:53.342Z",
+      "nivel": "58.5",
+      "GP": 115,
+      "GC": 107,
+      "SG": 8
     }
   },
   {
@@ -329,6 +658,16 @@
       "pais": "br",
       "foto": "imgs/106.jpg",
       "foto_secundaria": "imgs/secundarias/106.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 9,
       "posicao": "MEI",
       "ativo": true,
@@ -342,26 +681,6 @@
   },
   {
     "model": "jogadores.jogador",
-    "pk": 143,
-    "fields": {
-      "horario": 68,
-      "nome": "Murillo",
-      "pais": "br",
-      "foto": "imgs/143.jpg",
-      "foto_secundaria": "imgs/secundarias/143.jpg",
-      "numero": null,
-      "posicao": "MEI",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-08-10T05:11:21.740Z",
-      "nivel": "57.5",
-      "GP": 0,
-      "GC": 0,
-      "SG": 0
-    }
-  },
-  {
-    "model": "jogadores.jogador",
     "pk": 118,
     "fields": {
       "horario": 68,
@@ -369,6 +688,16 @@
       "pais": "br",
       "foto": "imgs/118.jpg",
       "foto_secundaria": "imgs/secundarias/118.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 21,
       "posicao": "MEI",
       "ativo": true,
@@ -389,6 +718,16 @@
       "pais": "br",
       "foto": "imgs/133.jpg",
       "foto_secundaria": "imgs/secundarias/133.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": null,
       "posicao": "MEI",
       "ativo": false,
@@ -402,26 +741,6 @@
   },
   {
     "model": "jogadores.jogador",
-    "pk": 137,
-    "fields": {
-      "horario": 68,
-      "nome": "Douglas",
-      "pais": "br",
-      "foto": "imgs/137.jpg",
-      "foto_secundaria": "imgs/secundarias/137.jpg",
-      "numero": null,
-      "posicao": "MEI",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-08-01T00:11:09.610Z",
-      "nivel": "55.0",
-      "GP": 9,
-      "GC": 9,
-      "SG": 0
-    }
-  },
-  {
-    "model": "jogadores.jogador",
     "pk": 141,
     "fields": {
       "horario": 68,
@@ -429,6 +748,16 @@
       "pais": "br",
       "foto": "imgs/141.jpg",
       "foto_secundaria": "imgs/secundarias/141.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": null,
       "posicao": "MEI",
       "ativo": true,
@@ -442,26 +771,6 @@
   },
   {
     "model": "jogadores.jogador",
-    "pk": 98,
-    "fields": {
-      "horario": 68,
-      "nome": "Igor",
-      "pais": "br",
-      "foto": "imgs/98.jpg",
-      "foto_secundaria": "imgs/secundarias/98.jpg",
-      "numero": 7,
-      "posicao": "ZAG",
-      "ativo": true,
-      "usuario": 35,
-      "criado_em": "2026-07-26T06:54:53.333Z",
-      "nivel": "55.0",
-      "GP": 113,
-      "GC": 131,
-      "SG": -18
-    }
-  },
-  {
-    "model": "jogadores.jogador",
     "pk": 104,
     "fields": {
       "horario": 68,
@@ -469,35 +778,25 @@
       "pais": "br",
       "foto": "imgs/104.jpg",
       "foto_secundaria": "imgs/secundarias/104.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 7,
       "posicao": "ATA",
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-07-26T06:54:53.349Z",
       "nivel": "55.0",
-      "GP": 90,
-      "GC": 88,
-      "SG": 2
-    }
-  },
-  {
-    "model": "jogadores.jogador",
-    "pk": 139,
-    "fields": {
-      "horario": 68,
-      "nome": "Marlon",
-      "pais": "br",
-      "foto": "imgs/139.jpg",
-      "foto_secundaria": "imgs/secundarias/139.jpg",
-      "numero": null,
-      "posicao": "ZAG",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-08-01T00:13:42.893Z",
-      "nivel": "55.0",
-      "GP": 13,
-      "GC": 12,
-      "SG": 1
+      "GP": 99,
+      "GC": 102,
+      "SG": -3
     }
   },
   {
@@ -509,6 +808,16 @@
       "pais": "br",
       "foto": "imgs/125.jpg",
       "foto_secundaria": "imgs/secundarias/125.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 28,
       "posicao": "MEI",
       "ativo": false,
@@ -529,6 +838,16 @@
       "pais": "br",
       "foto": "imgs/119.jpg",
       "foto_secundaria": "imgs/secundarias/119.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 22,
       "posicao": "ATA",
       "ativo": true,
@@ -549,6 +868,16 @@
       "pais": "br",
       "foto": "imgs/135.jpg",
       "foto_secundaria": "imgs/secundarias/135.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": null,
       "posicao": "ATA",
       "ativo": false,
@@ -562,6 +891,66 @@
   },
   {
     "model": "jogadores.jogador",
+    "pk": 114,
+    "fields": {
+      "horario": 68,
+      "nome": "P2",
+      "pais": "br",
+      "foto": "imgs/114.jpg",
+      "foto_secundaria": "imgs/secundarias/114.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "2.0",
+      "posicionamento": "3.0",
+      "defesa": "1.0",
+      "marcacao": "1.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "2.0",
+      "energia": "3.0",
+      "numero": 17,
+      "posicao": "ATA",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.372Z",
+      "nivel": "51.8",
+      "GP": 64,
+      "GC": 53,
+      "SG": 11
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 158,
+    "fields": {
+      "horario": 68,
+      "nome": "Abrahão",
+      "pais": "br",
+      "foto": "imgs/158.jpg",
+      "foto_secundaria": "imgs/secundarias/158.jpg",
+      "chute": "2.5",
+      "toque_de_bola": "2.5",
+      "drible": "2.5",
+      "posicionamento": "2.5",
+      "defesa": "2.5",
+      "marcacao": "2.5",
+      "velocidade": "2.5",
+      "movimentacao": "2.5",
+      "visao_de_jogo": "2.5",
+      "energia": "2.5",
+      "numero": 7,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-08-18T10:41:31.517Z",
+      "nivel": "50.0",
+      "GP": 0,
+      "GC": 0,
+      "SG": 0
+    }
+  },
+  {
+    "model": "jogadores.jogador",
     "pk": 128,
     "fields": {
       "horario": 68,
@@ -569,6 +958,16 @@
       "pais": "br",
       "foto": "imgs/128.jpg",
       "foto_secundaria": "imgs/secundarias/128.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 31,
       "posicao": "MEI",
       "ativo": true,
@@ -582,22 +981,62 @@
   },
   {
     "model": "jogadores.jogador",
-    "pk": 103,
+    "pk": 127,
     "fields": {
       "horario": 68,
-      "nome": "Nill",
-      "pais": "br",
-      "foto": "imgs/103.jpg",
-      "foto_secundaria": "imgs/secundarias/103.jpg",
-      "numero": 6,
-      "posicao": "ZAG",
+      "nome": "Scott",
+      "pais": "gb-sct",
+      "foto": "imgs/127.jpg",
+      "foto_secundaria": "imgs/secundarias/127.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "2.0",
+      "posicionamento": "2.0",
+      "defesa": "2.0",
+      "marcacao": "2.0",
+      "velocidade": "3.0",
+      "movimentacao": "2.0",
+      "visao_de_jogo": "2.0",
+      "energia": "3.0",
+      "numero": 30,
+      "posicao": "ATA",
       "ativo": true,
       "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.347Z",
+      "criado_em": "2026-07-26T06:54:53.402Z",
       "nivel": "50.0",
-      "GP": 91,
-      "GC": 85,
-      "SG": 6
+      "GP": 70,
+      "GC": 53,
+      "SG": 17
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 156,
+    "fields": {
+      "horario": 68,
+      "nome": "ElFo",
+      "pais": "br",
+      "foto": "imgs/156.jpg",
+      "foto_secundaria": "imgs/secundarias/156.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
+      "numero": null,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-08-16T01:58:14.520Z",
+      "nivel": "45.0",
+      "GP": 9,
+      "GC": 14,
+      "SG": -5
     }
   },
   {
@@ -609,6 +1048,16 @@
       "pais": "br",
       "foto": "imgs/120.jpg",
       "foto_secundaria": "imgs/secundarias/120.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 23,
       "posicao": "MEI",
       "ativo": true,
@@ -622,6 +1071,66 @@
   },
   {
     "model": "jogadores.jogador",
+    "pk": 157,
+    "fields": {
+      "horario": 68,
+      "nome": "Rogers",
+      "pais": "br",
+      "foto": "imgs/157.jpg",
+      "foto_secundaria": "imgs/secundarias/157.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
+      "numero": null,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-08-16T01:58:44.573Z",
+      "nivel": "45.0",
+      "GP": 9,
+      "GC": 14,
+      "SG": -5
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 105,
+    "fields": {
+      "horario": 68,
+      "nome": "Pedrão",
+      "pais": "br",
+      "foto": "imgs/105.jpg",
+      "foto_secundaria": "imgs/secundarias/105.jpg",
+      "chute": "1.0",
+      "toque_de_bola": "2.5",
+      "drible": "1.0",
+      "posicionamento": "2.0",
+      "defesa": "2.5",
+      "marcacao": "2.5",
+      "velocidade": "2.0",
+      "movimentacao": "2.0",
+      "visao_de_jogo": "2.0",
+      "energia": "3.0",
+      "numero": 8,
+      "posicao": "ZAG",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.351Z",
+      "nivel": "43.5",
+      "GP": 81,
+      "GC": 93,
+      "SG": -12
+    }
+  },
+  {
+    "model": "jogadores.jogador",
     "pk": 140,
     "fields": {
       "horario": 68,
@@ -629,15 +1138,25 @@
       "pais": "br",
       "foto": "imgs/140.jpg",
       "foto_secundaria": "imgs/secundarias/140.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": null,
       "posicao": "MEI",
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-08-01T00:13:58.951Z",
       "nivel": "42.5",
-      "GP": 9,
-      "GC": 9,
-      "SG": 0
+      "GP": 23,
+      "GC": 18,
+      "SG": 5
     }
   },
   {
@@ -649,6 +1168,16 @@
       "pais": "br",
       "foto": "imgs/126.jpg",
       "foto_secundaria": "imgs/secundarias/126.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 29,
       "posicao": "MEI",
       "ativo": true,
@@ -669,15 +1198,25 @@
       "pais": "br",
       "foto": "imgs/110.jpg",
       "foto_secundaria": "imgs/secundarias/110.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 21,
       "posicao": "MEI",
       "ativo": true,
       "usuario": 36,
       "criado_em": "2026-07-26T06:54:53.362Z",
       "nivel": "42.5",
-      "GP": 151,
-      "GC": 164,
-      "SG": -13
+      "GP": 160,
+      "GC": 178,
+      "SG": -18
     }
   },
   {
@@ -689,6 +1228,16 @@
       "pais": "br",
       "foto": "imgs/129.jpg",
       "foto_secundaria": "imgs/secundarias/129.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": null,
       "posicao": "ZAG",
       "ativo": true,
@@ -702,26 +1251,6 @@
   },
   {
     "model": "jogadores.jogador",
-    "pk": 101,
-    "fields": {
-      "horario": 68,
-      "nome": "Fábio",
-      "pais": "br",
-      "foto": "imgs/101.jpg",
-      "foto_secundaria": "imgs/secundarias/101.jpg",
-      "numero": 4,
-      "posicao": "MEI",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.342Z",
-      "nivel": "40.0",
-      "GP": 115,
-      "GC": 107,
-      "SG": 8
-    }
-  },
-  {
-    "model": "jogadores.jogador",
     "pk": 124,
     "fields": {
       "horario": 68,
@@ -729,6 +1258,16 @@
       "pais": "br",
       "foto": "imgs/124.jpg",
       "foto_secundaria": "imgs/secundarias/124.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 27,
       "posicao": "ZAG",
       "ativo": true,
@@ -749,6 +1288,16 @@
       "pais": "br",
       "foto": "imgs/99.jpg",
       "foto_secundaria": "imgs/secundarias/99.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 2,
       "posicao": "MEI",
       "ativo": true,
@@ -769,6 +1318,16 @@
       "pais": "br",
       "foto": "imgs/111.jpg",
       "foto_secundaria": "imgs/secundarias/111.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 14,
       "posicao": "MEI",
       "ativo": true,
@@ -789,6 +1348,16 @@
       "pais": "br",
       "foto": "imgs/136.jpg",
       "foto_secundaria": "imgs/secundarias/136.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": null,
       "posicao": "MEI",
       "ativo": true,
@@ -809,15 +1378,25 @@
       "pais": "br",
       "foto": "imgs/102.jpg",
       "foto_secundaria": "imgs/secundarias/102.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "2.5",
+      "drible": "2.5",
+      "posicionamento": "2.0",
+      "defesa": "2.0",
+      "marcacao": "1.5",
+      "velocidade": "2.0",
+      "movimentacao": "1.5",
+      "visao_de_jogo": "2.5",
+      "energia": "1.0",
       "numero": 5,
       "posicao": "MEI",
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-07-26T06:54:53.345Z",
       "nivel": "40.0",
-      "GP": 62,
-      "GC": 71,
-      "SG": -9
+      "GP": 71,
+      "GC": 85,
+      "SG": -14
     }
   },
   {
@@ -829,6 +1408,16 @@
       "pais": "br",
       "foto": "imgs/116.jpg",
       "foto_secundaria": "imgs/secundarias/116.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 19,
       "posicao": "MEI",
       "ativo": true,
@@ -849,6 +1438,16 @@
       "pais": "br",
       "foto": "imgs/123.jpg",
       "foto_secundaria": "imgs/secundarias/123.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 26,
       "posicao": "ATA",
       "ativo": false,
@@ -862,46 +1461,6 @@
   },
   {
     "model": "jogadores.jogador",
-    "pk": 114,
-    "fields": {
-      "horario": 68,
-      "nome": "P2",
-      "pais": "br",
-      "foto": "imgs/114.jpg",
-      "foto_secundaria": "imgs/secundarias/114.jpg",
-      "numero": 17,
-      "posicao": "ATA",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.372Z",
-      "nivel": "32.5",
-      "GP": 64,
-      "GC": 53,
-      "SG": 11
-    }
-  },
-  {
-    "model": "jogadores.jogador",
-    "pk": 127,
-    "fields": {
-      "horario": 68,
-      "nome": "Scott",
-      "pais": "gb-sct",
-      "foto": "imgs/127.jpg",
-      "foto_secundaria": "imgs/secundarias/127.jpg",
-      "numero": 30,
-      "posicao": "ATA",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.402Z",
-      "nivel": "32.5",
-      "GP": 56,
-      "GC": 44,
-      "SG": 12
-    }
-  },
-  {
-    "model": "jogadores.jogador",
     "pk": 115,
     "fields": {
       "horario": 68,
@@ -909,6 +1468,16 @@
       "pais": "br",
       "foto": "imgs/115.jpg",
       "foto_secundaria": "imgs/secundarias/115.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
       "numero": 18,
       "posicao": "ZAG",
       "ativo": true,
@@ -921,23 +1490,18 @@
     }
   },
   {
-    "model": "jogadores.jogador",
-    "pk": 105,
+    "model": "campeonatos.campeonato",
+    "pk": 20,
     "fields": {
       "horario": 68,
-      "nome": "Pedrão",
-      "pais": "br",
-      "foto": "imgs/105.jpg",
-      "foto_secundaria": "imgs/secundarias/105.jpg",
-      "numero": 8,
-      "posicao": "ZAG",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.351Z",
-      "nivel": "25.0",
-      "GP": 67,
-      "GC": 84,
-      "SG": -17
+      "nome": "Scott Cup 2026 - 3ª Edição",
+      "logo": "campeonatos/ChatGPT_Image_16_de_ago._de_2026_02_23_45.png",
+      "data_inicio": "2026-08-22",
+      "data_encerramento": null,
+      "status": "EM_ANDAMENTO",
+      "numero_partidas": 8,
+      "permite_campeoes_empatados": true,
+      "criado_em": "2026-08-16T05:24:21.171Z"
     }
   },
   {
@@ -963,8 +1527,8 @@
       "nome": "Mendes Cup 2026 - 2ª Edição",
       "logo": "campeonatos/Screenshot_20260628_001839_WhatsApp_1.jpg",
       "data_inicio": "2026-07-27",
-      "data_encerramento": null,
-      "status": "EM_ANDAMENTO",
+      "data_encerramento": "2026-08-16",
+      "status": "ENCERRADO",
       "numero_partidas": 8,
       "permite_campeoes_empatados": true,
       "criado_em": "2026-07-26T07:12:53.619Z"
@@ -1076,19 +1640,6 @@
   },
   {
     "model": "partidas.partida",
-    "pk": 113,
-    "fields": {
-      "campeonato": 12,
-      "numero": 5,
-      "data": "2026-07-25",
-      "placar_time_a": 10,
-      "placar_time_b": 13,
-      "encerrada": true,
-      "criada_em": "2026-07-27T00:48:15.187Z"
-    }
-  },
-  {
-    "model": "partidas.partida",
     "pk": 71,
     "fields": {
       "campeonato": 11,
@@ -1102,15 +1653,15 @@
   },
   {
     "model": "partidas.partida",
-    "pk": 72,
+    "pk": 113,
     "fields": {
-      "campeonato": 11,
-      "numero": 6,
-      "data": "2026-06-06",
-      "placar_time_a": 8,
-      "placar_time_b": 12,
+      "campeonato": 12,
+      "numero": 5,
+      "data": "2026-07-25",
+      "placar_time_a": 10,
+      "placar_time_b": 13,
       "encerrada": true,
-      "criada_em": "2026-07-26T06:54:58.434Z"
+      "criada_em": "2026-07-27T00:48:15.187Z"
     }
   },
   {
@@ -1128,15 +1679,15 @@
   },
   {
     "model": "partidas.partida",
-    "pk": 149,
+    "pk": 72,
     "fields": {
-      "campeonato": 12,
-      "numero": 7,
-      "data": "2026-08-08",
-      "placar_time_a": 12,
-      "placar_time_b": 13,
+      "campeonato": 11,
+      "numero": 6,
+      "data": "2026-06-06",
+      "placar_time_a": 8,
+      "placar_time_b": 12,
       "encerrada": true,
-      "criada_em": "2026-08-09T02:04:34.858Z"
+      "criada_em": "2026-07-26T06:54:58.434Z"
     }
   },
   {
@@ -1154,6 +1705,32 @@
   },
   {
     "model": "partidas.partida",
+    "pk": 149,
+    "fields": {
+      "campeonato": 12,
+      "numero": 7,
+      "data": "2026-08-08",
+      "placar_time_a": 12,
+      "placar_time_b": 13,
+      "encerrada": true,
+      "criada_em": "2026-08-09T02:04:34.858Z"
+    }
+  },
+  {
+    "model": "partidas.partida",
+    "pk": 151,
+    "fields": {
+      "campeonato": 12,
+      "numero": 8,
+      "data": "2026-08-15",
+      "placar_time_a": 9,
+      "placar_time_b": 14,
+      "encerrada": true,
+      "criada_em": "2026-08-16T02:01:00.574Z"
+    }
+  },
+  {
+    "model": "partidas.partida",
     "pk": 74,
     "fields": {
       "campeonato": 11,
@@ -1163,19 +1740,6 @@
       "placar_time_b": 16,
       "encerrada": true,
       "criada_em": "2026-07-26T06:54:58.454Z"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1883,
-    "fields": {
-      "partida": 71,
-      "jogador": 105,
-      "time": "A",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "51.01",
-      "posicao_y": "66.77"
     }
   },
   {
@@ -1193,41 +1757,15 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1880,
+    "pk": 1883,
     "fields": {
       "partida": 71,
-      "jogador": 126,
-      "time": "B",
-      "gols": 3,
-      "reserva": false,
-      "posicao_x": "39.17",
-      "posicao_y": "44.66"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1877,
-    "fields": {
-      "partida": 71,
-      "jogador": 98,
-      "time": "B",
+      "jogador": 105,
+      "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "51.11",
-      "posicao_y": "67.46"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1881,
-    "fields": {
-      "partida": 71,
-      "jogador": 119,
-      "time": "A",
-      "gols": 2,
-      "reserva": false,
-      "posicao_x": "66.67",
-      "posicao_y": "15.94"
+      "posicao_x": "51.01",
+      "posicao_y": "66.77"
     }
   },
   {
@@ -1239,34 +1777,34 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "50.58",
-      "posicao_y": "41.07"
+      "posicao_x": "50.40",
+      "posicao_y": "40.04"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1878,
+    "pk": 1880,
     "fields": {
       "partida": 71,
-      "jogador": 118,
+      "jogador": 126,
       "time": "B",
-      "gols": 2,
+      "gols": 3,
       "reserva": false,
-      "posicao_x": "83.22",
-      "posicao_y": "44.80"
+      "posicao_x": "82.59",
+      "posicao_y": "36.50"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1882,
+    "pk": 1877,
     "fields": {
       "partida": 71,
-      "jogador": 110,
-      "time": "A",
-      "gols": 0,
+      "jogador": 98,
+      "time": "B",
+      "gols": 1,
       "reserva": false,
-      "posicao_x": "77.16",
-      "posicao_y": "44.71"
+      "posicao_x": "25.90",
+      "posicao_y": "67.13"
     }
   },
   {
@@ -1278,47 +1816,21 @@
       "time": "A",
       "gols": 4,
       "reserva": false,
-      "posicao_x": "39.00",
-      "posicao_y": "17.15"
+      "posicao_x": "29.06",
+      "posicao_y": "13.42"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1879,
+    "pk": 1882,
     "fields": {
       "partida": 71,
-      "jogador": 104,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "51.96",
-      "posicao_y": "19.64"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1585,
-    "fields": {
-      "partida": 71,
-      "jogador": 113,
+      "jogador": 110,
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "49.19",
-      "posicao_y": "86.96"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1588,
-    "fields": {
-      "partida": 71,
-      "jogador": 111,
-      "time": "B",
-      "gols": 6,
-      "reserva": false,
-      "posicao_x": "14.66",
-      "posicao_y": "42.27"
+      "posicao_x": "81.90",
+      "posicao_y": "46.30"
     }
   },
   {
@@ -1330,8 +1842,21 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "26.69",
-      "posicao_y": "46.31"
+      "posicao_x": "18.79",
+      "posicao_y": "46.20"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1879,
+    "fields": {
+      "partida": 71,
+      "jogador": 104,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "51.68",
+      "posicao_y": "13.70"
     }
   },
   {
@@ -1343,8 +1868,73 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "60.53",
-      "posicao_y": "43.40"
+      "posicao_x": "74.69",
+      "posicao_y": "67.52"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1878,
+    "fields": {
+      "partida": 71,
+      "jogador": 118,
+      "time": "B",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "48.91",
+      "posicao_y": "48.02"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1588,
+    "fields": {
+      "partida": 71,
+      "jogador": 111,
+      "time": "B",
+      "gols": 6,
+      "reserva": false,
+      "posicao_x": "16.62",
+      "posicao_y": "36.55"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1585,
+    "fields": {
+      "partida": 71,
+      "jogador": 113,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "50.30",
+      "posicao_y": "88.83"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1881,
+    "fields": {
+      "partida": 71,
+      "jogador": 119,
+      "time": "A",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "69.75",
+      "posicao_y": "13.47"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1840,
+    "fields": {
+      "partida": 67,
+      "jogador": 120,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "82.31",
+      "posicao_y": "42.23"
     }
   },
   {
@@ -1375,15 +1965,15 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1840,
+    "pk": 1837,
     "fields": {
       "partida": 67,
-      "jogador": 120,
-      "time": "B",
+      "jogador": 132,
+      "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "82.31",
-      "posicao_y": "42.23"
+      "posicao_x": "50.40",
+      "posicao_y": "84.95"
     }
   },
   {
@@ -1401,19 +1991,6 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1837,
-    "fields": {
-      "partida": 67,
-      "jogador": 132,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "50.40",
-      "posicao_y": "84.95"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
     "pk": 1841,
     "fields": {
       "partida": 67,
@@ -1423,32 +2000,6 @@
       "reserva": false,
       "posicao_x": "49.33",
       "posicao_y": "35.37"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1834,
-    "fields": {
-      "partida": 67,
-      "jogador": 110,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "80.22",
-      "posicao_y": "31.06"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1838,
-    "fields": {
-      "partida": 67,
-      "jogador": 131,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "50.07",
-      "posicao_y": "88.72"
     }
   },
   {
@@ -1466,41 +2017,15 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1835,
+    "pk": 1838,
     "fields": {
       "partida": 67,
-      "jogador": 115,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "72.69",
-      "posicao_y": "64.92"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1539,
-    "fields": {
-      "partida": 67,
-      "jogador": 102,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "48.96",
-      "posicao_y": "40.62"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1542,
-    "fields": {
-      "partida": 67,
-      "jogador": 103,
+      "jogador": 131,
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "49.30",
-      "posicao_y": "63.52"
+      "posicao_x": "50.07",
+      "posicao_y": "88.72"
     }
   },
   {
@@ -1531,15 +2056,54 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1907,
+    "pk": 1542,
     "fields": {
-      "partida": 74,
-      "jogador": 105,
+      "partida": 67,
+      "jogador": 103,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "49.30",
+      "posicao_y": "63.52"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1834,
+    "fields": {
+      "partida": 67,
+      "jogador": 110,
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "50.96",
-      "posicao_y": "43.25"
+      "posicao_x": "81.80",
+      "posicao_y": "29.09"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1539,
+    "fields": {
+      "partida": 67,
+      "jogador": 102,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "50.79",
+      "posicao_y": "42.14"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1835,
+    "fields": {
+      "partida": 67,
+      "jogador": 115,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "72.72",
+      "posicao_y": "61.97"
     }
   },
   {
@@ -1557,80 +2121,15 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1904,
+    "pk": 1907,
     "fields": {
       "partida": 74,
-      "jogador": 112,
-      "time": "B",
+      "jogador": 105,
+      "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "48.84",
-      "posicao_y": "86.99"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1908,
-    "fields": {
-      "partida": 74,
-      "jogador": 126,
-      "time": "A",
-      "gols": 2,
-      "reserva": false,
-      "posicao_x": "27.43",
-      "posicao_y": "24.60"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1905,
-    "fields": {
-      "partida": 74,
-      "jogador": 136,
-      "time": "A",
-      "gols": 2,
-      "reserva": false,
-      "posicao_x": "79.40",
-      "posicao_y": "29.58"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1909,
-    "fields": {
-      "partida": 74,
-      "jogador": 124,
-      "time": "B",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "50.98",
-      "posicao_y": "58.82"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1906,
-    "fields": {
-      "partida": 74,
-      "jogador": 110,
-      "time": "A",
-      "gols": 2,
-      "reserva": false,
-      "posicao_x": "73.48",
-      "posicao_y": "68.49"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1910,
-    "fields": {
-      "partida": 74,
-      "jogador": 125,
-      "time": "B",
-      "gols": 4,
-      "reserva": false,
-      "posicao_x": "20.60",
-      "posicao_y": "44.29"
+      "posicao_x": "50.96",
+      "posicao_y": "43.25"
     }
   },
   {
@@ -1648,45 +2147,6 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1625,
-    "fields": {
-      "partida": 74,
-      "jogador": 111,
-      "time": "B",
-      "gols": 10,
-      "reserva": false,
-      "posicao_x": "23.78",
-      "posicao_y": "11.41"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1626,
-    "fields": {
-      "partida": 74,
-      "jogador": 100,
-      "time": "A",
-      "gols": 2,
-      "reserva": false,
-      "posicao_x": "52.02",
-      "posicao_y": "15.34"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1627,
-    "fields": {
-      "partida": 74,
-      "jogador": 107,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "83.84",
-      "posicao_y": "43.08"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
     "pk": 1628,
     "fields": {
       "partida": 74,
@@ -1700,6 +2160,123 @@
   },
   {
     "model": "partidas.escalacao",
+    "pk": 1626,
+    "fields": {
+      "partida": 74,
+      "jogador": 100,
+      "time": "A",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "51.88",
+      "posicao_y": "13.33"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1905,
+    "fields": {
+      "partida": 74,
+      "jogador": 136,
+      "time": "A",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "82.89",
+      "posicao_y": "27.72"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1908,
+    "fields": {
+      "partida": 74,
+      "jogador": 126,
+      "time": "A",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "18.79",
+      "posicao_y": "27.91"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1625,
+    "fields": {
+      "partida": 74,
+      "jogador": 111,
+      "time": "B",
+      "gols": 10,
+      "reserva": false,
+      "posicao_x": "26.89",
+      "posicao_y": "11.71"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1906,
+    "fields": {
+      "partida": 74,
+      "jogador": 110,
+      "time": "A",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "74.79",
+      "posicao_y": "64.80"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1909,
+    "fields": {
+      "partida": 74,
+      "jogador": 124,
+      "time": "B",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "52.17",
+      "posicao_y": "64.56"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1904,
+    "fields": {
+      "partida": 74,
+      "jogador": 112,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "50.99",
+      "posicao_y": "87.21"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1627,
+    "fields": {
+      "partida": 74,
+      "jogador": 107,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "82.00",
+      "posicao_y": "48.03"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1910,
+    "fields": {
+      "partida": 74,
+      "jogador": 125,
+      "time": "B",
+      "gols": 4,
+      "reserva": false,
+      "posicao_x": "18.49",
+      "posicao_y": "48.51"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
     "pk": 1631,
     "fields": {
       "partida": 74,
@@ -1707,34 +2284,8 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "24.33",
-      "posicao_y": "67.36"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1899,
-    "fields": {
-      "partida": 73,
-      "jogador": 98,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "26.96",
-      "posicao_y": "63.67"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1903,
-    "fields": {
-      "partida": 73,
-      "jogador": 104,
-      "time": "A",
-      "gols": 4,
-      "reserva": false,
-      "posicao_x": "50.96",
-      "posicao_y": "16.37"
+      "posicao_x": "25.60",
+      "posicao_y": "64.99"
     }
   },
   {
@@ -1752,54 +2303,28 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1901,
+    "pk": 1903,
     "fields": {
       "partida": 73,
-      "jogador": 105,
+      "jogador": 104,
+      "time": "A",
+      "gols": 4,
+      "reserva": false,
+      "posicao_x": "51.28",
+      "posicao_y": "12.75"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1899,
+    "fields": {
+      "partida": 73,
+      "jogador": 98,
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "73.06",
-      "posicao_y": "65.21"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1898,
-    "fields": {
-      "partida": 73,
-      "jogador": 102,
-      "time": "B",
-      "gols": 2,
-      "reserva": false,
-      "posicao_x": "70.75",
-      "posicao_y": "67.42"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1902,
-    "fields": {
-      "partida": 73,
-      "jogador": 99,
-      "time": "A",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "49.31",
-      "posicao_y": "45.33"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1609,
-    "fields": {
-      "partida": 73,
-      "jogador": 112,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "50.37",
-      "posicao_y": "87.92"
+      "posicao_x": "24.62",
+      "posicao_y": "64.98"
     }
   },
   {
@@ -1817,15 +2342,15 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1615,
+    "pk": 1619,
     "fields": {
       "partida": 73,
-      "jogador": 108,
-      "time": "A",
-      "gols": 5,
+      "jogador": 100,
+      "time": "B",
+      "gols": 4,
       "reserva": false,
-      "posicao_x": "27.14",
-      "posicao_y": "27.93"
+      "posicao_x": "49.52",
+      "posicao_y": "14.66"
     }
   },
   {
@@ -1843,15 +2368,28 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1617,
+    "pk": 1620,
     "fields": {
       "partida": 73,
-      "jogador": 110,
+      "jogador": 103,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "26.77",
+      "posicao_y": "66.94"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1898,
+    "fields": {
+      "partida": 73,
+      "jogador": 102,
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "48.98",
-      "posicao_y": "43.16"
+      "posicao_x": "70.75",
+      "posicao_y": "67.42"
     }
   },
   {
@@ -1863,34 +2401,73 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "77.87",
-      "posicao_y": "30.48"
+      "posicao_x": "80.81",
+      "posicao_y": "29.86"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1619,
+    "pk": 1615,
     "fields": {
       "partida": 73,
-      "jogador": 100,
-      "time": "B",
-      "gols": 4,
+      "jogador": 108,
+      "time": "A",
+      "gols": 5,
       "reserva": false,
-      "posicao_x": "49.52",
-      "posicao_y": "14.66"
+      "posicao_x": "20.86",
+      "posicao_y": "29.62"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1620,
+    "pk": 1902,
     "fields": {
       "partida": 73,
-      "jogador": 103,
+      "jogador": 99,
+      "time": "A",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "50.89",
+      "posicao_y": "45.72"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1901,
+    "fields": {
+      "partida": 73,
+      "jogador": 105,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "77.26",
+      "posicao_y": "64.98"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1609,
+    "fields": {
+      "partida": 73,
+      "jogador": 112,
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "26.77",
-      "posicao_y": "66.94"
+      "posicao_x": "50.37",
+      "posicao_y": "87.92"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1617,
+    "fields": {
+      "partida": 73,
+      "jogador": 110,
+      "time": "B",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "48.98",
+      "posicao_y": "43.16"
     }
   },
   {
@@ -1908,19 +2485,6 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1891,
-    "fields": {
-      "partida": 72,
-      "jogador": 126,
-      "time": "A",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "85.46",
-      "posicao_y": "27.60"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
     "pk": 1895,
     "fields": {
       "partida": 72,
@@ -1930,32 +2494,6 @@
       "reserva": false,
       "posicao_x": "32.44",
       "posicao_y": "15.73"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1888,
-    "fields": {
-      "partida": 72,
-      "jogador": 110,
-      "time": "A",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "68.25",
-      "posicao_y": "60.64"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1892,
-    "fields": {
-      "partida": 72,
-      "jogador": 103,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "71.66",
-      "posicao_y": "65.64"
     }
   },
   {
@@ -1973,28 +2511,41 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1889,
+    "pk": 1891,
     "fields": {
       "partida": 72,
-      "jogador": 121,
+      "jogador": 126,
       "time": "A",
-      "gols": 3,
+      "gols": 1,
       "reserva": false,
-      "posicao_x": "21.17",
-      "posicao_y": "29.18"
+      "posicao_x": "83.38",
+      "posicao_y": "28.05"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1893,
+    "pk": 1888,
     "fields": {
       "partida": 72,
-      "jogador": 109,
+      "jogador": 110,
+      "time": "A",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "72.52",
+      "posicao_y": "61.60"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1892,
+    "fields": {
+      "partida": 72,
+      "jogador": 103,
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "83.33",
-      "posicao_y": "40.50"
+      "posicao_x": "73.01",
+      "posicao_y": "63.99"
     }
   },
   {
@@ -2012,19 +2563,6 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1886,
-    "fields": {
-      "partida": 72,
-      "jogador": 117,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "48.11",
-      "posicao_y": "88.53"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
     "pk": 1890,
     "fields": {
       "partida": 72,
@@ -2034,19 +2572,6 @@
       "reserva": false,
       "posicao_x": "50.30",
       "posicao_y": "11.36"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1894,
-    "fields": {
-      "partida": 72,
-      "jogador": 105,
-      "time": "B",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "30.83",
-      "posicao_y": "64.43"
     }
   },
   {
@@ -2064,6 +2589,19 @@
   },
   {
     "model": "partidas.escalacao",
+    "pk": 1894,
+    "fields": {
+      "partida": 72,
+      "jogador": 105,
+      "time": "B",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "30.83",
+      "posicao_y": "64.43"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
     "pk": 1600,
     "fields": {
       "partida": 72,
@@ -2077,6 +2615,45 @@
   },
   {
     "model": "partidas.escalacao",
+    "pk": 1889,
+    "fields": {
+      "partida": 72,
+      "jogador": 121,
+      "time": "A",
+      "gols": 3,
+      "reserva": false,
+      "posicao_x": "18.49",
+      "posicao_y": "28.53"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1893,
+    "fields": {
+      "partida": 72,
+      "jogador": 109,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "84.47",
+      "posicao_y": "40.76"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1886,
+    "fields": {
+      "partida": 72,
+      "jogador": 117,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "48.11",
+      "posicao_y": "88.53"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
     "pk": 1603,
     "fields": {
       "partida": 72,
@@ -2084,60 +2661,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "52.57",
-      "posicao_y": "35.66"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1868,
-    "fields": {
-      "partida": 70,
-      "jogador": 110,
-      "time": "B",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "49.53",
-      "posicao_y": "38.47"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1872,
-    "fields": {
-      "partida": 70,
-      "jogador": 108,
-      "time": "A",
-      "gols": 3,
-      "reserva": false,
-      "posicao_x": "49.48",
-      "posicao_y": "39.03"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1865,
-    "fields": {
-      "partida": 70,
-      "jogador": 99,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "78.69",
-      "posicao_y": "39.01"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1869,
-    "fields": {
-      "partida": 70,
-      "jogador": 120,
-      "time": "B",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "21.06",
-      "posicao_y": "41.46"
+      "posicao_x": "51.19",
+      "posicao_y": "39.14"
     }
   },
   {
@@ -2155,6 +2680,58 @@
   },
   {
     "model": "partidas.escalacao",
+    "pk": 1872,
+    "fields": {
+      "partida": 70,
+      "jogador": 108,
+      "time": "A",
+      "gols": 3,
+      "reserva": false,
+      "posicao_x": "49.21",
+      "posicao_y": "38.22"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1869,
+    "fields": {
+      "partida": 70,
+      "jogador": 120,
+      "time": "B",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "17.80",
+      "posicao_y": "42.57"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1865,
+    "fields": {
+      "partida": 70,
+      "jogador": 99,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "82.69",
+      "posicao_y": "42.23"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1868,
+    "fields": {
+      "partida": 70,
+      "jogador": 110,
+      "time": "B",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "50.10",
+      "posicao_y": "37.17"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
     "pk": 1866,
     "fields": {
       "partida": 70,
@@ -2164,32 +2741,6 @@
       "reserva": false,
       "posicao_x": "49.47",
       "posicao_y": "88.73"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1870,
-    "fields": {
-      "partida": 70,
-      "jogador": 100,
-      "time": "B",
-      "gols": 10,
-      "reserva": false,
-      "posicao_x": "33.08",
-      "posicao_y": "10.57"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1874,
-    "fields": {
-      "partida": 70,
-      "jogador": 118,
-      "time": "A",
-      "gols": 3,
-      "reserva": false,
-      "posicao_x": "18.78",
-      "posicao_y": "36.16"
     }
   },
   {
@@ -2207,15 +2758,15 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1875,
+    "pk": 1867,
     "fields": {
       "partida": 70,
-      "jogador": 126,
-      "time": "A",
-      "gols": 2,
+      "jogador": 103,
+      "time": "B",
+      "gols": 0,
       "reserva": false,
-      "posicao_x": "81.03",
-      "posicao_y": "36.71"
+      "posicao_x": "51.13",
+      "posicao_y": "64.54"
     }
   },
   {
@@ -2240,8 +2791,47 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "47.18",
-      "posicao_y": "62.96"
+      "posicao_x": "48.32",
+      "posicao_y": "63.69"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1874,
+    "fields": {
+      "partida": 70,
+      "jogador": 118,
+      "time": "A",
+      "gols": 3,
+      "reserva": false,
+      "posicao_x": "16.62",
+      "posicao_y": "38.46"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1870,
+    "fields": {
+      "partida": 70,
+      "jogador": 100,
+      "time": "B",
+      "gols": 10,
+      "reserva": false,
+      "posicao_x": "31.14",
+      "posicao_y": "13.47"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1875,
+    "fields": {
+      "partida": 70,
+      "jogador": 126,
+      "time": "A",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "82.49",
+      "posicao_y": "37.93"
     }
   },
   {
@@ -2253,47 +2843,8 @@
       "time": "A",
       "gols": 6,
       "reserva": false,
-      "posicao_x": "37.30",
-      "posicao_y": "11.74"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1867,
-    "fields": {
-      "partida": 70,
-      "jogador": 103,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "51.13",
-      "posicao_y": "64.54"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1856,
-    "fields": {
-      "partida": 69,
-      "jogador": 111,
-      "time": "A",
-      "gols": 3,
-      "reserva": false,
-      "posicao_x": "19.71",
-      "posicao_y": "26.51"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1860,
-    "fields": {
-      "partida": 69,
-      "jogador": 132,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "47.79",
-      "posicao_y": "89.21"
+      "posicao_x": "32.72",
+      "posicao_y": "11.41"
     }
   },
   {
@@ -2311,15 +2862,15 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1857,
+    "pk": 1860,
     "fields": {
       "partida": 69,
-      "jogador": 101,
-      "time": "A",
-      "gols": 1,
+      "jogador": 132,
+      "time": "B",
+      "gols": 0,
       "reserva": false,
-      "posicao_x": "84.60",
-      "posicao_y": "26.53"
+      "posicao_x": "47.79",
+      "posicao_y": "89.21"
     }
   },
   {
@@ -2337,6 +2888,32 @@
   },
   {
     "model": "partidas.escalacao",
+    "pk": 1857,
+    "fields": {
+      "partida": 69,
+      "jogador": 101,
+      "time": "A",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "83.19",
+      "posicao_y": "26.62"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1856,
+    "fields": {
+      "partida": 69,
+      "jogador": 111,
+      "time": "A",
+      "gols": 3,
+      "reserva": false,
+      "posicao_x": "17.60",
+      "posicao_y": "27.76"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
     "pk": 1854,
     "fields": {
       "partida": 69,
@@ -2346,19 +2923,6 @@
       "reserva": false,
       "posicao_x": "50.90",
       "posicao_y": "88.09"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1858,
-    "fields": {
-      "partida": 69,
-      "jogador": 109,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "73.16",
-      "posicao_y": "63.80"
     }
   },
   {
@@ -2376,19 +2940,6 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1855,
-    "fields": {
-      "partida": 69,
-      "jogador": 110,
-      "time": "A",
-      "gols": 2,
-      "reserva": false,
-      "posicao_x": "30.58",
-      "posicao_y": "62.37"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
     "pk": 1859,
     "fields": {
       "partida": 69,
@@ -2402,15 +2953,15 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1863,
+    "pk": 1855,
     "fields": {
       "partida": 69,
-      "jogador": 126,
-      "time": "B",
-      "gols": 1,
+      "jogador": 110,
+      "time": "A",
+      "gols": 2,
       "reserva": false,
-      "posicao_x": "20.54",
-      "posicao_y": "41.18"
+      "posicao_x": "30.58",
+      "posicao_y": "62.37"
     }
   },
   {
@@ -2422,8 +2973,21 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "49.37",
-      "posicao_y": "35.58"
+      "posicao_x": "51.68",
+      "posicao_y": "38.13"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1858,
+    "fields": {
+      "partida": 69,
+      "jogador": 109,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "73.41",
+      "posicao_y": "62.17"
     }
   },
   {
@@ -2435,8 +2999,21 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "48.60",
-      "posicao_y": "39.41"
+      "posicao_x": "50.59",
+      "posicao_y": "38.23"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1863,
+    "fields": {
+      "partida": 69,
+      "jogador": 126,
+      "time": "B",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "15.04",
+      "posicao_y": "43.58"
     }
   },
   {
@@ -2448,73 +3025,8 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "77.83",
-      "posicao_y": "44.62"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1844,
-    "fields": {
-      "partida": 68,
-      "jogador": 108,
-      "time": "B",
-      "gols": 6,
-      "reserva": false,
-      "posicao_x": "50.87",
-      "posicao_y": "38.95"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1848,
-    "fields": {
-      "partida": 68,
-      "jogador": 126,
-      "time": "A",
-      "gols": 4,
-      "reserva": false,
-      "posicao_x": "80.23",
-      "posicao_y": "35.73"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1852,
-    "fields": {
-      "partida": 68,
-      "jogador": 119,
-      "time": "A",
-      "gols": 4,
-      "reserva": false,
-      "posicao_x": "51.53",
-      "posicao_y": "40.47"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1845,
-    "fields": {
-      "partida": 68,
-      "jogador": 109,
-      "time": "B",
-      "gols": 5,
-      "reserva": false,
-      "posicao_x": "21.62",
-      "posicao_y": "37.61"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1849,
-    "fields": {
-      "partida": 68,
-      "jogador": 111,
-      "time": "A",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "21.33",
-      "posicao_y": "37.08"
+      "posicao_x": "84.47",
+      "posicao_y": "43.10"
     }
   },
   {
@@ -2528,6 +3040,58 @@
       "reserva": false,
       "posicao_x": "48.36",
       "posicao_y": "11.12"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1845,
+    "fields": {
+      "partida": 68,
+      "jogador": 109,
+      "time": "B",
+      "gols": 5,
+      "reserva": false,
+      "posicao_x": "17.70",
+      "posicao_y": "36.83"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1848,
+    "fields": {
+      "partida": 68,
+      "jogador": 126,
+      "time": "A",
+      "gols": 4,
+      "reserva": false,
+      "posicao_x": "82.10",
+      "posicao_y": "35.40"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1852,
+    "fields": {
+      "partida": 68,
+      "jogador": 119,
+      "time": "A",
+      "gols": 4,
+      "reserva": false,
+      "posicao_x": "49.21",
+      "posicao_y": "46.54"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1844,
+    "fields": {
+      "partida": 68,
+      "jogador": 108,
+      "time": "B",
+      "gols": 6,
+      "reserva": false,
+      "posicao_x": "50.59",
+      "posicao_y": "39.27"
     }
   },
   {
@@ -2558,19 +3122,6 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1843,
-    "fields": {
-      "partida": 68,
-      "jogador": 131,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "52.00",
-      "posicao_y": "86.85"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
     "pk": 1847,
     "fields": {
       "partida": 68,
@@ -2580,19 +3131,6 @@
       "reserva": false,
       "posicao_x": "51.19",
       "posicao_y": "89.32"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1851,
-    "fields": {
-      "partida": 68,
-      "jogador": 110,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "27.14",
-      "posicao_y": "66.32"
     }
   },
   {
@@ -2630,86 +3168,47 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "81.21",
-      "posicao_y": "37.08"
+      "posicao_x": "83.78",
+      "posicao_y": "36.60"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1667,
+    "pk": 1851,
     "fields": {
-      "partida": 109,
-      "jogador": 113,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "51.59",
-      "posicao_y": "88.85"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1670,
-    "fields": {
-      "partida": 109,
-      "jogador": 100,
-      "time": "B",
-      "gols": 6,
-      "reserva": false,
-      "posicao_x": "37.06",
-      "posicao_y": "10.49"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1671,
-    "fields": {
-      "partida": 109,
-      "jogador": 127,
-      "time": "B",
-      "gols": 2,
-      "reserva": false,
-      "posicao_x": "67.65",
-      "posicao_y": "12.77"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1672,
-    "fields": {
-      "partida": 109,
-      "jogador": 98,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "30.89",
-      "posicao_y": "63.88"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1673,
-    "fields": {
-      "partida": 109,
-      "jogador": 112,
+      "partida": 68,
+      "jogador": 110,
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "49.70",
-      "posicao_y": "88.52"
+      "posicao_x": "27.14",
+      "posicao_y": "66.32"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1675,
+    "pk": 1843,
     "fields": {
-      "partida": 109,
-      "jogador": 110,
-      "time": "B",
+      "partida": 68,
+      "jogador": 131,
+      "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "51.34",
-      "posicao_y": "40.15"
+      "posicao_x": "52.00",
+      "posicao_y": "86.85"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1849,
+    "fields": {
+      "partida": 68,
+      "jogador": 111,
+      "time": "A",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "17.80",
+      "posicao_y": "35.45"
     }
   },
   {
@@ -2727,6 +3226,45 @@
   },
   {
     "model": "partidas.escalacao",
+    "pk": 1671,
+    "fields": {
+      "partida": 109,
+      "jogador": 127,
+      "time": "B",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "67.65",
+      "posicao_y": "12.77"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1667,
+    "fields": {
+      "partida": 109,
+      "jogador": 113,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "51.59",
+      "posicao_y": "88.85"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1673,
+    "fields": {
+      "partida": 109,
+      "jogador": 112,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "49.70",
+      "posicao_y": "88.52"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
     "pk": 2204,
     "fields": {
       "partida": 109,
@@ -2734,8 +3272,34 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "79.77",
-      "posicao_y": "35.14"
+      "posicao_x": "79.43",
+      "posicao_y": "33.55"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1672,
+    "fields": {
+      "partida": 109,
+      "jogador": 98,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "28.47",
+      "posicao_y": "64.76"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1670,
+    "fields": {
+      "partida": 109,
+      "jogador": 100,
+      "time": "B",
+      "gols": 6,
+      "reserva": false,
+      "posicao_x": "32.42",
+      "posicao_y": "12.67"
     }
   },
   {
@@ -2747,8 +3311,21 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "18.44",
-      "posicao_y": "36.09"
+      "posicao_x": "17.21",
+      "posicao_y": "36.13"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1675,
+    "fields": {
+      "partida": 109,
+      "jogador": 110,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "49.80",
+      "posicao_y": "46.93"
     }
   },
   {
@@ -2766,32 +3343,6 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 2205,
-    "fields": {
-      "partida": 109,
-      "jogador": 118,
-      "time": "A",
-      "gols": 3,
-      "reserva": false,
-      "posicao_x": "49.70",
-      "posicao_y": "46.40"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2202,
-    "fields": {
-      "partida": 109,
-      "jogador": 124,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "26.93",
-      "posicao_y": "68.81"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
     "pk": 2206,
     "fields": {
       "partida": 109,
@@ -2805,15 +3356,28 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 2203,
+    "pk": 2205,
     "fields": {
       "partida": 109,
-      "jogador": 103,
+      "jogador": 118,
+      "time": "A",
+      "gols": 3,
+      "reserva": false,
+      "posicao_x": "49.31",
+      "posicao_y": "49.80"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2202,
+    "fields": {
+      "partida": 109,
+      "jogador": 124,
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "72.53",
-      "posicao_y": "71.24"
+      "posicao_x": "23.63",
+      "posicao_y": "69.68"
     }
   },
   {
@@ -2825,21 +3389,21 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "50.42",
-      "posicao_y": "15.19"
+      "posicao_x": "50.59",
+      "posicao_y": "13.77"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 2212,
+    "pk": 2203,
     "fields": {
-      "partida": 110,
-      "jogador": 106,
+      "partida": 109,
+      "jogador": 103,
       "time": "A",
-      "gols": 2,
+      "gols": 0,
       "reserva": false,
-      "posicao_x": "50.59",
-      "posicao_y": "12.40"
+      "posicao_x": "77.26",
+      "posicao_y": "69.82"
     }
   },
   {
@@ -2857,15 +3421,15 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 2213,
+    "pk": 2212,
     "fields": {
       "partida": 110,
-      "jogador": 109,
+      "jogador": 106,
       "time": "A",
-      "gols": 1,
+      "gols": 2,
       "reserva": false,
-      "posicao_x": "81.51",
-      "posicao_y": "25.50"
+      "posicao_x": "50.59",
+      "posicao_y": "12.40"
     }
   },
   {
@@ -2879,6 +3443,19 @@
       "reserva": false,
       "posicao_x": "50.79",
       "posicao_y": "88.59"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2213,
+    "fields": {
+      "partida": 110,
+      "jogador": 109,
+      "time": "A",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "81.51",
+      "posicao_y": "25.50"
     }
   },
   {
@@ -2909,6 +3486,19 @@
   },
   {
     "model": "partidas.escalacao",
+    "pk": 1688,
+    "fields": {
+      "partida": 110,
+      "jogador": 110,
+      "time": "B",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "78.43",
+      "posicao_y": "65.58"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
     "pk": 2215,
     "fields": {
       "partida": 110,
@@ -2918,58 +3508,6 @@
       "reserva": false,
       "posicao_x": "52.82",
       "posicao_y": "43.54"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2211,
-    "fields": {
-      "partida": 110,
-      "jogador": 101,
-      "time": "A",
-      "gols": 3,
-      "reserva": false,
-      "posicao_x": "18.03",
-      "posicao_y": "26.67"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1679,
-    "fields": {
-      "partida": 110,
-      "jogador": 112,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "51.39",
-      "posicao_y": "88.52"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1680,
-    "fields": {
-      "partida": 110,
-      "jogador": 98,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "29.22",
-      "posicao_y": "63.36"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1681,
-    "fields": {
-      "partida": 110,
-      "jogador": 103,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "26.91",
-      "posicao_y": "65.22"
     }
   },
   {
@@ -3000,80 +3538,54 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1688,
+    "pk": 1680,
     "fields": {
       "partida": 110,
-      "jogador": 110,
-      "time": "B",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "78.43",
-      "posicao_y": "65.58"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1691,
-    "fields": {
-      "partida": 111,
-      "jogador": 112,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "50.32",
-      "posicao_y": "87.60"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1692,
-    "fields": {
-      "partida": 111,
       "jogador": 98,
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "25.93",
-      "posicao_y": "64.34"
+      "posicao_x": "29.22",
+      "posicao_y": "63.36"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1693,
+    "pk": 2211,
     "fields": {
-      "partida": 111,
-      "jogador": 100,
-      "time": "B",
-      "gols": 4,
+      "partida": 110,
+      "jogador": 101,
+      "time": "A",
+      "gols": 3,
       "reserva": false,
-      "posicao_x": "21.68",
-      "posicao_y": "15.19"
+      "posicao_x": "18.03",
+      "posicao_y": "26.67"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1694,
+    "pk": 1679,
     "fields": {
-      "partida": 111,
-      "jogador": 127,
-      "time": "B",
-      "gols": 1,
+      "partida": 110,
+      "jogador": 112,
+      "time": "A",
+      "gols": 0,
       "reserva": false,
-      "posicao_x": "76.28",
-      "posicao_y": "16.36"
+      "posicao_x": "51.39",
+      "posicao_y": "88.52"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1696,
+    "pk": 1681,
     "fields": {
-      "partida": 111,
-      "jogador": 128,
+      "partida": 110,
+      "jogador": 103,
       "time": "B",
-      "gols": 1,
+      "gols": 0,
       "reserva": false,
-      "posicao_x": "27.51",
-      "posicao_y": "43.23"
+      "posicao_x": "26.91",
+      "posicao_y": "65.22"
     }
   },
   {
@@ -3091,28 +3603,15 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1698,
+    "pk": 1691,
     "fields": {
       "partida": 111,
-      "jogador": 113,
-      "time": "B",
+      "jogador": 112,
+      "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "50.71",
-      "posicao_y": "88.26"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1699,
-    "fields": {
-      "partida": 111,
-      "jogador": 103,
-      "time": "B",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "50.82",
-      "posicao_y": "64.83"
+      "posicao_x": "50.32",
+      "posicao_y": "87.60"
     }
   },
   {
@@ -3124,21 +3623,8 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "55.39",
-      "posicao_y": "15.49"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1702,
-    "fields": {
-      "partida": 111,
-      "jogador": 106,
-      "time": "A",
-      "gols": 2,
-      "reserva": false,
-      "posicao_x": "51.29",
-      "posicao_y": "42.89"
+      "posicao_x": "51.28",
+      "posicao_y": "14.40"
     }
   },
   {
@@ -3150,21 +3636,86 @@
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "15.46",
-      "posicao_y": "38.97"
+      "posicao_x": "15.63",
+      "posicao_y": "36.33"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 2217,
+    "pk": 1702,
     "fields": {
       "partida": 111,
-      "jogador": 119,
-      "time": "B",
+      "jogador": 106,
+      "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "49.62",
-      "posicao_y": "13.94"
+      "posicao_x": "49.60",
+      "posicao_y": "43.65"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1692,
+    "fields": {
+      "partida": 111,
+      "jogador": 98,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "30.05",
+      "posicao_y": "64.67"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1693,
+    "fields": {
+      "partida": 111,
+      "jogador": 100,
+      "time": "B",
+      "gols": 4,
+      "reserva": false,
+      "posicao_x": "49.31",
+      "posicao_y": "11.87"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1696,
+    "fields": {
+      "partida": 111,
+      "jogador": 128,
+      "time": "B",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "31.43",
+      "posicao_y": "45.08"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1699,
+    "fields": {
+      "partida": 111,
+      "jogador": 103,
+      "time": "B",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "50.10",
+      "posicao_y": "67.64"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1698,
+    "fields": {
+      "partida": 111,
+      "jogador": 113,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "49.60",
+      "posicao_y": "88.38"
     }
   },
   {
@@ -3176,8 +3727,34 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "73.60",
-      "posicao_y": "66.86"
+      "posicao_x": "73.01",
+      "posicao_y": "64.91"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2217,
+    "fields": {
+      "partida": 111,
+      "jogador": 119,
+      "time": "B",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "16.32",
+      "posicao_y": "21.14"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1694,
+    "fields": {
+      "partida": 111,
+      "jogador": 127,
+      "time": "B",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "83.78",
+      "posicao_y": "20.90"
     }
   },
   {
@@ -3189,8 +3766,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "86.28",
-      "posicao_y": "38.45"
+      "posicao_x": "82.79",
+      "posicao_y": "36.81"
     }
   },
   {
@@ -3208,32 +3785,6 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1733,
-    "fields": {
-      "partida": 113,
-      "jogador": 103,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "18.46",
-      "posicao_y": "69.40"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1734,
-    "fields": {
-      "partida": 113,
-      "jogador": 105,
-      "time": "A",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "84.49",
-      "posicao_y": "29.61"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
     "pk": 1735,
     "fields": {
       "partida": 113,
@@ -3243,97 +3794,6 @@
       "reserva": false,
       "posicao_x": "50.27",
       "posicao_y": "12.22"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1720,
-    "fields": {
-      "partida": 113,
-      "jogador": 113,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "49.31",
-      "posicao_y": "89.27"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1721,
-    "fields": {
-      "partida": 113,
-      "jogador": 108,
-      "time": "B",
-      "gols": 2,
-      "reserva": false,
-      "posicao_x": "32.37",
-      "posicao_y": "40.25"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1722,
-    "fields": {
-      "partida": 113,
-      "jogador": 109,
-      "time": "A",
-      "gols": 3,
-      "reserva": false,
-      "posicao_x": "52.13",
-      "posicao_y": "34.03"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1723,
-    "fields": {
-      "partida": 113,
-      "jogador": 120,
-      "time": "B",
-      "gols": 4,
-      "reserva": false,
-      "posicao_x": "84.77",
-      "posicao_y": "14.56"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1724,
-    "fields": {
-      "partida": 113,
-      "jogador": 110,
-      "time": "A",
-      "gols": 3,
-      "reserva": false,
-      "posicao_x": "50.66",
-      "posicao_y": "55.58"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1725,
-    "fields": {
-      "partida": 113,
-      "jogador": 102,
-      "time": "A",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "78.56",
-      "posicao_y": "68.16"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1726,
-    "fields": {
-      "partida": 113,
-      "jogador": 129,
-      "time": "A",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "24.68",
-      "posicao_y": "65.43"
     }
   },
   {
@@ -3351,32 +3811,6 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1728,
-    "fields": {
-      "partida": 113,
-      "jogador": 112,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "51.53",
-      "posicao_y": "89.03"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1729,
-    "fields": {
-      "partida": 113,
-      "jogador": 122,
-      "time": "B",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "66.62",
-      "posicao_y": "41.29"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
     "pk": 1730,
     "fields": {
       "partida": 113,
@@ -3390,6 +3824,136 @@
   },
   {
     "model": "partidas.escalacao",
+    "pk": 1724,
+    "fields": {
+      "partida": 113,
+      "jogador": 110,
+      "time": "A",
+      "gols": 3,
+      "reserva": false,
+      "posicao_x": "50.66",
+      "posicao_y": "55.58"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1721,
+    "fields": {
+      "partida": 113,
+      "jogador": 108,
+      "time": "B",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "32.37",
+      "posicao_y": "40.25"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1728,
+    "fields": {
+      "partida": 113,
+      "jogador": 112,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "51.53",
+      "posicao_y": "89.03"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1720,
+    "fields": {
+      "partida": 113,
+      "jogador": 113,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "49.31",
+      "posicao_y": "89.27"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1734,
+    "fields": {
+      "partida": 113,
+      "jogador": 105,
+      "time": "A",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "83.38",
+      "posicao_y": "27.67"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1722,
+    "fields": {
+      "partida": 113,
+      "jogador": 109,
+      "time": "A",
+      "gols": 3,
+      "reserva": false,
+      "posicao_x": "51.28",
+      "posicao_y": "34.13"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1726,
+    "fields": {
+      "partida": 113,
+      "jogador": 129,
+      "time": "A",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "20.96",
+      "posicao_y": "68.30"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1725,
+    "fields": {
+      "partida": 113,
+      "jogador": 102,
+      "time": "A",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "80.22",
+      "posicao_y": "68.82"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1729,
+    "fields": {
+      "partida": 113,
+      "jogador": 122,
+      "time": "B",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "68.67",
+      "posicao_y": "40.19"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1733,
+    "fields": {
+      "partida": 113,
+      "jogador": 103,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "30.94",
+      "posicao_y": "65.76"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
     "pk": 1731,
     "fields": {
       "partida": 113,
@@ -3397,125 +3961,21 @@
       "time": "B",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "79.90",
-      "posicao_y": "68.79"
+      "posicao_x": "71.93",
+      "posicao_y": "66.00"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 2220,
+    "pk": 1723,
     "fields": {
-      "partida": 146,
-      "jogador": 112,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "48.15",
-      "posicao_y": "88.96"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2221,
-    "fields": {
-      "partida": 146,
-      "jogador": 108,
-      "time": "A",
-      "gols": 6,
-      "reserva": false,
-      "posicao_x": "49.92",
-      "posicao_y": "49.82"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2222,
-    "fields": {
-      "partida": 146,
-      "jogador": 137,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "79.98",
-      "posicao_y": "34.60"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2223,
-    "fields": {
-      "partida": 146,
-      "jogador": 140,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "79.21",
-      "posicao_y": "71.00"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2224,
-    "fields": {
-      "partida": 146,
-      "jogador": 101,
-      "time": "A",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "19.99",
-      "posicao_y": "35.97"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2225,
-    "fields": {
-      "partida": 146,
-      "jogador": 103,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "19.52",
-      "posicao_y": "70.27"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2227,
-    "fields": {
-      "partida": 146,
-      "jogador": 114,
+      "partida": 113,
+      "jogador": 120,
       "time": "B",
       "gols": 4,
       "reserva": false,
-      "posicao_x": "67.23",
-      "posicao_y": "13.87"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2228,
-    "fields": {
-      "partida": 146,
-      "jogador": 113,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "46.19",
-      "posicao_y": "88.50"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2229,
-    "fields": {
-      "partida": 146,
-      "jogador": 138,
-      "time": "B",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "25.42",
-      "posicao_y": "39.98"
+      "posicao_x": "84.07",
+      "posicao_y": "15.01"
     }
   },
   {
@@ -3533,19 +3993,6 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 2231,
-    "fields": {
-      "partida": 146,
-      "jogador": 110,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "72.07",
-      "posicao_y": "40.33"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
     "pk": 2232,
     "fields": {
       "partida": 146,
@@ -3559,15 +4006,15 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 2233,
+    "pk": 2220,
     "fields": {
       "partida": 146,
-      "jogador": 142,
-      "time": "A",
-      "gols": 1,
-      "reserva": true,
-      "posicao_x": "30.35",
-      "posicao_y": "12.18"
+      "jogador": 112,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "48.15",
+      "posicao_y": "88.96"
     }
   },
   {
@@ -3585,6 +4032,136 @@
   },
   {
     "model": "partidas.escalacao",
+    "pk": 2223,
+    "fields": {
+      "partida": 146,
+      "jogador": 140,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "79.21",
+      "posicao_y": "71.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2227,
+    "fields": {
+      "partida": 146,
+      "jogador": 114,
+      "time": "B",
+      "gols": 4,
+      "reserva": false,
+      "posicao_x": "67.23",
+      "posicao_y": "13.87"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2225,
+    "fields": {
+      "partida": 146,
+      "jogador": 103,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "19.52",
+      "posicao_y": "70.27"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2229,
+    "fields": {
+      "partida": 146,
+      "jogador": 138,
+      "time": "B",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "25.42",
+      "posicao_y": "39.98"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2233,
+    "fields": {
+      "partida": 146,
+      "jogador": 142,
+      "time": "A",
+      "gols": 1,
+      "reserva": true,
+      "posicao_x": "30.35",
+      "posicao_y": "12.18"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2221,
+    "fields": {
+      "partida": 146,
+      "jogador": 108,
+      "time": "A",
+      "gols": 6,
+      "reserva": false,
+      "posicao_x": "49.92",
+      "posicao_y": "49.82"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2231,
+    "fields": {
+      "partida": 146,
+      "jogador": 110,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "72.07",
+      "posicao_y": "40.33"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2228,
+    "fields": {
+      "partida": 146,
+      "jogador": 113,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "46.19",
+      "posicao_y": "88.50"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2224,
+    "fields": {
+      "partida": 146,
+      "jogador": 101,
+      "time": "A",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "18.59",
+      "posicao_y": "33.22"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2222,
+    "fields": {
+      "partida": 146,
+      "jogador": 137,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "80.02",
+      "posicao_y": "33.50"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
     "pk": 2250,
     "fields": {
       "partida": 146,
@@ -3592,99 +4169,8 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "32.52",
-      "posicao_y": "14.56"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2265,
-    "fields": {
-      "partida": 149,
-      "jogador": 113,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "51.80",
-      "posicao_y": "88.69"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2266,
-    "fields": {
-      "partida": 149,
-      "jogador": 98,
-      "time": "A",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "23.35",
-      "posicao_y": "67.35"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2267,
-    "fields": {
-      "partida": 149,
-      "jogador": 129,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "66.95",
-      "posicao_y": "66.59"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2268,
-    "fields": {
-      "partida": 149,
-      "jogador": 138,
-      "time": "A",
-      "gols": 1,
-      "reserva": false,
-      "posicao_x": "30.79",
-      "posicao_y": "42.38"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2269,
-    "fields": {
-      "partida": 149,
-      "jogador": 141,
-      "time": "A",
-      "gols": 2,
-      "reserva": false,
-      "posicao_x": "76.33",
-      "posicao_y": "68.65"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2270,
-    "fields": {
-      "partida": 149,
-      "jogador": 101,
-      "time": "B",
-      "gols": 2,
-      "reserva": false,
-      "posicao_x": "26.41",
-      "posicao_y": "39.67"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 2271,
-    "fields": {
-      "partida": 149,
-      "jogador": 100,
-      "time": "B",
-      "gols": 7,
-      "reserva": false,
-      "posicao_x": "30.02",
-      "posicao_y": "17.84"
+      "posicao_x": "30.05",
+      "posicao_y": "14.05"
     }
   },
   {
@@ -3702,15 +4188,15 @@
   },
   {
     "model": "partidas.escalacao",
-    "pk": 2274,
+    "pk": 2265,
     "fields": {
       "partida": 149,
-      "jogador": 108,
+      "jogador": 113,
       "time": "A",
-      "gols": 5,
+      "gols": 0,
       "reserva": false,
-      "posicao_x": "52.57",
-      "posicao_y": "24.64"
+      "posicao_x": "51.80",
+      "posicao_y": "88.69"
     }
   },
   {
@@ -3722,34 +4208,99 @@
       "time": "A",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "74.80",
-      "posicao_y": "42.25"
+      "posicao_x": "78.84",
+      "posicao_y": "33.65"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 2277,
+    "pk": 2268,
     "fields": {
       "partida": 149,
-      "jogador": 102,
+      "jogador": 138,
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "50.43",
-      "posicao_y": "59.25"
+      "posicao_x": "20.86",
+      "posicao_y": "32.79"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 2273,
+    "pk": 2269,
     "fields": {
       "partida": 149,
-      "jogador": 139,
+      "jogador": 141,
+      "time": "A",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "80.42",
+      "posicao_y": "67.96"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2266,
+    "fields": {
+      "partida": 149,
+      "jogador": 98,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "22.54",
+      "posicao_y": "67.77"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2274,
+    "fields": {
+      "partida": 149,
+      "jogador": 108,
+      "time": "A",
+      "gols": 5,
+      "reserva": false,
+      "posicao_x": "50.79",
+      "posicao_y": "13.67"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2270,
+    "fields": {
+      "partida": 149,
+      "jogador": 101,
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "31.25",
-      "posicao_y": "65.47"
+      "posicao_x": "29.46",
+      "posicao_y": "40.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2271,
+    "fields": {
+      "partida": 149,
+      "jogador": 100,
+      "time": "B",
+      "gols": 7,
+      "reserva": false,
+      "posicao_x": "31.43",
+      "posicao_y": "15.87"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2267,
+    "fields": {
+      "partida": 149,
+      "jogador": 129,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "73.01",
+      "posicao_y": "66.14"
     }
   },
   {
@@ -3774,112 +4325,34 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "67.61",
-      "posicao_y": "18.15"
+      "posicao_x": "70.35",
+      "posicao_y": "15.63"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1705,
+    "pk": 2277,
     "fields": {
-      "partida": 112,
-      "jogador": 113,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "48.77",
-      "posicao_y": "90.01"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1706,
-    "fields": {
-      "partida": 112,
-      "jogador": 119,
-      "time": "B",
-      "gols": 2,
-      "reserva": false,
-      "posicao_x": "51.90",
-      "posicao_y": "15.41"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1707,
-    "fields": {
-      "partida": 112,
-      "jogador": 114,
-      "time": "A",
-      "gols": 3,
-      "reserva": false,
-      "posicao_x": "38.99",
-      "posicao_y": "16.81"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1708,
-    "fields": {
-      "partida": 112,
-      "jogador": 118,
-      "time": "A",
-      "gols": 2,
-      "reserva": false,
-      "posicao_x": "63.72",
-      "posicao_y": "47.39"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1709,
-    "fields": {
-      "partida": 112,
-      "jogador": 128,
+      "partida": 149,
+      "jogador": 102,
       "time": "A",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "83.94",
-      "posicao_y": "43.34"
+      "posicao_x": "49.70",
+      "posicao_y": "51.00"
     }
   },
   {
     "model": "partidas.escalacao",
-    "pk": 1710,
+    "pk": 2273,
     "fields": {
-      "partida": 112,
-      "jogador": 110,
-      "time": "A",
+      "partida": 149,
+      "jogador": 139,
+      "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "37.75",
-      "posicao_y": "48.66"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1711,
-    "fields": {
-      "partida": 112,
-      "jogador": 98,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "30.77",
-      "posicao_y": "73.84"
-    }
-  },
-  {
-    "model": "partidas.escalacao",
-    "pk": 1712,
-    "fields": {
-      "partida": 112,
-      "jogador": 105,
-      "time": "B",
-      "gols": 0,
-      "reserva": false,
-      "posicao_x": "69.88",
-      "posicao_y": "73.49"
+      "posicao_x": "27.98",
+      "posicao_y": "66.38"
     }
   },
   {
@@ -3897,6 +4370,32 @@
   },
   {
     "model": "partidas.escalacao",
+    "pk": 1705,
+    "fields": {
+      "partida": 112,
+      "jogador": 113,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "48.77",
+      "posicao_y": "90.01"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1707,
+    "fields": {
+      "partida": 112,
+      "jogador": 114,
+      "time": "A",
+      "gols": 3,
+      "reserva": false,
+      "posicao_x": "34.69",
+      "posicao_y": "15.88"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
     "pk": 1714,
     "fields": {
       "partida": 112,
@@ -3904,8 +4403,60 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "70.11",
-      "posicao_y": "16.83"
+      "posicao_x": "68.96",
+      "posicao_y": "15.98"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1710,
+    "fields": {
+      "partida": 112,
+      "jogador": 110,
+      "time": "A",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "27.68",
+      "posicao_y": "68.07"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1708,
+    "fields": {
+      "partida": 112,
+      "jogador": 118,
+      "time": "A",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "50.20",
+      "posicao_y": "48.90"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1709,
+    "fields": {
+      "partida": 112,
+      "jogador": 128,
+      "time": "A",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "17.90",
+      "posicao_y": "42.88"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1706,
+    "fields": {
+      "partida": 112,
+      "jogador": 119,
+      "time": "B",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "50.99",
+      "posicao_y": "14.21"
     }
   },
   {
@@ -3917,8 +4468,8 @@
       "time": "A",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "17.72",
-      "posicao_y": "41.40"
+      "posicao_x": "82.20",
+      "posicao_y": "42.98"
     }
   },
   {
@@ -3930,8 +4481,21 @@
       "time": "B",
       "gols": 2,
       "reserva": false,
-      "posicao_x": "50.47",
-      "posicao_y": "40.87"
+      "posicao_x": "50.40",
+      "posicao_y": "37.19"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1711,
+    "fields": {
+      "partida": 112,
+      "jogador": 98,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "32.62",
+      "posicao_y": "69.12"
     }
   },
   {
@@ -3943,8 +4507,8 @@
       "time": "B",
       "gols": 1,
       "reserva": false,
-      "posicao_x": "74.34",
-      "posicao_y": "46.74"
+      "posicao_x": "84.37",
+      "posicao_y": "44.51"
     }
   },
   {
@@ -3956,8 +4520,21 @@
       "time": "B",
       "gols": 3,
       "reserva": false,
-      "posicao_x": "23.63",
-      "posicao_y": "45.64"
+      "posicao_x": "15.93",
+      "posicao_y": "44.36"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 1712,
+    "fields": {
+      "partida": 112,
+      "jogador": 105,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "70.05",
+      "posicao_y": "69.55"
     }
   },
   {
@@ -3969,8 +4546,231 @@
       "time": "A",
       "gols": 0,
       "reserva": false,
-      "posicao_x": "51.55",
-      "posicao_y": "67.70"
+      "posicao_x": "75.38",
+      "posicao_y": "68.64"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2305,
+    "fields": {
+      "partida": 151,
+      "jogador": 104,
+      "time": "A",
+      "gols": 4,
+      "reserva": false,
+      "posicao_x": "50.69",
+      "posicao_y": "15.40"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2292,
+    "fields": {
+      "partida": 151,
+      "jogador": 108,
+      "time": "A",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "78.15",
+      "posicao_y": "33.75"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2294,
+    "fields": {
+      "partida": 151,
+      "jogador": 156,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "20.86",
+      "posicao_y": "33.94"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2291,
+    "fields": {
+      "partida": 151,
+      "jogador": 112,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "50.30",
+      "posicao_y": "87.95"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2296,
+    "fields": {
+      "partida": 151,
+      "jogador": 98,
+      "time": "A",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "24.12",
+      "posicao_y": "68.88"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2302,
+    "fields": {
+      "partida": 151,
+      "jogador": 110,
+      "time": "A",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "49.51",
+      "posicao_y": "50.62"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2303,
+    "fields": {
+      "partida": 151,
+      "jogador": 102,
+      "time": "A",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "76.07",
+      "posicao_y": "68.83"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2304,
+    "fields": {
+      "partida": 151,
+      "jogador": 105,
+      "time": "B",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "70.74",
+      "posicao_y": "64.67"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2295,
+    "fields": {
+      "partida": 151,
+      "jogador": 140,
+      "time": "B",
+      "gols": 1,
+      "reserva": false,
+      "posicao_x": "34.10",
+      "posicao_y": "64.86"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2300,
+    "fields": {
+      "partida": 151,
+      "jogador": 143,
+      "time": "B",
+      "gols": 3,
+      "reserva": false,
+      "posicao_x": "81.60",
+      "posicao_y": "40.16"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2301,
+    "fields": {
+      "partida": 151,
+      "jogador": 157,
+      "time": "A",
+      "gols": 1,
+      "reserva": true,
+      "posicao_x": null,
+      "posicao_y": null
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2293,
+    "fields": {
+      "partida": 151,
+      "jogador": 137,
+      "time": "B",
+      "gols": 3,
+      "reserva": false,
+      "posicao_x": "19.68",
+      "posicao_y": "40.49"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2298,
+    "fields": {
+      "partida": 151,
+      "jogador": 127,
+      "time": "B",
+      "gols": 2,
+      "reserva": false,
+      "posicao_x": "71.93",
+      "posicao_y": "14.92"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2297,
+    "fields": {
+      "partida": 151,
+      "jogador": 100,
+      "time": "B",
+      "gols": 4,
+      "reserva": false,
+      "posicao_x": "27.88",
+      "posicao_y": "15.21"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2299,
+    "fields": {
+      "partida": 151,
+      "jogador": 113,
+      "time": "B",
+      "gols": 0,
+      "reserva": false,
+      "posicao_x": "49.94",
+      "posicao_y": "87.80"
+    }
+  },
+  {
+    "model": "halldafama.trofeu",
+    "pk": 29,
+    "fields": {
+      "horario": 68,
+      "campeonato": 12,
+      "jogador": 100,
+      "tipo": "ARTILHEIRO",
+      "titulo": "Artilheiro do Mendes Cup 2026 - 2ª Edição",
+      "descricao": "Boy foi o artilheiro com 24 gols.",
+      "foto": "",
+      "conquistado_em": "2026-08-15"
+    }
+  },
+  {
+    "model": "halldafama.trofeu",
+    "pk": 28,
+    "fields": {
+      "horario": 68,
+      "campeonato": 12,
+      "jogador": 127,
+      "tipo": "CAMPEAO",
+      "titulo": "Campeão do Mendes Cup 2026 - 2ª Edição",
+      "descricao": "Campeão da temporada de Mendes Cup 2026 - 2ª Edição.",
+      "foto": "halldafama/WhatsApp_Image_2026-08-15_at_22.27.29.jpeg",
+      "conquistado_em": "2026-08-15"
     }
   },
   {
@@ -3983,20 +4783,8 @@
       "tipo": "CAMPEAO",
       "titulo": "Campeão do Igor Cup 2026 - 1ª Edição",
       "descricao": "Campeão da temporada de Igor Cup 2026 - 1ª Edição. Título dividido por empate em todos os critérios de desempate.",
+      "foto": "",
       "conquistado_em": "2026-07-27"
-    }
-  },
-  {
-    "model": "halldafama.trofeu",
-    "pk": 17,
-    "fields": {
-      "horario": 68,
-      "campeonato": 11,
-      "jogador": 108,
-      "tipo": "CAMPEAO",
-      "titulo": "Campeão do Igor Cup 2026 - 1ª Edição",
-      "descricao": "Campeão da temporada de Igor Cup 2026 - 1ª Edição. Título dividido por empate em todos os critérios de desempate.",
-      "conquistado_em": "2026-07-26"
     }
   },
   {
@@ -4009,6 +4797,21 @@
       "tipo": "ARTILHEIRO",
       "titulo": "Artilheiro do Igor Cup 2026 - 1ª Edição",
       "descricao": "Boy foi o artilheiro com 25 gols.",
+      "foto": "",
+      "conquistado_em": "2026-07-26"
+    }
+  },
+  {
+    "model": "halldafama.trofeu",
+    "pk": 17,
+    "fields": {
+      "horario": 68,
+      "campeonato": 11,
+      "jogador": 108,
+      "tipo": "CAMPEAO",
+      "titulo": "Campeão do Igor Cup 2026 - 1ª Edição",
+      "descricao": "Campeão da temporada de Igor Cup 2026 - 1ª Edição. Título dividido por empate em todos os critérios de desempate.",
+      "foto": "halldafama/ChatGPT_Image_16_de_ago._de_2026_02_07_50.png",
       "conquistado_em": "2026-07-26"
     }
   }
