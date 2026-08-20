@@ -160,7 +160,7 @@
       // Dados vêm de dois arquivos: data.json (fixture principal) e legends.json (jogadores
       // categoria LEGEND, mantidos à parte). Os dois são fixtures no mesmo formato do Django
       // e são simplesmente concatenados antes de processar.
-      const [resPrincipal, resLegends] = await Promise.all([fetch('data.json'), fetch('legends.json')]);
+      const [resPrincipal, resLegends] = await Promise.all([fetch('data.json'), fetch('jsons/legends.json')]);
       if (!resPrincipal.ok) throw new Error('HTTP ' + resPrincipal.status);
       const rawPrincipal = await resPrincipal.json();
       const rawLegends = resLegends.ok ? await resLegends.json() : [];
