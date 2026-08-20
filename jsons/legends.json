@@ -36,7 +36,8 @@
       "nivel": "99.0",
       "GP": 0,
       "GC": 0,
-      "SG": 0
+      "SG": 0,
+      "fora_da_classificacao": true
     }
   },
   {
@@ -56,7 +57,8 @@
       "nivel": "99.0",
       "GP": 0,
       "GC": 0,
-      "SG": 0
+      "SG": 0,
+      "fora_da_classificacao": true
     }
   }
 ]

@@ -46,6 +46,7 @@
       <div class="sec-tab active" onclick="showTab('art')">⚽ ARTILHARIA</div>
       <!-- Assistências removidas -->
       <div class="sec-tab" onclick="showTab('cls')">🏆 CLASSIFICAÇÃO</div>
+      <div class="sec-tab" onclick="showTab('selecao')">⭐ SELEÇÃO</div>
       <div class="sec-tab" onclick="showTab('jogos')">📅 JOGOS</div>
       <div class="sec-tab" onclick="showTab('simulador')">⚽ SIMULADOR</div>
       <div class="sec-tab" onclick="showTab('jogadores')">🌍 RANKING GERAL</div>
@@ -59,6 +60,10 @@
       <div class="table-view" id="tab-cls">
         <div class="cls-desc"><strong>Como funciona a pontuação:</strong> A pontuação final é calculada seguindo a fórmula: (3 x Vitórias) + (1 x Empates) + (1 x Jogos).</div>
         <div id="cls-root"></div>
+      </div>
+      <div class="table-view" id="tab-selecao">
+        <div class="cls-desc"><strong>Seleção do Campeonato:</strong> os melhores por posição (1 goleiro, 2 zagueiros, 2 meio-campos, 2 atacantes), ordenados por pontuação (nível). Empate é resolvido pela eficiência (gols por jogo no campeonato) e depois pelo saldo de gols do jogador.</div>
+        <div id="selecao-root"></div>
       </div>
       <div class="table-view" id="tab-jogos">
         <div id="jogos-root"></div>
@@ -192,10 +197,12 @@
 
       // goleiros ficam fora das estatísticas e rankings (não fazem sentido nesse contexto),
       // mas continuam aparecendo no mapa do campo — por isso essa exclusão é separada da acima.
+      // "fora_da_classificacao" marca jogadores LEGEND fictícios (ex.: Pelé, Ronaldinho Gaúcho)
+      // que existem só pro simulador — eles continuam disponíveis lá, mas somem das tabelas.
       const isStatsExcludedPlayer = (jid) => {
         const j = jogadoresById[jid];
         if (!j) return true;
-        return j.posicao === 'GOL' || j.ativo === false;
+        return j.posicao === 'GOL' || j.ativo === false || j.fora_da_classificacao === true;
       };
 
       const directory = {};
@@ -224,8 +231,13 @@
       }
 
       // garante que todo jogador elegível apareça no diretório, mesmo sem partidas
-      // (inclui goleiros, para que o modal deles funcione ao clicar no mapa do campo)
-      Object.keys(jogadoresById).forEach(jid => { if (!isInactivePlayer(jid)) getPlayerEntry(jid); });
+      // (inclui goleiros, para que o modal deles funcione ao clicar no mapa do campo).
+      // "fora_da_classificacao" (ex.: LEGEND fictícios como Pelé, Ronaldinho Gaúcho) nunca
+      // entra aqui, então não aparece na aba Jogadores nem em nenhum ranking — só no simulador.
+      Object.keys(jogadoresById).forEach(jid => {
+        const j = jogadoresById[jid];
+        if (!isInactivePlayer(jid) && !(j && j.fora_da_classificacao === true)) getPlayerEntry(jid);
+      });
 
       // lista completa e sem filtro (inclui goleiros e inativos) — usada só pelo simulador,
       // que deve poder montar times com todo mundo, mesmo quem fica fora das estatísticas/ranking.
@@ -252,6 +264,36 @@
         const escalacoesLineup = escalacoesRaw.filter(e => partidaIds.has(e.partida) && !isInactivePlayer(e.jogador));
         // escalações sem goleiros — usadas só para estatísticas/rankings do campeonato
         const escalacoes = escalacoesLineup.filter(e => !isStatsExcludedPlayer(e.jogador));
+
+        // Goleiros ficam fora de `players`/estatísticas de propósito (ver isStatsExcludedPlayer),
+        // mas a Seleção do Campeonato precisa da pontuação de campeonato (mesma fórmula da
+        // Classificação: 3×V + E + Jogos) deles também, então calcula à parte aqui.
+        const golStatsByPlayer = {};
+        escalacoesLineup
+          .filter(e => (jogadoresById[e.jogador] || {}).posicao === 'GOL')
+          .forEach(e => {
+            const partida = partidas.find(p => p.pk === e.partida);
+            if (!partida) return;
+            const st = golStatsByPlayer[e.jogador] || (golStatsByPlayer[e.jogador] = { jogos: 0, v: 0, e: 0, d: 0, gols: 0 });
+            st.jogos += 1;
+            st.gols += e.gols || 0;
+            const meusGols = e.time === 'A' ? partida.placar_time_a : partida.placar_time_b;
+            const golsAdversario = e.time === 'A' ? partida.placar_time_b : partida.placar_time_a;
+            if (meusGols > golsAdversario) st.v += 1;
+            else if (meusGols === golsAdversario) st.e += 1;
+            else st.d += 1;
+          });
+        const goleiros = Object.entries(golStatsByPlayer).map(([jid, st]) => {
+          const jogador = jogadoresById[jid] || {};
+          const pts = 3 * st.v + 1 * st.e + 1 * st.jogos;
+          return {
+            id: Number(jid),
+            name: jogador.nome || `Jogador ${jid}`,
+            pais: jogador.pais,
+            jogos: st.jogos, v: st.v, e: st.e, d: st.d,
+            gols: st.gols, pts
+          };
+        });
 
         // estatísticas por jogador dentro deste campeonato (a partir das partidas/escalações reais)
         const statsByPlayer = {};
@@ -340,7 +382,8 @@
           completed: camp.status === 'ENCERRADO',
           horario,
           matches,
-          players
+          players,
+          goleiros
         };
       });
 
@@ -408,6 +451,90 @@
       });
       clsHtml += `</tbody></table>`;
       document.getElementById('cls-root').innerHTML = clsHtml;
+    }
+
+    const SELECAO_POSICOES = [
+      { pos: 'GOL', label: 'Goleiro', vagas: 1 },
+      { pos: 'ZAG', label: 'Zagueiro', vagas: 2 },
+      { pos: 'MEI', label: 'Meio-campo', vagas: 2 },
+      { pos: 'ATA', label: 'Atacante', vagas: 2 }
+    ];
+
+    // Coordenadas fixas no campo (mesma convenção usada nas escalações reais: y baixo =
+    // perto do gol de ataque, y alto = perto do próprio gol/goleiro). Como a Seleção junta
+    // os melhores de vários jogos, não existe posição real registrada — usa uma formação padrão.
+    const SELECAO_COORDS = {
+      GOL: [{ x: 50, y: 89 }],
+      ZAG: [{ x: 30, y: 67 }, { x: 70, y: 67 }],
+      MEI: [{ x: 30, y: 45 }, { x: 70, y: 45 }],
+      ATA: [{ x: 30, y: 16 }, { x: 70, y: 16 }]
+    };
+
+    function renderSelecao(idx) {
+      const t = tournaments[idx];
+      const root = document.getElementById('selecao-root');
+      if (!t || !root) return;
+
+      // Elenco elegível do campeonato: jogadores de linha (t.players) + goleiros (t.goleiros,
+      // calculados à parte porque ficam fora das estatísticas normais).
+      const statsById = {};
+      t.players.forEach(p => { statsById[p.id] = p; });
+      (t.goleiros || []).forEach(p => { statsById[p.id] = p; });
+
+      const candidatos = Object.values(statsById).map(st => {
+        const entry = playersDirectory[st.id];
+        if (!entry) return null;
+        return {
+          id: st.id,
+          name: entry.name,
+          pais: entry.pais,
+          posicao: entry.posicao,
+          numero: entry.numero,
+          foto: entry.foto,
+          gols: st.gols,
+          // Pontuação = pontos DESTE campeonato (3×V + E + Jogos), igual à Classificação —
+          // não é o nível cadastrado do jogador.
+          pontuacao: st.pts,
+          // Eficiência = % de vitórias sobre os jogos disputados neste campeonato.
+          eficiencia: st.jogos ? st.v / st.jogos : 0,
+          sg: entry.sg != null ? entry.sg : 0
+        };
+      }).filter(Boolean);
+
+      // Critério de desempate: pontuação (pontos do campeonato) > eficiência (% de vitórias)
+      // > saldo de gols do jogador.
+      const ordenar = (lista) => lista.sort((a, b) =>
+        b.pontuacao - a.pontuacao || b.eficiencia - a.eficiencia || b.sg - a.sg);
+
+      let html = `<table class="data-table cls-table"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>PONTUAÇÃO</th><th>EFICIÊNCIA</th><th>SALDO DE GOLS</th></tr></thead><tbody>`;
+      let algumaVaga = false;
+      const pitchList = [];
+      SELECAO_POSICOES.forEach(grupo => {
+        const selecionados = ordenar(candidatos.filter(c => c.posicao === grupo.pos)).slice(0, grupo.vagas);
+        if (!selecionados.length) return;
+        algumaVaga = true;
+        const coords = SELECAO_COORDS[grupo.pos] || [];
+        selecionados.forEach((p, i) => {
+          const sgColor = p.sg > 0 ? 'var(--win-color)' : (p.sg < 0 ? 'var(--loss-color)' : '#fff');
+          html += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos">${grupo.label}</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td style="color:var(--win-color)">${p.pontuacao}</td><td>${(p.eficiencia * 100).toFixed(0)}%</td><td style="color:${sgColor}">${p.sg > 0 ? '+' : ''}${p.sg}</td></tr>`;
+
+          const coord = coords[i] || { x: 50, y: 50 };
+          pitchList.push({
+            id: p.id, name: p.name, numero: p.numero, foto: p.foto,
+            gols: p.gols, reserva: false, x: coord.x, y: coord.y
+          });
+        });
+      });
+      html += `</tbody></table>`;
+      root.innerHTML = algumaVaga ? html : `<div class="cls-desc">Nenhum jogador elegível encontrado para este campeonato.</div>`;
+
+      if (algumaVaga) {
+        root.innerHTML += `
+          <div class="pitch-wrap" style="max-width:340px; margin:12px auto 0;">
+            <div class="pitch-label" style="text-align:center;">⭐ MAPA DA SELEÇÃO</div>
+            ${renderPitch(pitchList, 'team-a')}
+          </div>`;
+      }
     }
 
     function renderPitch(list, teamClass) {
@@ -1192,6 +1319,7 @@
       sel.onchange = () => {
         currentTournament = Number(sel.value);
         renderTournament(currentTournament);
+        renderSelecao(currentTournament);
         renderJogos(currentTournament);
         renderAggregate();
         updateLogoImage();
@@ -1481,6 +1609,7 @@
       currentTournament = Math.max(0, tournaments.length - 1);
       populateTournamentSelect();
       renderTournament(currentTournament);
+      renderSelecao(currentTournament);
       renderJogos(currentTournament);
       renderSimulador();
       renderJogadoresList('');
