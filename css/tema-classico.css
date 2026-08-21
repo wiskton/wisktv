@@ -9,6 +9,9 @@
   --bg-screen-2: #ffdc00;
   --bg-screen-3: #ffdc00;
   --border-accent: #005a2b;
+  /* border-accent aqui é escuro (verde), ao contrário dos outros temas (claro) —
+     botões (.btn-solid) precisam de texto claro em cima dele, não escuro. */
+  --accent-text: #ffdc00;
 
   --header-grad-1: #005a2b;
   --header-grad-2: #00723a;

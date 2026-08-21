@@ -56,7 +56,7 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: var(--bg-page); font-family: var(--font-body); font-size: 19px; line-height: 1.15; }
+body { background: var(--bg-page); color: var(--text-strong); font-family: var(--font-body); font-size: 19px; line-height: 1.15; }
 .screen { background: linear-gradient(160deg, var(--bg-screen-1) 0%, var(--bg-screen-2) 60%, var(--bg-screen-3) 100%); border: 3px solid var(--border-accent); min-height: 100vh; display: flex; flex-direction: column; }
 .header { display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; background: linear-gradient(90deg, var(--header-grad-1) 0%, var(--header-grad-2) 50%, var(--header-grad-1) 100%); border-bottom: 3px solid var(--border-accent); gap: 10px; }
 .logo-igortv { width: 100px; height: 100px; flex-shrink: 0; background: #fff; border-radius: 8px; overflow: hidden; border: 2px solid var(--border-accent); display: flex; align-items: center; justify-content: center; }
@@ -111,7 +111,7 @@ body { background: var(--bg-page); font-family: var(--font-body); font-size: 19p
 /* Controles de cabeçalho (seletor de torneio/tema, botões) e modais —
    reutilizam as mesmas variáveis, então trocar de tema também reskina isso. */
 .select-control { padding: 6px 8px; background: var(--tab-bg); color: var(--gold-text); border: 2px solid var(--border-accent); font-family: inherit; }
-.btn-solid { padding: 6px 10px; background: var(--border-accent); border: 0; cursor: pointer; font-family: inherit; }
+.btn-solid { padding: 6px 10px; background: var(--border-accent); color: var(--accent-text, #1a1a1a); border: 0; cursor: pointer; font-family: inherit; }
 .btn-link { padding: 6px 8px; background: var(--link-btn); border: 0; color: #fff; cursor: pointer; font-family: inherit; }
 .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 9999; }
 .modal-box { background: linear-gradient(90deg, var(--tab-bg), var(--tab-active-bg)); border-radius: var(--radius-panel, 8px); border: 3px solid var(--border-accent); }

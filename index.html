@@ -10,6 +10,57 @@
   <link rel="stylesheet" href="css/tema-deluxe.css">
   <link rel="stylesheet" href="css/tema-moderno.css">
   <link rel="stylesheet" href="css/tema-ultimate.css">
+  <style>
+    /* Modo Carreira — auto-contido, não depende de default.css (o site não usa
+       Bootstrap; estes estilos cobrem só o que os outros arquivos .css talvez
+       não definam ainda: estrelas de habilidade, cartões/abas simples).
+       Usa as MESMAS variáveis de tema do resto do site (default.css + tema-*.css)
+       em vez de cores fixas, pra funcionar em todos os temas — inclusive o
+       "Clássico", que é claro (texto escuro em fundo amarelo) enquanto os
+       outros são escuros (texto claro), então branco/preto fixo quebra nele. */
+    .habilidade-estrelas { font-size: 1.05rem; line-height: 1; }
+    .habilidade-estrelas .estrela { position: relative; display: inline-block; color: var(--row-border); }
+    .habilidade-estrelas .estrela-preenchida {
+      position: absolute; top: 0; left: 0; overflow: hidden;
+      color: var(--gold-text); white-space: nowrap;
+    }
+    .career-card {
+      background: rgba(0,0,0,0.18);
+      border: 1px solid var(--row-border);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .career-btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .career-check-jogador { display: none; }
+    .career-check-jogador + label {
+      display: block; text-align: center; cursor: pointer; user-select: none;
+      color: var(--text-soft);
+      border: 1px solid var(--row-border); border-radius: 6px;
+      padding: 6px 8px; margin-bottom: 6px; font-size: 13px;
+    }
+    .career-check-jogador:checked + label {
+      background: var(--win-color); color: #06110d; border-color: var(--win-color); font-weight: bold;
+    }
+    .career-tab-btn {
+      border: 1px solid var(--row-border); background: var(--tab-bg); color: var(--text-muted);
+      padding: 6px 12px; cursor: pointer; border-radius: 6px 6px 0 0; font-size: 13px;
+    }
+    .career-tab-btn.active { background: var(--tab-active-bg); color: var(--gold-text); border-bottom-color: transparent; font-weight: bold; }
+    .career-progress-outer { height: 6px; background: rgba(0,0,0,0.25); border-radius: 3px; overflow: hidden; }
+    .career-progress-inner { height: 100%; width: 0%; }
+    .career-stat-box { flex: 1 1 90px; background: rgba(0,0,0,0.18); border: 1px solid var(--row-border); border-radius: 6px; padding: 6px; text-align: center; color: var(--text-soft); }
+    .career-stat-box .v { font-weight: bold; font-size: 15px; color: var(--text-strong); }
+    .career-stat-box .l { font-size: 10px; opacity: 0.75; }
+    .career-mini-rank { flex: 1 1 260px; min-width: 240px; }
+    .career-lineup-row { display: flex; align-items: center; gap: 6px; font-size: 13px; margin-bottom: 4px; color: var(--text-soft); }
+    .career-lineup-row .av { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; flex: none; }
+    .career-lineup-row .av-fallback {
+      width: 22px; height: 22px; border-radius: 50%; background: var(--tab-bg); color: var(--gold-text);
+      font-size: 9px; display: inline-flex; align-items: center; justify-content: center; flex: none;
+    }
+    .career-badge { display: inline-block; background: rgba(0,0,0,0.18); border: 1px solid var(--row-border); color: var(--text-soft); border-radius: 999px; padding: 2px 8px; font-size: 12px; }
+    .career-save-card { min-width: 210px; }
+  </style>
 </head>
 
 <body>
@@ -30,49 +81,168 @@
         <span class="deluxe-label">DELUXE<span class="tm">™</span></span>
         <div id="header-controls" style="margin-top:8px; display:flex; gap:8px; align-items:center; justify-content:flex-end;">
           <select id="tournament-select" class="select-control"> </select>
-          <select id="theme-select" class="select-control">
-            <option value="">Padrão</option>
-            <option value="classico">Clássico</option>
-            <option value="deluxe">Deluxe SNES</option>
-            <option value="moderno">Moderno</option>
-            <option value="ultimate">Ultimate</option>
+          <select id="lang-select" class="select-control">
+            <option value="pt">🇧🇷 PT-BR</option>
+            <option value="en">🇺🇸 EN</option>
+            <option value="es">🇪🇸 ES</option>
           </select>
-          <button id="open-geral-modal" class="btn-link">Ver Ranking Geral</button>
+          <select id="theme-select" class="select-control">
+            <option value="" data-i18n="themeDefault">Padrão</option>
+            <option value="classico" data-i18n="themeClassico">Clássico</option>
+            <option value="deluxe" data-i18n="themeDeluxe">Deluxe SNES</option>
+            <option value="moderno" data-i18n="themeModerno">Moderno</option>
+            <option value="ultimate" data-i18n="themeUltimate">Ultimate</option>
+          </select>
+          <button id="open-geral-modal" class="btn-link" data-i18n="verRankingGeral">Ver Ranking Geral</button>
         </div>
       </div>
     </div>
 
     <div class="sections">
-      <div class="sec-tab active" onclick="showTab('art')">⚽ ARTILHARIA</div>
+      <div class="sec-tab active" onclick="showTab('art')" data-i18n="tabArtilharia">⚽ ARTILHARIA</div>
       <!-- Assistências removidas -->
-      <div class="sec-tab" onclick="showTab('cls')">🏆 CLASSIFICAÇÃO</div>
-      <div class="sec-tab" onclick="showTab('selecao')">⭐ SELEÇÃO</div>
-      <div class="sec-tab" onclick="showTab('jogos')">📅 JOGOS</div>
-      <div class="sec-tab" onclick="showTab('simulador')">⚽ SIMULADOR</div>
-      <div class="sec-tab" onclick="showTab('jogadores')">🌍 RANKING GERAL</div>
+      <div class="sec-tab" onclick="showTab('cls')" data-i18n="tabClassificacao">🏆 CLASSIFICAÇÃO</div>
+      <div class="sec-tab" onclick="showTab('selecao')" data-i18n="tabSelecao">⭐ SELEÇÃO</div>
+      <div class="sec-tab" onclick="showTab('jogos')" data-i18n="tabJogos">📅 JOGOS</div>
+      <div class="sec-tab" onclick="showTab('simulador')" data-i18n="tabSimulador">⚽ SIMULADOR</div>
+      <div class="sec-tab" onclick="showTab('jogadores')" data-i18n="tabRankingGeral">🌍 RANKING GERAL</div>
       <!-- GERAL removido daqui (é global, exibido no cabeçalho) -->
-      <div class="sec-tab" onclick="showTab('trans')">📹 TRANSMISSÕES</div>
+      <div class="sec-tab" onclick="showTab('trans')" data-i18n="tabTransmissoes">📹 TRANSMISSÕES</div>
     </div>
 
     <div class="content">
       <div class="table-view active" id="tab-art"><div id="art-root"></div></div>
       <!-- tab-assists removed (assistências removidas) -->
       <div class="table-view" id="tab-cls">
-        <div class="cls-desc"><strong>Como funciona a pontuação:</strong> A pontuação final é calculada seguindo a fórmula: (3 x Vitórias) + (1 x Empates) + (1 x Jogos).</div>
+        <div class="cls-desc" data-i18n-html="clsDescHtml"><strong>Como funciona a pontuação:</strong> A pontuação final é calculada seguindo a fórmula: (3 x Vitórias) + (1 x Empates) + (1 x Jogos).</div>
         <div id="cls-root"></div>
       </div>
       <div class="table-view" id="tab-selecao">
-        <div class="cls-desc"><strong>Seleção do Campeonato:</strong> os melhores por posição (1 goleiro, 2 zagueiros, 2 meio-campos, 2 atacantes), ordenados por pontuação (nível). Empate é resolvido pela eficiência (gols por jogo no campeonato) e depois pelo saldo de gols do jogador.</div>
+        <div class="cls-desc" data-i18n-html="selecaoDescHtml"><strong>Seleção do Campeonato:</strong> os melhores por posição (1 goleiro, 2 zagueiros, 2 meio-campos, 2 atacantes), ordenados por pontuação (nível). Empate é resolvido pela eficiência (gols por jogo no campeonato) e depois pelo saldo de gols do jogador.</div>
         <div id="selecao-root"></div>
       </div>
       <div class="table-view" id="tab-jogos">
         <div id="jogos-root"></div>
       </div>
       <div class="table-view" id="tab-simulador">
-        <div id="simulador-root"></div>
+        <div id="modo-selecao-root"></div>
+        <div id="simulador-root" style="display:none;"></div>
+        <div id="career-root" style="display:none;">
+          <div id="carreira-escolher-jogador">
+            <div class="career-card" style="text-align:left; margin-bottom:12px;">
+              <h4 style="margin:0 0 6px;" data-i18n="escolhaQuemVaiJogar">👤 Escolha quem vai jogar</h4>
+              <p style="font-size:13px; opacity:0.85; margin:0 0 10px;" data-i18n="escolhaQuemVaiJogarDesc">Marque um ou mais jogadores — dá pra jogar sozinho ou com os amigos na mesma carreira.</p>
+              <label style="display:flex; align-items:center; gap:6px; margin-bottom:12px; font-size:13px;">
+                <input type="checkbox" id="carreira-sem-goleiros" checked />
+                <span data-i18n="desconsiderarGoleiros">🧤 Desconsiderar goleiros da classificação e artilharia do campeonato</span>
+              </label>
+              <div id="carreira-lista-jogadores" style="display:flex; flex-wrap:wrap; gap:16px; margin-bottom:12px;"></div>
+              <div class="career-btn-row">
+                <button type="button" id="btn-comecar-carreira" class="btn-solid" disabled data-i18n="comecarTorneio">▶️ Começar Torneio</button>
+                <button type="button" id="btn-voltar-modo-carreira" class="btn-link" data-i18n="trocarModo">← Trocar modo</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="carreira-painel" style="display:none;">
+            <div class="career-btn-row">
+              <button type="button" id="btn-simular-rodada" class="btn-solid" data-i18n="simularProximaRodada">▶️ Simular Próxima Rodada</button>
+              <button type="button" id="btn-novo-torneio" class="btn-solid" style="display:none;" data-i18n="simularOutroTorneio">🏆 Simular Outro Torneio</button>
+              <button type="button" id="btn-salvar-carreira" class="btn-solid" data-i18n="salvarContinuarDepois">💾 Salvar e Continuar Depois</button>
+              <button type="button" id="btn-apagar-carreira" class="btn-solid" data-i18n="apagarEstaCarreira">🗑️ Apagar Esta Carreira</button>
+              <button type="button" id="btn-carreira-jogadores" class="btn-solid" data-i18n="jogadoresBtn">👥 Jogadores</button>
+              <button type="button" id="btn-voltar-modo-carreira-2" class="btn-link" data-i18n="trocarModo">← Trocar modo</button>
+            </div>
+
+            <div class="career-card" style="text-align:center; margin-bottom:12px;">
+              <div id="carreira-cabecalho" style="font-weight:bold;"></div>
+              <div id="carreira-data" style="font-size:12px; opacity:0.8; margin-top:2px;"></div>
+            </div>
+
+            <div id="carreira-escalacao-rodada" class="career-card" style="display:none; margin-bottom:12px;">
+              <h6 style="margin:0 0 8px;" data-i18n="escalacaoDaRodada">📋 Escalação da Rodada</h6>
+              <div style="display:flex; gap:16px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:200px;">
+                  <div style="font-weight:600; margin-bottom:4px; font-size:13px;" data-i18n="timeAmarelo">🟡 Time Amarelo</div>
+                  <div id="carreira-escalacao-a"></div>
+                </div>
+                <div style="flex:1; min-width:200px;">
+                  <div style="font-weight:600; margin-bottom:4px; font-size:13px;" data-i18n="timeAzul">🔵 Time Azul</div>
+                  <div id="carreira-escalacao-b"></div>
+                </div>
+              </div>
+              <div style="margin-top:8px;">
+                <p style="margin:0 0 6px; font-size:13px;"><span data-i18n="diferencaDeForca">Diferença de força:</span> <strong id="carreira-escalacao-forca">0</strong></p>
+                <div id="carreira-escalacao-badges" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+              </div>
+            </div>
+
+            <div id="carreira-atraso" class="career-card" style="display:none; margin-bottom:12px;">
+              <h6 style="margin:0 0 8px;" data-i18n="atrasoTitulo">⏰ Atraso</h6>
+              <div id="carreira-atraso-texto" style="font-size:13px; margin-bottom:8px;"></div>
+              <div class="career-progress-outer"><div id="carreira-atraso-barra" class="career-progress-inner" style="background:var(--gold-text);"></div></div>
+            </div>
+
+            <div id="carreira-partida-ao-vivo" class="career-card" style="display:none; margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+                <div style="font-size:22px; font-weight:bold;">🟡 <span id="carreira-score-a">0</span> x <span id="carreira-score-b">0</span> 🔵</div>
+                <div id="carreira-minuto" style="font-size:13px; opacity:0.8;">0 min</div>
+              </div>
+              <div class="career-progress-outer" style="margin-bottom:8px;"><div id="carreira-barra" class="career-progress-inner" style="background:var(--win-color, #2ecc71);"></div></div>
+              <div id="carreira-eventos-ao-vivo"></div>
+            </div>
+
+            <div id="carreira-resultado-rodada" class="career-card" style="display:none; margin-bottom:12px;"></div>
+
+            <div style="display:flex; flex-wrap:wrap; gap:16px; margin-bottom:12px;">
+              <div style="flex:2; min-width:280px;">
+                <h6 style="margin:0 0 6px;" data-i18n="classificacaoTitulo">📊 Classificação</h6>
+                <table class="data-table cls-table" id="carreira-tabela-classificacao">
+                  <thead><tr><th>#</th><th class="cname" data-i18n="colJogador">Jogador</th><th data-i18n="colP">P</th><th data-i18n="colJ">J</th><th data-i18n="colV">V</th><th data-i18n="colE">E</th><th data-i18n="colD">D</th><th data-i18n="colGols">Gols</th></tr></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+              <div style="flex:1; min-width:220px;">
+                <h6 style="margin:0 0 6px;" data-i18n="artilhariaTitulo">⚽ Artilharia</h6>
+                <table class="data-table art-table" id="carreira-tabela-artilharia">
+                  <thead><tr><th>#</th><th class="cname" data-i18n="colJogador">Jogador</th><th data-i18n="colJ">J</th><th data-i18n="colGols">Gols</th></tr></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div id="carreira-hall-fama" class="career-card" style="display:none; margin-bottom:12px;">
+              <h6 style="margin:0 0 8px;" data-i18n="hallDaFama">🏛️ Hall da Fama da Carreira</h6>
+              <table class="data-table">
+                <thead><tr><th>#</th><th>🏆 Campeão</th><th>⚽ Artilheiro</th></tr></thead>
+                <tbody id="carreira-hall-fama-corpo"></tbody>
+              </table>
+            </div>
+
+            <div id="carreira-ranking-global" class="career-card" style="display:none; margin-bottom:12px;">
+              <h6 style="margin:0 0 4px;" data-i18n="rankingGlobalCarreira">🌍 Ranking Global da Carreira</h6>
+              <p style="font-size:12px; opacity:0.8; margin:0 0 8px;" data-i18n="rankingGlobalCarreiraDesc">Todo mundo que já jogou nessa carreira, somando todos os torneios já disputados.</p>
+              <table class="data-table">
+                <thead><tr><th>#</th><th class="cname" data-i18n="colJogador">Jogador</th><th>🏆</th><th>👑</th><th data-i18n="colP">P</th><th data-i18n="colJ">J</th><th data-i18n="colV">V</th><th data-i18n="colE">E</th><th data-i18n="colD">D</th><th data-i18n="colGols">Gols</th></tr></thead>
+                <tbody id="carreira-ranking-global-corpo"></tbody>
+              </table>
+            </div>
+
+            <div id="carreira-rankings-extra" style="display:none; margin-bottom:12px;">
+              <h5 style="margin:0 0 8px;" data-i18n="curiosidadesDaCarreira">📊 Curiosidades da Carreira</h5>
+              <div id="carreira-rankings-extra-corpo" style="display:flex; flex-wrap:wrap; gap:12px;"></div>
+            </div>
+
+            <div id="carreira-fim-torneio" class="career-card" style="display:none; text-align:center; margin-bottom:12px;">
+              <h4 data-i18n="fimDeTorneio">🏆 Fim de Torneio!</h4>
+              <div id="carreira-fim-torneio-conteudo"></div>
+              <p style="font-size:12px; opacity:0.75; margin-top:8px;" data-i18n="fimDeTorneioDica">Use o botão "Simular Outro Torneio" lá em cima pra continuar.</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="table-view" id="tab-jogadores">
-        <input id="jogadores-search" type="text" placeholder="🔎 Buscar jogador..." autocomplete="off" class="select-control" style="width:100%; margin-bottom:8px; font-size:16px;" oninput="renderJogadoresList(this.value)" />
+        <input id="jogadores-search" type="text" data-i18n-placeholder="buscarJogador" placeholder="🔎 Buscar jogador..." autocomplete="off" class="select-control" style="width:100%; margin-bottom:8px; font-size:16px;" oninput="renderJogadoresList(this.value)" />
         <div id="jogadores-root"></div>
       </div>
       <!-- tab-geral removido (ranking geral é global e mostrado no cabeçalho) -->
@@ -80,17 +250,17 @@
         <div class="transmissions-container">
           <div class="channel-card">
             <div class="channel-info">
-              <div class="channel-name">🎥 NILL FERREIRA</div>
-              <div class="channel-desc">Transmissões ao vivo dos jogos e análises</div>
+              <div class="channel-name" data-i18n="canalNillNome">🎥 NILL FERREIRA</div>
+              <div class="channel-desc" data-i18n="canalNillDesc">Transmissões ao vivo dos jogos e análises</div>
             </div>
-            <a href="https://www.youtube.com/@NillFerreira" target="_blank" class="youtube-link">INSCREVER</a>
+            <a href="https://www.youtube.com/@NillFerreira" target="_blank" class="youtube-link" data-i18n="inscrever">INSCREVER</a>
           </div>
           <div class="channel-card">
             <div class="channel-info">
-              <div class="channel-name">⚽ WISK FUT</div>
-              <div class="channel-desc">Cobertura completa e bastidores da IgorTV CUP</div>
+              <div class="channel-name" data-i18n="canalWiskNome">⚽ WISK FUT</div>
+              <div class="channel-desc" data-i18n="canalWiskDesc">Cobertura completa e bastidores da IgorTV CUP</div>
             </div>
-            <a href="https://www.youtube.com/@WiskFut" target="_blank" class="youtube-link">INSCREVER</a>
+            <a href="https://www.youtube.com/@WiskFut" target="_blank" class="youtube-link" data-i18n="inscrever">INSCREVER</a>
           </div>
         </div>
       </div>
@@ -103,9 +273,9 @@
   <div id="geral-modal" class="modal-backdrop">
     <div class="modal-box" style="padding:18px; width:min(90%,340px); max-width:340px; max-height:85%; overflow:auto;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <h2 class="modal-title">Ranking Geral — Vencedores por Torneio</h2>
+        <h2 class="modal-title" data-i18n="modalRankingTitulo">Ranking Geral — Vencedores por Torneio</h2>
         <div>
-          <button id="close-geral-modal" class="btn-solid">Fechar</button>
+          <button id="close-geral-modal" class="btn-solid" data-i18n="fechar">Fechar</button>
         </div>
       </div>
       <div id="geral-modal-root"></div>
@@ -116,10 +286,32 @@
   <div id="player-modal" class="modal-backdrop">
     <div class="modal-box" style="padding:20px; width:min(96%,680px); max-width:680px; max-height:92%; overflow:auto;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <h2 class="modal-title" style="font-size:20px;">Perfil do Jogador</h2>
-        <button id="close-player-modal" class="btn-solid">Fechar</button>
+        <h2 class="modal-title" style="font-size:20px;" data-i18n="modalPerfilTitulo">Perfil do Jogador</h2>
+        <button id="close-player-modal" class="btn-solid" data-i18n="fechar">Fechar</button>
       </div>
       <div id="player-modal-root"></div>
+    </div>
+  </div>
+
+  <!-- Modal for career player list -->
+  <div id="career-list-modal" class="modal-backdrop">
+    <div class="modal-box" style="padding:20px; width:min(96%,420px); max-width:420px; max-height:85%; overflow:auto;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h2 class="modal-title" style="font-size:18px;" data-i18n="modalJogadoresCarreira">👥 Jogadores da Carreira</h2>
+        <button id="close-career-list-modal" class="btn-solid" data-i18n="fechar">Fechar</button>
+      </div>
+      <div id="career-list-modal-root"></div>
+    </div>
+  </div>
+
+  <!-- Modal for career player detail (stats / training / shop) -->
+  <div id="career-player-modal" class="modal-backdrop">
+    <div class="modal-box" style="padding:20px; width:min(96%,680px); max-width:680px; max-height:92%; overflow:auto;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h2 class="modal-title" id="career-player-modal-nome" style="font-size:18px;"></h2>
+        <button id="close-career-player-modal" class="btn-solid" data-i18n="fechar">Fechar</button>
+      </div>
+      <div id="career-player-modal-root"></div>
     </div>
   </div>
 
@@ -144,8 +336,287 @@
       duracaoPartida: 60
     };
 
-    const DIAS_SEMANA = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
+    const I18N_DIAS_SEMANA = {
+      pt: ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'],
+      en: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      es: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
+    };
+    function getDiasSemana() { return I18N_DIAS_SEMANA[currentLang] || I18N_DIAS_SEMANA.pt; }
     const TOURNAMENT_IMAGES = { 11: 'imgs/igor.jpeg', 12: 'imgs/mendes2.png', 68: 'imgs/scott.png' };
+
+    // ---------- Idioma (pt-BR / EN / ES) ----------
+    // Sistema simples de chave->texto: t('chave') devolve a tradução no idioma atual,
+    // caindo pro português se a chave não existir no idioma escolhido. Cobre a interface
+    // fixa do site inteiro (abas, tabelas, simulador, modais) e a camada mais visível do
+    // Modo Carreira (telas, botões, cabeçalhos) — textos bem no fundo do Modo Carreira
+    // (nomes/descrições de item da loja, títulos de curiosidades, frases de narrativa de
+    // jogo) continuam só em português por enquanto.
+    const SUPPORTED_LANGS = ['pt', 'en', 'es'];
+    function detectBrowserLang() {
+      const nav = String((navigator.language || navigator.userLanguage || 'pt')).toLowerCase();
+      if (nav.startsWith('en')) return 'en';
+      if (nav.startsWith('es')) return 'es';
+      return 'pt';
+    }
+    let currentLang = 'pt';
+    try {
+      const salvo = localStorage.getItem('wisktv-lang');
+      currentLang = SUPPORTED_LANGS.includes(salvo) ? salvo : detectBrowserLang();
+    } catch (e) { currentLang = detectBrowserLang(); }
+
+    // Chamada de "tr" (não "t" — o código já usa "t" como nome de variável local pra
+    // "torneio" em várias funções, então um helper de tradução chamado "t" colidiria e
+    // quebraria tudo nelas).
+    function tr(key, vars) {
+      const dict = I18N[currentLang] || I18N.pt;
+      let str = dict[key] != null ? dict[key] : (I18N.pt[key] != null ? I18N.pt[key] : key);
+      if (vars) Object.keys(vars).forEach(k => { str = str.split('{' + k + '}').join(vars[k]); });
+      return str;
+    }
+
+    // Aplica as traduções nos elementos estáticos do HTML (marcados com data-i18n /
+    // data-i18n-placeholder), sem precisar re-renderizar tudo via JS.
+    function applyStaticTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = tr(el.getAttribute('data-i18n')); });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = tr(el.getAttribute('data-i18n-html')); });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { el.placeholder = tr(el.getAttribute('data-i18n-placeholder')); });
+      document.title = tr('pageTitle');
+    }
+
+    const I18N = {
+      pt: {
+        pageTitle: 'WiskTV',
+        themeDefault: 'Padrão', themeClassico: 'Clássico', themeDeluxe: 'Deluxe SNES', themeModerno: 'Moderno', themeUltimate: 'Ultimate',
+        verRankingGeral: 'Ver Ranking Geral',
+        tabArtilharia: '⚽ ARTILHARIA', tabClassificacao: '🏆 CLASSIFICAÇÃO', tabSelecao: '⭐ SELEÇÃO', tabJogos: '📅 JOGOS',
+        tabSimulador: '⚽ SIMULADOR', tabRankingGeral: '🌍 RANKING GERAL', tabTransmissoes: '📹 TRANSMISSÕES',
+        clsDescHtml: '<strong>Como funciona a pontuação:</strong> A pontuação final é calculada seguindo a fórmula: (3 x Vitórias) + (1 x Empates) + (1 x Jogos).',
+        selecaoDescHtml: '<strong>Seleção do Campeonato:</strong> os melhores por posição (1 goleiro, 2 zagueiros, 2 meio-campos, 2 atacantes), ordenados por pontuação (nível). Empate é resolvido pela eficiência (gols por jogo no campeonato) e depois pelo saldo de gols do jogador.',
+        buscarJogador: '🔎 Buscar jogador...',
+        canalNillNome: '🎥 NILL FERREIRA', canalNillDesc: 'Transmissões ao vivo dos jogos e análises',
+        canalWiskNome: '⚽ WISK FUT', canalWiskDesc: 'Cobertura completa e bastidores da IgorTV CUP',
+        inscrever: 'INSCREVER',
+        modalRankingTitulo: 'Ranking Geral — Vencedores por Torneio', fechar: 'Fechar',
+        modalPerfilTitulo: 'Perfil do Jogador',
+        modalJogadoresCarreira: '👥 Jogadores da Carreira',
+
+        // Tabelas comuns
+        colPos: 'POS', colJogador: 'JOGADOR', colGols: 'GOLS', colJogos: 'JOGOS', colGpj: 'GPJ',
+        colP: 'P', colJ: 'J', colV: 'V', colE: 'E', colD: 'D', colPts: 'PTS',
+        colGp: 'GP', colGc: 'GC', colSg: 'SG', colPontuacao: 'PONTUAÇÃO', colEficiencia: 'EFICIÊNCIA', colSaldoGols: 'SALDO DE GOLS',
+
+        // Seleção do campeonato
+        posGoleiro: 'Goleiro', posZagueiro: 'Zagueiro', posMeio: 'Meio-campo', posAtacante: 'Atacante',
+        nenhumJogadorSelecao: 'Nenhum jogador elegível encontrado para este campeonato.',
+        mapaSelecao: '⭐ MAPA DA SELEÇÃO',
+
+        // Jogos
+        nenhumaPartida: 'Nenhuma partida cadastrada ainda para este campeonato.',
+        rodada: 'RODADA', encerrada: 'ENCERRADA', emAberto: 'EM ABERTO', timeA: 'TIME A', timeB: 'TIME B',
+        semPosicaoDefinida: 'Sem posição definida:',
+
+        // Jogadores / Ranking Geral
+        nenhumJogadorEncontrado: 'Nenhum jogador encontrado.',
+        emAndamento: '(andamento)',
+        statusAtivo: 'ATIVO', statusInativo: 'INATIVO',
+        titulosLabel: '🏆 Títulos:', artilheiroLabel: '⚽ Artilheiro:',
+        totalGeral: '📊 TOTAL GERAL', desempenhoPorTorneio: 'DESEMPENHO POR TORNEIO', colTorneio: 'TORNEIO',
+        nenhumaPartidaJogador: 'Este jogador ainda não disputou nenhuma partida.',
+        historicoPartidas: 'HISTÓRICO DE PARTIDAS', rodadaAbrev: 'Rodada',
+
+        // Simulador (Modo Aleatório)
+        grupoGoleiros: 'Goleiros', grupoZagueiros: 'Zagueiros', grupoMeias: 'Meias', grupoAtacantes: 'Atacantes', grupoLendas: 'Lendas', grupoOutros: 'Outros',
+        montarTimes: '🎯 Montar times',
+        montarTimesDesc: 'Selecione jogadores por posição, conte quantos foram escolhidos e sorteie os times para a partida.',
+        selecionados: 'selecionados',
+        selecionarTodos: 'Selecionar todos', limpar: 'Limpar', marcar14: 'Marcar 14 aleatórios', sortearTimes: 'Sortear times',
+        partidaAndamento: 'Partida em andamento', simularPartida: 'Simular partida',
+        jogadoresLabel: 'jogadores', mediaNivelPorJogador: 'Média de nível por jogador:',
+        equilibrioHabilidades: '⚖️ Equilíbrio de habilidades entre os times (igual ao Modo Carreira):',
+        cronometro: '⏱️ Cronômetro', atrasoDe: 'atraso de', min: 'min',
+        golsEEventos: '⚽ GOLS E EVENTOS', bolaEmJogo: 'bola em jogo', marcouEvento: 'marcou',
+        reviewFinal: '📝 REVIEW FINAL', melhorJogador: 'Melhor jogador:',
+
+        // Modo seleção do simulador
+        comoVoceQuerJogar: 'Como você quer jogar?',
+        descModos: 'Modo Carreira: escolha um jogador pra ser você e viva um campeonato de 8 rodadas, com treino, loja de itens e ranking global. Modo Aleatório: uma partida avulsa, com times sorteados na hora.',
+        carreirasSalvas: 'Suas carreiras salvas neste navegador:',
+        saveCarreiraResumo: 'Torneio {torneio} · Rodada {rodada}/8',
+        continuar: '▶️ Continuar', apagarTitulo: 'Apagar',
+        modoCarreira: '🏆 Modo Carreira', modoAleatorio: '🎲 Modo Aleatório',
+        confirmarApagarCarreira: 'Apagar essa carreira salva? Isso não pode ser desfeito.',
+
+        // Modo Carreira — telas fixas
+        escolhaQuemVaiJogar: '👤 Escolha quem vai jogar',
+        escolhaQuemVaiJogarDesc: 'Marque um ou mais jogadores — dá pra jogar sozinho ou com os amigos na mesma carreira.',
+        desconsiderarGoleiros: '🧤 Desconsiderar goleiros da classificação e artilharia do campeonato',
+        comecarTorneio: '▶️ Começar Torneio', trocarModo: '← Trocar modo',
+        simularProximaRodada: '▶️ Simular Próxima Rodada', simularOutroTorneio: '🏆 Simular Outro Torneio',
+        salvarContinuarDepois: '💾 Salvar e Continuar Depois', apagarEstaCarreira: '🗑️ Apagar Esta Carreira',
+        jogadoresBtn: '👥 Jogadores',
+        escalacaoDaRodada: '📋 Escalação da Rodada', timeAmarelo: '🟡 Time Amarelo', timeAzul: '🔵 Time Azul',
+        diferencaDeForca: 'Diferença de força:',
+        atrasoTitulo: '⏰ Atraso',
+        classificacaoTitulo: '📊 Classificação', artilhariaTitulo: '⚽ Artilharia',
+        hallDaFama: '🏛️ Hall da Fama da Carreira',
+        rankingGlobalCarreira: '🌍 Ranking Global da Carreira',
+        rankingGlobalCarreiraDesc: 'Todo mundo que já jogou nessa carreira, somando todos os torneios já disputados.',
+        curiosidadesDaCarreira: '📊 Curiosidades da Carreira',
+        fimDeTorneio: '🏆 Fim de Torneio!',
+        fimDeTorneioDica: 'Use o botão "Simular Outro Torneio" lá em cima pra continuar.',
+        salvo: '✅ Salvo!',
+      },
+      en: {
+        pageTitle: 'WiskTV',
+        themeDefault: 'Default', themeClassico: 'Classic', themeDeluxe: 'Deluxe SNES', themeModerno: 'Modern', themeUltimate: 'Ultimate',
+        verRankingGeral: 'View Overall Ranking',
+        tabArtilharia: '⚽ TOP SCORERS', tabClassificacao: '🏆 STANDINGS', tabSelecao: '⭐ TEAM OF THE SEASON', tabJogos: '📅 MATCHES',
+        tabSimulador: '⚽ SIMULATOR', tabRankingGeral: '🌍 OVERALL RANKING', tabTransmissoes: '📹 BROADCASTS',
+        clsDescHtml: '<strong>How the score works:</strong> The final score follows this formula: (3 x Wins) + (1 x Draws) + (1 x Matches played).',
+        selecaoDescHtml: '<strong>Team of the Season:</strong> the best players by position (1 goalkeeper, 2 defenders, 2 midfielders, 2 forwards), ranked by score (rating). Ties are broken by efficiency (goals per match in this tournament), then by the player\'s goal difference.',
+        buscarJogador: '🔎 Search player...',
+        canalNillNome: '🎥 NILL FERREIRA', canalNillDesc: 'Live match broadcasts and analysis',
+        canalWiskNome: '⚽ WISK FUT', canalWiskDesc: 'Full coverage and behind-the-scenes of IgorTV CUP',
+        inscrever: 'SUBSCRIBE',
+        modalRankingTitulo: 'Overall Ranking — Winners by Tournament', fechar: 'Close',
+        modalPerfilTitulo: 'Player Profile',
+        modalJogadoresCarreira: '👥 Career Players',
+
+        colPos: 'RANK', colJogador: 'PLAYER', colGols: 'GOALS', colJogos: 'MATCHES', colGpj: 'GPM',
+        colP: 'P', colJ: 'M', colV: 'W', colE: 'D', colD: 'L', colPts: 'PTS',
+        colGp: 'GF', colGc: 'GA', colSg: 'GD', colPontuacao: 'SCORE', colEficiencia: 'EFFICIENCY', colSaldoGols: 'GOAL DIFF.',
+
+        posGoleiro: 'Goalkeeper', posZagueiro: 'Defender', posMeio: 'Midfielder', posAtacante: 'Forward',
+        nenhumJogadorSelecao: 'No eligible player found for this tournament.',
+        mapaSelecao: '⭐ TEAM OF THE SEASON MAP',
+
+        nenhumaPartida: 'No matches registered yet for this tournament.',
+        rodada: 'ROUND', encerrada: 'FINISHED', emAberto: 'UPCOMING', timeA: 'TEAM A', timeB: 'TEAM B',
+        semPosicaoDefinida: 'No position set:',
+
+        nenhumJogadorEncontrado: 'No player found.',
+        emAndamento: '(in progress)',
+        statusAtivo: 'ACTIVE', statusInativo: 'INACTIVE',
+        titulosLabel: '🏆 Titles:', artilheiroLabel: '⚽ Top scorer:',
+        totalGeral: '📊 OVERALL TOTAL', desempenhoPorTorneio: 'PERFORMANCE BY TOURNAMENT', colTorneio: 'TOURNAMENT',
+        nenhumaPartidaJogador: 'This player hasn\'t played any matches yet.',
+        historicoPartidas: 'MATCH HISTORY', rodadaAbrev: 'Round',
+
+        grupoGoleiros: 'Goalkeepers', grupoZagueiros: 'Defenders', grupoMeias: 'Midfielders', grupoAtacantes: 'Forwards', grupoLendas: 'Legends', grupoOutros: 'Other',
+        montarTimes: '🎯 Build teams',
+        montarTimesDesc: 'Select players by position, keep track of how many are picked, and draw the teams for the match.',
+        selecionados: 'selected',
+        selecionarTodos: 'Select all', limpar: 'Clear', marcar14: 'Pick 14 random', sortearTimes: 'Draw teams',
+        partidaAndamento: 'Match in progress', simularPartida: 'Simulate match',
+        jogadoresLabel: 'players', mediaNivelPorJogador: 'Average rating per player:',
+        equilibrioHabilidades: '⚖️ Skill balance between the teams (same as Career Mode):',
+        cronometro: '⏱️ Clock', atrasoDe: 'delay of', min: 'min',
+        golsEEventos: '⚽ GOALS AND EVENTS', bolaEmJogo: 'ball in play', marcouEvento: 'scored',
+        reviewFinal: '📝 FINAL REVIEW', melhorJogador: 'Player of the match:',
+
+        comoVoceQuerJogar: 'How do you want to play?',
+        descModos: 'Career Mode: pick a player to be you and live through an 8-round tournament, with training, an item shop and a global ranking. Random Mode: a one-off match, with teams drawn on the spot.',
+        carreirasSalvas: 'Your saved careers in this browser:',
+        saveCarreiraResumo: 'Tournament {torneio} · Round {rodada}/8',
+        continuar: '▶️ Continue', apagarTitulo: 'Delete',
+        modoCarreira: '🏆 Career Mode', modoAleatorio: '🎲 Random Mode',
+        confirmarApagarCarreira: 'Delete this saved career? This cannot be undone.',
+
+        escolhaQuemVaiJogar: '👤 Choose who\'s playing',
+        escolhaQuemVaiJogarDesc: 'Check one or more players — play solo or with friends in the same career.',
+        desconsiderarGoleiros: '🧤 Exclude goalkeepers from the tournament\'s standings and top scorers',
+        comecarTorneio: '▶️ Start Tournament', trocarModo: '← Switch mode',
+        simularProximaRodada: '▶️ Simulate Next Round', simularOutroTorneio: '🏆 Simulate Another Tournament',
+        salvarContinuarDepois: '💾 Save and Continue Later', apagarEstaCarreira: '🗑️ Delete This Career',
+        jogadoresBtn: '👥 Players',
+        escalacaoDaRodada: '📋 Round Lineup', timeAmarelo: '🟡 Yellow Team', timeAzul: '🔵 Blue Team',
+        diferencaDeForca: 'Strength difference:',
+        atrasoTitulo: '⏰ Delay',
+        classificacaoTitulo: '📊 Standings', artilhariaTitulo: '⚽ Top Scorers',
+        hallDaFama: '🏛️ Career Hall of Fame',
+        rankingGlobalCarreira: '🌍 Career Global Ranking',
+        rankingGlobalCarreiraDesc: 'Everyone who has played in this career, across all tournaments played so far.',
+        curiosidadesDaCarreira: '📊 Career Trivia',
+        fimDeTorneio: '🏆 Tournament Over!',
+        fimDeTorneioDica: 'Use the "Simulate Another Tournament" button above to keep going.',
+        salvo: '✅ Saved!',
+      },
+      es: {
+        pageTitle: 'WiskTV',
+        themeDefault: 'Predeterminado', themeClassico: 'Clásico', themeDeluxe: 'Deluxe SNES', themeModerno: 'Moderno', themeUltimate: 'Ultimate',
+        verRankingGeral: 'Ver Ranking General',
+        tabArtilharia: '⚽ GOLEADORES', tabClassificacao: '🏆 CLASIFICACIÓN', tabSelecao: '⭐ SELECCIÓN', tabJogos: '📅 PARTIDOS',
+        tabSimulador: '⚽ SIMULADOR', tabRankingGeral: '🌍 RANKING GENERAL', tabTransmissoes: '📹 TRANSMISIONES',
+        clsDescHtml: '<strong>Cómo funciona el puntaje:</strong> El puntaje final se calcula con la fórmula: (3 x Victorias) + (1 x Empates) + (1 x Partidos jugados).',
+        selecaoDescHtml: '<strong>Selección del Campeonato:</strong> los mejores por posición (1 portero, 2 defensas, 2 mediocampistas, 2 delanteros), ordenados por puntaje (nivel). El empate se resuelve por eficiencia (goles por partido en el campeonato) y luego por la diferencia de gol del jugador.',
+        buscarJogador: '🔎 Buscar jugador...',
+        canalNillNome: '🎥 NILL FERREIRA', canalNillDesc: 'Transmisiones en vivo de los partidos y análisis',
+        canalWiskNome: '⚽ WISK FUT', canalWiskDesc: 'Cobertura completa y detrás de cámaras de la IgorTV CUP',
+        inscrever: 'SUSCRIBIRSE',
+        modalRankingTitulo: 'Ranking General — Ganadores por Torneo', fechar: 'Cerrar',
+        modalPerfilTitulo: 'Perfil del Jugador',
+        modalJogadoresCarreira: '👥 Jugadores de la Carrera',
+
+        colPos: 'POS', colJogador: 'JUGADOR', colGols: 'GOLES', colJogos: 'PARTIDOS', colGpj: 'GPP',
+        colP: 'P', colJ: 'J', colV: 'G', colE: 'E', colD: 'P', colPts: 'PTS',
+        colGp: 'GF', colGc: 'GC', colSg: 'DG', colPontuacao: 'PUNTAJE', colEficiencia: 'EFICIENCIA', colSaldoGols: 'DIF. DE GOLES',
+
+        posGoleiro: 'Portero', posZagueiro: 'Defensa', posMeio: 'Mediocampista', posAtacante: 'Delantero',
+        nenhumJogadorSelecao: 'No se encontró ningún jugador elegible para este campeonato.',
+        mapaSelecao: '⭐ MAPA DE LA SELECCIÓN',
+
+        nenhumaPartida: 'Todavía no hay partidos registrados para este campeonato.',
+        rodada: 'JORNADA', encerrada: 'FINALIZADO', emAberto: 'POR JUGAR', timeA: 'EQUIPO A', timeB: 'EQUIPO B',
+        semPosicaoDefinida: 'Sin posición definida:',
+
+        nenhumJogadorEncontrado: 'No se encontró ningún jugador.',
+        emAndamento: '(en curso)',
+        statusAtivo: 'ACTIVO', statusInativo: 'INACTIVO',
+        titulosLabel: '🏆 Títulos:', artilheiroLabel: '⚽ Goleador:',
+        totalGeral: '📊 TOTAL GENERAL', desempenhoPorTorneio: 'DESEMPEÑO POR TORNEO', colTorneio: 'TORNEO',
+        nenhumaPartidaJogador: 'Este jugador todavía no disputó ningún partido.',
+        historicoPartidas: 'HISTORIAL DE PARTIDOS', rodadaAbrev: 'Jornada',
+
+        grupoGoleiros: 'Porteros', grupoZagueiros: 'Defensas', grupoMeias: 'Mediocampistas', grupoAtacantes: 'Delanteros', grupoLendas: 'Leyendas', grupoOutros: 'Otros',
+        montarTimes: '🎯 Armar equipos',
+        montarTimesDesc: 'Seleccioná jugadores por posición, contá cuántos elegiste y sorteá los equipos para el partido.',
+        selecionados: 'seleccionados',
+        selecionarTodos: 'Seleccionar todos', limpar: 'Limpiar', marcar14: 'Marcar 14 al azar', sortearTimes: 'Sortear equipos',
+        partidaAndamento: 'Partido en curso', simularPartida: 'Simular partido',
+        jogadoresLabel: 'jugadores', mediaNivelPorJogador: 'Nivel promedio por jugador:',
+        equilibrioHabilidades: '⚖️ Equilibrio de habilidades entre los equipos (igual al Modo Carrera):',
+        cronometro: '⏱️ Cronómetro', atrasoDe: 'retraso de', min: 'min',
+        golsEEventos: '⚽ GOLES Y EVENTOS', bolaEmJogo: 'balón en juego', marcouEvento: 'anotó',
+        reviewFinal: '📝 RESUMEN FINAL', melhorJogador: 'Mejor jugador:',
+
+        comoVoceQuerJogar: '¿Cómo querés jugar?',
+        descModos: 'Modo Carrera: elegí un jugador para ser vos y viví un campeonato de 8 jornadas, con entrenamiento, tienda de ítems y ranking global. Modo Aleatorio: un partido suelto, con equipos sorteados al instante.',
+        carreirasSalvas: 'Tus carreras guardadas en este navegador:',
+        saveCarreiraResumo: 'Torneo {torneio} · Jornada {rodada}/8',
+        continuar: '▶️ Continuar', apagarTitulo: 'Borrar',
+        modoCarreira: '🏆 Modo Carrera', modoAleatorio: '🎲 Modo Aleatorio',
+        confirmarApagarCarreira: '¿Borrar esta carrera guardada? Esto no se puede deshacer.',
+
+        escolhaQuemVaiJogar: '👤 Elegí quién va a jugar',
+        escolhaQuemVaiJogarDesc: 'Marcá uno o más jugadores — podés jugar solo o con amigos en la misma carrera.',
+        desconsiderarGoleiros: '🧤 Excluir porteros de la clasificación y goleadores del campeonato',
+        comecarTorneio: '▶️ Comenzar Torneo', trocarModo: '← Cambiar modo',
+        simularProximaRodada: '▶️ Simular Próxima Jornada', simularOutroTorneio: '🏆 Simular Otro Torneo',
+        salvarContinuarDepois: '💾 Guardar y Continuar Después', apagarEstaCarreira: '🗑️ Borrar Esta Carrera',
+        jogadoresBtn: '👥 Jugadores',
+        escalacaoDaRodada: '📋 Alineación de la Jornada', timeAmarelo: '🟡 Equipo Amarillo', timeAzul: '🔵 Equipo Azul',
+        diferencaDeForca: 'Diferencia de fuerza:',
+        atrasoTitulo: '⏰ Retraso',
+        classificacaoTitulo: '📊 Clasificación', artilhariaTitulo: '⚽ Goleadores',
+        hallDaFama: '🏛️ Salón de la Fama de la Carrera',
+        rankingGlobalCarreira: '🌍 Ranking Global de la Carrera',
+        rankingGlobalCarreiraDesc: 'Todos los que ya jugaron en esta carrera, sumando todos los torneos disputados.',
+        curiosidadesDaCarreira: '📊 Curiosidades de la Carrera',
+        fimDeTorneio: '🏆 ¡Fin del Torneo!',
+        fimDeTorneioDica: 'Usá el botón "Simular Otro Torneo" de arriba para continuar.',
+        salvo: '✅ ¡Guardado!',
+      }
+    };
 
     function formatDateBR(iso) {
       if (!iso) return '';
@@ -159,6 +630,15 @@
 
     function initials(name) {
       return String(name || '?').trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+    }
+
+    // Tenta o nome de campo em camelCase (formato já usado por `nivel` neste
+    // data.json) e cai pro snake_case (nome real do campo no Django) — cobre
+    // os dois formatos possíveis do fixture sem quebrar se um deles faltar.
+    function skillRaw(fields, camelKey, snakeKey) {
+      if (fields[camelKey] != null) return Number(fields[camelKey]);
+      if (snakeKey && fields[snakeKey] != null) return Number(fields[snakeKey]);
+      return null;
     }
 
     async function loadTournaments() {
@@ -239,8 +719,9 @@
         if (!isInactivePlayer(jid) && !(j && j.fora_da_classificacao === true)) getPlayerEntry(jid);
       });
 
-      // lista completa e sem filtro (inclui goleiros e inativos) — usada só pelo simulador,
-      // que deve poder montar times com todo mundo, mesmo quem fica fora das estatísticas/ranking.
+      // lista completa e sem filtro (inclui goleiros e inativos) — usada pelo simulador avulso
+      // e como base do Modo Carreira, que deve poder montar times com todo mundo, mesmo quem
+      // fica fora das estatísticas/ranking normais.
       const allPlayers = Object.keys(jogadoresById).map(jid => {
         const j = jogadoresById[jid] || {};
         return {
@@ -251,7 +732,22 @@
           posicao: j.posicao || '',
           pais: j.pais,
           ativo: j.ativo,
-          nivel: j.nivel != null ? Number(j.nivel) : null
+          nivel: j.nivel != null ? Number(j.nivel) : null,
+          // Habilidades individuais (escala 1-5, igual ao cadastro real) — só
+          // usadas pelo Modo Carreira (treino/equipamentos). O export atual de
+          // data.json pode não trazer esses campos (só o nível agregado); quando
+          // faltam, `valorBaseSkill` (Modo Carreira) cai pro nível geral convertido
+          // de volta pra escala 1-5, então o modo continua funcionando do mesmo jeito.
+          chute: skillRaw(j, 'chute'),
+          toqueDeBola: skillRaw(j, 'toqueDeBola', 'toque_de_bola'),
+          drible: skillRaw(j, 'drible'),
+          posicionamento: skillRaw(j, 'posicionamento'),
+          defesa: skillRaw(j, 'defesa'),
+          marcacao: skillRaw(j, 'marcacao'),
+          velocidade: skillRaw(j, 'velocidade'),
+          movimentacao: skillRaw(j, 'movimentacao'),
+          visaoDeJogo: skillRaw(j, 'visaoDeJogo', 'visao_de_jogo'),
+          energia: skillRaw(j, 'energia')
         };
       });
 
@@ -343,7 +839,7 @@
         const horario = horarioFields ? {
           nome: horarioFields.nome,
           local: horarioFields.local,
-          dia: DIAS_SEMANA[horarioFields.dia_semana] || '',
+          diaSemanaIdx: horarioFields.dia_semana, // traduzido em render time (getDiasSemana), não fixo no idioma do load
           hora: formatHora(horarioFields.horario)
         } : null;
 
@@ -435,7 +931,7 @@
 
       // artilharia
       const artilharia = [...t.players].sort((a, b) => b.gols - a.gols || b.jogos - a.jogos);
-      let artHtml = `<table class="data-table art-table"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>GOLS</th><th>JOGOS</th><th>GPJ</th></tr></thead><tbody>`;
+      let artHtml = `<table class="data-table art-table"><thead><tr><th>${tr('colPos')}</th><th class="cname">${tr('colJogador')}</th><th>${tr('colGols')}</th><th>${tr('colJogos')}</th><th>${tr('colGpj')}</th></tr></thead><tbody>`;
       artilharia.forEach((p, i) => {
         const gpj = p.jogos ? p.gols / p.jogos : 0;
         artHtml += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.gols}</td><td>${p.jogos}</td><td>${gpj.toFixed(1)}</td></tr>`;
@@ -445,7 +941,7 @@
 
       // classificacao
       const classificacao = [...t.players].sort((a, b) => b.pts - a.pts || b.gols - a.gols);
-      let clsHtml = `<table class="data-table cls-table"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>P</th><th>J</th><th>V</th><th>E</th><th>D</th></tr></thead><tbody>`;
+      let clsHtml = `<table class="data-table cls-table"><thead><tr><th>${tr('colPos')}</th><th class="cname">${tr('colJogador')}</th><th>${tr('colP')}</th><th>${tr('colJ')}</th><th>${tr('colV')}</th><th>${tr('colE')}</th><th>${tr('colD')}</th></tr></thead><tbody>`;
       classificacao.forEach((p, i) => {
         clsHtml += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td style="color:var(--win-color)">${p.pts}</td><td>${p.jogos}</td><td>${p.v}</td><td>${p.e}</td><td>${p.d}</td></tr>`;
       });
@@ -453,12 +949,14 @@
       document.getElementById('cls-root').innerHTML = clsHtml;
     }
 
-    const SELECAO_POSICOES = [
-      { pos: 'GOL', label: 'Goleiro', vagas: 1 },
-      { pos: 'ZAG', label: 'Zagueiro', vagas: 2 },
-      { pos: 'MEI', label: 'Meio-campo', vagas: 2 },
-      { pos: 'ATA', label: 'Atacante', vagas: 2 }
-    ];
+    function getSelecaoPosicoes() {
+      return [
+        { pos: 'GOL', label: tr('posGoleiro'), vagas: 1 },
+        { pos: 'ZAG', label: tr('posZagueiro'), vagas: 2 },
+        { pos: 'MEI', label: tr('posMeio'), vagas: 2 },
+        { pos: 'ATA', label: tr('posAtacante'), vagas: 2 }
+      ];
+    }
 
     // Coordenadas fixas no campo (mesma convenção usada nas escalações reais: y baixo =
     // perto do gol de ataque, y alto = perto do próprio gol/goleiro). Como a Seleção junta
@@ -506,16 +1004,16 @@
       const ordenar = (lista) => lista.sort((a, b) =>
         b.pontuacao - a.pontuacao || b.eficiencia - a.eficiencia || b.sg - a.sg);
 
-      let html = `<table class="data-table cls-table"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>PONTUAÇÃO</th><th>EFICIÊNCIA</th><th>SALDO DE GOLS</th></tr></thead><tbody>`;
+      let html = `<table class="data-table cls-table"><thead><tr><th>${tr('colPos')}</th><th class="cname">${tr('colJogador')}</th><th>${tr('colPontuacao')}</th><th>${tr('colEficiencia')}</th><th>${tr('colSaldoGols')}</th></tr></thead><tbody>`;
       let algumaVaga = false;
       const pitchList = [];
-      SELECAO_POSICOES.forEach(grupo => {
+      getSelecaoPosicoes().forEach(grupo => {
         const selecionados = ordenar(candidatos.filter(c => c.posicao === grupo.pos)).slice(0, grupo.vagas);
         if (!selecionados.length) return;
         algumaVaga = true;
         const coords = SELECAO_COORDS[grupo.pos] || [];
         selecionados.forEach((p, i) => {
-          const sgColor = p.sg > 0 ? 'var(--win-color)' : (p.sg < 0 ? 'var(--loss-color)' : '#fff');
+          const sgColor = p.sg > 0 ? 'var(--win-color)' : (p.sg < 0 ? 'var(--loss-color)' : 'var(--text-strong)');
           html += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos">${grupo.label}</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td style="color:var(--win-color)">${p.pontuacao}</td><td>${(p.eficiencia * 100).toFixed(0)}%</td><td style="color:${sgColor}">${p.sg > 0 ? '+' : ''}${p.sg}</td></tr>`;
 
           const coord = coords[i] || { x: 50, y: 50 };
@@ -526,12 +1024,12 @@
         });
       });
       html += `</tbody></table>`;
-      root.innerHTML = algumaVaga ? html : `<div class="cls-desc">Nenhum jogador elegível encontrado para este campeonato.</div>`;
+      root.innerHTML = algumaVaga ? html : `<div class="cls-desc">${tr('nenhumJogadorSelecao')}</div>`;
 
       if (algumaVaga) {
         root.innerHTML += `
           <div class="pitch-wrap" style="max-width:340px; margin:12px auto 0;">
-            <div class="pitch-label" style="text-align:center;">⭐ MAPA DA SELEÇÃO</div>
+            <div class="pitch-label" style="text-align:center;">${tr('mapaSelecao')}</div>
             ${renderPitch(pitchList, 'team-a')}
           </div>`;
       }
@@ -559,7 +1057,7 @@
       html += `</div>`;
 
       if (bench.length) {
-        html += `<div class="bench-list"><strong>Sem posição definida:</strong> ${bench.map(p => p.name.toUpperCase() + (p.gols > 0 ? ` (${p.gols}⚽)` : '')).join(', ')}</div>`;
+        html += `<div class="bench-list"><strong>${tr('semPosicaoDefinida')}</strong> ${bench.map(p => p.name.toUpperCase() + (p.gols > 0 ? ` (${p.gols}⚽)` : '')).join(', ')}</div>`;
       }
 
       return html;
@@ -728,6 +1226,14 @@
       return SIMULATOR_GROUP_SLUG[positionLabel] || 'out';
     }
 
+    // getSimulatorPositionLabel devolve o rótulo em PT (usado como chave interna de
+    // agrupamento/ordenação/slug — não pode mudar). Isso só traduz o texto exibido.
+    const SIMULATOR_GROUP_LABEL_I18N_KEY = { Lendas: 'grupoLendas', Goleiros: 'grupoGoleiros', Zagueiros: 'grupoZagueiros', Meias: 'grupoMeias', Atacantes: 'grupoAtacantes', Outros: 'grupoOutros' };
+    function trSimulatorGroupLabel(labelPt) {
+      const key = SIMULATOR_GROUP_LABEL_I18N_KEY[labelPt];
+      return key ? tr(key) : labelPt;
+    }
+
     function getSimulatorPlayerById(id) {
       return getSimulatorPlayers().find(p => p.id === id) || null;
     }
@@ -813,6 +1319,26 @@
       renderSimulador();
     }
 
+    // Mesmas 4 habilidades e o mesmo rótulo de diferença (rotuloDiferencaHabilidade,
+    // HABILIDADES_BALANCEAR, valorBaseSkill) que o Modo Carreira usa em
+    // renderizarDiferencasRodada — mostra o equilíbrio de habilidades entre os times do
+    // Modo Aleatório também, não só o nível/pontos.
+    function getSimuladorHabilidadesBadgesHtml(teamA, teamB) {
+      const ICONES_HABILIDADE = { marcacao: '🛡️', visaoDeJogo: '👁️', energia: '🔋', velocidade: '🏃' };
+      const ROTULOS_HABILIDADE = { marcacao: 'Marcação', visaoDeJogo: 'Visão de Jogo', energia: 'Energia', velocidade: 'Velocidade' };
+      const somaA = {}, somaB = {};
+      HABILIDADES_BALANCEAR.forEach(campo => {
+        somaA[campo] = teamA.reduce((s, p) => s + valorBaseSkill(p, campo), 0);
+        somaB[campo] = teamB.reduce((s, p) => s + valorBaseSkill(p, campo), 0);
+      });
+      let somaDiferencas = 0;
+      return HABILIDADES_BALANCEAR.map(campo => {
+        const diferenca = somaA[campo] - somaB[campo];
+        somaDiferencas += Math.abs(diferenca);
+        return `<span class="career-badge">${ICONES_HABILIDADE[campo]} ${ROTULOS_HABILIDADE[campo]}: ${rotuloDiferencaHabilidade(diferenca)}</span>`;
+      }).join('') + `<span class="career-badge">⚖️ Média das 4: ${(somaDiferencas / HABILIDADES_BALANCEAR.length).toFixed(1)}</span>`;
+    }
+
     function renderSimulador() {
       const root = document.getElementById('simulador-root');
       if (!root) return;
@@ -836,17 +1362,17 @@
         <div class="simulator-shell">
           <div class="simulator-summary">
             <div>
-              <div class="simulator-title">🎯 Montar times</div>
-              <div class="simulator-subtitle">Selecione jogadores por posição, conte quantos foram escolhidos e sorteie os times para a partida.</div>
+              <div class="simulator-title">${tr('montarTimes')}</div>
+              <div class="simulator-subtitle">${tr('montarTimesDesc')}</div>
             </div>
-            <div class="simulator-counter">${selectedCount} / 14 selecionados</div>
+            <div class="simulator-counter">${selectedCount} / 14 ${tr('selecionados')}</div>
           </div>
           ${simulatorState.notice ? `<div class="simulator-notice">${simulatorState.notice}</div>` : ''}
           <div class="simulator-controls">
-            <button class="btn-solid" data-action="select-all">Selecionar todos</button>
-            <button class="btn-solid" data-action="clear">Limpar</button>
-            <button class="btn-solid" data-action="random14">Marcar 14 aleatórios</button>
-            <button class="btn-solid" data-action="draw">Sortear times</button>
+            <button class="btn-solid" data-action="select-all">${tr('selecionarTodos')}</button>
+            <button class="btn-solid" data-action="clear">${tr('limpar')}</button>
+            <button class="btn-solid" data-action="random14">${tr('marcar14')}</button>
+            <button class="btn-solid" data-action="draw">${tr('sortearTimes')}</button>
           </div>
           <div class="simulator-player-groups">
       `;
@@ -854,7 +1380,7 @@
       positions.forEach(position => {
         html += `
           <div class="simulator-group simulator-group-${getSimulatorGroupSlug(position)}">
-            <div class="simulator-group-title">${position}</div>
+            <div class="simulator-group-title">${trSimulatorGroupLabel(position)}</div>
             <div class="simulator-player-list">
         `;
         playersByPosition[position].forEach(player => {
@@ -874,26 +1400,30 @@
 
       html += `
         <div class="simulator-scoreboard">
-          <div class="simulator-score">TIME A <strong>${simulatorState.score.teamA}</strong> x <strong>${simulatorState.score.teamB}</strong> TIME B</div>
-          <button class="btn-solid simulator-play-button" data-action="play">${simulatorState.running ? 'Partida em andamento' : 'Simular partida'}</button>
+          <div class="simulator-score">${tr('timeA')} <strong>${simulatorState.score.teamA}</strong> x <strong>${simulatorState.score.teamB}</strong> ${tr('timeB')}</div>
+          <button class="btn-solid simulator-play-button" data-action="play">${simulatorState.running ? tr('partidaAndamento') : tr('simularPartida')}</button>
         </div>
+        ${simulatorState.teams ? `<div class="career-card" style="margin-bottom:10px;">
+          <div style="font-size:12px; opacity:0.8; margin-bottom:6px;">${tr('equilibrioHabilidades')}</div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px;">${getSimuladorHabilidadesBadgesHtml(simulatorState.teams.teamA, simulatorState.teams.teamB)}</div>
+        </div>` : ''}
         <div class="simulator-teams">
           <div class="simulator-team-card">
             <div class="simulator-team-header">
-              TIME A
+              ${tr('timeA')}
               <span class="simulator-team-header-meta">${simulatorState.teams ? `${getSimulatorTeamTotalNivel(simulatorState.teams.teamA)} pts` : '0 pts'}</span>
             </div>
-            <div class="simulator-team-count">${simulatorState.teams ? simulatorState.teams.teamA.length : 0} jogadores</div>
-            <div class="simulator-team-meta">Média de nível por jogador: ${simulatorState.teams ? getSimulatorTeamStrength(simulatorState.teams.teamA).toFixed(1) : '0.0'}</div>
+            <div class="simulator-team-count">${simulatorState.teams ? simulatorState.teams.teamA.length : 0} ${tr('jogadoresLabel')}</div>
+            <div class="simulator-team-meta">${tr('mediaNivelPorJogador')} ${simulatorState.teams ? getSimulatorTeamStrength(simulatorState.teams.teamA).toFixed(1) : '0.0'}</div>
             ${simulatorState.teams ? buildSimulatorLineup(simulatorState.teams.teamA, 'team-a') : '<div class="simulator-lineup"></div>'}
           </div>
           <div class="simulator-team-card">
             <div class="simulator-team-header">
-              TIME B
+              ${tr('timeB')}
               <span class="simulator-team-header-meta">${simulatorState.teams ? `${getSimulatorTeamTotalNivel(simulatorState.teams.teamB)} pts` : '0 pts'}</span>
             </div>
-            <div class="simulator-team-count">${simulatorState.teams ? simulatorState.teams.teamB.length : 0} jogadores</div>
-            <div class="simulator-team-meta">Média de nível por jogador: ${simulatorState.teams ? getSimulatorTeamStrength(simulatorState.teams.teamB).toFixed(1) : '0.0'}</div>
+            <div class="simulator-team-count">${simulatorState.teams ? simulatorState.teams.teamB.length : 0} ${tr('jogadoresLabel')}</div>
+            <div class="simulator-team-meta">${tr('mediaNivelPorJogador')} ${simulatorState.teams ? getSimulatorTeamStrength(simulatorState.teams.teamB).toFixed(1) : '0.0'}</div>
             ${simulatorState.teams ? buildSimulatorLineup(simulatorState.teams.teamB, 'team-b') : '<div class="simulator-lineup"></div>'}
           </div>
         </div>
@@ -903,7 +1433,7 @@
         const duracao = simulatorState.duracaoPartida || 60;
         html += `
           <div class="simulator-live">
-            <div class="simulator-live-title">⏱️ Cronômetro — ${simulatorState.minute} / ${duracao} min${simulatorState.atraso ? ` (atraso de ${simulatorState.atraso} min)` : ''}</div>
+            <div class="simulator-live-title">${tr('cronometro')} — ${simulatorState.minute} / ${duracao} ${tr('min')}${simulatorState.atraso ? ` (${tr('atrasoDe')} ${simulatorState.atraso} ${tr('min')})` : ''}</div>
             <div class="simulator-live-bar"><div class="simulator-live-fill" style="width:${(simulatorState.minute / duracao) * 100}%"></div></div>
           </div>
         `;
@@ -912,10 +1442,10 @@
       if (simulatorState.events.length) {
         html += `
           <div class="simulator-events">
-            <div class="simulator-team-header">⚽ GOLS E EVENTOS</div>
+            <div class="simulator-team-header">${tr('golsEEventos')}</div>
             ${simulatorState.events.slice(-8).reverse().map(ev => {
               if (!ev.scorer) {
-                return `<div class="simulator-event"><strong>${ev.minute}'</strong> — bola em jogo</div>`;
+                return `<div class="simulator-event"><strong>${ev.minute}'</strong> — ${tr('bolaEmJogo')}</div>`;
               }
               // mesma regra do time: Time A (amarelo) usa a foto principal, Time B (azul) usa a secundária.
               const isTeamB = ev.team === 'TIME B';
@@ -928,7 +1458,7 @@
                       ${fotoEvento ? `<img src="${fotoEvento}" alt="${ev.scorer.name}" onerror="this.style.display='none'" />` : ''}
                       <span class="simulator-lineup-initials">${initials(ev.scorer.name)}</span>
                     </span>
-                    ${ev.scorer.name.toUpperCase()} marcou
+                    ${ev.scorer.name.toUpperCase()} ${tr('marcouEvento')}
                   </span>
                 </div>
               `;
@@ -940,10 +1470,10 @@
       if (simulatorState.review) {
         html += `
           <div class="simulator-review">
-            <div class="simulator-team-header">📝 REVIEW FINAL</div>
+            <div class="simulator-team-header">${tr('reviewFinal')}</div>
             <div class="simulator-review-score">${simulatorState.review.score.teamA} x ${simulatorState.review.score.teamB}</div>
             <div class="simulator-review-text">${simulatorState.review.text}</div>
-            <div class="simulator-review-text"><strong>Melhor jogador:</strong> ${simulatorState.review.mvp.name.toUpperCase()}</div>
+            <div class="simulator-review-text"><strong>${tr('melhorJogador')}</strong> ${simulatorState.review.mvp.name.toUpperCase()}</div>
           </div>
         `;
       }
@@ -1098,6 +1628,39 @@
             }
           }
 
+          // Segundo ajuste, igual ao que o Modo Carreira usa pra calibrar os times da
+          // rodada: além do nível geral, tenta equilibrar as mesmas 4 habilidades
+          // (velocidade, energia, visão de jogo, marcação — HABILIDADES_BALANCEAR,
+          // valorBaseSkill, ambos definidos lá embaixo no Modo Carreira) trocando
+          // jogadores de mesma posição quando isso reduz a diferença total nelas.
+          const diferencaHabilidadesTimes = (tA, tB) => HABILIDADES_BALANCEAR.reduce((total, campo) => {
+            const somaCampoA = tA.reduce((s, p) => s + valorBaseSkill(p, campo), 0);
+            const somaCampoB = tB.reduce((s, p) => s + valorBaseSkill(p, campo), 0);
+            return total + Math.abs(somaCampoA - somaCampoB);
+          }, 0);
+          let melhorouHabilidade = true;
+          let tentativasHabilidade = 0;
+          while (melhorouHabilidade && tentativasHabilidade < 200) {
+            melhorouHabilidade = false;
+            tentativasHabilidade++;
+            for (let i = 0; i < teamA.length; i++) {
+              for (let j = 0; j < teamB.length; j++) {
+                const jogadorA = teamA[i];
+                const jogadorB = teamB[j];
+                if ((jogadorA.posicao || 'OUT') !== (jogadorB.posicao || 'OUT')) continue;
+                const diffAtual = diferencaHabilidadesTimes(teamA, teamB);
+                teamA[i] = jogadorB;
+                teamB[j] = jogadorA;
+                if (diferencaHabilidadesTimes(teamA, teamB) < diffAtual) {
+                  melhorouHabilidade = true;
+                } else {
+                  teamA[i] = jogadorA;
+                  teamB[j] = jogadorB;
+                }
+              }
+            }
+          }
+
           simulatorState.teams = { teamA, teamB };
           simulatorState.events = [];
           simulatorState.score = { teamA: 0, teamB: 0 };
@@ -1230,6 +1793,1400 @@
       };
     }
 
+    // ============================================================
+    // Modo Carreira — campeonato fictício de 8 rodadas, jogado sempre com
+    // o(s) mesmo(s) jogador(es) escolhido(s) no elenco. Roda inteiramente no
+    // navegador e salva o progresso em localStorage, pra dar pra continuar
+    // depois sem precisar de conta nem afetar nenhum dado real. Porta fiel
+    // do Modo Carreira do Mensal FC (templates/partidas/simulador_horario.html),
+    // adaptada pro layout (sem Bootstrap) e pros dados (data.json) deste site.
+    // ============================================================
+
+    const CAREER_STORAGE_INDEX = 'wisktv_carreiras_index';
+    const CAREER_STORAGE_PREFIX = 'wisktv_carreira_';
+
+    const CAREER_EXCUSAS = [
+      'A esposa não deixou sair de casa hoje.',
+      'Comeu picanha mal passada ontem e passou a madrugada inteira no banheiro.',
+      'Perdeu a chuteira numa aposta de sinuca e não teve coragem de jogar de chinelo.',
+      'Ficou preso no trânsito atrás de uma carreta de bois que tombou na pista.',
+      'Dormiu torto no sofá vendo futebol e acordou com um torcicolo homérico.',
+      'Discutiu com a sogra e resolveu que hoje não era dia de sair de casa.',
+      'Achou um cupom de 90% de desconto e foi resolver "rapidinho" — nunca mais voltou.',
+      'Confundiu o endereço e foi jogar no campo do outro lado da cidade.',
+      'Ficou hipnotizado numa maratona de série e virou a noite acordado.',
+      'Machucou o dedão chutando a quina da cama antes de sair de casa.',
+      'Emprestou a chuteira pro sobrinho no fim de semana e esqueceu de pegar de volta.',
+      'O carro não pegou e ele jurou até o fim da partida que "já tava chegando".',
+      'Caiu o wi-fi de casa e ele achou, sem checar, que o jogo tinha sido cancelado no grupo.',
+      'Resolveu experimentar um suplemento novo e passou o dia sentindo o efeito colateral.',
+      'Ganhou uma rodada de churrasco de graça e não teve coragem de recusar.'
+    ];
+
+    function sortearExcusa() {
+      return CAREER_EXCUSAS[Math.floor(Math.random() * CAREER_EXCUSAS.length)];
+    }
+
+    function normalizarTexto(s) {
+      return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    }
+
+    // ---------- Elenco disponível pro Modo Carreira ----------
+    // GOL/ZAG/MEI/ATA ativos, com as habilidades individuais (quando
+    // existirem em data.json — ver skillRaw()/allPlayers em loadTournaments)
+    // e o histórico real (jogos/gols) já calculado pelo diretório de jogadores.
+    let careerPool = [];
+
+    function buildCareerPool() {
+      return allSimulatorPlayers
+        .filter(p => ['GOL', 'ZAG', 'MEI', 'ATA'].includes(p.posicao))
+        .map(p => {
+          const dirEntry = playersDirectory[String(p.id)];
+          const jogosReais = dirEntry ? (dirEntry.matches || []).length : 0;
+          const golsReais = dirEntry ? (dirEntry.matches || []).reduce((s, m) => s + m.meusGols, 0) : 0;
+          return {
+            id: p.id,
+            name: p.name,
+            posicao: p.posicao,
+            pais: p.pais,
+            foto: p.foto || '',
+            fotoSecundaria: p.fotoSecundaria || '',
+            nivel: p.nivel != null ? p.nivel : 50,
+            golsPorJogo: jogosReais ? golsReais / jogosReais : 0,
+            jogosDisputados: jogosReais,
+            chute: p.chute, toqueDeBola: p.toqueDeBola, drible: p.drible,
+            posicionamento: p.posicionamento, defesa: p.defesa, marcacao: p.marcacao,
+            velocidade: p.velocidade, movimentacao: p.movimentacao,
+            visaoDeJogo: p.visaoDeJogo, energia: p.energia
+          };
+        })
+        .sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    function buscarJogadorCarreira(id) {
+      return careerPool.find(p => p.id === id);
+    }
+
+    // "Suspeitos de sempre" pro atraso — se o elenco tiver um Fábio ou um
+    // Mendes, é quase sempre um dos dois; quem mais atrasa na vida real
+    // geralmente também atrasa na brincadeira.
+    function encontrarPorNomeParcial(trecho) {
+      const alvo = normalizarTexto(trecho);
+      return careerPool.filter(p => normalizarTexto(p.name).indexOf(alvo) !== -1);
+    }
+
+    function candidatosAtrasoPrincipais() {
+      const encontrados = [];
+      ['fabio', 'mendes'].forEach(nome => {
+        encontrarPorNomeParcial(nome).forEach(p => {
+          if (encontrados.indexOf(p) === -1) encontrados.push(p);
+        });
+      });
+      return encontrados;
+    }
+
+    function sortearCulpadoAtraso() {
+      const candidatos = candidatosAtrasoPrincipais();
+      if (candidatos.length && Math.random() < 0.90) {
+        return candidatos[Math.floor(Math.random() * candidatos.length)];
+      }
+      return careerPool.length ? careerPool[Math.floor(Math.random() * careerPool.length)] : null;
+    }
+
+    // Metade das rodadas ninguém se atrasa; quando atrasa, é de 1 a 10
+    // minutos — e desconta da partida: quem chega atrasado faz o jogo
+    // acabar mais cedo, não estica ele.
+    function sortearAtrasoCarreira() {
+      if (Math.random() < 0.5) return { minutos: 0, culpado: null };
+      const minutos = Math.max(1, Math.min(10, Math.round(sortearTriangular(1, 3, 10))));
+      return { minutos, culpado: sortearCulpadoAtraso() };
+    }
+
+    function simularAtrasoCarreira(atraso, aoTerminar) {
+      const el = document.getElementById('carreira-atraso');
+      const elTexto = document.getElementById('carreira-atraso-texto');
+      const elBarra = document.getElementById('carreira-atraso-barra');
+
+      if (!atraso.minutos) {
+        el.style.display = 'none';
+        aoTerminar();
+        return;
+      }
+
+      el.style.display = 'block';
+      elBarra.style.width = '0%';
+      const nome = atraso.culpado ? atraso.culpado.name.toUpperCase() : 'Alguém';
+      elTexto.textContent = '⏳ Esperando ' + nome + '... (atraso de ' + atraso.minutos + ' min)';
+
+      let passo = 0;
+      const totalPassos = atraso.minutos * 6;
+      const timer = window.setInterval(() => {
+        passo += 1;
+        elBarra.style.width = Math.min(100, (passo / totalPassos) * 100) + '%';
+        if (passo >= totalPassos) {
+          window.clearInterval(timer);
+          el.style.display = 'none';
+          aoTerminar();
+        }
+      }, 150);
+    }
+
+    // ---------- Persistência (localStorage) ----------
+    function listarSavesCarreira() {
+      try {
+        const bruto = window.localStorage.getItem(CAREER_STORAGE_INDEX);
+        return bruto ? JSON.parse(bruto) : [];
+      } catch (e) { return []; }
+    }
+
+    function salvarIndiceCarreira(lista) {
+      try { window.localStorage.setItem(CAREER_STORAGE_INDEX, JSON.stringify(lista)); } catch (e) {}
+    }
+
+    function carregarSaveCarreira(id) {
+      try {
+        const bruto = window.localStorage.getItem(CAREER_STORAGE_PREFIX + id);
+        return bruto ? normalizarCarreira(JSON.parse(bruto)) : null;
+      } catch (e) { return null; }
+    }
+
+    let carreira = null;
+
+    function salvarEstadoCarreira() {
+      try {
+        window.localStorage.setItem(CAREER_STORAGE_PREFIX + carreira.id, JSON.stringify(carreira));
+        const nomes = carreira.meusIds.map(id => {
+          const j = buscarJogadorCarreira(id);
+          return j ? j.name : '?';
+        });
+        const totalTitulos = carreira.meusIds.reduce((soma, id) => soma + estatisticaDoJogador(id).titulos, 0);
+        const lista = listarSavesCarreira().filter(s => s.id !== carreira.id);
+        lista.unshift({
+          id: carreira.id,
+          meusNomes: nomes,
+          torneio: carreira.torneio,
+          rodada: carreira.rodada,
+          titulos: totalTitulos,
+          atualizadoEm: Date.now()
+        });
+        salvarIndiceCarreira(lista);
+      } catch (e) {}
+    }
+
+    function apagarSaveCarreira(id) {
+      try {
+        window.localStorage.removeItem(CAREER_STORAGE_PREFIX + id);
+        salvarIndiceCarreira(listarSavesCarreira().filter(s => s.id !== id));
+      } catch (e) {}
+    }
+
+    function novoIdSaveCarreira() {
+      return 'c' + Date.now() + Math.floor(Math.random() * 1000);
+    }
+
+    function novaCarreira(meusIds, semGoleiros) {
+      carreira = {
+        id: novoIdSaveCarreira(),
+        meusIds,
+        semGoleiros: !!semGoleiros,
+        torneio: 1,
+        rodada: 1,
+        classificacao: {},
+        estatisticasCarreira: {}, // { [id]: {gols, titulos, artilharias} }
+        historicoTorneios: [],
+        // Acumulado de TODOS os jogadores (não só os "meus") em TODOS os
+        // torneios já disputados — diferente de `classificacao`, que zera
+        // a cada torneio novo.
+        rankingGlobal: {},
+        // Data "dentro do jogo" — começa hoje e anda 1 semana a cada rodada
+        // simulada, pra dar noção de quanto tempo de carreira já passou.
+        dataInicio: Date.now(),
+        dataAtual: Date.now(),
+        // Progressão (treino/equipamentos) — só existe pra quem tá em meusIds.
+        progressao: {}
+      };
+      salvarEstadoCarreira();
+    }
+
+    function souEu(id) {
+      return carreira.meusIds.indexOf(id) !== -1;
+    }
+
+    function estatisticaDoJogador(id) {
+      if (!carreira.estatisticasCarreira[id]) {
+        carreira.estatisticasCarreira[id] = { gols: 0, titulos: 0, artilharias: 0 };
+      }
+      return carreira.estatisticasCarreira[id];
+    }
+
+    function progressaoDoJogador(id) {
+      if (!carreira.progressao[id]) {
+        carreira.progressao[id] = {
+          gastoTotal: 0,
+          treinosDisponiveis: 0,
+          xp: {},
+          itensComprados: [],
+          itemEquipadoInstancia: null
+        };
+      }
+      return carreira.progressao[id];
+    }
+
+    function normalizarCarreira(c) {
+      if (!c) return c;
+      if (!c.meusIds) c.meusIds = c.meuId != null ? [c.meuId] : [];
+      if (!c.estatisticasCarreira) c.estatisticasCarreira = {};
+      if (!c.historicoTorneios) c.historicoTorneios = [];
+      c.historicoTorneios.forEach(h => {
+        if (!h.campeoes) h.campeoes = [];
+        if (!h.artilheiros) h.artilheiros = [];
+      });
+      if (!c.rankingGlobal) c.rankingGlobal = {};
+      if (!c.progressao) c.progressao = {};
+      if (!c.dataAtual) {
+        const rodadasJogadas = (c.torneio - 1) * 8 + (c.rodada - 1);
+        c.dataAtual = Date.now();
+        c.dataInicio = c.dataAtual - Math.max(0, rodadasJogadas) * 7 * 24 * 60 * 60 * 1000;
+      }
+      return c;
+    }
+
+    function pesoJogadorCarreira(p) {
+      return (p.jogosDisputados != null ? p.jogosDisputados : 0) + 1;
+    }
+
+    function sortearSemReposicaoCarreira(itens, quantidade) {
+      const restantes = itens.slice();
+      const escolhidos = [];
+      while (escolhidos.length < quantidade && restantes.length) {
+        const pesos = restantes.map(pesoJogadorCarreira);
+        const total = pesos.reduce((a, b) => a + b, 0);
+        let r = Math.random() * total;
+        let indice = restantes.length - 1;
+        for (let i = 0; i < pesos.length; i++) {
+          r -= pesos[i];
+          if (r <= 0) { indice = i; break; }
+        }
+        escolhidos.push(restantes[indice]);
+        restantes.splice(indice, 1);
+      }
+      return escolhidos;
+    }
+
+    // `presentesIds` são os jogadores rastreados (carreira.meusIds) que vão
+    // jogar essa rodada — os ausentes ficam de fora do sorteio.
+    function montarElencoRodada(presentesIds) {
+      const presentes = presentesIds.map(buscarJogadorCarreira).filter(Boolean);
+      const resto = careerPool.filter(p => carreira.meusIds.indexOf(p.id) === -1);
+      const goleiros = resto.filter(p => p.posicao === 'GOL');
+      const outros = resto.filter(p => p.posicao !== 'GOL');
+
+      let selecionados = presentes.slice();
+      const goleirosPresentes = selecionados.filter(p => p.posicao === 'GOL').length;
+      const querGoleiros = Math.max(0, 2 - goleirosPresentes);
+      selecionados = selecionados.concat(sortearSemReposicaoCarreira(goleiros, querGoleiros));
+
+      const vagas = Math.max(0, 14 - selecionados.length);
+      selecionados = selecionados.concat(sortearSemReposicaoCarreira(outros, Math.min(vagas, outros.length)));
+
+      return selecionados;
+    }
+
+    // ---------- Progressão da carreira: treino e equipamentos ----------
+    // Sistema construído em cima das mesmas 10 habilidades do cadastro real
+    // (escala 1-5) — nada de atributo novo. Tudo aqui é fictício e local:
+    // nunca escreve de volta no jogador de verdade, só em `carreira.progressao`.
+
+    const CAMPOS_HABILIDADE_TODAS = [
+      'chute', 'toqueDeBola', 'drible', 'posicionamento', 'defesa',
+      'marcacao', 'velocidade', 'movimentacao', 'visaoDeJogo', 'energia'
+    ];
+
+    const ROTULOS_HABILIDADE_TODAS = {
+      chute: 'Chute', toqueDeBola: 'Toque de Bola',
+      drible: 'Drible', posicionamento: 'Posicionamento',
+      defesa: 'Defesa', marcacao: 'Marcação',
+      velocidade: 'Velocidade', movimentacao: 'Movimentação',
+      visaoDeJogo: 'Visão de Jogo', energia: 'Energia'
+    };
+
+    // Espelha os pesos por posição do cadastro real (mesma fórmula de
+    // "nível/overall" — média ponderada das 10 habilidades pela posição).
+    const PESOS_HABILIDADE_TODAS = {
+      chute:          { GOL: 0, ZAG: 1, MEI: 2, ATA: 3 },
+      toqueDeBola:    { GOL: 1, ZAG: 1, MEI: 3, ATA: 2 },
+      drible:         { GOL: 0, ZAG: 1, MEI: 2, ATA: 3 },
+      posicionamento: { GOL: 3, ZAG: 3, MEI: 3, ATA: 2 },
+      defesa:         { GOL: 3, ZAG: 3, MEI: 2, ATA: 1 },
+      marcacao:       { GOL: 2, ZAG: 3, MEI: 3, ATA: 1 },
+      velocidade:     { GOL: 1, ZAG: 2, MEI: 2, ATA: 3 },
+      movimentacao:   { GOL: 2, ZAG: 2, MEI: 3, ATA: 2 },
+      visaoDeJogo:    { GOL: 1, ZAG: 2, MEI: 3, ATA: 2 },
+      energia:        { GOL: 1, ZAG: 2, MEI: 3, ATA: 3 }
+    };
+
+    // Um "local de treino" nomeado por habilidade — o ponto de treino
+    // (1 por rodada jogada) é livre pra gastar em qualquer um deles.
+    const LOCAIS_TREINO = [
+      { campo: 'velocidade', nome: '🏃 Corrida' },
+      { campo: 'energia', nome: '🏋️ Academia' },
+      { campo: 'chute', nome: '🎯 Treino de Finalização' },
+      { campo: 'toqueDeBola', nome: '⚽ Treino Técnico' },
+      { campo: 'drible', nome: '🕺 Treino de Drible' },
+      { campo: 'posicionamento', nome: '📋 Treino Tático' },
+      { campo: 'defesa', nome: '🛡️ Treino Defensivo' },
+      { campo: 'marcacao', nome: '🚫 Treino de Marcação' },
+      { campo: 'movimentacao', nome: '🔄 Treino de Movimentação' },
+      { campo: 'visaoDeJogo', nome: '👁️ Treino de Visão de Jogo' }
+    ];
+    const GANHO_POR_TREINO = 2;
+    const TETO_TREINO = 100;
+
+    // Catálogo de equipamentos — nomes de trocadilho, nenhuma marca real.
+    // Bônus só enquanto equipado (`itemEquipadoInstancia`). Durabilidade é
+    // em JOGOS realmente disputados com o item equipado, não em torneios —
+    // só desgasta a partir de quando entra em uso.
+    const CATALOGO_ITENS = [
+      { id: 'relampago10', nome: '⚡ Relâmpago 10', preco: 240, duracaoJogos: 24, bonus: { velocidade: 3, movimentacao: 1 } },
+      { id: 'mestrebola', nome: '🎩 Mestre da Bola', preco: 260, duracaoJogos: 24, bonus: { toqueDeBola: 3, drible: 1 } },
+      { id: 'fuzildoartilheiro', nome: '🎯 Fuzil do Artilheiro', preco: 280, duracaoJogos: 24, bonus: { chute: 4 } },
+      { id: 'bussolatatica', nome: '🧭 Bússola Tática', preco: 230, duracaoJogos: 24, bonus: { posicionamento: 2, movimentacao: 2 } },
+      { id: 'muralhadeaco', nome: '🧱 Muralha de Aço', preco: 300, duracaoJogos: 32, bonus: { defesa: 3, posicionamento: 1 } },
+      { id: 'xerifedaarea', nome: '🤠 Xerife da Área', preco: 250, duracaoJogos: 24, bonus: { marcacao: 3 } },
+      { id: 'folegoeterno', nome: '🌬️ Fôlego Eterno', preco: 220, duracaoJogos: 16, bonus: { energia: 2 } },
+      { id: 'oculosdomaestro', nome: '👓 Óculos do Maestro', preco: 260, duracaoJogos: 16, bonus: { visaoDeJogo: 2 } }
+    ];
+
+    function itemDoCatalogo(itemId) {
+      return CATALOGO_ITENS.find(item => item.id === itemId) || null;
+    }
+
+    function instanciaEquipada(id) {
+      const p = progressaoDoJogador(id);
+      if (!p.itemEquipadoInstancia) return null;
+      return p.itensComprados.find(inst => inst.instanciaId === p.itemEquipadoInstancia) || null;
+    }
+
+    // Converte a habilidade 1-5 pra 0-100, igual ao "nível" — deixa tudo
+    // numa escala só, incluindo o XP de treino e o bônus de equipamento.
+    // Quando o jogador não tem a habilidade individual em data.json (export
+    // atual só traz o nível agregado), cai pro nível geral (nivel/20) como
+    // base — o sistema de progressão continua funcionando do mesmo jeito.
+    function valorBaseSkill(jogador, campo) {
+      const bruto = jogador && jogador[campo] != null ? jogador[campo] : (jogador ? (jogador.nivel || 50) / 20 : 0);
+      return bruto * 20;
+    }
+
+    function valorTreinado(id, campo) {
+      const jogador = buscarJogadorCarreira(id);
+      const p = progressaoDoJogador(id);
+      const base = valorBaseSkill(jogador, campo);
+      return Math.min(TETO_TREINO, base + (p.xp[campo] || 0));
+    }
+
+    function bonusEquipamento(id, campo) {
+      const instancia = instanciaEquipada(id);
+      if (!instancia) return 0;
+      const item = itemDoCatalogo(instancia.itemId);
+      return item && item.bonus[campo] ? item.bonus[campo] : 0;
+    }
+
+    function valorEfetivo(id, campo) {
+      return valorTreinado(id, campo) + bonusEquipamento(id, campo);
+    }
+
+    function saldoDoJogador(id) {
+      const linha = carreira.rankingGlobal[id];
+      const jogos = linha ? (linha.jogos || 0) : 0;
+      const p = progressaoDoJogador(id);
+      return jogos * 25 - (p.gastoTotal || 0);
+    }
+
+    // Mesma fórmula do "overall" real: média ponderada das 10 habilidades
+    // pelo peso da posição, sobre a escala 1-5, × 20.
+    function nivelEstimado(id) {
+      const jogador = buscarJogadorCarreira(id);
+      if (!jogador) return 0;
+      let pesoTotal = 0, somaPonderada = 0;
+      CAMPOS_HABILIDADE_TODAS.forEach(campo => {
+        const peso = (PESOS_HABILIDADE_TODAS[campo][jogador.posicao] || 0);
+        const valor1a5 = valorEfetivo(id, campo) / 20;
+        pesoTotal += peso;
+        somaPonderada += valor1a5 * peso;
+      });
+      if (!pesoTotal) return 0;
+      return Math.round((somaPonderada / pesoTotal) * 20 * 10) / 10;
+    }
+
+    function treinar(id, campo) {
+      const p = progressaoDoJogador(id);
+      if (p.treinosDisponiveis <= 0) return;
+      const jogador = buscarJogadorCarreira(id);
+      const atual = valorBaseSkill(jogador, campo) + (p.xp[campo] || 0);
+      if (atual >= TETO_TREINO) return;
+      const ganho = Math.min(GANHO_POR_TREINO, TETO_TREINO - atual);
+      p.xp[campo] = (p.xp[campo] || 0) + ganho;
+      p.treinosDisponiveis -= 1;
+      salvarEstadoCarreira();
+    }
+
+    function comprarItem(id, itemId) {
+      const item = itemDoCatalogo(itemId);
+      if (!item) return;
+      if (saldoDoJogador(id) < item.preco) return;
+      const p = progressaoDoJogador(id);
+      p.gastoTotal = (p.gastoTotal || 0) + item.preco;
+      p.itensComprados.push({
+        instanciaId: 'i' + Date.now() + Math.floor(Math.random() * 1000),
+        itemId: item.id,
+        duracaoRestante: item.duracaoJogos
+      });
+      salvarEstadoCarreira();
+    }
+
+    function equiparItem(id, instanciaId) {
+      const p = progressaoDoJogador(id);
+      if (instanciaId && !p.itensComprados.some(inst => inst.instanciaId === instanciaId)) return;
+      p.itemEquipadoInstancia = instanciaId || null;
+      salvarEstadoCarreira();
+    }
+
+    // ---------- Balanceamento de times da rodada ----------
+    // Primeiro distribui zig-zag por nível (times parelhos na força geral),
+    // depois refina trocando jogadores de mesma posição entre os times
+    // quando isso reduz a diferença de velocidade/energia/visão de jogo/
+    // marcação — mesmas habilidades que o sorteio real considera.
+    const HABILIDADES_BALANCEAR = ['velocidade', 'energia', 'visaoDeJogo', 'marcacao'];
+
+    function somaHabilidadesCarreira(time) {
+      const soma = {};
+      HABILIDADES_BALANCEAR.forEach(campo => { soma[campo] = 0; });
+      time.forEach(p => {
+        HABILIDADES_BALANCEAR.forEach(campo => { soma[campo] += valorEfetivoOuBase(p, campo); });
+      });
+      return soma;
+    }
+
+    // Times da rodada misturam "meus jogadores" (com progressão) e o resto
+    // do elenco (sem progressão) — usa valorEfetivo quando o jogador tem
+    // progressão criada (é um dos meus) e o valor bruto (1-5 × 20) senão.
+    function valorEfetivoOuBase(jogador, campo) {
+      if (carreira && souEu(jogador.id)) return valorEfetivo(jogador.id, campo);
+      return valorBaseSkill(jogador, campo);
+    }
+
+    function diferencaTotalHabilidadesCarreira(timeA, timeB) {
+      const somaA = somaHabilidadesCarreira(timeA), somaB = somaHabilidadesCarreira(timeB);
+      return HABILIDADES_BALANCEAR.reduce((total, campo) => total + Math.abs(somaA[campo] - somaB[campo]), 0);
+    }
+
+    function equilibrarPorHabilidadesCarreira(timeA, timeB) {
+      let melhorou = true;
+      let tentativas = 0;
+      while (melhorou && tentativas < 100) {
+        melhorou = false;
+        tentativas++;
+        for (let i = 0; i < timeA.length; i++) {
+          for (let j = 0; j < timeB.length; j++) {
+            if (timeA[i].posicao !== timeB[j].posicao) continue;
+            const diferencaAtual = diferencaTotalHabilidadesCarreira(timeA, timeB);
+            const trocaA = timeA[i], trocaB = timeB[j];
+            timeA[i] = trocaB;
+            timeB[j] = trocaA;
+            if (diferencaTotalHabilidadesCarreira(timeA, timeB) < diferencaAtual) {
+              melhorou = true;
+            } else {
+              timeA[i] = trocaA;
+              timeB[j] = trocaB;
+            }
+          }
+        }
+      }
+      return { timeA, timeB };
+    }
+
+    function nivelDoJogadorNaRodada(jogador) {
+      return carreira && souEu(jogador.id) ? nivelEstimado(jogador.id) : (jogador.nivel || 50);
+    }
+
+    function balancearTimesCarreira(jogadores) {
+      const ordenados = jogadores.slice().sort((a, b) => nivelDoJogadorNaRodada(b) - nivelDoJogadorNaRodada(a));
+      const timeA = [], timeB = [];
+      let somaA = 0, somaB = 0;
+      ordenados.forEach(p => {
+        const nivel = nivelDoJogadorNaRodada(p);
+        if (somaA <= somaB) { timeA.push(p); somaA += nivel; }
+        else { timeB.push(p); somaB += nivel; }
+      });
+      return equilibrarPorHabilidadesCarreira(timeA, timeB);
+    }
+
+    const PESO_GOL_POSICAO = { ATA: 3, MEI: 2, ZAG: 0.55, GOL: 0.05 };
+
+    function totalNivelCarreira(time) {
+      return time.reduce((s, p) => s + nivelDoJogadorNaRodada(p), 0);
+    }
+
+    function escolherArtilheiroCarreira(time) {
+      const pesos = time.map(p => {
+        if (p.posicao === 'GOL') return 1;
+        const nivelFator = Math.sqrt(Math.max(5, nivelDoJogadorNaRodada(p)));
+        const posicaoFator = Math.sqrt(PESO_GOL_POSICAO[p.posicao] || 1);
+        const historicoFator = 2 + Math.pow(Math.max(0, p.golsPorJogo || 0), 1) * 4;
+        return nivelFator * posicaoFator * historicoFator;
+      });
+      const total = pesos.reduce((a, b) => a + b, 0);
+      let r = Math.random() * total;
+      for (let i = 0; i < time.length; i++) {
+        r -= pesos[i];
+        if (r <= 0) return time[i];
+      }
+      return time[time.length - 1];
+    }
+
+    function avatarHtmlCarreira(jogador, lado) {
+      const foto = lado === 'A' ? jogador.foto : (jogador.fotoSecundaria || jogador.foto);
+      if (foto) return `<img class="av" src="${foto}" alt="" onerror="this.style.display='none'">`;
+      return `<span class="av-fallback">${initials(jogador.name)}</span>`;
+    }
+
+    function linhaEscalacaoRodadaHtml(jogador, lado) {
+      const ehEu = souEu(jogador.id);
+      return `<div class="career-lineup-row"${ehEu ? ' style="font-weight:bold; color: var(--win-color, #2ecc71);"' : ''}>
+        ${avatarHtmlCarreira(jogador, lado)}
+        <span>${jogador.name.toUpperCase()}${ehEu ? ' ⭐' : ''}</span>
+        <span class="career-badge" style="margin-left:auto;">${jogador.posicao || ''}</span>
+      </div>`;
+    }
+
+    function rotuloDiferencaHabilidade(diferenca) {
+      if (diferenca > 0.05) return '🟡 +' + diferenca.toFixed(1);
+      if (diferenca < -0.05) return '🔵 +' + Math.abs(diferenca).toFixed(1);
+      return 'Equilibrado';
+    }
+
+    function renderizarDiferencasRodada(timeA, timeB) {
+      const mediaA = Math.round((timeA.length ? totalNivelCarreira(timeA) / timeA.length : 0) * 10) / 10;
+      const mediaB = Math.round((timeB.length ? totalNivelCarreira(timeB) / timeB.length : 0) * 10) / 10;
+      document.getElementById('carreira-escalacao-forca').textContent = Math.abs(mediaA - mediaB).toFixed(1);
+
+      const ICONES_HABILIDADE = { marcacao: '🛡️', visaoDeJogo: '👁️', energia: '🔋', velocidade: '🏃' };
+      const ROTULOS_HABILIDADE = { marcacao: 'Marcação', visaoDeJogo: 'Visão de Jogo', energia: 'Energia', velocidade: 'Velocidade' };
+      const somaA = somaHabilidadesCarreira(timeA), somaB = somaHabilidadesCarreira(timeB);
+      let somaDiferencas = 0;
+      let badges = HABILIDADES_BALANCEAR.map(campo => {
+        const diferenca = somaA[campo] - somaB[campo];
+        somaDiferencas += Math.abs(diferenca);
+        return `<span class="career-badge">${ICONES_HABILIDADE[campo]} ${ROTULOS_HABILIDADE[campo]}: ${rotuloDiferencaHabilidade(diferenca)}</span>`;
+      }).join('') + `<span class="career-badge">⚖️ Média das 4: ${(somaDiferencas / HABILIDADES_BALANCEAR.length).toFixed(1)}</span>`;
+      document.getElementById('carreira-escalacao-badges').innerHTML = badges;
+    }
+
+    function renderizarEscalacaoRodada(timeA, timeB) {
+      document.getElementById('carreira-escalacao-a').innerHTML = timeA.map(j => linhaEscalacaoRodadaHtml(j, 'A')).join('');
+      document.getElementById('carreira-escalacao-b').innerHTML = timeB.map(j => linhaEscalacaoRodadaHtml(j, 'B')).join('');
+      renderizarDiferencasRodada(timeA, timeB);
+      document.getElementById('carreira-escalacao-rodada').style.display = 'block';
+    }
+
+    // Gera a partida inteira de uma vez (minuto a minuto, mas em memória) —
+    // devolve os gols já em ordem cronológica, pra depois `animarPartidaCarreira`
+    // ir revelando um por um.
+    function gerarEventosPartidaCarreira(timeA, timeB, duracao) {
+      duracao = duracao || 60;
+      let placarA = 0, placarB = 0;
+      const golsPorJogador = {};
+      const eventos = [];
+      const totalA = Math.max(1, totalNivelCarreira(timeA));
+      const totalB = Math.max(1, totalNivelCarreira(timeB));
+      const probA = Math.max(0.25, Math.min(0.75, totalA / (totalA + totalB)));
+      for (let minuto = 1; minuto <= duracao; minuto++) {
+        if (Math.random() < 0.33) {
+          const lado = Math.random() < probA ? 'A' : 'B';
+          const time = lado === 'A' ? timeA : timeB;
+          const artilheiro = escolherArtilheiroCarreira(time);
+          if (artilheiro) {
+            if (lado === 'A') placarA++; else placarB++;
+            golsPorJogador[artilheiro.id] = (golsPorJogador[artilheiro.id] || 0) + 1;
+            eventos.push({ minuto, lado, artilheiro });
+          }
+        }
+      }
+      return { placarA, placarB, golsPorJogador, eventos };
+    }
+
+    function animarPartidaCarreira(resultado, duracao, aoTerminar) {
+      duracao = duracao || 60;
+      const elScoreA = document.getElementById('carreira-score-a');
+      const elScoreB = document.getElementById('carreira-score-b');
+      const elMinuto = document.getElementById('carreira-minuto');
+      const elBarra = document.getElementById('carreira-barra');
+      const elEventos = document.getElementById('carreira-eventos-ao-vivo');
+      const elVivo = document.getElementById('carreira-partida-ao-vivo');
+
+      elVivo.style.display = 'block';
+      elEventos.innerHTML = '';
+      elScoreA.textContent = '0';
+      elScoreB.textContent = '0';
+      elBarra.style.width = '0%';
+
+      let placarA = 0, placarB = 0;
+      let minuto = 0;
+      let indiceEvento = 0;
+
+      const timer = window.setInterval(() => {
+        minuto += 1;
+        elMinuto.textContent = minuto + ' min';
+        elBarra.style.width = ((minuto / duracao) * 100) + '%';
+
+        while (indiceEvento < resultado.eventos.length && resultado.eventos[indiceEvento].minuto === minuto) {
+          const ev = resultado.eventos[indiceEvento];
+          if (ev.lado === 'A') { placarA += 1; elScoreA.textContent = placarA; }
+          else { placarB += 1; elScoreB.textContent = placarB; }
+
+          const ehEu = souEu(ev.artilheiro.id);
+          const texto = ehEu ? '⭐ ' + ev.artilheiro.name.toUpperCase() + ' marcou!' : ev.artilheiro.name.toUpperCase() + ' marcou';
+          const linha = document.createElement('div');
+          linha.className = 'career-lineup-row';
+          if (ev.lado === 'B') linha.style.justifyContent = 'flex-end';
+          if (ehEu) linha.style.cssText += 'font-weight:bold; color: var(--win-color, #2ecc71);';
+          linha.innerHTML = `<span style="width:2.2rem; opacity:0.7;">${minuto}'</span>` + avatarHtmlCarreira(ev.artilheiro, ev.lado) + `<span>${texto}</span>`;
+          elEventos.insertBefore(linha, elEventos.firstChild);
+          indiceEvento++;
+        }
+
+        if (minuto >= duracao) {
+          window.clearInterval(timer);
+          aoTerminar();
+        }
+      }, 200);
+    }
+
+    // Mesma fórmula de pontuação da Classificação (1 ponto de participação
+    // + 3 por vitória + 1 por empate).
+    function registrarResultadoNaClassificacao(timeA, timeB, resultado) {
+      const resultadoTime = resultado.placarA === resultado.placarB ? 'E' : (resultado.placarA > resultado.placarB ? 'A' : 'B');
+
+      function registrarEm(alvo, jogador, meuLado) {
+        const linha = alvo[jogador.id] || {
+          nome: jogador.name, jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, titulos: 0, artilharias: 0,
+          sequenciaV: 0, sequenciaD: 0, melhorSequenciaV: 0, piorSequenciaD: 0, golsTimeAFavor: 0, golsTimeContra: 0
+        };
+        linha.jogos += 1;
+        linha.pts += 1;
+        linha.gols += resultado.golsPorJogador[jogador.id] || 0;
+        linha.golsTimeAFavor = (linha.golsTimeAFavor || 0) + (meuLado === 'A' ? resultado.placarA : resultado.placarB);
+        linha.golsTimeContra = (linha.golsTimeContra || 0) + (meuLado === 'A' ? resultado.placarB : resultado.placarA);
+        if (resultadoTime === 'E') {
+          linha.e += 1; linha.pts += 1;
+          linha.sequenciaV = 0;
+          linha.sequenciaD = 0;
+        } else if (resultadoTime === meuLado) {
+          linha.v += 1; linha.pts += 3;
+          linha.sequenciaV = (linha.sequenciaV || 0) + 1;
+          linha.sequenciaD = 0;
+          linha.melhorSequenciaV = Math.max(linha.melhorSequenciaV || 0, linha.sequenciaV);
+        } else {
+          linha.d += 1;
+          linha.sequenciaD = (linha.sequenciaD || 0) + 1;
+          linha.sequenciaV = 0;
+          linha.piorSequenciaD = Math.max(linha.piorSequenciaD || 0, linha.sequenciaD);
+        }
+        alvo[jogador.id] = linha;
+      }
+      function registrar(jogador, meuLado) {
+        if (carreira.semGoleiros && jogador.posicao === 'GOL') return;
+        registrarEm(carreira.classificacao, jogador, meuLado);
+        registrarEm(carreira.rankingGlobal, jogador, meuLado);
+      }
+      timeA.forEach(j => registrar(j, 'A'));
+      timeB.forEach(j => registrar(j, 'B'));
+    }
+
+    function linhasClassificacaoCarreira() {
+      return Object.keys(carreira.classificacao)
+        .map(id => {
+          const linha = carreira.classificacao[id];
+          return { id: Number(id), nome: linha.nome, jogos: linha.jogos, v: linha.v, e: linha.e, d: linha.d, gols: linha.gols, pts: linha.pts };
+        })
+        .sort((a, b) => b.pts - a.pts || b.gols - a.gols);
+    }
+
+    function linhasRankingGlobalCarreira() {
+      return Object.keys(carreira.rankingGlobal || {})
+        .map(id => {
+          const linha = carreira.rankingGlobal[id];
+          return {
+            id: Number(id), nome: linha.nome, jogos: linha.jogos, v: linha.v, e: linha.e, d: linha.d, gols: linha.gols, pts: linha.pts,
+            titulos: linha.titulos || 0, artilharias: linha.artilharias || 0
+          };
+        })
+        .sort((a, b) => b.titulos - a.titulos || b.artilharias - a.artilharias || b.pts - a.pts || b.gols - a.gols);
+    }
+
+    function renderizarRankingGlobalCarreira() {
+      const linhas = linhasRankingGlobalCarreira();
+      const el = document.getElementById('carreira-ranking-global');
+      if (!linhas.length) { el.style.display = 'none'; return; }
+      el.style.display = 'block';
+      const corpo = document.querySelector('#carreira-ranking-global-corpo');
+      corpo.innerHTML = linhas.map((l, i) => {
+        const voce = souEu(l.id);
+        return `<tr onclick="abrirModalJogadorCarreira(${l.id})" style="cursor:pointer;${voce ? 'font-weight:bold;' : ''}"><td>${i + 1}</td><td class="cname">${l.nome.toUpperCase()}${voce ? ' ⭐' : ''}</td><td>${l.titulos ? '🏆 ' + l.titulos : '—'}</td><td>${l.artilharias ? '👑 ' + l.artilharias : '—'}</td><td><strong>${l.pts}</strong></td><td>${l.jogos}</td><td>${l.v}</td><td>${l.e}</td><td>${l.d}</td><td>${l.gols}</td></tr>`;
+      }).join('');
+    }
+
+    // ---------- Curiosidades da carreira: mini-rankings extras ----------
+    function linhasRankingGlobalCompletasCarreira() {
+      return Object.keys(carreira.rankingGlobal || {}).map(id => {
+        const linha = carreira.rankingGlobal[id];
+        return {
+          id: Number(id), nome: linha.nome, jogos: linha.jogos || 0, v: linha.v || 0,
+          e: linha.e || 0, d: linha.d || 0, gols: linha.gols || 0, pts: linha.pts || 0,
+          melhorSequenciaV: linha.melhorSequenciaV || 0, piorSequenciaD: linha.piorSequenciaD || 0,
+          golsTimeAFavor: linha.golsTimeAFavor || 0, golsTimeContra: linha.golsTimeContra || 0
+        };
+      });
+    }
+
+    function ordenarPorCarreira(lista, valorFn, decrescente) {
+      return lista.slice().sort((a, b) => decrescente ? valorFn(b) - valorFn(a) : valorFn(a) - valorFn(b));
+    }
+
+    function montarMiniRankingCarreira(titulo, icone, lista, valorFn, formatarFn) {
+      const topo = lista.slice(0, 10);
+      if (!topo.length) return '';
+      const itens = topo.map((l, i) => {
+        const voce = souEu(l.id);
+        return `<li onclick="abrirModalJogadorCarreira(${l.id})" style="display:flex; justify-content:space-between; cursor:pointer;${voce ? ' font-weight:bold;' : ''}">
+          <span>${i + 1}. ${l.nome.toUpperCase()}${voce ? ' ⭐' : ''}</span><span>${formatarFn(valorFn(l))}</span></li>`;
+      }).join('');
+      return `<div class="career-mini-rank career-card">
+        <h6 style="margin:0 0 8px;">${icone} ${titulo}</h6>
+        <ul style="list-style:none; margin:0; padding:0; font-size:13px;">${itens}</ul>
+      </div>`;
+    }
+
+    function renderizarRankingsExtrasCarreira() {
+      const el = document.getElementById('carreira-rankings-extra');
+      const corpo = document.getElementById('carreira-rankings-extra-corpo');
+      const todas = linhasRankingGlobalCompletasCarreira();
+      const comJogos = todas.filter(l => l.jogos > 0);
+      if (!comJogos.length) { el.style.display = 'none'; return; }
+      el.style.display = 'block';
+
+      const inteiro = v => String(v);
+      const mediaPorJogo = v => v.toFixed(2);
+      const reais = v => 'R$ ' + v.toLocaleString('pt-BR');
+
+      corpo.innerHTML = [
+        montarMiniRankingCarreira('Maiores Vencedores', '🏆', ordenarPorCarreira(comJogos, l => l.v, true), l => l.v, inteiro),
+        montarMiniRankingCarreira('Maiores Perdedores', '🥲', ordenarPorCarreira(comJogos, l => l.d, true), l => l.d, inteiro),
+        montarMiniRankingCarreira('Mais Empates', '🤝', ordenarPorCarreira(comJogos, l => l.e, true), l => l.e, inteiro),
+        montarMiniRankingCarreira('Maior Sequência de Vitórias', '🔥', ordenarPorCarreira(comJogos, l => l.melhorSequenciaV, true), l => l.melhorSequenciaV, inteiro),
+        montarMiniRankingCarreira('Maior Sequência de Derrotas', '🥶', ordenarPorCarreira(comJogos, l => l.piorSequenciaD, true), l => l.piorSequenciaD, inteiro),
+        montarMiniRankingCarreira('Menor Sequência de Vitórias', '🐢', ordenarPorCarreira(comJogos, l => l.melhorSequenciaV, false), l => l.melhorSequenciaV, inteiro),
+        montarMiniRankingCarreira('Menor Sequência de Derrotas', '🛡️', ordenarPorCarreira(comJogos, l => l.piorSequenciaD, false), l => l.piorSequenciaD, inteiro),
+        montarMiniRankingCarreira('Maior Desempenho', '📈', ordenarPorCarreira(comJogos, l => l.pts / l.jogos, true), l => l.pts / l.jogos, mediaPorJogo),
+        montarMiniRankingCarreira('Pior Desempenho', '📉', ordenarPorCarreira(comJogos, l => l.pts / l.jogos, false), l => l.pts / l.jogos, mediaPorJogo),
+        montarMiniRankingCarreira('Time Que Mais Fez Gol', '⚽', ordenarPorCarreira(comJogos, l => l.golsTimeAFavor, true), l => l.golsTimeAFavor, inteiro),
+        montarMiniRankingCarreira('Time Que Mais Sofreu Gol', '🧤', ordenarPorCarreira(comJogos, l => l.golsTimeContra, true), l => l.golsTimeContra, inteiro),
+        montarMiniRankingCarreira('Eficiência de Gols a Favor', '🎯', ordenarPorCarreira(comJogos, l => l.golsTimeAFavor / l.jogos, true), l => l.golsTimeAFavor / l.jogos, mediaPorJogo),
+        montarMiniRankingCarreira('Maior Goleador', '🥇', ordenarPorCarreira(comJogos, l => l.gols, true), l => l.gols, inteiro),
+        montarMiniRankingCarreira('Mais Eficientes na Artilharia', '🥅', ordenarPorCarreira(comJogos, l => l.gols / l.jogos, true), l => l.gols / l.jogos, mediaPorJogo),
+        montarMiniRankingCarreira('O Passe Mais Caro do Elenco', '💸', ordenarPorCarreira(comJogos, l => l.jogos * 25, true), l => l.jogos * 25, reais)
+      ].join('');
+    }
+
+    function renderizarDataCarreira() {
+      const elData = document.getElementById('carreira-data');
+      if (!elData || !carreira.dataAtual) return;
+      const dataInicioFormatada = new Date(carreira.dataInicio).toLocaleDateString('pt-BR');
+      const dataAtualFormatada = new Date(carreira.dataAtual).toLocaleDateString('pt-BR');
+
+      const diasPassados = Math.max(0, Math.round((carreira.dataAtual - carreira.dataInicio) / (24 * 60 * 60 * 1000)));
+      const anos = Math.floor(diasPassados / 365);
+      const meses = Math.floor((diasPassados % 365) / 30);
+      let textoDecorrido;
+      if (anos > 0 && meses > 0) textoDecorrido = anos + ' ano(s) e ' + meses + ' mês(es) de carreira';
+      else if (anos > 0) textoDecorrido = anos + ' ano(s) de carreira';
+      else if (meses > 0) textoDecorrido = meses + ' mês(es) de carreira';
+      else textoDecorrido = 'Início da carreira';
+      elData.textContent = '📅 Início: ' + dataInicioFormatada + ' · Hoje: ' + dataAtualFormatada + ' · ' + textoDecorrido;
+    }
+
+    function renderizarTabelasCarreira() {
+      const linhas = linhasClassificacaoCarreira();
+      const corpoClass = document.querySelector('#carreira-tabela-classificacao tbody');
+      corpoClass.innerHTML = linhas.map((l, i) => {
+        const voce = souEu(l.id);
+        return `<tr onclick="abrirModalJogadorCarreira(${l.id})" style="cursor:pointer;${voce ? 'font-weight:bold;' : ''}"><td>${i + 1}</td><td class="cname">${l.nome.toUpperCase()}${voce ? ' ⭐' : ''}</td><td><strong>${l.pts}</strong></td><td>${l.jogos}</td><td>${l.v}</td><td>${l.e}</td><td>${l.d}</td><td>${l.gols}</td></tr>`;
+      }).join('') || '<tr><td colspan="8" style="opacity:0.7;">Nenhuma rodada disputada ainda.</td></tr>';
+
+      const artilharia = linhas.filter(l => l.gols > 0).sort((a, b) => b.gols - a.gols);
+      const corpoArt = document.querySelector('#carreira-tabela-artilharia tbody');
+      corpoArt.innerHTML = artilharia.map((l, i) => {
+        const voce = souEu(l.id);
+        return `<tr onclick="abrirModalJogadorCarreira(${l.id})" style="cursor:pointer;${voce ? 'font-weight:bold;' : ''}"><td>${i + 1}</td><td class="cname">${l.nome.toUpperCase()}${voce ? ' ⭐' : ''}</td><td>${l.jogos}</td><td><strong>${l.gols}</strong></td></tr>`;
+      }).join('') || '<tr><td colspan="4" style="opacity:0.7;">Ninguém marcou ainda.</td></tr>';
+
+      document.getElementById('carreira-cabecalho').textContent =
+        'Torneio ' + carreira.torneio + ' — Rodada ' + Math.min(carreira.rodada, 8) + ' / 8';
+      renderizarDataCarreira();
+
+      renderizarRankingGlobalCarreira();
+      renderizarRankingsExtrasCarreira();
+    }
+
+    function renderizarResultadoRodada(resultado, presencas, atraso, itensQuebrados) {
+      const el = document.getElementById('carreira-resultado-rodada');
+      el.style.display = 'block';
+      const artilheiros = Object.keys(resultado.golsPorJogador).map(id => {
+        const j = buscarJogadorCarreira(Number(id));
+        return (j ? j.name.toUpperCase() : '?') + ' (' + resultado.golsPorJogador[id] + ')';
+      }).join(', ') || 'Ninguém balançou as redes.';
+
+      const statusJogadores = carreira.meusIds.map(id => {
+        const jogador = buscarJogadorCarreira(id);
+        const nome = jogador ? jogador.name.toUpperCase() : '?';
+        const p = presencas[id];
+        if (!p.jogou) return `<p style="margin:2px 0; color:var(--gold-text);">🤕 ${nome} não jogou: ${p.motivo}</p>`;
+        const gols = resultado.golsPorJogador[id] || 0;
+        return `<p style="margin:2px 0;">${gols ? '⭐ ' + nome + ' marcou ' + gols + ' gol(s) nessa rodada!' : nome + ' jogou, mas não balançou as redes dessa vez.'}</p>`;
+      }).join('');
+
+      const textoAtraso = atraso && atraso.minutos
+        ? `<p style="opacity:0.75; margin:0 0 8px;">⏰ ${atraso.culpado ? atraso.culpado.name.toUpperCase() : 'Alguém'} atrasou ${atraso.minutos} min — o jogo teve só ${60 - atraso.minutos} minutos.</p>`
+        : '';
+
+      const textoItensQuebrados = (itensQuebrados && itensQuebrados.length)
+        ? `<p style="color:var(--loss-color); margin:0 0 8px;">👟 ${itensQuebrados.map(linha => 'Estragou: ' + linha).join(' · ')}</p>`
+        : '';
+
+      el.innerHTML =
+        `<h6 style="margin:0 0 8px;">Rodada ${Math.min(carreira.rodada, 8)}</h6>` +
+        `<div style="font-size:22px; font-weight:bold; margin-bottom:4px;">🟡 ${resultado.placarA} x ${resultado.placarB} 🔵</div>` +
+        textoAtraso +
+        `<p style="margin:0 0 8px;"><strong>Gols:</strong> ${artilheiros}</p>` +
+        statusJogadores +
+        textoItensQuebrados;
+    }
+
+    function sortearPresencas() {
+      const presencas = {};
+      carreira.meusIds.forEach(id => {
+        const jogou = Math.random() >= 0.10;
+        presencas[id] = { jogou, motivo: jogou ? null : sortearExcusa() };
+      });
+      return presencas;
+    }
+
+    function simularProximaRodada() {
+      const botao = document.getElementById('btn-simular-rodada');
+      botao.disabled = true;
+      document.getElementById('carreira-resultado-rodada').style.display = 'none';
+
+      // Uma rodada = uma semana de pelada.
+      carreira.dataAtual = (carreira.dataAtual || Date.now()) + 7 * 24 * 60 * 60 * 1000;
+      renderizarDataCarreira();
+
+      const presencas = sortearPresencas();
+      const presentesIds = carreira.meusIds.filter(id => presencas[id].jogou);
+      const elenco = montarElencoRodada(presentesIds);
+      const times = balancearTimesCarreira(elenco);
+      const atraso = sortearAtrasoCarreira();
+      const duracao = 60 - atraso.minutos;
+      const resultado = gerarEventosPartidaCarreira(times.timeA, times.timeB, duracao);
+
+      renderizarEscalacaoRodada(times.timeA, times.timeB);
+
+      simularAtrasoCarreira(atraso, () => {
+        animarPartidaCarreira(resultado, duracao, () => {
+          registrarResultadoNaClassificacao(times.timeA, times.timeB, resultado);
+
+          const itensQuebrados = [];
+          carreira.meusIds.forEach(id => {
+            const jogou = presencas[id].jogou;
+            const gols = jogou ? (resultado.golsPorJogador[id] || 0) : 0;
+            estatisticaDoJogador(id).gols += gols;
+            if (!jogou) return;
+            progressaoDoJogador(id).treinosDisponiveis += 1;
+
+            const instancia = instanciaEquipada(id);
+            if (!instancia) return;
+            instancia.duracaoRestante -= 1;
+            if (instancia.duracaoRestante > 0) return;
+            const p = progressaoDoJogador(id);
+            const item = itemDoCatalogo(instancia.itemId);
+            p.itensComprados = p.itensComprados.filter(inst => inst.instanciaId !== instancia.instanciaId);
+            p.itemEquipadoInstancia = null;
+            const jogador = buscarJogadorCarreira(id);
+            itensQuebrados.push((jogador ? jogador.name.toUpperCase() : '?') + ': ' + (item ? item.nome : instancia.itemId));
+          });
+
+          renderizarResultadoRodada(resultado, presencas, atraso, itensQuebrados);
+          renderizarTabelasCarreira();
+
+          carreira.rodada += 1;
+          botao.disabled = false;
+          if (carreira.rodada > 8) finalizarTorneio();
+          else salvarEstadoCarreira();
+        });
+      });
+    }
+
+    function renderizarHallFamaCarreira() {
+      const el = document.getElementById('carreira-hall-fama');
+      const corpo = document.getElementById('carreira-hall-fama-corpo');
+      const historico = carreira.historicoTorneios || [];
+      if (!historico.length) { el.style.display = 'none'; return; }
+      el.style.display = 'block';
+      corpo.innerHTML = historico.map(h => {
+        const campeoes = h.campeoes || [];
+        const artilheiros = h.artilheiros || [];
+        const campeaoTxt = campeoes.length ? campeoes.map(c => c.nome.toUpperCase() + (souEu(c.id) ? ' ⭐' : '')).join(', ') : '—';
+        const artilheiroTxt = artilheiros.length ? artilheiros.map(a => a.nome.toUpperCase() + ' (' + a.gols + ')' + (souEu(a.id) ? ' ⭐' : '')).join(', ') : '—';
+        return `<tr><td>${h.torneio}</td><td>${campeaoTxt}</td><td>${artilheiroTxt}</td></tr>`;
+      }).join('');
+    }
+
+    function finalizarTorneio() {
+      const linhas = linhasClassificacaoCarreira();
+
+      // Empate em pontos vira título dividido — só pontos, sem gols como
+      // desempate (não é critério justo pra quem joga na zaga).
+      let campeoes = [];
+      if (linhas.length) {
+        const maiorPts = linhas[0].pts;
+        campeoes = linhas.filter(l => l.pts === maiorPts);
+      }
+      const maiorGols = linhas.length ? Math.max(...linhas.map(l => l.gols)) : 0;
+      const artilheiros = maiorGols > 0 ? linhas.filter(l => l.gols === maiorGols) : [];
+
+      campeoes.forEach(c => {
+        if (souEu(c.id)) estatisticaDoJogador(c.id).titulos += 1;
+        const linhaGlobal = carreira.rankingGlobal[c.id] || { nome: c.nome, jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, titulos: 0, artilharias: 0 };
+        linhaGlobal.titulos = (linhaGlobal.titulos || 0) + 1;
+        carreira.rankingGlobal[c.id] = linhaGlobal;
+      });
+      artilheiros.forEach(a => {
+        if (souEu(a.id)) estatisticaDoJogador(a.id).artilharias += 1;
+        const linhaGlobal = carreira.rankingGlobal[a.id] || { nome: a.nome, jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, titulos: 0, artilharias: 0 };
+        linhaGlobal.artilharias = (linhaGlobal.artilharias || 0) + 1;
+        carreira.rankingGlobal[a.id] = linhaGlobal;
+      });
+
+      if (!carreira.historicoTorneios) carreira.historicoTorneios = [];
+      carreira.historicoTorneios.unshift({
+        torneio: carreira.torneio,
+        campeoes: campeoes.map(c => ({ id: c.id, nome: c.nome })),
+        artilheiros: artilheiros.map(a => ({ id: a.id, nome: a.nome, gols: a.gols }))
+      });
+      renderizarHallFamaCarreira();
+      renderizarRankingGlobalCarreira();
+      renderizarRankingsExtrasCarreira();
+
+      const resumoJogadores = carreira.meusIds.map(id => {
+        const jogador = buscarJogadorCarreira(id);
+        const est = estatisticaDoJogador(id);
+        const nome = jogador ? jogador.name.toUpperCase() : '?';
+        return `<p style="opacity:0.8; margin:2px 0;">${nome}: ${est.titulos} 🏆 · ${est.artilharias} 👑⚽ · ${est.gols} gols no total</p>`;
+      }).join('');
+
+      function nomesComEstrela(lista) {
+        return lista.map(item => item.nome.toUpperCase() + (souEu(item.id) ? ' ⭐' : '')).join(', ');
+      }
+
+      document.getElementById('carreira-fim-torneio').style.display = 'block';
+      document.getElementById('carreira-fim-torneio-conteudo').innerHTML =
+        (campeoes.length ? `<p>🏆 <strong>Campeão${campeoes.length > 1 ? ' (empate)' : ''}:</strong> ${nomesComEstrela(campeoes)}</p>` : '') +
+        (artilheiros.length ? `<p>⚽ <strong>Artilheiro${artilheiros.length > 1 ? ' (empate)' : ''}:</strong> ${artilheiros.map(a => a.nome.toUpperCase() + ' (' + a.gols + ')' + (souEu(a.id) ? ' ⭐' : '')).join(', ')}</p>` : '') +
+        `<div style="margin-top:8px;">${resumoJogadores}</div>`;
+
+      document.getElementById('btn-simular-rodada').style.display = 'none';
+      document.getElementById('btn-novo-torneio').style.display = 'inline-block';
+      salvarEstadoCarreira();
+    }
+
+    function iniciarNovoTorneio() {
+      carreira.torneio += 1;
+      carreira.rodada = 1;
+      carreira.classificacao = {};
+      document.getElementById('carreira-fim-torneio').style.display = 'none';
+      document.getElementById('carreira-resultado-rodada').style.display = 'none';
+      document.getElementById('btn-simular-rodada').style.display = 'inline-block';
+      document.getElementById('btn-novo-torneio').style.display = 'none';
+      renderizarTabelasCarreira();
+      salvarEstadoCarreira();
+    }
+
+    // ---------- Telas / navegação ----------
+    function mostrarSimuladorModoSelecao() {
+      document.getElementById('modo-selecao-root').style.display = 'block';
+      document.getElementById('simulador-root').style.display = 'none';
+      document.getElementById('career-root').style.display = 'none';
+      renderModoSelecao();
+    }
+
+    function mostrarSimuladorAleatorio() {
+      document.getElementById('modo-selecao-root').style.display = 'none';
+      document.getElementById('simulador-root').style.display = 'block';
+      document.getElementById('career-root').style.display = 'none';
+    }
+
+    function mostrarSimuladorCarreira() {
+      document.getElementById('modo-selecao-root').style.display = 'none';
+      document.getElementById('simulador-root').style.display = 'none';
+      document.getElementById('career-root').style.display = 'block';
+    }
+
+    function renderModoSelecao() {
+      const root = document.getElementById('modo-selecao-root');
+      const saves = listarSavesCarreira();
+      const savesHtml = saves.length ? `
+        <div style="margin: 12px 0; opacity:0.8; font-size:13px;">${tr('carreirasSalvas')}</div>
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-bottom:16px;">
+          ${saves.map(s => `
+            <div class="career-card career-save-card" style="text-align:left;">
+              <div style="font-weight:600; font-size:13px;">${(s.meusNomes || []).join(', ').toUpperCase()}</div>
+              <div style="opacity:0.75; font-size:12px;">${tr('saveCarreiraResumo', { torneio: s.torneio, rodada: Math.min(s.rodada, 8) })}${s.titulos ? ' · 🏆 ' + s.titulos : ''}</div>
+              <div style="display:flex; gap:6px; margin-top:6px;">
+                <button type="button" class="btn-solid" data-continuar-carreira="${s.id}" style="font-size:12px; padding:4px 8px;">${tr('continuar')}</button>
+                <button type="button" class="btn-solid" data-apagar-carreira="${s.id}" style="font-size:12px; padding:4px 8px;" title="${tr('apagarTitulo')}">🗑️</button>
+              </div>
+            </div>
+          `).join('')}
+        </div>` : '';
+
+      root.innerHTML = `
+        <div class="cls-desc" style="text-align:center;">
+          <h4 style="margin:0 0 6px;">${tr('comoVoceQuerJogar')}</h4>
+          <p style="max-width:520px; margin:0 auto 8px; font-size:13px; opacity:0.85;">${tr('descModos')}</p>
+          ${savesHtml}
+          <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+            <button type="button" class="btn-solid" data-modo="carreira" style="font-size:15px; padding:10px 18px;">${tr('modoCarreira')}</button>
+            <button type="button" class="btn-solid" data-modo="aleatorio" style="font-size:15px; padding:10px 18px;">${tr('modoAleatorio')}</button>
+          </div>
+        </div>
+      `;
+
+      root.querySelectorAll('[data-modo]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.dataset.modo === 'aleatorio') { mostrarSimuladorAleatorio(); return; }
+          mostrarSimuladorCarreira();
+          document.getElementById('carreira-escolher-jogador').style.display = 'block';
+          document.getElementById('carreira-painel').style.display = 'none';
+          montarSelecaoJogadorCarreira();
+        });
+      });
+      root.querySelectorAll('[data-continuar-carreira]').forEach(btn => {
+        btn.addEventListener('click', () => abrirSaveCarreira(btn.dataset.continuarCarreira));
+      });
+      root.querySelectorAll('[data-apagar-carreira]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (!window.confirm(tr('confirmarApagarCarreira'))) return;
+          apagarSaveCarreira(btn.dataset.apagarCarreira);
+          renderModoSelecao();
+        });
+      });
+    }
+
+    const GRUPOS_POSICAO_CARREIRA = [
+      { chave: 'GOL', rotulo: '🧤 Goleiros' },
+      { chave: 'ZAG', rotulo: '🛡️ Zagueiros' },
+      { chave: 'MEI', rotulo: '🎯 Meios' },
+      { chave: 'ATA', rotulo: '⚽ Atacantes' }
+    ];
+
+    function checkboxJogadorHtmlCarreira(p) {
+      return `<input type="checkbox" class="career-check-jogador" id="carreira-chk-${p.id}" value="${p.id}">
+        <label for="carreira-chk-${p.id}">${p.name.toUpperCase()}</label>`;
+    }
+
+    function montarSelecaoJogadorCarreira() {
+      const lista = document.getElementById('carreira-lista-jogadores');
+      const btnComecar = document.getElementById('btn-comecar-carreira');
+      btnComecar.disabled = true;
+
+      lista.innerHTML = GRUPOS_POSICAO_CARREIRA.map(grupo => {
+        const jogadoresDoGrupo = careerPool.filter(p => p.posicao === grupo.chave);
+        return `<div style="flex:1; min-width:150px;">
+          <h6 style="opacity:0.75; font-size:12px; margin-bottom:6px;">${grupo.rotulo}</h6>
+          <div>${jogadoresDoGrupo.map(checkboxJogadorHtmlCarreira).join('')}</div>
+        </div>`;
+      }).join('');
+
+      lista.querySelectorAll('.career-check-jogador').forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          const marcados = lista.querySelectorAll('.career-check-jogador:checked');
+          btnComecar.disabled = marcados.length === 0;
+        });
+      });
+    }
+
+    function comecarPainelCarreira() {
+      document.getElementById('carreira-escolher-jogador').style.display = 'none';
+      document.getElementById('carreira-painel').style.display = 'block';
+      document.getElementById('carreira-resultado-rodada').style.display = 'none';
+      document.getElementById('carreira-fim-torneio').style.display = 'none';
+      const torneioAcabou = carreira.rodada > 8;
+      document.getElementById('btn-simular-rodada').style.display = torneioAcabou ? 'none' : 'inline-block';
+      document.getElementById('btn-novo-torneio').style.display = torneioAcabou ? 'inline-block' : 'none';
+      renderizarTabelasCarreira();
+      renderizarHallFamaCarreira();
+    }
+
+    function abrirSaveCarreira(id) {
+      const dadosSalvos = carregarSaveCarreira(id);
+      if (!dadosSalvos) return;
+      carreira = dadosSalvos;
+      mostrarSimuladorCarreira();
+      comecarPainelCarreira();
+    }
+
+    // ---------- Modais: lista de jogadores da carreira e estatísticas de
+    // um jogador específico (aberto clicando em qualquer linha das
+    // tabelas/rankings, ou na lista do botão "Jogadores"). ----------
+    function openCareerListModal() {
+      const linhas = linhasRankingGlobalCompletasCarreira()
+        .filter(l => souEu(l.id))
+        .sort((a, b) => a.nome.localeCompare(b.nome));
+      const corpo = document.getElementById('career-list-modal-root');
+      corpo.innerHTML = linhas.map(l => `
+        <div class="career-card" style="display:flex; justify-content:space-between; align-items:center; cursor:pointer; margin-bottom:6px;" onclick="abrirModalJogadorCarreira(${l.id})">
+          <strong>${l.nome.toUpperCase()} ⭐</strong>
+          <span style="opacity:0.7; font-size:12px;">${l.jogos} jogos</span>
+        </div>`).join('') || '<p style="opacity:0.7;">Ninguém jogou ainda.</p>';
+      const m = document.getElementById('career-list-modal');
+      m.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCareerListModal() {
+      const m = document.getElementById('career-list-modal');
+      m.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function blocoEstatisticaJogadorCarreira(rotulo, valor) {
+      return `<div class="career-stat-box"><div class="v">${valor}</div><div class="l">${rotulo}</div></div>`;
+    }
+
+    // Mesma técnica de estrela parcial (fundo cinza + preenchida por cima
+    // com width em %) do cadastro real — aqui só pra exibir, sem clique.
+    function estrelasHtmlCarreira(valor0a100) {
+      const valor1a5 = Math.max(0, Math.min(5, valor0a100 / 20));
+      let html = '<span class="habilidade-estrelas">';
+      for (let i = 1; i <= 5; i++) {
+        const fracao = Math.max(0, Math.min(1, valor1a5 - (i - 1)));
+        html += `<span class="estrela">★<span class="estrela-preenchida" style="width:${fracao * 100}%;">★</span></span>`;
+      }
+      return html + '</span>';
+    }
+
+    function blocoHabilidadeTreinoCarreira(id, local) {
+      const jogador = buscarJogadorCarreira(id);
+      const p = progressaoDoJogador(id);
+      const campo = local.campo;
+      const base = valorBaseSkill(jogador, campo);
+      const xp = Math.max(0, Math.min(p.xp[campo] || 0, TETO_TREINO - base));
+      const bonusItem = bonusEquipamento(id, campo);
+      const efetivo = valorEfetivo(id, campo);
+      const podeTreinar = p.treinosDisponiveis > 0 && (base + (p.xp[campo] || 0)) < TETO_TREINO;
+      const detalhe = 'base ' + Math.round(base) +
+        (xp > 0 ? ' · treino +' + Math.round(xp) : '') +
+        (bonusItem > 0 ? ' · item +' + bonusItem : '');
+      return `<div class="career-card" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+        <div style="flex:1; min-width:160px;">
+          <div style="font-size:13px; font-weight:600;">${local.nome}</div>
+          ${estrelasHtmlCarreira(efetivo)} <span style="font-size:12px; opacity:0.8;">(${Math.round(efetivo)})</span>
+          <div style="opacity:0.65; font-size:11px;">${detalhe}</div>
+        </div>
+        <button type="button" class="btn-solid" data-acao-progressao="treinar" data-progressao-jogador-id="${id}" data-progressao-campo="${campo}" ${podeTreinar ? '' : 'disabled'}>🏋️ Treinar</button>
+      </div>`;
+    }
+
+    function blocoInventarioCarreira(id) {
+      const p = progressaoDoJogador(id);
+      if (!p.itensComprados.length) return '<p style="opacity:0.7;">Nenhum item comprado ainda.</p>';
+      return p.itensComprados.map(inst => {
+        const item = itemDoCatalogo(inst.itemId);
+        if (!item) return '';
+        const equipado = p.itemEquipadoInstancia === inst.instanciaId;
+        const bonusTxt = Object.keys(item.bonus).map(c => '+' + item.bonus[c] + ' ' + (ROTULOS_HABILIDADE_TODAS[c] || c)).join(', ');
+        return `<div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; font-size:13px;">
+          <span>${item.nome} <span style="opacity:0.7;">(${bonusTxt}) — ${inst.duracaoRestante}/${item.duracaoJogos} jogos</span></span>
+          ${equipado
+            ? `<button type="button" class="btn-solid" data-acao-progressao="desequipar" data-progressao-jogador-id="${id}">Desequipar</button>`
+            : `<button type="button" class="btn-solid" data-acao-progressao="equipar" data-progressao-jogador-id="${id}" data-progressao-instancia="${inst.instanciaId}">Equipar</button>`}
+        </div>`;
+      }).join('');
+    }
+
+    function blocoLojaCarreira(id) {
+      const saldo = saldoDoJogador(id);
+      return CATALOGO_ITENS.map(item => {
+        const bonusTxt = Object.keys(item.bonus).map(c => '+' + item.bonus[c] + ' ' + (ROTULOS_HABILIDADE_TODAS[c] || c)).join(', ');
+        const podeComprar = saldo >= item.preco;
+        return `<div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px; font-size:13px;">
+          <span>${item.nome} <span style="opacity:0.7;">(${bonusTxt} · ${item.duracaoJogos} jogos)</span></span>
+          <button type="button" class="btn-solid" data-acao-progressao="comprar" data-progressao-jogador-id="${id}" data-progressao-item="${item.id}" ${podeComprar ? '' : 'disabled'}>R$ ${item.preco}</button>
+        </div>`;
+      }).join('');
+    }
+
+    // Lembra qual aba tava aberta entre um clique de ação e outro — o modal
+    // inteiro é reconstruído a cada treino/compra/equipada.
+    let abaProgressaoAtiva = 'estatisticas';
+
+    function blocoEstatisticasJogadorCarreira(id) {
+      const linha = carreira.rankingGlobal[id] || {};
+      return `<div style="display:flex; flex-wrap:wrap; gap:6px; text-align:center;">
+        ${blocoEstatisticaJogadorCarreira('Jogos', linha.jogos || 0)}
+        ${blocoEstatisticaJogadorCarreira('V', linha.v || 0)}
+        ${blocoEstatisticaJogadorCarreira('E', linha.e || 0)}
+        ${blocoEstatisticaJogadorCarreira('D', linha.d || 0)}
+        ${blocoEstatisticaJogadorCarreira('Pontos', linha.pts || 0)}
+        ${blocoEstatisticaJogadorCarreira('Gols', linha.gols || 0)}
+        ${blocoEstatisticaJogadorCarreira('🏆 Títulos', linha.titulos || 0)}
+        ${blocoEstatisticaJogadorCarreira('👑 Artilharias', linha.artilharias || 0)}
+        ${blocoEstatisticaJogadorCarreira('🔥 Melhor sequência V', linha.melhorSequenciaV || 0)}
+        ${blocoEstatisticaJogadorCarreira('🥶 Pior sequência D', linha.piorSequenciaD || 0)}
+        ${blocoEstatisticaJogadorCarreira('⚽ Gols do time a favor', linha.golsTimeAFavor || 0)}
+        ${blocoEstatisticaJogadorCarreira('🧤 Gols do time contra', linha.golsTimeContra || 0)}
+      </div>`;
+    }
+
+    function blocoProgressaoJogadorCarreira(id) {
+      const voce = souEu(id);
+      const abas = [{ id: 'estatisticas', icone: '📊', nome: 'Estatísticas', conteudo: blocoEstatisticasJogadorCarreira(id) }];
+      if (voce) {
+        abas.push(
+          { id: 'habilidades', icone: '⭐', nome: 'Habilidades', conteudo: `<div style="display:flex; flex-wrap:wrap; gap:8px;">${LOCAIS_TREINO.map(local => blocoHabilidadeTreinoCarreira(id, local)).join('')}</div>` },
+          { id: 'inventario', icone: '🎒', nome: 'Inventário', conteudo: blocoInventarioCarreira(id) },
+          { id: 'loja', icone: '🛒', nome: 'Loja', conteudo: blocoLojaCarreira(id) }
+        );
+      }
+      const abaAtiva = abas.some(aba => aba.id === abaProgressaoAtiva) ? abaProgressaoAtiva : 'estatisticas';
+      const navHtml = abas.map(aba => `<button type="button" class="career-tab-btn${aba.id === abaAtiva ? ' active' : ''}" data-aba-progressao="${aba.id}">${aba.icone} ${aba.nome}</button>`).join('');
+      const paneHtml = abas.map(aba => `<div data-painel-progressao="${aba.id}" style="display:${aba.id === abaAtiva ? 'block' : 'none'}; padding-top:10px;">${aba.conteudo}</div>`).join('');
+
+      const resumoTopo = voce
+        ? `<div style="display:flex; flex-wrap:wrap; gap:6px; text-align:center; margin-bottom:12px;">
+            ${blocoEstatisticaJogadorCarreira('💰 Saldo', 'R$ ' + saldoDoJogador(id).toLocaleString('pt-BR'))}
+            ${blocoEstatisticaJogadorCarreira('🏋️ Treinos disponíveis', progressaoDoJogador(id).treinosDisponiveis || 0)}
+            ${blocoEstatisticaJogadorCarreira('📈 Nível estimado', nivelEstimado(id))}
+          </div>`
+        : '';
+
+      return resumoTopo +
+        `<div style="border-bottom:1px solid var(--row-border); margin-bottom:0;">${navHtml}</div>` +
+        paneHtml;
+    }
+
+    function abrirModalJogadorCarreira(id) {
+      const jogador = buscarJogadorCarreira(id);
+      const linha = carreira.rankingGlobal[id];
+      if (!jogador || !linha) return;
+      const voce = souEu(id);
+
+      document.getElementById('career-player-modal-nome').textContent = jogador.name.toUpperCase() + (voce ? ' ⭐' : '');
+      document.getElementById('career-player-modal-root').innerHTML = `
+        <div class="player-summary">
+          <div class="player-avatar-lg">
+            ${jogador.foto ? `<img src="${jogador.foto}" alt="${jogador.name}" onerror="this.style.display='none'" />` : ''}
+            <span class="avatar-initials">${initials(jogador.name)}</span>
+          </div>
+          <div>
+            <div class="player-summary-name">${flagByCountryCode(jogador.pais)} ${jogador.name.toUpperCase()}${voce ? ' ⭐' : ''}</div>
+            <div class="player-summary-meta">${jogador.posicao || '-'}</div>
+          </div>
+        </div>
+        ${blocoProgressaoJogadorCarreira(id)}
+      `;
+
+      const modalListaAberta = document.getElementById('career-list-modal').style.display === 'flex';
+      if (modalListaAberta) closeCareerListModal();
+
+      const m = document.getElementById('career-player-modal');
+      m.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCareerPlayerModal() {
+      const m = document.getElementById('career-player-modal');
+      m.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    // Delegação das ações de progressão (treinar/comprar/equipar/
+    // desequipar) e das abas do modal de jogador — funciona mesmo depois
+    // do innerHTML ser reconstruído a cada ação.
+    document.addEventListener('click', ev => {
+      const abaBtn = ev.target.closest('[data-aba-progressao]');
+      if (abaBtn) {
+        abaProgressaoAtiva = abaBtn.dataset.abaProgressao;
+        const container = abaBtn.closest('#career-player-modal-root');
+        if (container) {
+          container.querySelectorAll('[data-aba-progressao]').forEach(b => b.classList.toggle('active', b === abaBtn));
+          container.querySelectorAll('[data-painel-progressao]').forEach(p => {
+            p.style.display = p.dataset.painelProgressao === abaProgressaoAtiva ? 'block' : 'none';
+          });
+        }
+        return;
+      }
+
+      const acaoBtn = ev.target.closest('[data-acao-progressao]');
+      if (acaoBtn && !acaoBtn.disabled && carreira) {
+        const acao = acaoBtn.dataset.acaoProgressao;
+        const id = Number(acaoBtn.dataset.progressaoJogadorId);
+        if (acao === 'treinar') treinar(id, acaoBtn.dataset.progressaoCampo);
+        else if (acao === 'comprar') comprarItem(id, acaoBtn.dataset.progressaoItem);
+        else if (acao === 'equipar') equiparItem(id, acaoBtn.dataset.progressaoInstancia);
+        else if (acao === 'desequipar') equiparItem(id, null);
+        abrirModalJogadorCarreira(id);
+        return;
+      }
+    });
+
+    // ---------- Ponto de entrada ----------
+    function initCareerMode() {
+      careerPool = buildCareerPool();
+
+      document.getElementById('btn-voltar-modo-carreira').addEventListener('click', mostrarSimuladorModoSelecao);
+      document.getElementById('close-career-list-modal').addEventListener('click', closeCareerListModal);
+      document.getElementById('close-career-player-modal').addEventListener('click', closeCareerPlayerModal);
+      document.getElementById('career-list-modal').addEventListener('click', e => { if (e.target.id === 'career-list-modal') closeCareerListModal(); });
+      document.getElementById('career-player-modal').addEventListener('click', e => { if (e.target.id === 'career-player-modal') closeCareerPlayerModal(); });
+
+      document.getElementById('btn-comecar-carreira').addEventListener('click', () => {
+        const marcados = Array.prototype.slice.call(document.querySelectorAll('.career-check-jogador:checked')).map(cb => Number(cb.value));
+        if (!marcados.length) return;
+        const semGoleiros = document.getElementById('carreira-sem-goleiros').checked;
+        novaCarreira(marcados, semGoleiros);
+        comecarPainelCarreira();
+      });
+      document.getElementById('btn-simular-rodada').addEventListener('click', simularProximaRodada);
+      document.getElementById('btn-novo-torneio').addEventListener('click', iniciarNovoTorneio);
+      document.getElementById('btn-salvar-carreira').addEventListener('click', () => {
+        salvarEstadoCarreira();
+        const botao = document.getElementById('btn-salvar-carreira');
+        const textoOriginal = botao.textContent;
+        botao.textContent = '✅ Salvo!';
+        window.setTimeout(() => { botao.textContent = textoOriginal; }, 1500);
+      });
+      document.getElementById('btn-apagar-carreira').addEventListener('click', () => {
+        if (!carreira) return;
+        if (!window.confirm('Apagar essa carreira salva? Isso não pode ser desfeito.')) return;
+        apagarSaveCarreira(carreira.id);
+        mostrarSimuladorModoSelecao();
+      });
+      document.getElementById('btn-carreira-jogadores').addEventListener('click', openCareerListModal);
+      document.getElementById('btn-voltar-modo-carreira-2').addEventListener('click', mostrarSimuladorModoSelecao);
+
+      mostrarSimuladorModoSelecao();
+    }
+
     function renderJogos(idx) {
       const t = tournaments[idx];
       const root = document.getElementById('jogos-root');
@@ -1237,36 +3194,37 @@
 
       let html = '';
       if (t.horario) {
-        html += `<div class="cls-desc">📅 <strong>${t.horario.dia}</strong> às <strong>${t.horario.hora}</strong> — ${t.horario.local}</div>`;
+        const diaSemana = getDiasSemana()[t.horario.diaSemanaIdx] || '';
+        html += `<div class="cls-desc">📅 <strong>${diaSemana}</strong> às <strong>${t.horario.hora}</strong> — ${t.horario.local}</div>`;
       }
       if (!t.matches.length) {
-        html += `<div class="cls-desc">Nenhuma partida cadastrada ainda para este campeonato.</div>`;
+        html += `<div class="cls-desc">${tr('nenhumaPartida')}</div>`;
       }
       const listaGols = (list) => list.filter(p => p.gols > 0).map(p => `${p.name.toUpperCase()} (${p.gols})`).join(', ') || '—';
       t.matches.forEach(m => {
         html += `
           <div class="match-card">
             <div class="match-header">
-              <span>RODADA ${m.numero}</span>
+              <span>${tr('rodada')} ${m.numero}</span>
               <span>${formatDateBR(m.data)}</span>
-              <span class="match-status ${m.encerrada ? 'done' : 'open'}">${m.encerrada ? 'ENCERRADA' : 'EM ABERTO'}</span>
+              <span class="match-status ${m.encerrada ? 'done' : 'open'}">${m.encerrada ? tr('encerrada') : tr('emAberto')}</span>
             </div>
             <div class="match-score">
-              <span class="team-name">TIME A</span>
+              <span class="team-name">${tr('timeA')}</span>
               <span class="score">${m.placarA} x ${m.placarB}</span>
-              <span class="team-name b">TIME B</span>
+              <span class="team-name b">${tr('timeB')}</span>
             </div>
             <div class="match-scorers">
-              <div><strong>⚽ Time A:</strong> ${listaGols(m.timeA)}</div>
-              <div><strong>⚽ Time B:</strong> ${listaGols(m.timeB)}</div>
+              <div><strong>⚽ ${tr('timeA')}:</strong> ${listaGols(m.timeA)}</div>
+              <div><strong>⚽ ${tr('timeB')}:</strong> ${listaGols(m.timeB)}</div>
             </div>
             <div class="pitches-row">
               <div class="pitch-wrap">
-                <div class="pitch-label">🟦 TIME A</div>
+                <div class="pitch-label">🟦 ${tr('timeA')}</div>
                 ${renderPitch(m.timeA, 'team-a')}
               </div>
               <div class="pitch-wrap">
-                <div class="pitch-label">🟥 TIME B</div>
+                <div class="pitch-label">🟥 ${tr('timeB')}</div>
                 ${renderPitch(m.timeB, 'team-b')}
               </div>
             </div>
@@ -1299,13 +3257,13 @@
         })
         .sort((a, b) => b.pts - a.pts || b.gols - a.gols || a.name.localeCompare(b.name));
 
-      let html = `<table class="data-table jog-table"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>J</th><th>GOLS</th><th>GPJ</th><th>GP</th><th>GC</th><th>SG</th><th>PTS</th><th>🏆</th><th>⚽</th></tr></thead><tbody>`;
+      let html = `<table class="data-table jog-table"><thead><tr><th>${tr('colPos')}</th><th class="cname">${tr('colJogador')}</th><th>${tr('colJ')}</th><th>${tr('colGols')}</th><th>${tr('colGpj')}</th><th>${tr('colGp')}</th><th>${tr('colGc')}</th><th>${tr('colSg')}</th><th>${tr('colPts')}</th><th>🏆</th><th>⚽</th></tr></thead><tbody>`;
       list.forEach((p, i) => {
-        const sgColor = p.sg > 0 ? 'var(--win-color)' : (p.sg < 0 ? 'var(--loss-color)' : '#fff');
+        const sgColor = p.sg > 0 ? 'var(--win-color)' : (p.sg < 0 ? 'var(--loss-color)' : 'var(--text-strong)');
         html += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.jogos}</td><td>${p.gols}</td><td>${p.gpj.toFixed(1)}</td><td>${p.gp != null ? p.gp : '-'}</td><td>${p.gc != null ? p.gc : '-'}</td><td style="color:${sgColor}">${p.sg != null ? (p.sg > 0 ? '+' : '') + p.sg : '-'}</td><td style="color:var(--win-color)">${p.pts}</td><td>${p.titulos}</td><td>${p.artilheiro}</td></tr>`;
       });
       html += `</tbody></table>`;
-      root.innerHTML = html || `<div class="cls-desc">Nenhum jogador encontrado.</div>`;
+      root.innerHTML = html || `<div class="cls-desc">${tr('nenhumJogadorEncontrado')}</div>`;
     }
 
     function populateTournamentSelect() {
@@ -1313,7 +3271,7 @@
       if (!sel) return;
       sel.innerHTML = '';
       tournaments.forEach((t, i) => {
-        const opt = document.createElement('option'); opt.value = i; opt.text = t.name + (t.completed === false ? ' (andamento)' : ''); sel.appendChild(opt);
+        const opt = document.createElement('option'); opt.value = i; opt.text = t.name + (t.completed === false ? ' ' + tr('emAndamento') : ''); sel.appendChild(opt);
       });
       sel.value = currentTournament;
       sel.onchange = () => {
@@ -1423,7 +3381,7 @@
       rows.sort((a,b)=> b.campeao - a.campeao || b.artilheiro - a.artilheiro || a.name.localeCompare(b.name));
 
       // columns order: TROFÉU, GOLS (assistências removidas)
-      let html = `<table class="data-table geral-table"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>🏆</th><th>⚽</th></tr></thead><tbody>`;
+      let html = `<table class="data-table geral-table"><thead><tr><th>${tr('colPos')}</th><th class="cname">${tr('colJogador')}</th><th>🏆</th><th>⚽</th></tr></thead><tbody>`;
       rows.forEach((r,i)=>{
         html += `<tr onclick="openPlayerModal(${r.id})"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(r.pais)} ${r.name.toUpperCase()}</td><td>${r.campeao}</td><td>${r.artilheiro}</td></tr>`;
       });
@@ -1470,22 +3428,22 @@
           <div>
             <div class="player-summary-name">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</div>
             <div class="player-summary-meta">${p.posicao || '-'}${p.numero != null ? ' • #' + p.numero : ''}</div>
-            <div class="player-summary-status" style="color:${p.ativo ? 'var(--win-color)' : 'var(--loss-color)'}">${p.ativo ? 'ATIVO' : 'INATIVO'}</div>
+            <div class="player-summary-status" style="color:${p.ativo ? 'var(--win-color)' : 'var(--loss-color)'}">${p.ativo ? tr('statusAtivo') : tr('statusInativo')}</div>
           </div>
         </div>
         <div class="cls-desc">
-          <div>🏆 Títulos: <strong>${titulos}</strong></div>
-          <div>⚽ Artilheiro: <strong>${artTitulos}</strong></div>
+          <div>${tr('titulosLabel')} <strong>${titulos}</strong></div>
+          <div>${tr('artilheiroLabel')} <strong>${artTitulos}</strong></div>
         </div>
-        <div class="pitch-label">📊 TOTAL GERAL</div>
+        <div class="pitch-label">${tr('totalGeral')}</div>
         <table class="player-table">
           <thead>
             <tr>
-              <th>J</th>
-              <th>GOLS</th>
-              <th>V</th>
-              <th>E</th>
-              <th>D</th>
+              <th>${tr('colJ')}</th>
+              <th>${tr('colGols')}</th>
+              <th>${tr('colV')}</th>
+              <th>${tr('colE')}</th>
+              <th>${tr('colD')}</th>
             </tr>
           </thead>
           <tbody>
@@ -1501,18 +3459,18 @@
       `;
 
       if (p.tournaments.length) {
-        html += `<div class="pitch-label" style="margin-top:10px;">DESEMPENHO POR TORNEIO</div>
+        html += `<div class="pitch-label" style="margin-top:10px;">${tr('desempenhoPorTorneio')}</div>
           <table class="player-table">
             <thead>
               <tr>
-                <th class="cname">TORNEIO</th>
-                <th>POS</th>
-                <th>P</th>
-                <th>J</th>
-                <th>V</th>
-                <th>E</th>
-                <th>D</th>
-                <th>GOLS</th>
+                <th class="cname">${tr('colTorneio')}</th>
+                <th>${tr('colPos')}</th>
+                <th>${tr('colP')}</th>
+                <th>${tr('colJ')}</th>
+                <th>${tr('colV')}</th>
+                <th>${tr('colE')}</th>
+                <th>${tr('colD')}</th>
+                <th>${tr('colGols')}</th>
               </tr>
             </thead>
             <tbody>`;
@@ -1533,17 +3491,17 @@
         });
         html += `</tbody></table>`;
       } else {
-        html += `<div class="cls-desc">Este jogador ainda não disputou nenhuma partida.</div>`;
+        html += `<div class="cls-desc">${tr('nenhumaPartidaJogador')}</div>`;
       }
 
       if (p.matches.length) {
-        html += `<div class="pitch-label" style="margin-top:10px;">HISTÓRICO DE PARTIDAS</div>`;
+        html += `<div class="pitch-label" style="margin-top:10px;">${tr('historicoPartidas')}</div>`;
         p.matches.forEach(m => {
           html += `
             <div class="player-match-row">
               <div class="player-match-info">
                 <span class="t-name">${m.tournamentName}</span>
-                <span>Rodada ${m.numero} • ${formatDateBR(m.data)}</span>
+                <span>${tr('rodadaAbrev')} ${m.numero} • ${formatDateBR(m.data)}</span>
               </div>
               <span class="player-match-score">${m.placarA} x ${m.placarB} (${m.meusGols}⚽)</span>
               <span class="player-match-badge ${m.resultado}">${m.resultado}</span>
@@ -1592,6 +3550,36 @@
 
     initThemeSwitcher();
 
+    // ----- Seletor de idioma (pt-BR / EN / ES, persistido em localStorage) -----
+    function initLangSwitcher() {
+      const sel = document.getElementById('lang-select');
+      if (sel) sel.value = currentLang;
+      applyStaticTranslations();
+      if (sel) {
+        sel.addEventListener('change', () => {
+          currentLang = sel.value;
+          try { localStorage.setItem('wisktv-lang', currentLang); } catch (e) {}
+          applyStaticTranslations();
+          refreshDynamicViews();
+        });
+      }
+    }
+
+    initLangSwitcher();
+
+    // Reaplica os render*() que dependem do idioma (chamados depois de trocar o idioma,
+    // e também no carregamento inicial). Só roda se os dados já tiverem sido carregados.
+    function refreshDynamicViews() {
+      if (!tournaments.length) return;
+      renderTournament(currentTournament);
+      renderSelecao(currentTournament);
+      renderJogos(currentTournament);
+      renderSimulador();
+      const busca = document.getElementById('jogadores-search');
+      renderJogadoresList(busca ? busca.value : '');
+      renderAggregate();
+    }
+
     // init - carrega data.json e abre no último torneio cadastrado por padrão
     async function init() {
       try {
@@ -1608,13 +3596,9 @@
       globalTitles = computeGlobalTitles();
       currentTournament = Math.max(0, tournaments.length - 1);
       populateTournamentSelect();
-      renderTournament(currentTournament);
-      renderSelecao(currentTournament);
-      renderJogos(currentTournament);
-      renderSimulador();
-      renderJogadoresList('');
-      renderAggregate();
+      refreshDynamicViews();
       updateLogoImage();
+      initCareerMode();
     }
 
     init();
