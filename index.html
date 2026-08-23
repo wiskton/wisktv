@@ -1958,19 +1958,19 @@
           <div class="simulator-team-card">
             <div class="simulator-team-header">
               ${tr('timeA')}
-              <span class="simulator-team-header-meta">${simulatorState.teams ? `${getSimulatorTeamTotalNivel(simulatorState.teams.teamA)} pts` : '0 pts'}</span>
+              <span class="simulator-team-header-meta">${simulatorState.teams ? `${getSimulatorTeamTotalNivel(simulatorState.teams.teamA).toFixed(2)} pts` : '0.00 pts'}</span>
             </div>
             <div class="simulator-team-count">${simulatorState.teams ? simulatorState.teams.teamA.length : 0} ${tr('jogadoresLabel')}</div>
-            <div class="simulator-team-meta">${tr('mediaNivelPorJogador')} ${simulatorState.teams ? getSimulatorTeamStrength(simulatorState.teams.teamA).toFixed(1) : '0.0'}</div>
+            <div class="simulator-team-meta">${tr('mediaNivelPorJogador')} ${simulatorState.teams ? getSimulatorTeamStrength(simulatorState.teams.teamA).toFixed(2) : '0.00'}</div>
             ${simulatorState.teams ? buildSimulatorLineup(simulatorState.teams.teamA, 'team-a') : '<div class="simulator-lineup"></div>'}
           </div>
           <div class="simulator-team-card">
             <div class="simulator-team-header">
               ${tr('timeB')}
-              <span class="simulator-team-header-meta">${simulatorState.teams ? `${getSimulatorTeamTotalNivel(simulatorState.teams.teamB)} pts` : '0 pts'}</span>
+              <span class="simulator-team-header-meta">${simulatorState.teams ? `${getSimulatorTeamTotalNivel(simulatorState.teams.teamB).toFixed(2)} pts` : '0.00 pts'}</span>
             </div>
             <div class="simulator-team-count">${simulatorState.teams ? simulatorState.teams.teamB.length : 0} ${tr('jogadoresLabel')}</div>
-            <div class="simulator-team-meta">${tr('mediaNivelPorJogador')} ${simulatorState.teams ? getSimulatorTeamStrength(simulatorState.teams.teamB).toFixed(1) : '0.0'}</div>
+            <div class="simulator-team-meta">${tr('mediaNivelPorJogador')} ${simulatorState.teams ? getSimulatorTeamStrength(simulatorState.teams.teamB).toFixed(2) : '0.00'}</div>
             ${simulatorState.teams ? buildSimulatorLineup(simulatorState.teams.teamB, 'team-b') : '<div class="simulator-lineup"></div>'}
           </div>
         </div>
