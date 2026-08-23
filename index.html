@@ -2644,6 +2644,7 @@
     }
 
     function souEu(id) {
+      if (!carreira || !carreira.meusIds) return false;
       return carreira.meusIds.indexOf(id) !== -1;
     }
 
