@@ -18,48 +18,163 @@
        em vez de cores fixas, pra funcionar em todos os temas — inclusive o
        "Clássico", que é claro (texto escuro em fundo amarelo) enquanto os
        outros são escuros (texto claro), então branco/preto fixo quebra nele. */
-    .habilidade-estrelas { font-size: 1.05rem; line-height: 1; }
-    .habilidade-estrelas .estrela { position: relative; display: inline-block; color: var(--row-border); }
-    .habilidade-estrelas .estrela-preenchida {
-      position: absolute; top: 0; left: 0; overflow: hidden;
-      color: var(--gold-text); white-space: nowrap;
+    .habilidade-estrelas {
+      font-size: 1.05rem;
+      line-height: 1;
     }
+
+    .habilidade-estrelas .estrela {
+      position: relative;
+      display: inline-block;
+      color: var(--row-border);
+    }
+
+    .habilidade-estrelas .estrela-preenchida {
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      color: var(--gold-text);
+      white-space: nowrap;
+    }
+
     .career-card {
-      background: rgba(0,0,0,0.18);
+      background: rgba(0, 0, 0, 0.18);
       border: 1px solid var(--row-border);
       border-radius: 8px;
       padding: 10px 12px;
     }
-    .career-btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-    .career-check-jogador { display: none; }
-    .career-check-jogador + label {
-      display: block; text-align: center; cursor: pointer; user-select: none;
+
+    .career-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .career-check-jogador {
+      display: none;
+    }
+
+    .career-check-jogador+label {
+      display: block;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
       color: var(--text-soft);
-      border: 1px solid var(--row-border); border-radius: 6px;
-      padding: 6px 8px; margin-bottom: 6px; font-size: 13px;
+      border: 1px solid var(--row-border);
+      border-radius: 6px;
+      padding: 6px 8px;
+      margin-bottom: 6px;
+      font-size: 13px;
     }
-    .career-check-jogador:checked + label {
-      background: var(--win-color); color: #06110d; border-color: var(--win-color); font-weight: bold;
+
+    .career-check-jogador:checked+label {
+      background: var(--win-color);
+      color: #06110d;
+      border-color: var(--win-color);
+      font-weight: bold;
     }
+
     .career-tab-btn {
-      border: 1px solid var(--row-border); background: var(--tab-bg); color: var(--text-muted);
-      padding: 6px 12px; cursor: pointer; border-radius: 6px 6px 0 0; font-size: 13px;
+      border: 1px solid var(--row-border);
+      background: var(--tab-bg);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 6px 6px 0 0;
+      font-size: 13px;
     }
-    .career-tab-btn.active { background: var(--tab-active-bg); color: var(--gold-text); border-bottom-color: transparent; font-weight: bold; }
-    .career-progress-outer { height: 6px; background: rgba(0,0,0,0.25); border-radius: 3px; overflow: hidden; }
-    .career-progress-inner { height: 100%; width: 0%; }
-    .career-stat-box { flex: 1 1 90px; background: rgba(0,0,0,0.18); border: 1px solid var(--row-border); border-radius: 6px; padding: 6px; text-align: center; color: var(--text-soft); }
-    .career-stat-box .v { font-weight: bold; font-size: 15px; color: var(--text-strong); }
-    .career-stat-box .l { font-size: 10px; opacity: 0.75; }
-    .career-mini-rank { flex: 1 1 260px; min-width: 240px; }
-    .career-lineup-row { display: flex; align-items: center; gap: 6px; font-size: 13px; margin-bottom: 4px; color: var(--text-soft); }
-    .career-lineup-row .av { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; flex: none; }
+
+    .career-tab-btn.active {
+      background: var(--tab-active-bg);
+      color: var(--gold-text);
+      border-bottom-color: transparent;
+      font-weight: bold;
+    }
+
+    .career-progress-outer {
+      height: 6px;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .career-progress-inner {
+      height: 100%;
+      width: 0%;
+    }
+
+    .career-stat-box {
+      flex: 1 1 90px;
+      background: rgba(0, 0, 0, 0.18);
+      border: 1px solid var(--row-border);
+      border-radius: 6px;
+      padding: 6px;
+      text-align: center;
+      color: var(--text-soft);
+    }
+
+    .career-stat-box .v {
+      font-weight: bold;
+      font-size: 15px;
+      color: var(--text-strong);
+    }
+
+    .career-stat-box .l {
+      font-size: 10px;
+      opacity: 0.75;
+    }
+
+    .career-mini-rank {
+      flex: 1 1 260px;
+      min-width: 240px;
+    }
+
+    .career-lineup-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: var(--text-soft);
+    }
+
+    .career-lineup-row .av {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex: none;
+    }
+
     .career-lineup-row .av-fallback {
-      width: 22px; height: 22px; border-radius: 50%; background: var(--tab-bg); color: var(--gold-text);
-      font-size: 9px; display: inline-flex; align-items: center; justify-content: center; flex: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--tab-bg);
+      color: var(--gold-text);
+      font-size: 9px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: none;
     }
-    .career-badge { display: inline-block; background: rgba(0,0,0,0.18); border: 1px solid var(--row-border); color: var(--text-soft); border-radius: 999px; padding: 2px 8px; font-size: 12px; }
-    .career-save-card { min-width: 210px; }
+
+    .career-badge {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.18);
+      border: 1px solid var(--row-border);
+      color: var(--text-soft);
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px;
+    }
+
+    .career-save-card {
+      min-width: 210px;
+    }
+
     .soccer-pitch-container {
       width: 100%;
       max-width: 600px;
@@ -72,6 +187,7 @@
       position: relative;
       border: 1px solid var(--row-border);
     }
+
     .soccer-pitch-canvas {
       width: 100%;
       height: 100%;
@@ -96,7 +212,8 @@
         <span class="iss-label">INTERNATIONAL</span>
         <span class="iss-label">SUPER STAR SOCCER</span>
         <span class="deluxe-label">DELUXE<span class="tm">™</span></span>
-        <div id="header-controls" style="margin-top:8px; display:flex; gap:8px; align-items:center; justify-content:flex-end;">
+        <div id="header-controls"
+          style="margin-top:8px; display:flex; gap:8px; align-items:center; justify-content:flex-end;">
           <select id="tournament-select" class="select-control"> </select>
           <select id="lang-select" class="select-control">
             <option value="pt">🇧🇷 PT-BR</option>
@@ -128,14 +245,19 @@
     </div>
 
     <div class="content">
-      <div class="table-view active" id="tab-art"><div id="art-root"></div></div>
+      <div class="table-view active" id="tab-art">
+        <div id="art-root"></div>
+      </div>
       <!-- tab-assists removed (assistências removidas) -->
       <div class="table-view" id="tab-cls">
-        <div class="cls-desc" data-i18n-html="clsDescHtml"><strong>Como funciona a pontuação:</strong> A pontuação final é calculada seguindo a fórmula: (3 x Vitórias) + (1 x Empates) + (1 x Jogos).</div>
+        <div class="cls-desc" data-i18n-html="clsDescHtml"><strong>Como funciona a pontuação:</strong> A pontuação final
+          é calculada seguindo a fórmula: (3 x Vitórias) + (1 x Empates) + (1 x Jogos).</div>
         <div id="cls-root"></div>
       </div>
       <div class="table-view" id="tab-selecao">
-        <div class="cls-desc" data-i18n-html="selecaoDescHtml"><strong>Seleção do Campeonato:</strong> os melhores por posição (1 goleiro, 2 zagueiros, 2 meio-campos, 2 atacantes), ordenados por pontuação (nível). Empate é resolvido pela eficiência (gols por jogo no campeonato) e depois pelo saldo de gols do jogador.</div>
+        <div class="cls-desc" data-i18n-html="selecaoDescHtml"><strong>Seleção do Campeonato:</strong> os melhores por
+          posição (1 goleiro, 2 zagueiros, 2 meio-campos, 2 atacantes), ordenados por pontuação (nível). Empate é
+          resolvido pela eficiência (gols por jogo no campeonato) e depois pelo saldo de gols do jogador.</div>
         <div id="selecao-root"></div>
       </div>
       <div class="table-view" id="tab-jogos">
@@ -148,31 +270,43 @@
           <div id="carreira-escolher-jogador">
             <div class="career-card" style="text-align:left; margin-bottom:12px;">
               <h4 style="margin:0 0 6px;" data-i18n="escolhaQuemVaiJogar">👤 Escolha quem vai jogar</h4>
-              <p style="font-size:13px; opacity:0.85; margin:0 0 10px;" data-i18n="escolhaQuemVaiJogarDesc">Marque um ou mais jogadores — dá pra jogar sozinho ou com os amigos na mesma carreira.</p>
+              <p style="font-size:13px; opacity:0.85; margin:0 0 10px;" data-i18n="escolhaQuemVaiJogarDesc">Marque um ou
+                mais jogadores — dá pra jogar sozinho ou com os amigos na mesma carreira.</p>
               <label style="display:flex; align-items:center; gap:6px; margin-bottom:12px; font-size:13px;">
                 <input type="checkbox" id="carreira-sem-goleiros" checked />
-                <span data-i18n="desconsiderarGoleiros">🧤 Desconsiderar goleiros da classificação e artilharia do campeonato</span>
+                <span data-i18n="desconsiderarGoleiros">🧤 Desconsiderar goleiros da classificação e artilharia do
+                  campeonato</span>
               </label>
-              <div id="carreira-lista-jogadores" style="display:flex; flex-wrap:wrap; gap:16px; margin-bottom:12px;"></div>
+              <div id="carreira-lista-jogadores" style="display:flex; flex-wrap:wrap; gap:16px; margin-bottom:12px;">
+              </div>
               <div class="career-btn-row">
-                <button type="button" id="btn-comecar-carreira" class="btn-solid" disabled data-i18n="comecarTorneio">▶️ Começar Torneio</button>
-                <button type="button" id="btn-voltar-modo-carreira" class="btn-link" data-i18n="trocarModo">← Trocar modo</button>
+                <button type="button" id="btn-comecar-carreira" class="btn-solid" disabled data-i18n="comecarTorneio">▶️
+                  Começar Torneio</button>
+                <button type="button" id="btn-voltar-modo-carreira" class="btn-link" data-i18n="trocarModo">← Trocar
+                  modo</button>
               </div>
             </div>
           </div>
 
           <div id="carreira-painel" style="display:none;">
             <div class="career-btn-row" style="align-items: center;">
-              <button type="button" id="btn-simular-rodada" class="btn-solid" data-i18n="simularProximaRodada">▶️ Simular Próxima Rodada</button>
-              <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 4px; user-select: none;">
+              <button type="button" id="btn-simular-rodada" class="btn-solid" data-i18n="simularProximaRodada">▶️
+                Simular Próxima Rodada</button>
+              <label
+                style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 4px; user-select: none;">
                 <input type="checkbox" id="chk-carreira-instantaneo" style="cursor: pointer;" />
                 <span data-i18n="simulacaoInstantanea">Simulação Instantânea</span>
               </label>
-              <button type="button" id="btn-novo-torneio" class="btn-solid" style="display:none;" data-i18n="simularOutroTorneio">🏆 Simular Outro Torneio</button>
-              <button type="button" id="btn-salvar-carreira" class="btn-solid" data-i18n="salvarContinuarDepois">💾 Salvar e Continuar Depois</button>
-              <button type="button" id="btn-apagar-carreira" class="btn-solid" data-i18n="apagarEstaCarreira">🗑️ Apagar Esta Carreira</button>
-              <button type="button" id="btn-carreira-jogadores" class="btn-solid" data-i18n="jogadoresBtn">👥 Jogadores</button>
-              <button type="button" id="btn-voltar-modo-carreira-2" class="btn-link" data-i18n="trocarModo">← Trocar modo</button>
+              <button type="button" id="btn-novo-torneio" class="btn-solid" style="display:none;"
+                data-i18n="simularOutroTorneio">🏆 Simular Outro Torneio</button>
+              <button type="button" id="btn-salvar-carreira" class="btn-solid" data-i18n="salvarContinuarDepois">💾
+                Salvar e Continuar Depois</button>
+              <button type="button" id="btn-apagar-carreira" class="btn-solid" data-i18n="apagarEstaCarreira">🗑️ Apagar
+                Esta Carreira</button>
+              <button type="button" id="btn-carreira-jogadores" class="btn-solid" data-i18n="jogadoresBtn">👥
+                Jogadores</button>
+              <button type="button" id="btn-voltar-modo-carreira-2" class="btn-link" data-i18n="trocarModo">← Trocar
+                modo</button>
             </div>
 
             <div class="career-card" style="text-align:center; margin-bottom:12px;">
@@ -184,16 +318,19 @@
               <h6 style="margin:0 0 8px;" data-i18n="escalacaoDaRodada">📋 Escalação da Rodada</h6>
               <div style="display:flex; gap:16px; flex-wrap:wrap;">
                 <div style="flex:1; min-width:200px;">
-                  <div style="font-weight:600; margin-bottom:4px; font-size:13px;" data-i18n="timeAmarelo">🟡 Time Amarelo</div>
+                  <div style="font-weight:600; margin-bottom:4px; font-size:13px;" data-i18n="timeAmarelo">🟡 Time
+                    Amarelo</div>
                   <div id="carreira-escalacao-a"></div>
                 </div>
                 <div style="flex:1; min-width:200px;">
-                  <div style="font-weight:600; margin-bottom:4px; font-size:13px;" data-i18n="timeAzul">🔵 Time Azul</div>
+                  <div style="font-weight:600; margin-bottom:4px; font-size:13px;" data-i18n="timeAzul">🔵 Time Azul
+                  </div>
                   <div id="carreira-escalacao-b"></div>
                 </div>
               </div>
               <div style="margin-top:8px;">
-                <p style="margin:0 0 6px; font-size:13px;"><span data-i18n="diferencaDeForca">Diferença de força:</span> <strong id="carreira-escalacao-forca">0</strong></p>
+                <p style="margin:0 0 6px; font-size:13px;"><span data-i18n="diferencaDeForca">Diferença de força:</span>
+                  <strong id="carreira-escalacao-forca">0</strong></p>
                 <div id="carreira-escalacao-badges" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
               </div>
             </div>
@@ -201,15 +338,23 @@
             <div id="carreira-atraso" class="career-card" style="display:none; margin-bottom:12px;">
               <h6 style="margin:0 0 8px;" data-i18n="atrasoTitulo">⏰ Atraso</h6>
               <div id="carreira-atraso-texto" style="font-size:13px; margin-bottom:8px;"></div>
-              <div class="career-progress-outer"><div id="carreira-atraso-barra" class="career-progress-inner" style="background:var(--gold-text);"></div></div>
+              <div class="career-progress-outer">
+                <div id="carreira-atraso-barra" class="career-progress-inner" style="background:var(--gold-text);">
+                </div>
+              </div>
             </div>
 
             <div id="carreira-partida-ao-vivo" class="career-card" style="display:none; margin-bottom:12px;">
-              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
-                <div style="font-size:22px; font-weight:bold;">🟡 <span id="carreira-score-a">0</span> x <span id="carreira-score-b">0</span> 🔵</div>
+              <div
+                style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+                <div style="font-size:22px; font-weight:bold;">🟡 <span id="carreira-score-a">0</span> x <span
+                    id="carreira-score-b">0</span> 🔵</div>
                 <div id="carreira-minuto" style="font-size:13px; opacity:0.8;">0 min</div>
               </div>
-              <div class="career-progress-outer" style="margin-bottom:8px;"><div id="carreira-barra" class="career-progress-inner" style="background:var(--win-color, #2ecc71);"></div></div>
+              <div class="career-progress-outer" style="margin-bottom:8px;">
+                <div id="carreira-barra" class="career-progress-inner" style="background:var(--win-color, #2ecc71);">
+                </div>
+              </div>
               <div class="soccer-pitch-container">
                 <canvas id="carreira-canvas" class="soccer-pitch-canvas" width="600" height="350"></canvas>
               </div>
@@ -222,14 +367,32 @@
               <div style="flex:2; min-width:280px;">
                 <h6 style="margin:0 0 6px;" data-i18n="classificacaoTitulo">📊 Classificação</h6>
                 <table class="data-table cls-table" id="carreira-tabela-classificacao">
-                  <thead><tr><th>#</th><th class="cname" data-i18n="colJogador">Jogador</th><th data-i18n="colP">P</th><th data-i18n="colJ">J</th><th data-i18n="colV">V</th><th data-i18n="colE">E</th><th data-i18n="colD">D</th><th data-i18n="colGols">Gols</th></tr></thead>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th class="cname" data-i18n="colJogador">Jogador</th>
+                      <th data-i18n="colP">P</th>
+                      <th data-i18n="colJ">J</th>
+                      <th data-i18n="colV">V</th>
+                      <th data-i18n="colE">E</th>
+                      <th data-i18n="colD">D</th>
+                      <th data-i18n="colGols">Gols</th>
+                    </tr>
+                  </thead>
                   <tbody></tbody>
                 </table>
               </div>
               <div style="flex:1; min-width:220px;">
                 <h6 style="margin:0 0 6px;" data-i18n="artilhariaTitulo">⚽ Artilharia</h6>
                 <table class="data-table art-table" id="carreira-tabela-artilharia">
-                  <thead><tr><th>#</th><th class="cname" data-i18n="colJogador">Jogador</th><th data-i18n="colJ">J</th><th data-i18n="colGols">Gols</th></tr></thead>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th class="cname" data-i18n="colJogador">Jogador</th>
+                      <th data-i18n="colJ">J</th>
+                      <th data-i18n="colGols">Gols</th>
+                    </tr>
+                  </thead>
                   <tbody></tbody>
                 </table>
               </div>
@@ -238,16 +401,36 @@
             <div id="carreira-hall-fama" class="career-card" style="display:none; margin-bottom:12px;">
               <h6 style="margin:0 0 8px;" data-i18n="hallDaFama">🏛️ Hall da Fama da Carreira</h6>
               <table class="data-table">
-                <thead><tr><th>#</th><th>🏆 Campeão</th><th>⚽ Artilheiro</th></tr></thead>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>🏆 Campeão</th>
+                    <th>⚽ Artilheiro</th>
+                  </tr>
+                </thead>
                 <tbody id="carreira-hall-fama-corpo"></tbody>
               </table>
             </div>
 
             <div id="carreira-ranking-global" class="career-card" style="display:none; margin-bottom:12px;">
               <h6 style="margin:0 0 4px;" data-i18n="rankingGlobalCarreira">🌍 Ranking Global da Carreira</h6>
-              <p style="font-size:12px; opacity:0.8; margin:0 0 8px;" data-i18n="rankingGlobalCarreiraDesc">Todo mundo que já jogou nessa carreira, somando todos os torneios já disputados.</p>
+              <p style="font-size:12px; opacity:0.8; margin:0 0 8px;" data-i18n="rankingGlobalCarreiraDesc">Todo mundo
+                que já jogou nessa carreira, somando todos os torneios já disputados.</p>
               <table class="data-table">
-                <thead><tr><th>#</th><th class="cname" data-i18n="colJogador">Jogador</th><th>🏆</th><th>👑</th><th data-i18n="colP">P</th><th data-i18n="colJ">J</th><th data-i18n="colV">V</th><th data-i18n="colE">E</th><th data-i18n="colD">D</th><th data-i18n="colGols">Gols</th></tr></thead>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th class="cname" data-i18n="colJogador">Jogador</th>
+                    <th>🏆</th>
+                    <th>👑</th>
+                    <th data-i18n="colP">P</th>
+                    <th data-i18n="colJ">J</th>
+                    <th data-i18n="colV">V</th>
+                    <th data-i18n="colE">E</th>
+                    <th data-i18n="colD">D</th>
+                    <th data-i18n="colGols">Gols</th>
+                  </tr>
+                </thead>
                 <tbody id="carreira-ranking-global-corpo"></tbody>
               </table>
             </div>
@@ -257,16 +440,20 @@
               <div id="carreira-rankings-extra-corpo" style="display:flex; flex-wrap:wrap; gap:12px;"></div>
             </div>
 
-            <div id="carreira-fim-torneio" class="career-card" style="display:none; text-align:center; margin-bottom:12px;">
+            <div id="carreira-fim-torneio" class="career-card"
+              style="display:none; text-align:center; margin-bottom:12px;">
               <h4 data-i18n="fimDeTorneio">🏆 Fim de Torneio!</h4>
               <div id="carreira-fim-torneio-conteudo"></div>
-              <p style="font-size:12px; opacity:0.75; margin-top:8px;" data-i18n="fimDeTorneioDica">Use o botão "Simular Outro Torneio" lá em cima pra continuar.</p>
+              <p style="font-size:12px; opacity:0.75; margin-top:8px;" data-i18n="fimDeTorneioDica">Use o botão "Simular
+                Outro Torneio" lá em cima pra continuar.</p>
             </div>
           </div>
         </div>
       </div>
       <div class="table-view" id="tab-jogadores">
-        <input id="jogadores-search" type="text" data-i18n-placeholder="buscarJogador" placeholder="🔎 Buscar jogador..." autocomplete="off" class="select-control" style="width:100%; margin-bottom:8px; font-size:16px;" oninput="renderJogadoresList(this.value)" />
+        <input id="jogadores-search" type="text" data-i18n-placeholder="buscarJogador"
+          placeholder="🔎 Buscar jogador..." autocomplete="off" class="select-control"
+          style="width:100%; margin-bottom:8px; font-size:16px;" oninput="renderJogadoresList(this.value)" />
         <div id="jogadores-root"></div>
       </div>
       <!-- tab-geral removido (ranking geral é global e mostrado no cabeçalho) -->
@@ -277,20 +464,23 @@
               <div class="channel-name" data-i18n="canalNillNome">🎥 NILL FERREIRA</div>
               <div class="channel-desc" data-i18n="canalNillDesc">Transmissões ao vivo dos jogos e análises</div>
             </div>
-            <a href="https://www.youtube.com/@NillFerreira" target="_blank" class="youtube-link" data-i18n="inscrever">INSCREVER</a>
+            <a href="https://www.youtube.com/@NillFerreira" target="_blank" class="youtube-link"
+              data-i18n="inscrever">INSCREVER</a>
           </div>
           <div class="channel-card">
             <div class="channel-info">
               <div class="channel-name" data-i18n="canalWiskNome">⚽ WISK FUT</div>
               <div class="channel-desc" data-i18n="canalWiskDesc">Cobertura completa e bastidores da IgorTV CUP</div>
             </div>
-            <a href="https://www.youtube.com/@WiskFut" target="_blank" class="youtube-link" data-i18n="inscrever">INSCREVER</a>
+            <a href="https://www.youtube.com/@WiskFut" target="_blank" class="youtube-link"
+              data-i18n="inscrever">INSCREVER</a>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="footer"><span class="footer-text">⚽ &nbsp; INTERNATIONAL SUPERSTAR SOCCER DELUXE — WiskTV &nbsp; ⚽</span></div>
+    <div class="footer"><span class="footer-text">⚽ &nbsp; INTERNATIONAL SUPERSTAR SOCCER DELUXE — WiskTV &nbsp;
+        ⚽</span></div>
   </div>
 
   <!-- Modal for full winners ranking -->
@@ -415,64 +605,113 @@
 
     let activeVisualMatch = null;
 
+    // Distribui TODOS os jogadores no mapa tático, sem duplicar jogadores.
+    // A formação é baseada na posição real (GOL/ZAG/MEI/ATA) e funciona
+    // também quando o time não tem exatamente 7 jogadores.
     function assignTacticalSlots(team, isTeamB) {
-      if (!team || !Array.isArray(team)) team = [];
-      const gols = team.filter(p => p && p.posicao === 'GOL');
-      const zags = team.filter(p => p && p.posicao === 'ZAG');
-      const meis = team.filter(p => p && p.posicao === 'MEI');
-      const atas = team.filter(p => p && p.posicao === 'ATA');
-      const sorted = [...gols, ...zags, ...meis, ...atas];
-      team.forEach(p => {
-        if (p && !sorted.includes(p)) sorted.push(p);
-      });
-      while (sorted.length < 7) {
-        if (team.length > 0) {
-          sorted.push(team[sorted.length % team.length]);
-        } else {
-          sorted.push({ name: '?', posicao: 'MEI', id: Math.random() });
-        }
-      }
-      const slotsA = [
-        { x: 35, y: 175, role: 'GOL' },
-        { x: 130, y: 100, role: 'ZAG' },
-        { x: 130, y: 250, role: 'ZAG' },
-        { x: 230, y: 110, role: 'MEI' },
-        { x: 230, y: 240, role: 'MEI' },
-        { x: 330, y: 120, role: 'ATA' },
-        { x: 330, y: 230, role: 'ATA' }
-      ];
-      const slotsB = [
-        { x: 565, y: 175, role: 'GOL' },
-        { x: 470, y: 100, role: 'ZAG' },
-        { x: 470, y: 250, role: 'ZAG' },
-        { x: 370, y: 110, role: 'MEI' },
-        { x: 370, y: 240, role: 'MEI' },
-        { x: 270, y: 120, role: 'ATA' },
-        { x: 270, y: 230, role: 'ATA' }
-      ];
-      const slots = isTeamB ? slotsB : slotsA;
-      return sorted.slice(0, 7).map((p, i) => {
-        const isUser = typeof souEu === 'function' && p && p.id && souEu(p.id);
-        const role = slots[i].role;
-        const color = role === 'GOL' ? (isTeamB ? '#e74c3c' : '#27ae60') : (isTeamB ? '#2980b9' : '#f1c40f');
-        const textColor = (role === 'GOL' || isTeamB) ? '#ffffff' : '#000000';
-        return {
+      const elenco = Array.isArray(team)
+        ? team.filter(p => p && typeof p === 'object')
+        : [];
+
+      if (!elenco.length) return [];
+
+      const porPosicao = {
+        GOL: elenco.filter(p => p.posicao === 'GOL'),
+        ZAG: elenco.filter(p => p.posicao === 'ZAG'),
+        MEI: elenco.filter(p => p.posicao === 'MEI'),
+        ATA: elenco.filter(p => p.posicao === 'ATA'),
+        OUT: elenco.filter(p => !['GOL', 'ZAG', 'MEI', 'ATA'].includes(p.posicao))
+      };
+
+      // Jogadores fora de posição entram na linha mais avançada disponível.
+      const grupos = [porPosicao.GOL, porPosicao.ZAG, porPosicao.MEI, porPosicao.ATA, porPosicao.OUT];
+
+      // Coordenadas em um campo 600x350.
+      // O lado A ataca para a direita; o lado B para a esquerda.
+      const xPorLinha = isTeamB
+        ? { GOL: 565, ZAG: 470, MEI: 370, ATA: 270, OUT: 320 }
+        : { GOL: 35, ZAG: 130, MEI: 230, ATA: 330, OUT: 280 };
+
+      const rolePorGrupo = ['GOL', 'ZAG', 'MEI', 'ATA', 'MEI'];
+      const resultado = [];
+
+      const adicionarGrupo = (jogadores, role) => {
+        if (!jogadores.length) return;
+
+        const x = xPorLinha[role] || xPorLinha.OUT;
+        const margemY = role === 'GOL' ? 175 : 55;
+        const alturaUtil = role === 'GOL' ? 0 : 240;
+
+        jogadores.forEach((p, index) => {
+          let y;
+
+          if (role === 'GOL') {
+            // Se houver mais de um goleiro, separa verticalmente.
+            y = jogadores.length === 1
+              ? 175
+              : 100 + (index * (150 / Math.max(1, jogadores.length - 1)));
+          } else {
+            const n = jogadores.length;
+            y = n === 1
+              ? 175
+              : margemY + (index * (alturaUtil / Math.max(1, n - 1)));
+          }
+
+          const isUser = typeof souEu === 'function' && p.id && souEu(p.id);
+          const color = role === 'GOL'
+            ? (isTeamB ? '#e74c3c' : '#27ae60')
+            : (isTeamB ? '#2980b9' : '#f1c40f');
+          const textColor = (role === 'GOL' || isTeamB) ? '#ffffff' : '#000000';
+
+          resultado.push({
+            player: p,
+            baseX: x,
+            baseY: y,
+            x,
+            y,
+            role,
+            color,
+            textColor,
+            initials: p.name ? initials(p.name) : '?',
+            targetX: x,
+            targetY: y,
+            isGk: role === 'GOL',
+            isTeamB,
+            isUser
+          });
+        });
+      };
+
+      grupos.forEach((grupo, index) => adicionarGrupo(grupo, rolePorGrupo[index]));
+
+      // Garante que nenhum jogador ficou de fora, inclusive posições desconhecidas.
+      const idsMapeados = new Set(resultado.map(v => v.player && v.player.id));
+      const restantes = elenco.filter(p => !idsMapeados.has(p.id));
+
+      restantes.forEach((p, index) => {
+        const x = isTeamB ? 320 : 280;
+        const y = 70 + ((index % 5) * 55);
+        const isUser = typeof souEu === 'function' && p.id && souEu(p.id);
+
+        resultado.push({
           player: p,
-          baseX: slots[i].x,
-          baseY: slots[i].y,
-          x: slots[i].x,
-          y: slots[i].y,
-          role: role,
-          color: color,
-          textColor: textColor,
-          initials: p && p.name ? initials(p.name) : '?',
-          targetX: slots[i].x,
-          targetY: slots[i].y,
-          isGk: role === 'GOL',
-          isTeamB: isTeamB,
-          isUser: isUser
-        };
+          baseX: x,
+          baseY: y,
+          x,
+          y,
+          role: 'MEI',
+          color: isTeamB ? '#2980b9' : '#f1c40f',
+          textColor: isTeamB ? '#ffffff' : '#000000',
+          initials: p.name ? initials(p.name) : '?',
+          targetX: x,
+          targetY: y,
+          isGk: false,
+          isTeamB,
+          isUser
+        });
       });
+
+      return resultado;
     }
 
     class VisualSoccerField {
@@ -618,6 +857,13 @@
           if (this.ball.timer > 0.7 + Math.random() * 0.7) {
             const teammates = holder.isTeamB ? this.playersB : this.playersA;
             const potentialReceivers = teammates.filter(p => p !== holder);
+
+            // Time com apenas um jogador: não tenta fazer passe para undefined.
+            if (!potentialReceivers.length) {
+              this.ball.timer = 0;
+              return;
+            }
+
             const receiver = potentialReceivers[Math.floor(Math.random() * potentialReceivers.length)];
             this.ball.holder = null;
             this.ball.state = 'passing';
@@ -832,7 +1078,21 @@
           ctx.font = 'bold 8px monospace';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
-          ctx.fillText(p.initials, p.x, p.y + 0.5);
+
+          // Mostra o número quando cadastrado; caso contrário usa as iniciais.
+          const numero = p.player && p.player.numero != null && p.player.numero !== ''
+            ? String(p.player.numero)
+            : p.initials;
+          ctx.fillText(numero, p.x, p.y + 0.5);
+
+          // Nome curto abaixo do marcador para deixar claro quem está no mapa.
+          if (p.player && p.player.name) {
+            const nomeCurto = String(p.player.name).split(' ').slice(0, 2).join(' ').slice(0, 14);
+            ctx.font = 'bold 7px sans-serif';
+            ctx.fillStyle = p.isTeamB ? '#ffffff' : '#111111';
+            ctx.fillText(nomeCurto, p.x, p.y + 20);
+          }
+
           if (p.isUser) {
             ctx.fillStyle = '#f1c40f';
             ctx.font = '10px sans-serif';
@@ -1475,7 +1735,7 @@
       let artHtml = `<table class="data-table art-table"><thead><tr><th>${tr('colPos')}</th><th class="cname">${tr('colJogador')}</th><th>${tr('colGols')}</th><th>${tr('colJogos')}</th><th>${tr('colGpj')}</th></tr></thead><tbody>`;
       artilharia.forEach((p, i) => {
         const gpj = p.jogos ? p.gols / p.jogos : 0;
-        artHtml += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.gols}</td><td>${p.jogos}</td><td>${gpj.toFixed(1)}</td></tr>`;
+        artHtml += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i + 1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.gols}</td><td>${p.jogos}</td><td>${gpj.toFixed(1)}</td></tr>`;
       });
       artHtml += `</tbody></table>`;
       document.getElementById('art-root').innerHTML = artHtml;
@@ -1484,7 +1744,7 @@
       const classificacao = [...t.players].sort((a, b) => b.pts - a.pts || b.gols - a.gols);
       let clsHtml = `<table class="data-table cls-table"><thead><tr><th>${tr('colPos')}</th><th class="cname">${tr('colJogador')}</th><th>${tr('colP')}</th><th>${tr('colJ')}</th><th>${tr('colV')}</th><th>${tr('colE')}</th><th>${tr('colD')}</th></tr></thead><tbody>`;
       classificacao.forEach((p, i) => {
-        clsHtml += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td style="color:var(--win-color)">${p.pts}</td><td>${p.jogos}</td><td>${p.v}</td><td>${p.e}</td><td>${p.d}</td></tr>`;
+        clsHtml += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i + 1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td style="color:var(--win-color)">${p.pts}</td><td>${p.jogos}</td><td>${p.v}</td><td>${p.e}</td><td>${p.d}</td></tr>`;
       });
       clsHtml += `</tbody></table>`;
       document.getElementById('cls-root').innerHTML = clsHtml;
@@ -1997,12 +2257,12 @@
             <div class="simulator-team-header">${tr('golsEEventos')}</div>
             <div id="simulador-events-rows">
               ${simulatorState.events.slice(-8).reverse().map(ev => {
-                if (!ev.scorer) {
-                  return `<div class="simulator-event"><strong>${ev.minute}'</strong> — ${tr('bolaEmJogo')}</div>`;
-                }
-                const isTeamB = ev.team === 'TIME B';
-                const fotoEvento = isTeamB ? (ev.scorer.fotoSecundaria || ev.scorer.foto) : ev.scorer.foto;
-                return `
+          if (!ev.scorer) {
+            return `<div class="simulator-event"><strong>${ev.minute}'</strong> — ${tr('bolaEmJogo')}</div>`;
+          }
+          const isTeamB = ev.team === 'TIME B';
+          const fotoEvento = isTeamB ? (ev.scorer.fotoSecundaria || ev.scorer.foto) : ev.scorer.foto;
+          return `
                   <div class="simulator-event ${isTeamB ? 'team-b' : 'team-a'}">
                     <strong>${ev.minute}'</strong>
                     <span class="simulator-event-scorer">
@@ -2014,7 +2274,7 @@
                     </span>
                   </div>
                 `;
-              }).join('')}
+        }).join('')}
             </div>
           </div>
         `;
@@ -2411,7 +2671,7 @@
         const chkInstant = event.target.closest('#chk-simulador-instantaneo');
         if (chkInstant) {
           simulatorState.instant = chkInstant.checked;
-          try { localStorage.setItem('wisktv-sim-instant', simulatorState.instant ? 'true' : 'false'); } catch (e) {}
+          try { localStorage.setItem('wisktv-sim-instant', simulatorState.instant ? 'true' : 'false'); } catch (e) { }
           return;
         }
         const checkbox = event.target.closest('[data-player-checkbox]');
@@ -2575,7 +2835,7 @@
     }
 
     function salvarIndiceCarreira(lista) {
-      try { window.localStorage.setItem(CAREER_STORAGE_INDEX, JSON.stringify(lista)); } catch (e) {}
+      try { window.localStorage.setItem(CAREER_STORAGE_INDEX, JSON.stringify(lista)); } catch (e) { }
     }
 
     function carregarSaveCarreira(id) {
@@ -2605,14 +2865,14 @@
           atualizadoEm: Date.now()
         });
         salvarIndiceCarreira(lista);
-      } catch (e) {}
+      } catch (e) { }
     }
 
     function apagarSaveCarreira(id) {
       try {
         window.localStorage.removeItem(CAREER_STORAGE_PREFIX + id);
         salvarIndiceCarreira(listarSavesCarreira().filter(s => s.id !== id));
-      } catch (e) {}
+      } catch (e) { }
     }
 
     function novoIdSaveCarreira() {
@@ -2749,16 +3009,16 @@
     // Espelha os pesos por posição do cadastro real (mesma fórmula de
     // "nível/overall" — média ponderada das 10 habilidades pela posição).
     const PESOS_HABILIDADE_TODAS = {
-      chute:          { GOL: 0, ZAG: 1, MEI: 2, ATA: 3 },
-      toqueDeBola:    { GOL: 1, ZAG: 1, MEI: 3, ATA: 2 },
-      drible:         { GOL: 0, ZAG: 1, MEI: 2, ATA: 3 },
+      chute: { GOL: 0, ZAG: 1, MEI: 2, ATA: 3 },
+      toqueDeBola: { GOL: 1, ZAG: 1, MEI: 3, ATA: 2 },
+      drible: { GOL: 0, ZAG: 1, MEI: 2, ATA: 3 },
       posicionamento: { GOL: 3, ZAG: 3, MEI: 3, ATA: 2 },
-      defesa:         { GOL: 3, ZAG: 3, MEI: 2, ATA: 1 },
-      marcacao:       { GOL: 2, ZAG: 3, MEI: 3, ATA: 1 },
-      velocidade:     { GOL: 1, ZAG: 2, MEI: 2, ATA: 3 },
-      movimentacao:   { GOL: 2, ZAG: 2, MEI: 3, ATA: 2 },
-      visaoDeJogo:    { GOL: 1, ZAG: 2, MEI: 3, ATA: 2 },
-      energia:        { GOL: 1, ZAG: 2, MEI: 3, ATA: 3 }
+      defesa: { GOL: 3, ZAG: 3, MEI: 2, ATA: 1 },
+      marcacao: { GOL: 2, ZAG: 3, MEI: 3, ATA: 1 },
+      velocidade: { GOL: 1, ZAG: 2, MEI: 2, ATA: 3 },
+      movimentacao: { GOL: 2, ZAG: 2, MEI: 3, ATA: 2 },
+      visaoDeJogo: { GOL: 1, ZAG: 2, MEI: 3, ATA: 2 },
+      energia: { GOL: 1, ZAG: 2, MEI: 3, ATA: 3 }
     };
 
     // Um "local de treino" nomeado por habilidade — o ponto de treino
@@ -3377,7 +3637,7 @@
 
       const isInstant = document.getElementById('chk-carreira-instantaneo') && document.getElementById('chk-carreira-instantaneo').checked;
 
-       const continuarSimulacao = () => {
+      const continuarSimulacao = () => {
         animarPartidaCarreira(resultado, duracao, times, () => {
           registrarResultadoNaClassificacao(times.timeA, times.timeB, resultado);
 
@@ -3609,7 +3869,7 @@
       });
     }
 
-     function comecarPainelCarreira() {
+    function comecarPainelCarreira() {
       document.getElementById('carreira-escolher-jogador').style.display = 'none';
       document.getElementById('carreira-painel').style.display = 'block';
       document.getElementById('carreira-resultado-rodada').style.display = 'none';
@@ -3863,10 +4123,10 @@
         if (savedCareerInstant === 'true') {
           document.getElementById('chk-carreira-instantaneo').checked = true;
         }
-      } catch (e) {}
+      } catch (e) { }
 
-      document.getElementById('chk-carreira-instantaneo').addEventListener('change', function() {
-        try { localStorage.setItem('wisktv-career-instant', this.checked ? 'true' : 'false'); } catch (e) {}
+      document.getElementById('chk-carreira-instantaneo').addEventListener('change', function () {
+        try { localStorage.setItem('wisktv-career-instant', this.checked ? 'true' : 'false'); } catch (e) { }
       });
 
       document.getElementById('btn-simular-rodada').addEventListener('click', simularProximaRodada);
@@ -3963,7 +4223,7 @@
       let html = `<table class="data-table jog-table"><thead><tr><th>${tr('colPos')}</th><th class="cname">${tr('colJogador')}</th><th>${tr('colJ')}</th><th>${tr('colGols')}</th><th>${tr('colGpj')}</th><th>${tr('colGp')}</th><th>${tr('colGc')}</th><th>${tr('colSg')}</th><th>${tr('colPts')}</th><th>🏆</th><th>⚽</th></tr></thead><tbody>`;
       list.forEach((p, i) => {
         const sgColor = p.sg > 0 ? 'var(--win-color)' : (p.sg < 0 ? 'var(--loss-color)' : 'var(--text-strong)');
-        html += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.jogos}</td><td>${p.gols}</td><td>${p.gpj.toFixed(1)}</td><td>${p.gp != null ? p.gp : '-'}</td><td>${p.gc != null ? p.gc : '-'}</td><td style="color:${sgColor}">${p.sg != null ? (p.sg > 0 ? '+' : '') + p.sg : '-'}</td><td style="color:var(--win-color)">${p.pts}</td><td>${p.titulos}</td><td>${p.artilheiro}</td></tr>`;
+        html += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i + 1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.jogos}</td><td>${p.gols}</td><td>${p.gpj.toFixed(1)}</td><td>${p.gp != null ? p.gp : '-'}</td><td>${p.gc != null ? p.gc : '-'}</td><td style="color:${sgColor}">${p.sg != null ? (p.sg > 0 ? '+' : '') + p.sg : '-'}</td><td style="color:var(--win-color)">${p.pts}</td><td>${p.titulos}</td><td>${p.artilheiro}</td></tr>`;
       });
       html += `</tbody></table>`;
       root.innerHTML = html || `<div class="cls-desc">${tr('nenhumJogadorEncontrado')}</div>`;
@@ -4011,26 +4271,26 @@
       });
 
       // sort by campeoes desc, artilheiro desc
-      players.sort((a,b) => b.campeoes - a.campeoes || b.artilheiro - a.artilheiro || a.name.localeCompare(b.name));
+      players.sort((a, b) => b.campeoes - a.campeoes || b.artilheiro - a.artilheiro || a.name.localeCompare(b.name));
 
       // build table HTML similar to classificacao/artilharia (columns: POS, JOGADOR, 🏆, ⚽)
       let html = `<table class="data-table geral-table"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>🏆</th><th>⚽</th></tr></thead><tbody>`;
       players.forEach((p, i) => {
-        html += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.campeoes}</td><td>${p.artilheiro}</td></tr>`;
+        html += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i + 1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.campeoes}</td><td>${p.artilheiro}</td></tr>`;
       });
       html += `</tbody></table>`;
       const gr = document.getElementById('geral-root'); if (gr) gr.innerHTML = html;
       // populate compact winners table in header (only campeoes)
       const headerRoot = document.getElementById('geral-header-root');
       if (headerRoot) {
-        const camArr = Object.entries(campeaoCounts).sort((a,b)=>b[1]-a[1]);
+        const camArr = Object.entries(campeaoCounts).sort((a, b) => b[1] - a[1]);
         let headerHtml = `<table class="data-table header-winners-table" style="font-size:13px; margin-bottom:6px;"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>TÍTULOS</th></tr></thead><tbody>`;
-        if (camArr.length===0) {
+        if (camArr.length === 0) {
           headerHtml += `<tr><td colspan="3" style="color:var(--gold-text); text-align:center;">(Nenhum registro)</td></tr>`;
         } else {
-          camArr.forEach(([id,c], i) => {
+          camArr.forEach(([id, c], i) => {
             const p = playersDirectory[String(id)] || {};
-            headerHtml += `<tr onclick="openPlayerModal(${id})" style="cursor:pointer"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${(p.name||'').toUpperCase()}</td><td>${c}</td></tr>`;
+            headerHtml += `<tr onclick="openPlayerModal(${id})" style="cursor:pointer"><td class="cpos" style="color:${getPosColor(i)}">${i + 1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${(p.name || '').toUpperCase()}</td><td>${c}</td></tr>`;
           });
         }
         headerHtml += `</tbody></table>`;
@@ -4049,7 +4309,7 @@
       const contentEl = document.querySelector('.content');
       if (contentEl) contentEl.classList.toggle('wide-tab', tab === 'jogadores');
       // when clicked from header, event.target might be the element; safe guard
-      try { event.target.classList.add('active'); } catch(e){}
+      try { event.target.classList.add('active'); } catch (e) { }
     }
 
     // open geral modal
@@ -4085,12 +4345,12 @@
         return { id, name: p.name || `Jogador ${id}`, pais: p.pais, artilheiro: artilheiroCounts[id] || 0, campeao: campeaoCounts[id] || 0 };
       });
       // sort by campeao desc, gols desc
-      rows.sort((a,b)=> b.campeao - a.campeao || b.artilheiro - a.artilheiro || a.name.localeCompare(b.name));
+      rows.sort((a, b) => b.campeao - a.campeao || b.artilheiro - a.artilheiro || a.name.localeCompare(b.name));
 
       // columns order: TROFÉU, GOLS (assistências removidas)
       let html = `<table class="data-table geral-table"><thead><tr><th>${tr('colPos')}</th><th class="cname">${tr('colJogador')}</th><th>🏆</th><th>⚽</th></tr></thead><tbody>`;
-      rows.forEach((r,i)=>{
-        html += `<tr onclick="openPlayerModal(${r.id})"><td class="cpos" style="color:${getPosColor(i)}">${i+1}º</td><td class="cname">${flagByCountryCode(r.pais)} ${r.name.toUpperCase()}</td><td>${r.campeao}</td><td>${r.artilheiro}</td></tr>`;
+      rows.forEach((r, i) => {
+        html += `<tr onclick="openPlayerModal(${r.id})"><td class="cpos" style="color:${getPosColor(i)}">${i + 1}º</td><td class="cname">${flagByCountryCode(r.pais)} ${r.name.toUpperCase()}</td><td>${r.campeao}</td><td>${r.artilheiro}</td></tr>`;
       });
       html += `</tbody></table>`;
       const root = document.getElementById('geral-modal-root'); if (root) root.innerHTML = html;
@@ -4194,7 +4454,7 @@
             if ((pt.pts || 0) === maxPts) badges += ' 🏆';
             if ((pt.gols || 0) === maxGols) badges += ' ⚽';
           }
-          html += `<tr><td class="cell cname">${pt.name}${badges}${pt.completed === false ? ' 🔸' : ''}</td><td class="cell" style="color:${posClassLabel==='1º' ? 'var(--win-color)' : 'var(--text-strong)'}">${posClassLabel}</td><td class="cell" style="color:var(--win-color)">${pt.pts}</td><td class="cell">${pt.jogos}</td><td class="cell">${pt.v}</td><td class="cell">${pt.e}</td><td class="cell">${pt.d}</td><td class="cell">${pt.gols}</td></tr>`;
+          html += `<tr><td class="cell cname">${pt.name}${badges}${pt.completed === false ? ' 🔸' : ''}</td><td class="cell" style="color:${posClassLabel === '1º' ? 'var(--win-color)' : 'var(--text-strong)'}">${posClassLabel}</td><td class="cell" style="color:var(--win-color)">${pt.pts}</td><td class="cell">${pt.jogos}</td><td class="cell">${pt.v}</td><td class="cell">${pt.e}</td><td class="cell">${pt.d}</td><td class="cell">${pt.gols}</td></tr>`;
         });
         html += `</tbody></table>`;
       } else {
@@ -4244,13 +4504,13 @@
     function initThemeSwitcher() {
       const sel = document.getElementById('theme-select');
       let saved = '';
-      try { saved = localStorage.getItem(THEME_STORAGE_KEY) || ''; } catch (e) {}
+      try { saved = localStorage.getItem(THEME_STORAGE_KEY) || ''; } catch (e) { }
       applyTheme(saved);
       if (sel) {
         sel.value = saved;
         sel.addEventListener('change', () => {
           applyTheme(sel.value);
-          try { localStorage.setItem(THEME_STORAGE_KEY, sel.value); } catch (e) {}
+          try { localStorage.setItem(THEME_STORAGE_KEY, sel.value); } catch (e) { }
         });
       }
     }
@@ -4265,7 +4525,7 @@
       if (sel) {
         sel.addEventListener('change', () => {
           currentLang = sel.value;
-          try { localStorage.setItem('wisktv-lang', currentLang); } catch (e) {}
+          try { localStorage.setItem('wisktv-lang', currentLang); } catch (e) { }
           applyStaticTranslations();
           refreshDynamicViews();
         });
@@ -4311,4 +4571,5 @@
     init();
   </script>
 </body>
+
 </html>
