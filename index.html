@@ -746,6 +746,16 @@
         this.textAlertTimer = 0;
         this.running = true;
         this.lastTime = 0;
+        // Dá a bola de início para o jogador mais ao centro (não goleiro) do time A
+        const startCandidates = this.playersA.filter(p => !p.isGk);
+        if (startCandidates.length) {
+          const starter = startCandidates.reduce((best, p) =>
+            Math.hypot(p.baseX - 300, p.baseY - 175) < Math.hypot(best.baseX - 300, best.baseY - 175) ? p : best
+          );
+          this.ball.holder = starter;
+          this.ball.state = 'dribbling';
+          this.ball.timer = 1.0 + Math.random() * 0.5;
+        }
         this.animationFrameId = requestAnimationFrame((t) => this.loop(t));
       }
       stop() {
@@ -805,89 +815,209 @@
           this.updateKickoff(dt);
         }
       }
+      // Retorna o mínimo de distância entre um ponto e qualquer adversário.
+      _minDefDist(x, y, isTeamB) {
+        const enemies = isTeamB ? this.playersA : this.playersB;
+        let minD = 9999;
+        enemies.forEach(e => { const d = Math.hypot(e.x - x, e.y - y); if (d < minD) minD = d; });
+        return minD;
+      }
+
       updatePlayMode(dt) {
+        const holder = this.ball.state === 'dribbling' ? this.ball.holder : null;
+
         this.allPlayers.forEach(p => {
-          p.timer = (p.timer || 0) + dt;
-          if (p.timer > 1.2 + Math.random()) {
-            p.timer = 0;
-            const angle = Math.random() * Math.PI * 2;
-            const dist = Math.random() * 25;
-            p.targetX = p.baseX + Math.cos(angle) * dist;
-            p.targetY = p.baseY + Math.sin(angle) * dist;
-            if (p.isGk) {
-              p.targetX = p.baseX;
-              p.targetY = p.baseY + (Math.random() - 0.5) * 45;
+          p.moveTimer = (p.moveTimer || 0) + dt;
+
+          // --- GOLEIROS: ficam na linha do gol, ajustam Y conforme bola ---
+          if (p.isGk) {
+            const ballSide = p.isTeamB ? (this.ball.x > 300) : (this.ball.x < 300);
+            p.targetX = p.baseX;
+            // aproxima-se levemente se bola está no seu lado
+            if (ballSide) {
+              const push = p.isTeamB ? -18 : 18;
+              p.targetX = p.baseX + push;
             }
-          }
-          p.x += (p.targetX - p.x) * dt * 2.5;
-          p.y += (p.targetY - p.y) * dt * 2.5;
-        });
-        if (this.ball.state === 'free') {
-          let closest = null;
-          let minDist = 9999;
-          this.allPlayers.forEach(p => {
-            const dist = Math.hypot(p.x - this.ball.x, p.y - this.ball.y);
-            if (dist < minDist) {
-              minDist = dist;
-              closest = p;
-            }
-          });
-          if (closest && minDist < 15) {
-            this.ball.holder = closest;
-            this.ball.state = 'dribbling';
-            this.ball.timer = 0;
-          } else {
-            this.ball.x += (this.ball.targetX - this.ball.x) * dt * 4;
-            this.ball.y += (this.ball.targetY - this.ball.y) * dt * 4;
-            this.ball.x = Math.max(25, Math.min(575, this.ball.x));
-            this.ball.y = Math.max(25, Math.min(325, this.ball.y));
-          }
-        } else if (this.ball.state === 'dribbling') {
-          const holder = this.ball.holder;
-          if (!holder) {
-            this.ball.state = 'free';
+            p.targetY = 175 + (this.ball.y - 175) * 0.45;
+            p.targetY = Math.max(120, Math.min(230, p.targetY));
+            p.x += (p.targetX - p.x) * dt * 4;
+            p.y += (p.targetY - p.y) * dt * 4;
             return;
           }
-          this.ball.x = holder.x;
-          this.ball.y = holder.y;
-          const direction = holder.isTeamB ? -1 : 1;
-          holder.targetX = holder.x + direction * 15;
-          holder.targetY = holder.y + (Math.random() - 0.5) * 15;
-          this.ball.timer += dt;
-          if (this.ball.timer > 0.7 + Math.random() * 0.7) {
-            const teammates = holder.isTeamB ? this.playersB : this.playersA;
-            const potentialReceivers = teammates.filter(p => p !== holder);
 
-            // Time com apenas um jogador: não tenta fazer passe para undefined.
-            if (!potentialReceivers.length) {
-              this.ball.timer = 0;
-              return;
+          // --- PORTADOR DA BOLA: avança em direção ao gol adversário ---
+          if (p === holder) {
+            const goalX = p.isTeamB ? 35 : 565;
+            const goalY = 175;
+            const dx = goalX - p.x;
+            const dy = goalY - p.y;
+            const dist = Math.hypot(dx, dy) || 1;
+            // desloca levemente para escapar de defensores próximos
+            const enemies = p.isTeamB ? this.playersA : this.playersB;
+            let evadeX = 0, evadeY = 0;
+            enemies.forEach(e => {
+              const ed = Math.hypot(e.x - p.x, e.y - p.y);
+              if (ed < 45) {
+                evadeX -= (e.x - p.x) / (ed + 1) * (45 - ed) * 0.4;
+                evadeY -= (e.y - p.y) / (ed + 1) * (45 - ed) * 0.4;
+              }
+            });
+            p.targetX = p.x + (dx / dist) * 20 + evadeX;
+            p.targetY = p.y + (dy / dist) * 20 + evadeY;
+            p.targetX = Math.max(20, Math.min(580, p.targetX));
+            p.targetY = Math.max(20, Math.min(330, p.targetY));
+            p.x += (p.targetX - p.x) * dt * 5.5;
+            p.y += (p.targetY - p.y) * dt * 5.5;
+            return;
+          }
+
+          // --- DEFENSORES: perseguem o portador ---
+          if (holder && p.isTeamB !== holder.isTeamB) {
+            // Cada defensor recebe uma "fatia" do campo para marcar
+            const enemies = holder.isTeamB ? this.playersA : this.playersB;
+            const myIndex = enemies.indexOf(p);
+            const interceptOffset = (myIndex % 3 === 0) ? 0 :
+                                    (myIndex % 3 === 1) ? -22 : 22;
+            // Vai para um ponto entre a bola e o próprio gol (corta o caminho)
+            const myGoalX = p.isTeamB ? 565 : 35;
+            const cutRatio = (p.role === 'ZAG' || p.role === 'GOL') ? 0.25 : 0.5;
+            p.targetX = holder.x + (myGoalX - holder.x) * cutRatio;
+            p.targetY = holder.y + interceptOffset;
+            p.targetX = Math.max(20, Math.min(580, p.targetX));
+            p.targetY = Math.max(20, Math.min(330, p.targetY));
+            p.x += (p.targetX - p.x) * dt * 4.5;
+            p.y += (p.targetY - p.y) * dt * 4.5;
+            return;
+          }
+
+          // --- COMPANHEIROS SEM BOLA: desmarcam buscando espaços ---
+          if (p.moveTimer > (p._moveCooldown || 0.8)) {
+            p.moveTimer = 0;
+            p._moveCooldown = 0.6 + Math.random() * 0.7;
+
+            const dir = p.isTeamB ? -1 : 1;
+            // Ataque: abre espaços laterais à frente
+            if (p.role === 'ATA') {
+              const offsetY = (Math.random() - 0.5) * 120;
+              p.targetX = p.baseX + dir * (10 + Math.random() * 35);
+              p.targetY = 175 + offsetY;
             }
+            // Meia: suporte e triangulação
+            else if (p.role === 'MEI') {
+              p.targetX = p.baseX + dir * (Math.random() * 30);
+              p.targetY = p.baseY + (Math.random() - 0.5) * 60;
+            }
+            // Zagueiro: mantém posição com pequena flutuação
+            else {
+              p.targetX = p.baseX + (Math.random() - 0.5) * 18;
+              p.targetY = p.baseY + (Math.random() - 0.5) * 40;
+            }
+            // Empurra pra longe de companheiros próximos (evita aglomeração)
+            const teammates = p.isTeamB ? this.playersB : this.playersA;
+            teammates.forEach(t => {
+              if (t === p || t.isGk) return;
+              const td = Math.hypot(t.x - p.targetX, t.y - p.targetY);
+              if (td < 35) {
+                p.targetX += (p.targetX - t.x) * 0.5;
+                p.targetY += (p.targetY - t.y) * 0.5;
+              }
+            });
+            p.targetX = Math.max(20, Math.min(580, p.targetX));
+            p.targetY = Math.max(20, Math.min(330, p.targetY));
+          }
+          p.x += (p.targetX - p.x) * dt * 3.0;
+          p.y += (p.targetY - p.y) * dt * 3.0;
+        });
 
-            const receiver = potentialReceivers[Math.floor(Math.random() * potentialReceivers.length)];
+        // ---- FÍSICA DA BOLA ----
+        if (this.ball.state === 'free') {
+          // Busca o jogador mais próximo para pegar a bola
+          let closest = null, minDist = 9999;
+          this.allPlayers.forEach(p => {
+            const d = Math.hypot(p.x - this.ball.x, p.y - this.ball.y);
+            if (d < minDist) { minDist = d; closest = p; }
+          });
+          if (closest && minDist < 18) {
+            this.ball.holder = closest;
+            this.ball.state = 'dribbling';
+            this.ball.timer = 1.0 + Math.random() * 0.5; // começa sem passar imediatamente
+          } else {
+            this.ball.x += (this.ball.targetX - this.ball.x) * dt * 5;
+            this.ball.y += (this.ball.targetY - this.ball.y) * dt * 5;
+            this.ball.x = Math.max(20, Math.min(580, this.ball.x));
+            this.ball.y = Math.max(20, Math.min(330, this.ball.y));
+          }
+
+        } else if (this.ball.state === 'dribbling') {
+          const h = this.ball.holder;
+          if (!h) { this.ball.state = 'free'; return; }
+
+          // Bola cola no portador com leve offset para parecer que está no pé
+          const ballOffX = (h.isTeamB ? -7 : 7);
+          this.ball.x += (h.x + ballOffX - this.ball.x) * dt * 18;
+          this.ball.y += (h.y + 5 - this.ball.y) * dt * 18;
+
+          this.ball.timer -= dt;
+
+          // Interceptação: defensor muito perto rouba a bola
+          const enemies = h.isTeamB ? this.playersA : this.playersB;
+          let interceptor = null;
+          enemies.forEach(e => {
+            if (e.isGk) return;
+            if (Math.hypot(e.x - h.x, e.y - h.y) < 14) interceptor = e;
+          });
+          if (interceptor) {
+            // Bola vai para o defensor que interceptou
+            this.ball.holder = interceptor;
+            this.ball.timer = 0.8 + Math.random() * 0.5;
+            this.setAlert((interceptor.player && interceptor.player.name
+              ? interceptor.player.name.toUpperCase() : 'DEFESA') + ' INTERCEPTOU!');
+            return;
+          }
+
+          if (this.ball.timer <= 0) {
+            const teammates = h.isTeamB ? this.playersB : this.playersA;
+            const potentialReceivers = teammates.filter(p => p !== h && !p.isGk);
+            if (!potentialReceivers.length) { this.ball.timer = 0.8; return; }
+
+            // Escolhe o receptor com melhor combinação de: avançado + aberto (longe de defensores)
+            const dir = h.isTeamB ? -1 : 1;
+            const scored = potentialReceivers.map(p => {
+              const advance = dir * (p.x - h.x);    // quanto mais avançado, melhor
+              const space = this._minDefDist(p.x, p.y, p.isTeamB); // espaço do receptor
+              const dist = Math.hypot(p.x - h.x, p.y - h.y);
+              const distPenalty = dist > 200 ? -20 : 0;              // passe muito longo
+              return { p, score: advance * 0.4 + space * 0.6 + distPenalty + Math.random() * 15 };
+            });
+            scored.sort((a, b) => b.score - a.score);
+            const receiver = scored[0].p;
+
             this.ball.holder = null;
             this.ball.state = 'passing';
-            this.ball.targetX = receiver.x;
-            this.ball.targetY = receiver.y;
+            this.ball.targetX = receiver.x + (receiver.targetX - receiver.x) * 0.25; // leva posição futura
+            this.ball.targetY = receiver.y + (receiver.targetY - receiver.y) * 0.25;
             this.ball.receiver = receiver;
             this.ball.timer = 0;
           }
+
         } else if (this.ball.state === 'passing') {
           const r = this.ball.receiver;
-          if (!r) {
-            this.ball.state = 'free';
-            return;
-          }
+          if (!r) { this.ball.state = 'free'; return; }
+
           const dx = r.x - this.ball.x;
           const dy = r.y - this.ball.y;
           const dist = Math.hypot(dx, dy);
-          if (dist < 10) {
+
+          if (dist < 12) {
             this.ball.holder = r;
             this.ball.state = 'dribbling';
-            this.ball.timer = 0;
+            // Timer do novo portador: atacantes mantêm bola menos, zagueiros mais
+            this.ball.timer = r.role === 'ATA' ? 0.5 + Math.random() * 0.4
+                            : r.role === 'MEI' ? 0.8 + Math.random() * 0.5
+                            : 1.0 + Math.random() * 0.6;
           } else {
-            this.ball.x += (dx / dist) * dt * 250;
-            this.ball.y += (dy / dist) * dt * 250;
+            this.ball.x += (dx / dist) * dt * 300;
+            this.ball.y += (dy / dist) * dt * 300;
           }
         }
       }
@@ -1010,6 +1140,20 @@
           this.ball.x = 300;
           this.ball.y = 175;
           this.activeSequence = null;
+          // Entrega a bola ao jogador do meio mais próximo do centro para recomeçar com posse
+          const centerCandidates = this.allPlayers.filter(p => !p.isGk);
+          let kickReceiver = null, kickDist = 9999;
+          centerCandidates.forEach(p => {
+            const d = Math.hypot(p.x - 300, p.y - 175);
+            if (d < kickDist) { kickDist = d; kickReceiver = p; }
+          });
+          if (kickReceiver) {
+            this.ball.holder = kickReceiver;
+            this.ball.state = 'dribbling';
+            this.ball.timer = 1.2 + Math.random() * 0.5;
+          } else {
+            this.ball.state = 'free';
+          }
         }
       }
       createExplosion(x, y, color) {
@@ -1057,7 +1201,30 @@
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
         ctx.lineWidth = 1;
         ctx.strokeRect(5, 135, 10, 80);
+        const ballHolder = this.ball.state === 'dribbling' ? this.ball.holder : null;
+        const now = Date.now();
+
         this.allPlayers.forEach(p => {
+          // --- Anel pulsante no portador da bola ---
+          if (p === ballHolder) {
+            const pulse = 13 + Math.sin(now / 120) * 3;
+            const alpha = 0.55 + Math.sin(now / 120) * 0.25;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, pulse, 0, Math.PI * 2);
+            ctx.strokeStyle = p.isTeamB ? `rgba(52,152,219,${alpha})` : `rgba(241,196,15,${alpha})`;
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            // Seta indicando direção de ataque
+            const arrowDir = p.isTeamB ? -1 : 1;
+            ctx.beginPath();
+            ctx.moveTo(p.x + arrowDir * 16, p.y);
+            ctx.lineTo(p.x + arrowDir * 22, p.y - 4);
+            ctx.lineTo(p.x + arrowDir * 22, p.y + 4);
+            ctx.closePath();
+            ctx.fillStyle = p.isTeamB ? '#3498db' : '#f1c40f';
+            ctx.fill();
+          }
+
           if (p.isUser) {
             ctx.shadowColor = '#f39c12';
             ctx.shadowBlur = 12;
@@ -1070,8 +1237,8 @@
           ctx.beginPath();
           ctx.arc(p.x, p.y, 11, 0, Math.PI * 2);
           ctx.fillStyle = p.color;
-          ctx.strokeStyle = '#1a252f';
-          ctx.lineWidth = 1.5;
+          ctx.strokeStyle = p === ballHolder ? '#ffffff' : '#1a252f';
+          ctx.lineWidth = p === ballHolder ? 2.5 : 1.5;
           ctx.fill();
           ctx.stroke();
           ctx.fillStyle = p.textColor;
@@ -1088,7 +1255,7 @@
           // Nome curto abaixo do marcador para deixar claro quem está no mapa.
           if (p.player && p.player.name) {
             const nomeCurto = String(p.player.name).split(' ').slice(0, 2).join(' ').slice(0, 14);
-            ctx.font = 'bold 7px sans-serif';
+            ctx.font = p === ballHolder ? 'bold 7.5px sans-serif' : 'bold 7px sans-serif';
             ctx.fillStyle = p.isTeamB ? '#ffffff' : '#111111';
             ctx.fillText(nomeCurto, p.x, p.y + 20);
           }
