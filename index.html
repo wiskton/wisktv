@@ -882,12 +882,25 @@
             }
           }
         }
-        // Garante que nenhum jogador saiu do campo após a separação
+        // Garante que nenhum jogador saiu do campo e permanece no próprio lado
+        const holder = this.ball.state === 'dribbling' ? this.ball.holder : null;
         this.allPlayers.forEach(p => {
           p.x       = Math.max(20, Math.min(580, p.x));
           p.y       = Math.max(20, Math.min(330, p.y));
           p.targetX = Math.max(20, Math.min(580, p.targetX));
           p.targetY = Math.max(20, Math.min(330, p.targetY));
+          // Portador pode avançar ao campo adversário — demais ficam no próprio lado
+          if (p !== holder) {
+            if (!p.isTeamB) {
+              // Time A: fica entre x=20 e x=300 (seu campo)
+              p.x       = Math.min(300, p.x);
+              p.targetX = Math.min(300, p.targetX);
+            } else {
+              // Time B: fica entre x=300 e x=580 (seu campo)
+              p.x       = Math.max(300, p.x);
+              p.targetX = Math.max(300, p.targetX);
+            }
+          }
         });
       }
 
