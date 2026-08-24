@@ -724,6 +724,18 @@
         this.playersA = assignTacticalSlots(teamA, false);
         this.playersB = assignTacticalSlots(teamB, true);
         this.allPlayers = [...this.playersA, ...this.playersB];
+
+        // Pré-carrega fotos dos jogadores para renderização no canvas
+        this.allPlayers.forEach(p => {
+          const fotoUrl = p.isTeamB
+            ? (p.player && (p.player.fotoSecundaria || p.player.foto))
+            : (p.player && p.player.foto);
+          if (fotoUrl) {
+            const img = new Image();
+            img.src = fotoUrl;
+            p._img = img;
+          }
+        });
         this.ball = {
           x: 300,
           y: 175,
@@ -945,6 +957,33 @@
           p.x += (p.targetX - p.x) * dt * speed;
           p.y += (p.targetY - p.y) * dt * speed;
         });
+
+        // ---- SEPARAÇÃO FORÇADA: garante espaçamento mínimo entre todos os jogadores ----
+        const MIN_DIST = 26; // distância mínima entre centros (pixels)
+        for (let i = 0; i < this.allPlayers.length; i++) {
+          for (let j = i + 1; j < this.allPlayers.length; j++) {
+            const a = this.allPlayers[i];
+            const b = this.allPlayers[j];
+            if (a === holder || b === holder) continue; // portador não é empurrado
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const dist = Math.hypot(dx, dy) || 0.1;
+            if (dist < MIN_DIST) {
+              const push = (MIN_DIST - dist) / 2;
+              const nx = dx / dist;
+              const ny = dy / dist;
+              a.x -= nx * push;
+              a.y -= ny * push;
+              b.x += nx * push;
+              b.y += ny * push;
+              // Atualiza target também para não reverter imediatamente
+              a.targetX -= nx * push * 0.5;
+              a.targetY -= ny * push * 0.5;
+              b.targetX += nx * push * 0.5;
+              b.targetY += ny * push * 0.5;
+            }
+          }
+        }
 
         // ---- FÍSICA DA BOLA ----
         if (this.ball.state === 'free') {
@@ -1300,23 +1339,41 @@
             ctx.fill();
             ctx.shadowBlur = 0;
           }
+
+          const R = 11; // raio do círculo do jogador
           ctx.beginPath();
-          ctx.arc(p.x, p.y, 11, 0, Math.PI * 2);
+          ctx.arc(p.x, p.y, R, 0, Math.PI * 2);
           ctx.fillStyle = p.color;
           ctx.strokeStyle = p === ballHolder ? '#ffffff' : '#1a252f';
           ctx.lineWidth = p === ballHolder ? 2.5 : 1.5;
           ctx.fill();
           ctx.stroke();
-          ctx.fillStyle = p.textColor;
-          ctx.font = 'bold 8px monospace';
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
 
-          // Mostra o número quando cadastrado; caso contrário usa as iniciais.
-          const numero = p.player && p.player.numero != null && p.player.numero !== ''
-            ? String(p.player.numero)
-            : p.initials;
-          ctx.fillText(numero, p.x, p.y + 0.5);
+          // Foto do jogador dentro do círculo
+          if (p._img && p._img.complete && p._img.naturalWidth > 0) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, R - 1, 0, Math.PI * 2);
+            ctx.clip();
+            ctx.drawImage(p._img, p.x - (R - 1), p.y - (R - 1), (R - 1) * 2, (R - 1) * 2);
+            ctx.restore();
+            // Borda colorida sobre a foto: amarelo time A, azul time B
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, R, 0, Math.PI * 2);
+            ctx.strokeStyle = p === ballHolder ? '#ffffff' : (p.isTeamB ? '#2980b9' : '#f1c40f');
+            ctx.lineWidth = p === ballHolder ? 2.5 : 2;
+            ctx.stroke();
+          } else {
+            // Sem foto: mostra número ou iniciais
+            ctx.fillStyle = p.textColor;
+            ctx.font = 'bold 8px monospace';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            const numero = p.player && p.player.numero != null && p.player.numero !== ''
+              ? String(p.player.numero)
+              : p.initials;
+            ctx.fillText(numero, p.x, p.y + 0.5);
+          }
 
           // Nome curto abaixo do marcador para deixar claro quem está no mapa.
           if (p.player && p.player.name) {
