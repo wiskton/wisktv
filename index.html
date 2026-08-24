@@ -947,9 +947,17 @@
             });
 
             if (p === closestDef) {
-              // Pressiona direto o portador
-              p.targetX = holder.x;
-              p.targetY = holder.y;
+              // Pressiona direto o portador mas só até 200px da base
+              const tdx = holder.x - p.baseX;
+              const tdy = holder.y - p.baseY;
+              const tdist = Math.hypot(tdx, tdy);
+              if (tdist > 200) {
+                p.targetX = p.baseX + (tdx / tdist) * 200;
+                p.targetY = p.baseY + (tdy / tdist) * 200;
+              } else {
+                p.targetX = holder.x;
+                p.targetY = holder.y;
+              }
               p.x += (p.targetX - p.x) * dt * 5.0;
               p.y += (p.targetY - p.y) * dt * 5.0;
               return;
@@ -957,10 +965,6 @@
           }
 
           // ── POSIÇÃO DINÂMICA por papel + pressão ─────────────────────────────
-          // Cada jogador tem uma zona que avança/recua suavemente com a bola.
-          // avanceX: quanto o jogador se afasta do baseX em direção ao ataque
-          // A bola puxa todos para frente (ataque) ou para trás (defesa).
-
           if (p.moveTimer > (p._moveCooldown || 0.5)) {
             p.moveTimer = 0;
             p._moveCooldown = 0.35 + Math.random() * 0.5;
@@ -968,18 +972,15 @@
             let pushX, pushY;
 
             if (p.role === 'ATA') {
-              // Atacante: avança muito quando pressão alta, recua levemente para marcar na pressão baixa
-              const advance = pressao * 80 - 10;   // -10 (defesa) a +70 (ataque total)
+              const advance = pressao * 80 - 10;
               pushX = dir * advance;
               pushY = (ballY - p.baseY) * 0.5 + (Math.random() - 0.5) * 70;
             } else if (p.role === 'MEI') {
-              // Meia: acompanha a bola de forma equilibrada
-              const advance = pressao * 50 - 10;   // -10 a +40
+              const advance = pressao * 50 - 10;
               pushX = dir * advance;
               pushY = (ballY - p.baseY) * 0.4 + (Math.random() - 0.5) * 50;
             } else {
-              // Zagueiro: sobe até o meio campo no ataque, recua bem no defesa
-              const advance = pressao * 60 - 20;   // -20 (defesa) a +40 (meio campo)
+              const advance = pressao * 60 - 20;
               pushX = dir * advance;
               pushY = (ballY - p.baseY) * 0.25 + (Math.random() - 0.5) * 35;
             }
@@ -997,10 +998,18 @@
                 p.targetY += (p.targetY - t.targetY) * 0.7;
               }
             });
-
-            p.targetX = Math.max(20, Math.min(580, p.targetX));
-            p.targetY = Math.max(20, Math.min(330, p.targetY));
           }
+
+          // Clamp: target nunca fica a mais de 200px do baseX/baseY
+          const dxBase = p.targetX - p.baseX;
+          const dyBase = p.targetY - p.baseY;
+          const distBase = Math.hypot(dxBase, dyBase);
+          if (distBase > 200) {
+            p.targetX = p.baseX + (dxBase / distBase) * 200;
+            p.targetY = p.baseY + (dyBase / distBase) * 200;
+          }
+          p.targetX = Math.max(20, Math.min(580, p.targetX));
+          p.targetY = Math.max(20, Math.min(330, p.targetY));
 
           const speed = holder && p.isTeamB !== holder.isTeamB ? 3.5 : 3.0;
           p.x += (p.targetX - p.x) * dt * speed;
@@ -1115,16 +1124,19 @@
           p._seqMoveTimer = (p._seqMoveTimer || 0) + dt;
           if (p._seqMoveTimer > 0.4 + Math.random() * 0.3) {
             p._seqMoveTimer = 0;
-            // Time do scorer: correm em direção ao scorer para celebrar
             if (p.isTeamB === scorer.isTeamB) {
               p.targetX = scorer.x + (Math.random() - 0.5) * 60;
               p.targetY = scorer.y + (Math.random() - 0.5) * 60;
             } else {
-              // Time adversário: recua em direção ao próprio gol
               const myGoalX = p.isTeamB ? 565 : 35;
               p.targetX = p.x + (myGoalX - p.x) * 0.3 + (Math.random() - 0.5) * 30;
               p.targetY = p.y + (175 - p.y) * 0.2 + (Math.random() - 0.5) * 30;
             }
+            // Clamp a 200px da base
+            const ddx = p.targetX - p.baseX;
+            const ddy = p.targetY - p.baseY;
+            const dd = Math.hypot(ddx, ddy);
+            if (dd > 200) { p.targetX = p.baseX + (ddx/dd)*200; p.targetY = p.baseY + (ddy/dd)*200; }
             p.targetX = Math.max(20, Math.min(580, p.targetX));
             p.targetY = Math.max(20, Math.min(330, p.targetY));
           }
@@ -1205,14 +1217,17 @@
           if (p._seqMoveTimer > 0.3 + Math.random() * 0.3) {
             p._seqMoveTimer = 0;
             if (p.isTeamB === scorer.isTeamB) {
-              // Corre em direção ao scorer com variação
               p.targetX = scorer.x + (Math.random() - 0.5) * 50;
               p.targetY = scorer.y + (Math.random() - 0.5) * 50;
             } else {
-              // Adversário: anda devagar de volta à posição base
               p.targetX = p.baseX + (Math.random() - 0.5) * 20;
               p.targetY = p.baseY + (Math.random() - 0.5) * 20;
             }
+            // Clamp a 200px da base
+            const ddx = p.targetX - p.baseX;
+            const ddy = p.targetY - p.baseY;
+            const dd = Math.hypot(ddx, ddy);
+            if (dd > 200) { p.targetX = p.baseX + (ddx/dd)*200; p.targetY = p.baseY + (ddy/dd)*200; }
             p.targetX = Math.max(20, Math.min(580, p.targetX));
             p.targetY = Math.max(20, Math.min(330, p.targetY));
           }
