@@ -943,9 +943,9 @@
             teammates.forEach(t => {
               if (t === p || t.isGk) return;
               const td = Math.hypot(t.targetX - p.targetX, t.targetY - p.targetY);
-              if (td < 32) {
-                p.targetX += (p.targetX - t.targetX) * 0.4;
-                p.targetY += (p.targetY - t.targetY) * 0.4;
+              if (td < 50) {
+                p.targetX += (p.targetX - t.targetX) * 0.7;
+                p.targetY += (p.targetY - t.targetY) * 0.7;
               }
             });
 
@@ -958,29 +958,51 @@
           p.y += (p.targetY - p.y) * dt * speed;
         });
 
-        // ---- SEPARAÇÃO FORÇADA: garante espaçamento mínimo entre todos os jogadores ----
-        const MIN_DIST = 32; // distância mínima entre centros (pixels)
-        for (let i = 0; i < this.allPlayers.length; i++) {
-          for (let j = i + 1; j < this.allPlayers.length; j++) {
-            const a = this.allPlayers[i];
-            const b = this.allPlayers[j];
-            if (a === holder || b === holder) continue; // portador não é empurrado
-            const dx = b.x - a.x;
-            const dy = b.y - a.y;
-            const dist = Math.hypot(dx, dy) || 0.1;
-            if (dist < MIN_DIST) {
-              const push = (MIN_DIST - dist) / 2;
-              const nx = dx / dist;
-              const ny = dy / dist;
-              a.x -= nx * push;
-              a.y -= ny * push;
-              b.x += nx * push;
-              b.y += ny * push;
-              // Atualiza target também para não reverter imediatamente
-              a.targetX -= nx * push * 0.5;
-              a.targetY -= ny * push * 0.5;
-              b.targetX += nx * push * 0.5;
-              b.targetY += ny * push * 0.5;
+        // ---- SEPARAÇÃO FORÇADA: garante espaçamento mínimo entre jogadores ----
+        // Same-team: 50px (≈ 2 raios + espaço de um jogador entre eles)
+        // Adversários: 28px (só evita sobreposição visual)
+        const MIN_SAME = 50;
+        const MIN_OPP  = 28;
+        // Rodar 3 iterações para resolver casos onde vários estão aglomerados
+        for (let iter = 0; iter < 3; iter++) {
+          for (let i = 0; i < this.allPlayers.length; i++) {
+            for (let j = i + 1; j < this.allPlayers.length; j++) {
+              const a = this.allPlayers[i];
+              const b = this.allPlayers[j];
+              const sameTeam = a.isTeamB === b.isTeamB;
+              const minD = sameTeam ? MIN_SAME : MIN_OPP;
+              const dx = b.x - a.x;
+              const dy = b.y - a.y;
+              const dist = Math.hypot(dx, dy) || 0.1;
+              if (dist < minD) {
+                const push = (minD - dist) / 2;
+                const nx = dx / dist;
+                const ny = dy / dist;
+                // Portador da bola não é empurrado, mas empurra o outro
+                if (a === holder) {
+                  b.x += nx * push * 2;
+                  b.y += ny * push * 2;
+                  b.targetX += nx * push;
+                  b.targetY += ny * push;
+                } else if (b === holder) {
+                  a.x -= nx * push * 2;
+                  a.y -= ny * push * 2;
+                  a.targetX -= nx * push;
+                  a.targetY -= ny * push;
+                } else {
+                  a.x -= nx * push;
+                  a.y -= ny * push;
+                  b.x += nx * push;
+                  b.y += ny * push;
+                  // Propaga para o target para evitar retorno imediato
+                  if (sameTeam) {
+                    a.targetX -= nx * push * 0.8;
+                    a.targetY -= ny * push * 0.8;
+                    b.targetX += nx * push * 0.8;
+                    b.targetY += ny * push * 0.8;
+                  }
+                }
+              }
             }
           }
         }
