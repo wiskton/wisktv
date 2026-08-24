@@ -840,8 +840,8 @@
       // Separa jogadores que ficaram próximos demais — chamado após qualquer estado.
       _enforceSpacing() {
         const holder = this.ball.state === 'dribbling' ? this.ball.holder : null;
-        const MIN_SAME = 100; // mesmo time: espaço de ~1 jogador entre eles
-        const MIN_OPP  = 28; // adversários: só evita sobreposição visual
+        const MIN_SAME = 100;
+        const MIN_OPP  = 28;
         for (let iter = 0; iter < 3; iter++) {
           for (let i = 0; i < this.allPlayers.length; i++) {
             for (let j = i + 1; j < this.allPlayers.length; j++) {
@@ -882,6 +882,13 @@
             }
           }
         }
+        // Garante que nenhum jogador saiu do campo após a separação
+        this.allPlayers.forEach(p => {
+          p.x       = Math.max(20, Math.min(580, p.x));
+          p.y       = Math.max(20, Math.min(330, p.y));
+          p.targetX = Math.max(20, Math.min(580, p.targetX));
+          p.targetY = Math.max(20, Math.min(330, p.targetY));
+        });
       }
 
       updatePlayMode(dt) {
