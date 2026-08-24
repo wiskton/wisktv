@@ -871,48 +871,108 @@
             return;
           }
 
-          // --- DEFENSORES: perseguem o portador ---
+          // --- DEFENSORES: só o mais próximo pressiona, os demais bloqueiam espaço ---
           if (holder && p.isTeamB !== holder.isTeamB) {
-            // Cada defensor recebe uma "fatia" do campo para marcar
-            const enemies = holder.isTeamB ? this.playersA : this.playersB;
-            const myIndex = enemies.indexOf(p);
-            const interceptOffset = (myIndex % 3 === 0) ? 0 :
-                                    (myIndex % 3 === 1) ? -22 : 22;
-            // Vai para um ponto entre a bola e o próprio gol (corta o caminho)
+            const defenders = (holder.isTeamB ? this.playersA : this.playersB).filter(d => !d.isGk);
+            // Descobre quem é o defensor mais próximo do portador
+            let closestDef = null, closestDefDist = 9999;
+            defenders.forEach(d => {
+              const dd = Math.hypot(d.x - holder.x, d.y - holder.y);
+              if (dd < closestDefDist) { closestDefDist = dd; closestDef = d; }
+            });
+
             const myGoalX = p.isTeamB ? 565 : 35;
-            const cutRatio = (p.role === 'ZAG' || p.role === 'GOL') ? 0.25 : 0.5;
-            p.targetX = holder.x + (myGoalX - holder.x) * cutRatio;
-            p.targetY = holder.y + interceptOffset;
-            p.targetX = Math.max(20, Math.min(580, p.targetX));
-            p.targetY = Math.max(20, Math.min(330, p.targetY));
-            p.x += (p.targetX - p.x) * dt * 4.5;
-            p.y += (p.targetY - p.y) * dt * 4.5;
+            const myIndex = defenders.indexOf(p);
+            const spreadOffset = (myIndex % 3 === 0) ? 0 : (myIndex % 3 === 1) ? -35 : 35;
+
+            if (p === closestDef) {
+              // Mais próximo: vai direto no portador para pressionar
+              p.targetX = holder.x;
+              p.targetY = holder.y;
+              p.x += (p.targetX - p.x) * dt * 5.0;
+              p.y += (p.targetY - p.y) * dt * 5.0;
+            } else {
+              // Demais: recuam para posição intermediária entre o portador e o próprio gol
+              const backRatio = (p.role === 'ZAG') ? 0.2 : 0.45;
+              p.targetX = holder.x + (myGoalX - holder.x) * backRatio;
+              p.targetY = holder.y + spreadOffset;
+              p.targetX = Math.max(20, Math.min(580, p.targetX));
+              p.targetY = Math.max(20, Math.min(330, p.targetY));
+              p.x += (p.targetX - p.x) * dt * 3.5;
+              p.y += (p.targetY - p.y) * dt * 3.5;
+            }
             return;
           }
 
-          // --- COMPANHEIROS SEM BOLA: desmarcam buscando espaços ---
+          // --- COMPANHEIROS SEM BOLA: acompanham o avanço do portador ---
+          if (holder && p.isTeamB === holder.isTeamB) {
+            const dir = p.isTeamB ? -1 : 1;
+            // Atacantes: abrem espaço na frente junto com o portador
+            if (p.role === 'ATA') {
+              if (p.moveTimer > (p._moveCooldown || 0.5)) {
+                p.moveTimer = 0;
+                p._moveCooldown = 0.4 + Math.random() * 0.4;
+                // Acompanha X do portador com offset lateral
+                const teammates = p.isTeamB ? this.playersB : this.playersA;
+                const ataIndex = teammates.filter(t => t.role === 'ATA').indexOf(p);
+                const lateralOffset = (ataIndex % 2 === 0) ? -55 : 55;
+                p.targetX = holder.x + dir * (20 + Math.random() * 20);
+                p.targetY = holder.y + lateralOffset + (Math.random() - 0.5) * 30;
+                p.targetX = Math.max(20, Math.min(580, p.targetX));
+                p.targetY = Math.max(20, Math.min(330, p.targetY));
+              }
+              p.x += (p.targetX - p.x) * dt * 4.0;
+              p.y += (p.targetY - p.y) * dt * 4.0;
+              return;
+            }
+            // Meias: suporte próximo ao portador, um pouco atrás
+            if (p.role === 'MEI') {
+              if (p.moveTimer > (p._moveCooldown || 0.7)) {
+                p.moveTimer = 0;
+                p._moveCooldown = 0.5 + Math.random() * 0.5;
+                const teammates = p.isTeamB ? this.playersB : this.playersA;
+                const meiIndex = teammates.filter(t => t.role === 'MEI').indexOf(p);
+                const lateralOffset = (meiIndex % 2 === 0) ? -40 : 40;
+                p.targetX = holder.x - dir * (25 + Math.random() * 20);
+                p.targetY = holder.y + lateralOffset + (Math.random() - 0.5) * 25;
+                p.targetX = Math.max(20, Math.min(580, p.targetX));
+                p.targetY = Math.max(20, Math.min(330, p.targetY));
+              }
+              p.x += (p.targetX - p.x) * dt * 3.5;
+              p.y += (p.targetY - p.y) * dt * 3.5;
+              return;
+            }
+            // Zagueiros: ficam na posição base, não sobem
+            if (p.moveTimer > (p._moveCooldown || 1.2)) {
+              p.moveTimer = 0;
+              p._moveCooldown = 0.8 + Math.random() * 0.6;
+              p.targetX = p.baseX + (Math.random() - 0.5) * 18;
+              p.targetY = p.baseY + (Math.random() - 0.5) * 40;
+              p.targetX = Math.max(20, Math.min(580, p.targetX));
+              p.targetY = Math.max(20, Math.min(330, p.targetY));
+            }
+            p.x += (p.targetX - p.x) * dt * 3.0;
+            p.y += (p.targetY - p.y) * dt * 3.0;
+            return;
+          }
+
+          // --- SEM PORTADOR: movimentação livre por posição ---
           if (p.moveTimer > (p._moveCooldown || 0.8)) {
             p.moveTimer = 0;
             p._moveCooldown = 0.6 + Math.random() * 0.7;
 
             const dir = p.isTeamB ? -1 : 1;
-            // Ataque: abre espaços laterais à frente
             if (p.role === 'ATA') {
-              const offsetY = (Math.random() - 0.5) * 120;
               p.targetX = p.baseX + dir * (10 + Math.random() * 35);
-              p.targetY = 175 + offsetY;
-            }
-            // Meia: suporte e triangulação
-            else if (p.role === 'MEI') {
+              p.targetY = 175 + (Math.random() - 0.5) * 120;
+            } else if (p.role === 'MEI') {
               p.targetX = p.baseX + dir * (Math.random() * 30);
               p.targetY = p.baseY + (Math.random() - 0.5) * 60;
-            }
-            // Zagueiro: mantém posição com pequena flutuação
-            else {
+            } else {
               p.targetX = p.baseX + (Math.random() - 0.5) * 18;
               p.targetY = p.baseY + (Math.random() - 0.5) * 40;
             }
-            // Empurra pra longe de companheiros próximos (evita aglomeração)
+            // Evita aglomeração com companheiros
             const teammates = p.isTeamB ? this.playersB : this.playersA;
             teammates.forEach(t => {
               if (t === p || t.isGk) return;
