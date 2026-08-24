@@ -826,6 +826,8 @@
         } else if (this.gameState === 'kickoff') {
           this.updateKickoff(dt);
         }
+        // Garante espaçamento mínimo em TODOS os estados do jogo
+        this._enforceSpacing();
       }
       // Retorna o mínimo de distância entre um ponto e qualquer adversário.
       _minDefDist(x, y, isTeamB) {
@@ -833,6 +835,53 @@
         let minD = 9999;
         enemies.forEach(e => { const d = Math.hypot(e.x - x, e.y - y); if (d < minD) minD = d; });
         return minD;
+      }
+
+      // Separa jogadores que ficaram próximos demais — chamado após qualquer estado.
+      _enforceSpacing() {
+        const holder = this.ball.state === 'dribbling' ? this.ball.holder : null;
+        const MIN_SAME = 50; // mesmo time: espaço de ~1 jogador entre eles
+        const MIN_OPP  = 28; // adversários: só evita sobreposição visual
+        for (let iter = 0; iter < 3; iter++) {
+          for (let i = 0; i < this.allPlayers.length; i++) {
+            for (let j = i + 1; j < this.allPlayers.length; j++) {
+              const a = this.allPlayers[i];
+              const b = this.allPlayers[j];
+              const sameTeam = a.isTeamB === b.isTeamB;
+              const minD = sameTeam ? MIN_SAME : MIN_OPP;
+              const dx = b.x - a.x;
+              const dy = b.y - a.y;
+              const dist = Math.hypot(dx, dy) || 0.1;
+              if (dist < minD) {
+                const push = (minD - dist) / 2;
+                const nx = dx / dist;
+                const ny = dy / dist;
+                if (a === holder) {
+                  b.x += nx * push * 2;
+                  b.y += ny * push * 2;
+                  b.targetX += nx * push;
+                  b.targetY += ny * push;
+                } else if (b === holder) {
+                  a.x -= nx * push * 2;
+                  a.y -= ny * push * 2;
+                  a.targetX -= nx * push;
+                  a.targetY -= ny * push;
+                } else {
+                  a.x -= nx * push;
+                  a.y -= ny * push;
+                  b.x += nx * push;
+                  b.y += ny * push;
+                  if (sameTeam) {
+                    a.targetX -= nx * push * 0.8;
+                    a.targetY -= ny * push * 0.8;
+                    b.targetX += nx * push * 0.8;
+                    b.targetY += ny * push * 0.8;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
 
       updatePlayMode(dt) {
@@ -957,55 +1006,6 @@
           p.x += (p.targetX - p.x) * dt * speed;
           p.y += (p.targetY - p.y) * dt * speed;
         });
-
-        // ---- SEPARAÇÃO FORÇADA: garante espaçamento mínimo entre jogadores ----
-        // Same-team: 50px (≈ 2 raios + espaço de um jogador entre eles)
-        // Adversários: 28px (só evita sobreposição visual)
-        const MIN_SAME = 50;
-        const MIN_OPP  = 28;
-        // Rodar 3 iterações para resolver casos onde vários estão aglomerados
-        for (let iter = 0; iter < 3; iter++) {
-          for (let i = 0; i < this.allPlayers.length; i++) {
-            for (let j = i + 1; j < this.allPlayers.length; j++) {
-              const a = this.allPlayers[i];
-              const b = this.allPlayers[j];
-              const sameTeam = a.isTeamB === b.isTeamB;
-              const minD = sameTeam ? MIN_SAME : MIN_OPP;
-              const dx = b.x - a.x;
-              const dy = b.y - a.y;
-              const dist = Math.hypot(dx, dy) || 0.1;
-              if (dist < minD) {
-                const push = (minD - dist) / 2;
-                const nx = dx / dist;
-                const ny = dy / dist;
-                // Portador da bola não é empurrado, mas empurra o outro
-                if (a === holder) {
-                  b.x += nx * push * 2;
-                  b.y += ny * push * 2;
-                  b.targetX += nx * push;
-                  b.targetY += ny * push;
-                } else if (b === holder) {
-                  a.x -= nx * push * 2;
-                  a.y -= ny * push * 2;
-                  a.targetX -= nx * push;
-                  a.targetY -= ny * push;
-                } else {
-                  a.x -= nx * push;
-                  a.y -= ny * push;
-                  b.x += nx * push;
-                  b.y += ny * push;
-                  // Propaga para o target para evitar retorno imediato
-                  if (sameTeam) {
-                    a.targetX -= nx * push * 0.8;
-                    a.targetY -= ny * push * 0.8;
-                    b.targetX += nx * push * 0.8;
-                    b.targetY += ny * push * 0.8;
-                  }
-                }
-              }
-            }
-          }
-        }
 
         // ---- FÍSICA DA BOLA ----
         if (this.ball.state === 'free') {
