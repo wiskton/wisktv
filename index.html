@@ -929,8 +929,8 @@
               pushX = dir * advance;
               pushY = (ballY - p.baseY) * 0.4 + (Math.random() - 0.5) * 50;
             } else {
-              // Zagueiro: recua quando defende, sobe pouco quando ataca
-              const advance = pressao * 25 - 15;   // -15 a +10
+              // Zagueiro: sobe até o meio campo no ataque, recua bem no defesa
+              const advance = pressao * 60 - 20;   // -20 (defesa) a +40 (meio campo)
               pushX = dir * advance;
               pushY = (ballY - p.baseY) * 0.25 + (Math.random() - 0.5) * 35;
             }
@@ -959,7 +959,7 @@
         });
 
         // ---- SEPARAÇÃO FORÇADA: garante espaçamento mínimo entre todos os jogadores ----
-        const MIN_DIST = 26; // distância mínima entre centros (pixels)
+        const MIN_DIST = 32; // distância mínima entre centros (pixels)
         for (let i = 0; i < this.allPlayers.length; i++) {
           for (let j = i + 1; j < this.allPlayers.length; j++) {
             const a = this.allPlayers[i];
@@ -1312,7 +1312,7 @@
         this.allPlayers.forEach(p => {
           // --- Anel pulsante no portador da bola ---
           if (p === ballHolder) {
-            const pulse = 13 + Math.sin(now / 120) * 3;
+            const pulse = 17 + Math.sin(now / 120) * 3;
             const alpha = 0.55 + Math.sin(now / 120) * 0.25;
             ctx.beginPath();
             ctx.arc(p.x, p.y, pulse, 0, Math.PI * 2);
@@ -1322,9 +1322,9 @@
             // Seta indicando direção de ataque
             const arrowDir = p.isTeamB ? -1 : 1;
             ctx.beginPath();
-            ctx.moveTo(p.x + arrowDir * 16, p.y);
-            ctx.lineTo(p.x + arrowDir * 22, p.y - 4);
-            ctx.lineTo(p.x + arrowDir * 22, p.y + 4);
+            ctx.moveTo(p.x + arrowDir * 20, p.y);
+            ctx.lineTo(p.x + arrowDir * 26, p.y - 5);
+            ctx.lineTo(p.x + arrowDir * 26, p.y + 5);
             ctx.closePath();
             ctx.fillStyle = p.isTeamB ? '#3498db' : '#f1c40f';
             ctx.fill();
@@ -1334,13 +1334,13 @@
             ctx.shadowColor = '#f39c12';
             ctx.shadowBlur = 12;
             ctx.beginPath();
-            ctx.arc(p.x, p.y, 15, 0, Math.PI * 2);
+            ctx.arc(p.x, p.y, 18, 0, Math.PI * 2);
             ctx.fillStyle = 'rgba(241, 196, 15, 0.35)';
             ctx.fill();
             ctx.shadowBlur = 0;
           }
 
-          const R = 11; // raio do círculo do jogador
+          const R = 14; // raio do círculo do jogador
           ctx.beginPath();
           ctx.arc(p.x, p.y, R, 0, Math.PI * 2);
           ctx.fillStyle = p.color;
@@ -1375,12 +1375,14 @@
             ctx.fillText(numero, p.x, p.y + 0.5);
           }
 
-          // Nome curto abaixo do marcador para deixar claro quem está no mapa.
+          // Nome curto abaixo do marcador
           if (p.player && p.player.name) {
             const nomeCurto = String(p.player.name).split(' ').slice(0, 2).join(' ').slice(0, 14);
             ctx.font = p === ballHolder ? 'bold 7.5px sans-serif' : 'bold 7px sans-serif';
             ctx.fillStyle = p.isTeamB ? '#ffffff' : '#111111';
-            ctx.fillText(nomeCurto, p.x, p.y + 20);
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(nomeCurto, p.x, p.y + 24);
           }
 
           if (p.isUser) {
@@ -2545,11 +2547,8 @@
         html += `
           <div class="simulator-events" id="simulador-events-list">
             <div class="simulator-team-header">${tr('golsEEventos')}</div>
-            <div id="simulador-events-rows">
-              ${simulatorState.events.slice(-8).reverse().map(ev => {
-          if (!ev.scorer) {
-            return `<div class="simulator-event"><strong>${ev.minute}'</strong> — ${tr('bolaEmJogo')}</div>`;
-          }
+            <div id="simulador-events-rows" style="max-height:220px; overflow-y:auto;">
+              ${simulatorState.events.filter(ev => ev.scorer).reverse().map(ev => {
           const isTeamB = ev.team === 'TIME B';
           const fotoEvento = isTeamB ? (ev.scorer.fotoSecundaria || ev.scorer.foto) : ev.scorer.foto;
           return `
