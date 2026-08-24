@@ -2906,6 +2906,11 @@
             renderSimulador();
           } else {
             renderSimulador();
+            // Desce automaticamente até o placar ao iniciar a simulação
+            setTimeout(() => {
+              const el = document.getElementById('simulador-score-val') || document.getElementById('simulador-root');
+              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
             if (activeVisualMatch) {
               activeVisualMatch.stop();
               activeVisualMatch = null;
