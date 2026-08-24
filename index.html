@@ -883,7 +883,6 @@
           }
         }
         // Garante que nenhum jogador saiu do campo e permanece no próprio lado
-        const holder = this.ball.state === 'dribbling' ? this.ball.holder : null;
         this.allPlayers.forEach(p => {
           p.x       = Math.max(20, Math.min(580, p.x));
           p.y       = Math.max(20, Math.min(330, p.y));
