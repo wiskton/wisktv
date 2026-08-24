@@ -1115,6 +1115,8 @@
           this.ball.targetY = 175;
           this.ball.holder = null;
           this.ball.state = 'free';
+          // Time que tomou o gol sai com a bola no kickoff
+          this.kickoffTeam = seq.teamSide === 'TIME B' ? 'A' : 'B';
           this.allPlayers.forEach(p => {
             p.targetX = p.baseX;
             p.targetY = p.baseY;
@@ -1140,10 +1142,11 @@
           this.ball.x = 300;
           this.ball.y = 175;
           this.activeSequence = null;
-          // Entrega a bola ao jogador do meio mais próximo do centro para recomeçar com posse
-          const centerCandidates = this.allPlayers.filter(p => !p.isGk);
+          // Entrega a bola ao time que tomou o gol (kickoffTeam = 'A' ou 'B')
+          const kickTeamPlayers = this.kickoffTeam === 'B' ? this.playersB : this.playersA;
+          const kickCandidates = kickTeamPlayers.filter(p => !p.isGk);
           let kickReceiver = null, kickDist = 9999;
-          centerCandidates.forEach(p => {
+          kickCandidates.forEach(p => {
             const d = Math.hypot(p.x - 300, p.y - 175);
             if (d < kickDist) { kickDist = d; kickReceiver = p; }
           });
