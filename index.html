@@ -1165,19 +1165,6 @@
           p.targetX = Math.max(30, Math.min(570, p.targetX));
           p.targetY = Math.max(30, Math.min(320, p.targetY));
 
-          // Restrição de campo por lado para jogadores de linha que não estão com a bola
-          if (p !== holder) {
-            if (!p.isTeamB) {
-              // Time A: fica entre x=20 e x=300 (seu campo)
-              p.x       = Math.min(300, p.x);
-              p.targetX = Math.min(300, p.targetX);
-            } else {
-              // Time B: fica entre x=300 e x=580 (seu campo)
-              p.x       = Math.max(300, p.x);
-              p.targetX = Math.max(300, p.targetX);
-            }
-          }
-
           // Impedir estritamente que jogadores de linha entrem nas grandes áreas dos goleiros (evita bugs)
           if (p.x <= 95 && p.y >= 105 && p.y <= 245) {
             p.x = 96;
