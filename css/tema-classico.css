@@ -244,25 +244,18 @@
   color: #ffffff !important;
 }
 
-[data-theme="classico"] .sec-tab {
-  background: #005a2b;
-  color: #ffffff;
-  border-color: #005a2b;
+[data-theme="classico"] .sections .sec-tab,
+[data-theme="classico"] .sections .sec-tab * {
+  background: #005a2b !important;
+  color: #ffffff !important;
+  border-color: #005a2b !important;
 }
 
-[data-theme="classico"] .select-control,
-[data-theme="classico"] #jogadores-search {
-  color: #ffffff;
-}
-
-[data-theme="classico"] .select-control::placeholder,
-[data-theme="classico"] #jogadores-search::placeholder {
-  color: rgba(255,255,255,0.75);
-}
-
-[data-theme="classico"] .sec-tab.active {
-  background: #00723a;
-  color: #ffdc00;
+[data-theme="classico"] .sections .sec-tab.active,
+[data-theme="classico"] .sections .sec-tab.active * {
+  background: #00723a !important;
+  color: #ffdc00 !important;
+  border-color: #ffdc00 !important;
 }
 
 [data-theme="classico"] .channel-name {

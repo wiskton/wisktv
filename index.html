@@ -827,25 +827,44 @@
     // A formação é baseada na posição real (GOL/ZAG/MEI/ATA) e funciona
     // também quando o time não tem exatamente 7 jogadores.
     function assignTacticalSlots(team, isTeamB) {
+      const ehGoleiro = (p) => {
+        if (!p) return false;
+        if (p.isGk === true) return true;
+        const pos = String(p.posicao || p.position || p.pos || '').trim().toUpperCase();
+        return pos === 'GOL' || pos === 'GOLEIRO' || pos === 'GK' || pos === 'GL';
+      };
+
       const elenco = Array.isArray(team)
         ? team.filter(p => p && typeof p === 'object')
         : [];
 
       if (!elenco.length) return [];
 
-      // Garante que haja pelo menos um goleiro no time para defender a baliza correta
-      let goleiros = elenco.filter(p => p.posicao === 'GOL');
-      let outros = elenco.filter(p => p.posicao !== 'GOL');
+      let goleiros = elenco.filter(ehGoleiro);
+      let outros = elenco.filter(p => !ehGoleiro(p));
+
       if (!goleiros.length && outros.length > 0) {
         goleiros = [outros.shift()];
       }
 
       const porPosicao = {
         GOL: goleiros,
-        ZAG: outros.filter(p => p.posicao === 'ZAG'),
-        MEI: outros.filter(p => p.posicao === 'MEI'),
-        ATA: outros.filter(p => p.posicao === 'ATA'),
-        OUT: outros.filter(p => !['ZAG', 'MEI', 'ATA'].includes(p.posicao))
+        ZAG: outros.filter(p => {
+          const pos = String(p.posicao || '').trim().toUpperCase();
+          return pos === 'ZAG' || pos === 'DEF' || pos === 'CB';
+        }),
+        MEI: outros.filter(p => {
+          const pos = String(p.posicao || '').trim().toUpperCase();
+          return pos === 'MEI' || pos === 'MID' || pos === 'MC';
+        }),
+        ATA: outros.filter(p => {
+          const pos = String(p.posicao || '').trim().toUpperCase();
+          return pos === 'ATA' || pos === 'FW' || pos === 'ST';
+        }),
+        OUT: outros.filter(p => {
+          const pos = String(p.posicao || '').trim().toUpperCase();
+          return !['ZAG', 'DEF', 'CB', 'MEI', 'MID', 'MC', 'ATA', 'FW', 'ST'].includes(pos);
+        })
       };
 
       // Jogadores fora de posição entram na linha mais avançada disponível.
@@ -871,10 +890,7 @@
           let y;
 
           if (role === 'GOL') {
-            // Se houver mais de um goleiro, separa verticalmente.
-            y = jogadores.length === 1
-              ? 175
-              : 100 + (index * (150 / Math.max(1, jogadores.length - 1)));
+            y = 175;
           } else {
             const n = jogadores.length;
             y = n === 1
@@ -883,24 +899,25 @@
           }
 
           const isUser = typeof souEu === 'function' && p.id && souEu(p.id);
-          const color = role === 'GOL'
+          const isGk = (role === 'GOL' || ehGoleiro(p));
+          const color = isGk
             ? (isTeamB ? '#e74c3c' : '#27ae60')
             : (isTeamB ? '#2980b9' : '#f1c40f');
-          const textColor = (role === 'GOL' || isTeamB) ? '#ffffff' : '#000000';
+          const textColor = (isGk || isTeamB) ? '#ffffff' : '#000000';
 
           resultado.push({
             player: p,
-            baseX: x,
-            baseY: y,
-            x,
-            y,
-            role,
+            baseX: isGk ? (isTeamB ? 565 : 35) : x,
+            baseY: isGk ? 175 : y,
+            x: isGk ? (isTeamB ? 565 : 35) : x,
+            y: isGk ? 175 : y,
+            role: isGk ? 'GOL' : role,
             color,
             textColor,
             initials: p.name ? initials(p.name) : '?',
-            targetX: x,
-            targetY: y,
-            isGk: role === 'GOL',
+            targetX: isGk ? (isTeamB ? 565 : 35) : x,
+            targetY: isGk ? 175 : y,
+            isGk,
             isTeamB,
             isUser
           });
@@ -914,8 +931,9 @@
       const restantes = elenco.filter(p => !idsMapeados.has(p.id));
 
       restantes.forEach((p, index) => {
-        const x = isTeamB ? 320 : 280;
-        const y = 70 + ((index % 5) * 55);
+        const isGk = ehGoleiro(p);
+        const x = isGk ? (isTeamB ? 565 : 35) : (isTeamB ? 320 : 280);
+        const y = isGk ? 175 : (70 + ((index % 5) * 55));
         const isUser = typeof souEu === 'function' && p.id && souEu(p.id);
 
         resultado.push({
@@ -924,13 +942,13 @@
           baseY: y,
           x,
           y,
-          role: 'MEI',
-          color: isTeamB ? '#2980b9' : '#f1c40f',
-          textColor: isTeamB ? '#ffffff' : '#000000',
+          role: isGk ? 'GOL' : 'MEI',
+          color: isGk ? (isTeamB ? '#e74c3c' : '#27ae60') : (isTeamB ? '#2980b9' : '#f1c40f'),
+          textColor: (isGk || isTeamB) ? '#ffffff' : '#000000',
           initials: p.name ? initials(p.name) : '?',
           targetX: x,
           targetY: y,
-          isGk: false,
+          isGk,
           isTeamB,
           isUser
         });
