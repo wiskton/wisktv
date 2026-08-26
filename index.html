@@ -1185,11 +1185,11 @@
             p.baseX = p.isTeamB ? 565 : 35;
             p.baseY = 175;
             if (!p.isTeamB) {
-              // Goleiro Time A: fica restrito à área do gol esquerdo (x: 20-95, y: 110-240)
+              // Goleiro Amarelo (Time A): fica estritamente na área do gol esquerdo (x: 20-95, y: 110-240)
               p.x       = Math.max(20, Math.min(95, p.x));
               p.targetX = Math.max(20, Math.min(95, p.targetX));
             } else {
-              // Goleiro Time B: fica restrito à área do gol direito (x: 505-580, y: 110-240)
+              // Goleiro Azul (Time B): fica estritamente na área do gol direito (x: 505-580, y: 110-240)
               p.x       = Math.max(505, Math.min(580, p.x));
               p.targetX = Math.max(505, Math.min(580, p.targetX));
             }
@@ -1198,21 +1198,16 @@
             return;
           }
 
-          // Jogadores 10px mais para dentro do campo (30 até 570 no x, 30 até 320 no y)
-          p.x       = Math.max(30, Math.min(570, p.x));
+          // Jogadores de linha: nunca entram na área dos goleiros (x < 96 ou x > 504), a não ser se for o atacante com a bola
+          if (p !== holder) {
+            p.x       = Math.max(96, Math.min(504, p.x));
+            p.targetX = Math.max(96, Math.min(504, p.targetX));
+          } else {
+            p.x       = Math.max(30, Math.min(570, p.x));
+            p.targetX = Math.max(30, Math.min(570, p.targetX));
+          }
           p.y       = Math.max(30, Math.min(320, p.y));
-          p.targetX = Math.max(30, Math.min(570, p.targetX));
           p.targetY = Math.max(30, Math.min(320, p.targetY));
-
-          // Impedir estritamente que jogadores de linha entrem nas grandes áreas dos goleiros (evita bugs)
-          if (p.x <= 95 && p.y >= 105 && p.y <= 245) {
-            p.x = 96;
-            if (p.targetX <= 95) p.targetX = 96;
-          }
-          if (p.x >= 505 && p.y >= 105 && p.y <= 245) {
-            p.x = 504;
-            if (p.targetX >= 505) p.targetX = 504;
-          }
         });
       }
 
@@ -1461,7 +1456,7 @@
               p.targetX = scorer.x + (Math.random() - 0.5) * 60;
               p.targetY = scorer.y + (Math.random() - 0.5) * 60;
             } else {
-              const myGoalX = p.isTeamB ? 565 : 35;
+              const myGoalX = p.isTeamB ? 470 : 130;
               p.targetX = p.x + (myGoalX - p.x) * 0.3 + (Math.random() - 0.5) * 30;
               p.targetY = p.y + (175 - p.y) * 0.2 + (Math.random() - 0.5) * 30;
             }
@@ -3929,9 +3924,23 @@
     }
 
     function balancearTimesCarreira(jogadores) {
-      const ordenados = jogadores.slice().sort((a, b) => nivelDoJogadorNaRodada(b) - nivelDoJogadorNaRodada(a));
+      const ehGk = (p) => {
+        const pos = String(p.posicao || p.position || p.pos || p.role || '').trim().toUpperCase();
+        return pos === 'GOL' || pos === 'GOLEIRO' || pos === 'GK' || pos === 'GL';
+      };
+      const goleiros = jogadores.filter(ehGk);
+      const outros = jogadores.filter(p => !ehGk(p));
+
       const timeA = [], timeB = [];
       let somaA = 0, somaB = 0;
+
+      goleiros.forEach((gk, i) => {
+        const nivel = nivelDoJogadorNaRodada(gk);
+        if (i % 2 === 0) { timeA.push(gk); somaA += nivel; }
+        else { timeB.push(gk); somaB += nivel; }
+      });
+
+      const ordenados = outros.slice().sort((a, b) => nivelDoJogadorNaRodada(b) - nivelDoJogadorNaRodada(a));
       ordenados.forEach(p => {
         const nivel = nivelDoJogadorNaRodada(p);
         if (somaA <= somaB) { timeA.push(p); somaA += nivel; }
