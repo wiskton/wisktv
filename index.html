@@ -267,9 +267,8 @@
       font-size: 12px;
     }
 
+    /* Estrutura dos containers do Simulador e Modo Carreira */
     #tab-simulador {
-      background: #ffdc00 !important;
-      color: #005a2b !important;
       padding: 16px;
       border-radius: 8px;
       font-size: 16px !important;
@@ -277,72 +276,55 @@
 
     #modo-selecao-root,
     #simulador-root,
-    #career-root,
-    .cls-desc {
-      background: #ffdc00 !important;
-      border: 2px solid #005a2b !important;
+    #career-root {
       border-radius: 8px;
       padding: 16px;
       margin-bottom: 12px;
-      color: #005a2b !important;
     }
 
-    #tab-simulador h4 {
-      font-size: 22px !important;
-      color: #005a2b !important;
-      margin-bottom: 8px;
-    }
-
-    #tab-simulador h5 {
-      font-size: 20px !important;
-      color: #005a2b !important;
-      margin-bottom: 8px;
-    }
-
-    #tab-simulador h6 {
-      font-size: 17px !important;
-      color: #005a2b !important;
-      margin-bottom: 8px;
-    }
-
-    #tab-simulador p,
-    #tab-simulador span,
-    #tab-simulador label,
-    #tab-simulador div {
-      font-size: 15px;
-      color: #005a2b;
-    }
-
-    #carreira-data {
-      font-size: 14px !important;
-    }
-
-    #carreira-score-a,
-    #carreira-score-b {
-      font-size: 28px !important;
-    }
-
-    #carreira-minuto {
-      font-size: 16px !important;
-      font-weight: 600;
-    }
-
-    #modo-selecao-root .cls-desc,
-    #modo-selecao-root h4,
-    #modo-selecao-root p,
-    #carreira-escolher-jogador h4,
-    #carreira-escolher-jogador p {
-      color: #005a2b !important;
-      font-size: 15px !important;
-    }
+    #tab-simulador h4 { font-size: 22px !important; margin-bottom: 8px; }
+    #tab-simulador h5 { font-size: 20px !important; margin-bottom: 8px; }
+    #tab-simulador h6 { font-size: 17px !important; margin-bottom: 8px; }
+    #carreira-data { font-size: 14px !important; }
+    #carreira-score-a, #carreira-score-b { font-size: 28px !important; }
+    #carreira-minuto { font-size: 16px !important; font-weight: 600; }
 
     .career-save-card {
       min-width: 220px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      padding: 10px 14px;
+    }
+
+    /* Tema Clássico — Sobrescritas exclusivas para [data-theme="classico"] */
+    [data-theme="classico"] #tab-simulador,
+    [data-theme="classico"] #modo-selecao-root,
+    [data-theme="classico"] #simulador-root,
+    [data-theme="classico"] #career-root,
+    [data-theme="classico"] .cls-desc {
+      background: #ffdc00 !important;
+      border: 2px solid #005a2b !important;
+      color: #005a2b !important;
+    }
+
+    [data-theme="classico"] #tab-simulador h4,
+    [data-theme="classico"] #tab-simulador h5,
+    [data-theme="classico"] #tab-simulador h6,
+    [data-theme="classico"] #tab-simulador p,
+    [data-theme="classico"] #tab-simulador span,
+    [data-theme="classico"] #tab-simulador label,
+    [data-theme="classico"] #tab-simulador div,
+    [data-theme="classico"] #modo-selecao-root .cls-desc,
+    [data-theme="classico"] #modo-selecao-root h4,
+    [data-theme="classico"] #modo-selecao-root p,
+    [data-theme="classico"] #carreira-escolher-jogador h4,
+    [data-theme="classico"] #carreira-escolher-jogador p {
+      color: #005a2b !important;
+    }
+
+    [data-theme="classico"] .career-save-card {
       background: #ffffff !important;
       color: #005a2b !important;
       border: 1px solid #005a2b !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      padding: 10px 14px;
     }
 
     .career-save-card div {

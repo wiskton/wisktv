@@ -152,10 +152,6 @@
 }
 
 /* Barra do menu: fundo verde e texto branco no Layout Clássico */
-.career-btn-row-nav {
-  border: none !important;
-}
-
 [data-theme="classico"] .career-btn-row-nav {
   background: transparent !important;
   border: none !important;
@@ -369,12 +365,11 @@
   color: #ffffff !important;
 }
 
-/* Fundo das tabelas e quadros de curiosidades: BRANCO */
+/* Fundo das tabelas e quadros de curiosidades no Layout Clássico: BRANCO */
 [data-theme="classico"] #curiosidades-root .career-card,
 [data-theme="classico"] #carreira-rankings-extra,
 [data-theme="classico"] #carreira-rankings-extra .career-card,
-#curiosidades-root .career-card,
-#carreira-rankings-extra-corpo .career-card {
+[data-theme="classico"] #carreira-rankings-extra-corpo .career-card {
   background: #ffffff !important;
   color: #005a2b !important;
   border: 1px solid #005a2b !important;
@@ -382,8 +377,7 @@
 
 [data-theme="classico"] #curiosidades-root .career-card *,
 [data-theme="classico"] #carreira-rankings-extra *,
-#curiosidades-root .career-card *,
-#carreira-rankings-extra-corpo .career-card * {
+[data-theme="classico"] #carreira-rankings-extra-corpo .career-card * {
   color: #005a2b !important;
 }
 
