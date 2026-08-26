@@ -768,8 +768,8 @@
       // Coordenadas em um campo 600x350.
       // O lado A ataca para a direita; o lado B para a esquerda.
       const xPorLinha = isTeamB
-        ? { GOL: 565, ZAG: 470, MEI: 370, ATA: 270, OUT: 320 }
-        : { GOL: 35, ZAG: 130, MEI: 230, ATA: 330, OUT: 280 };
+        ? { GOL: 565, ZAG: 480, MEI: 405, ATA: 340, OUT: 370 }
+        : { GOL: 35, ZAG: 120, MEI: 195, ATA: 260, OUT: 230 };
 
       const rolePorGrupo = ['GOL', 'ZAG', 'MEI', 'ATA', 'MEI'];
       const resultado = [];
@@ -897,12 +897,19 @@
         this.textAlertTimer = 0;
         this.running = true;
         this.lastTime = 0;
-        // Dá a bola de início para o jogador mais ao centro (não goleiro) do time A
-        const startCandidates = this.playersA.filter(p => !p.isGk);
+        // Sorteia qual time dá a saída de bola no início da partida (50% chance A ou B)
+        this.kickoffTeam = Math.random() < 0.5 ? 'A' : 'B';
+        const kickPlayers = this.kickoffTeam === 'B' ? this.playersB : this.playersA;
+        const startCandidates = kickPlayers.filter(p => !p.isGk);
         if (startCandidates.length) {
           const starter = startCandidates.reduce((best, p) =>
             Math.hypot(p.baseX - 300, p.baseY - 175) < Math.hypot(best.baseX - 300, best.baseY - 175) ? p : best
           );
+          // Apenas este jogador fica posicionado no centro do campo (300, 175)
+          starter.x = 300;
+          starter.y = 175;
+          starter.targetX = 300;
+          starter.targetY = 175;
           this.ball.holder = starter;
           this.ball.state = 'dribbling';
           this.ball.timer = 1.0 + Math.random() * 0.5;
@@ -1429,10 +1436,22 @@
           this.ball.targetY = 175;
           this.ball.holder = null;
           this.ball.state = 'free';
+          // O time que tomou o gol fica com a saída de bola
           this.kickoffTeam = seq.teamSide === 'TIME B' ? 'A' : 'B';
+          const kickTeamPlayers = this.kickoffTeam === 'B' ? this.playersB : this.playersA;
+          const startCandidates = kickTeamPlayers.filter(p => !p.isGk);
+          const kickStarter = startCandidates.length ? startCandidates.reduce((best, p) =>
+            Math.hypot(p.baseX - 300, p.baseY - 175) < Math.hypot(best.baseX - 300, best.baseY - 175) ? p : best
+          ) : null;
+
           this.allPlayers.forEach(p => {
-            p.targetX = p.baseX;
-            p.targetY = p.baseY;
+            if (p === kickStarter) {
+              p.targetX = 300;
+              p.targetY = 175;
+            } else {
+              p.targetX = p.baseX;
+              p.targetY = p.baseY;
+            }
           });
           this.setAlert('Saída de bola!');
         }
@@ -1440,8 +1459,8 @@
       updateKickoff(dt) {
         let settled = true;
         this.allPlayers.forEach(p => {
-          const dx = p.baseX - p.x;
-          const dy = p.baseY - p.y;
+          const dx = p.targetX - p.x;
+          const dy = p.targetY - p.y;
           p.x += dx * dt * 18;
           p.y += dy * dt * 18;
           if (Math.hypot(dx, dy) > 15) settled = false;
@@ -1457,15 +1476,11 @@
           this.activeSequence = null;
           const kickTeamPlayers = this.kickoffTeam === 'B' ? this.playersB : this.playersA;
           const kickCandidates = kickTeamPlayers.filter(p => !p.isGk);
-          let kickReceiver = null, kickDist = 9999;
-          kickCandidates.forEach(p => {
-            const d = Math.hypot(p.x - 300, p.y - 175);
-            if (d < kickDist) { kickDist = d; kickReceiver = p; }
-          });
+          const kickReceiver = kickCandidates.find(p => p.targetX === 300) || kickCandidates[0];
           if (kickReceiver) {
             this.ball.holder = kickReceiver;
             this.ball.state = 'dribbling';
-            this.ball.timer = 0.5 + Math.random() * 0.3;
+            this.ball.timer = 0.6 + Math.random() * 0.4;
           } else {
             this.ball.state = 'free';
           }
