@@ -267,8 +267,31 @@
       font-size: 12px;
     }
 
+    #tab-simulador {
+      background: #ffffff !important;
+      color: #1e293b !important;
+      padding: 16px;
+      border-radius: 8px;
+    }
+
+    #modo-selecao-root .cls-desc,
+    #modo-selecao-root h4,
+    #modo-selecao-root p,
+    #carreira-escolher-jogador h4,
+    #carreira-escolher-jogador p {
+      color: #1e293b !important;
+    }
+
     .career-save-card {
       min-width: 210px;
+      background: #ffdc00 !important;
+      color: #005a2b !important;
+      border: 1px solid #005a2b !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .career-save-card div {
+      color: #005a2b !important;
     }
 
     .soccer-pitch-container {
@@ -4449,9 +4472,9 @@
         <div style="margin: 12px 0; opacity:0.8; font-size:13px;">${tr('carreirasSalvas')}</div>
         <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-bottom:16px;">
           ${saves.map(s => `
-            <div class="career-card career-save-card" style="text-align:left;">
-              <div style="font-weight:600; font-size:13px;">${(s.meusNomes || []).join(', ').toUpperCase()}</div>
-              <div style="opacity:0.75; font-size:12px;">${tr('saveCarreiraResumo', { torneio: s.torneio, rodada: Math.min(s.rodada, 8) })}${s.titulos ? ' · 🏆 ' + s.titulos : ''}</div>
+            <div class="career-card career-save-card" style="text-align:left; background:#ffdc00 !important; color:#005a2b !important; border:1px solid #005a2b !important;">
+              <div style="font-weight:600; font-size:13px; color:#005a2b !important;">${(s.meusNomes || []).join(', ').toUpperCase()}</div>
+              <div style="opacity:0.85; font-size:12px; color:#00381b !important;">${tr('saveCarreiraResumo', { torneio: s.torneio, rodada: Math.min(s.rodada, 8) })}${s.titulos ? ' · 🏆 ' + s.titulos : ''}</div>
               <div style="display:flex; gap:6px; margin-top:6px;">
                 <button type="button" class="btn-solid" data-continuar-carreira="${s.id}" style="font-size:12px; padding:4px 8px;">${tr('continuar')}</button>
                 <button type="button" class="btn-solid" data-apagar-carreira="${s.id}" style="font-size:12px; padding:4px 8px;" title="${tr('apagarTitulo')}">🗑️</button>
