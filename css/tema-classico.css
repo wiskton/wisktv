@@ -151,7 +151,7 @@
   color: #005a2b !important;
 }
 
-/* Barra do menu: sem borda e sem tom amarelo escuro */
+/* Barra do menu: fundo verde e texto branco no Layout Clássico */
 .career-btn-row-nav {
   border: none !important;
 }
@@ -162,24 +162,25 @@
   box-shadow: none !important;
 }
 
-[data-theme="classico"] .career-dropdown-btn {
+[data-theme="classico"] .career-dropdown-btn,
+[data-theme="classico"] .career-dropdown-menu,
+[data-theme="classico"] #btn-carreira-jogadores {
   background: #005a2b !important;
   color: #ffffff !important;
-  border: none !important;
-}
-
-[data-theme="classico"] .career-dropdown-menu {
-  background: #005a2b !important;
   border: none !important;
 }
 
 [data-theme="classico"] .career-dropdown-item,
-[data-theme="classico"] .career-dropdown-item * {
+[data-theme="classico"] .career-dropdown-item *,
+[data-theme="classico"] .career-dropdown-btn *,
+[data-theme="classico"] #btn-carreira-jogadores * {
   color: #ffffff !important;
 }
 
 [data-theme="classico"] .career-dropdown-item:hover,
-[data-theme="classico"] .career-dropdown-item:hover * {
+[data-theme="classico"] .career-dropdown-item:hover *,
+[data-theme="classico"] .career-dropdown-btn:hover,
+[data-theme="classico"] #btn-carreira-jogadores:hover {
   background: #00723a !important;
   color: #ffdc00 !important;
 }
