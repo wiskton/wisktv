@@ -158,6 +158,13 @@
   color: #005a2b !important;
 }
 
+/* Bloco Gols da Partida no Tema Clássico: texto ESTRITAMENTE verde (#005a2b) */
+[data-theme="classico"] .career-match-goals-box,
+[data-theme="classico"] .career-match-goals-box *,
+[data-theme="classico"] .career-match-goals-title {
+  color: #005a2b !important;
+}
+
 /* Barra da escalação e dados da partida: fundo amarelo normal e texto verde */
 [data-theme="classico"] #carreira-escalacao-rodada,
 [data-theme="classico"] .simulator-team-card {
