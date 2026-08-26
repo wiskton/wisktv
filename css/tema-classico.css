@@ -471,3 +471,44 @@
 [data-theme="classico"] #hall-fama-root * {
   color: #005a2b !important;
 }
+
+/* ==========================================================================
+   FORÇAR MENU DO MODO CARREIRA: FUNDO VERDE (#005a2b) E TEXTO BRANCO (#ffffff)
+   ========================================================================== */
+[data-theme="classico"] .career-btn-row-nav,
+[data-theme="classico"] .career-dropdown,
+[data-theme="classico"] .career-dropdown-btn,
+[data-theme="classico"] .career-dropdown-menu,
+[data-theme="classico"] .career-dropdown-item,
+[data-theme="classico"] #btn-carreira-jogadores,
+[data-theme="classico"] button.career-dropdown-btn,
+[data-theme="classico"] button.career-dropdown-item,
+[data-theme="classico"] button#btn-carreira-jogadores {
+  background: #005a2b !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+[data-theme="classico"] .career-btn-row-nav *,
+[data-theme="classico"] .career-dropdown *,
+[data-theme="classico"] .career-dropdown-btn *,
+[data-theme="classico"] .career-dropdown-menu *,
+[data-theme="classico"] .career-dropdown-item *,
+[data-theme="classico"] #btn-carreira-jogadores *,
+[data-theme="classico"] .career-dropdown-item span,
+[data-theme="classico"] .career-dropdown-btn span,
+[data-theme="classico"] #btn-carreira-jogadores span,
+[data-theme="classico"] .career-dropdown-item div,
+[data-theme="classico"] .career-dropdown-btn div {
+  color: #ffffff !important;
+}
+
+[data-theme="classico"] .career-dropdown-item:hover,
+[data-theme="classico"] .career-dropdown-item:hover *,
+[data-theme="classico"] .career-dropdown-btn:hover,
+[data-theme="classico"] .career-dropdown-btn:hover *,
+[data-theme="classico"] #btn-carreira-jogadores:hover,
+[data-theme="classico"] #btn-carreira-jogadores:hover * {
+  background: #00723a !important;
+  color: #ffffff !important;
+}
