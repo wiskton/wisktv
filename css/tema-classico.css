@@ -316,3 +316,55 @@
   color: #005a2b !important;
   border: 1px solid #005a2b !important;
 }
+
+[data-theme="classico"] .career-card,
+[data-theme="classico"] .career-stat-box,
+[data-theme="classico"] #carreira-resultado-rodada,
+[data-theme="classico"] #carreira-resumo-partida,
+[data-theme="classico"] #carreira-fim-torneio,
+[data-theme="classico"] #carreira-escolher-jogador,
+[data-theme="classico"] #carreira-secao-jogadores,
+[data-theme="classico"] #carreira-secao-classificacao,
+[data-theme="classico"] #carreira-secao-artilharia,
+[data-theme="classico"] #carreira-ranking-global,
+[data-theme="classico"] #carreira-rankings-extra,
+[data-theme="classico"] #carreira-hall-fama {
+  background: #ffdc00 !important;
+  color: #005a2b !important;
+  border-color: #005a2b !important;
+}
+
+/* Texto verde escuro em todo o Layout Clássico */
+[data-theme="classico"] p,
+[data-theme="classico"] h1,
+[data-theme="classico"] h2,
+[data-theme="classico"] h3,
+[data-theme="classico"] h4,
+[data-theme="classico"] h5,
+[data-theme="classico"] h6,
+[data-theme="classico"] span,
+[data-theme="classico"] div,
+[data-theme="classico"] td,
+[data-theme="classico"] label,
+[data-theme="classico"] strong,
+[data-theme="classico"] b {
+  color: #005a2b;
+}
+
+/* Exceções: Barra do torneio, cabeçalho de tabelas e botões do menu mantêm texto branco */
+[data-theme="classico"] .match-header *,
+[data-theme="classico"] .career-header-card *,
+[data-theme="classico"] #carreira-cabecalho-container *,
+[data-theme="classico"] #carreira-cabecalho *,
+[data-theme="classico"] .trow.header-row *,
+[data-theme="classico"] .data-table th,
+[data-theme="classico"] .player-table th,
+[data-theme="classico"] .career-dropdown-btn,
+[data-theme="classico"] .career-dropdown-btn *,
+[data-theme="classico"] .career-dropdown-menu *,
+[data-theme="classico"] #btn-carreira-jogadores,
+[data-theme="classico"] #btn-carreira-jogadores *,
+[data-theme="classico"] .btn-solid,
+[data-theme="classico"] .btn-solid * {
+  color: #ffffff !important;
+}
