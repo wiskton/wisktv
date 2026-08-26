@@ -1098,16 +1098,15 @@
       // Separa jogadores que ficaram próximos demais — chamado após qualquer estado.
       _enforceSpacing() {
         const holder = this.ball.state === 'dribbling' ? this.ball.holder : null;
-        const MIN_SAME = 90;
+        const MIN_SAME = 48;
         for (let iter = 0; iter < 3; iter++) {
           for (let i = 0; i < this.allPlayers.length; i++) {
             for (let j = i + 1; j < this.allPlayers.length; j++) {
               const a = this.allPlayers[i];
               const b = this.allPlayers[j];
               if (a.isGk || b.isGk) continue;
-              if (a.role === 'ATA' || a.role === 'MEI' || b.role === 'ATA' || b.role === 'MEI') continue;
               const sameTeam = a.isTeamB === b.isTeamB;
-              if (!sameTeam) continue; // Ataque pode se aproximar da defesa adversária sem espaçamento mínimo
+              if (!sameTeam) continue; // Jogadores de times opostos podem se aproximar sem repulsão
               const minD = MIN_SAME;
               const dx = b.x - a.x;
               const dy = b.y - a.y;
