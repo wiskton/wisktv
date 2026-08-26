@@ -197,8 +197,21 @@
     }
 
     .career-mini-rank {
-      flex: 1 1 260px;
-      min-width: 240px;
+      flex: 1 1 280px;
+      min-width: 250px;
+      font-size: 16px;
+    }
+
+    .career-mini-rank h5,
+    .career-mini-rank h6 {
+      font-size: 18px !important;
+      color: var(--gold-text);
+      margin-bottom: 8px;
+    }
+
+    .career-mini-rank ul li {
+      font-size: 16px !important;
+      padding: 3px 0;
     }
 
     .career-lineup-row {
@@ -4043,12 +4056,12 @@
       if (!topo.length) return '';
       const itens = topo.map((l, i) => {
         const voce = souEu(l.id);
-        return `<li onclick="abrirModalJogadorCarreira(${l.id})" style="display:flex; justify-content:space-between; cursor:pointer;${voce ? ' font-weight:bold;' : ''}">
+        return `<li onclick="abrirModalJogadorCarreira(${l.id})" style="display:flex; justify-content:space-between; cursor:pointer; padding:3px 0;${voce ? ' font-weight:bold;' : ''}">
           <span>${i + 1}. ${l.nome.toUpperCase()}${voce ? ' ⭐' : ''}</span><span>${formatarFn(valorFn(l))}</span></li>`;
       }).join('');
       return `<div class="career-mini-rank career-card">
-        <h6 style="margin:0 0 8px;">${icone} ${titulo}</h6>
-        <ul style="list-style:none; margin:0; padding:0; font-size:13px;">${itens}</ul>
+        <h5 style="margin:0 0 8px; font-size:18px; color:var(--gold-text);">${icone} ${titulo}</h5>
+        <ul style="list-style:none; margin:0; padding:0; font-size:16px;">${itens}</ul>
       </div>`;
     }
 
