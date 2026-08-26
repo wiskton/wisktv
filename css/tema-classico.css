@@ -78,8 +78,11 @@
   color: #ffffff;
 }
 
-[data-theme="classico"] .title-main {
-  color: var(--gold-text);
+[data-theme="classico"] .title-main,
+[data-theme="classico"] .title-main *,
+[data-theme="classico"] .iss-label,
+[data-theme="classico"] .deluxe-label {
+  color: #ffffff !important;
 }
 
 [data-theme="classico"] #player-modal .modal-box {
@@ -387,23 +390,29 @@
 }
 
 /* Texto verde escuro em todo o Layout Clássico (exceto elementos de menu e botões) */
-[data-theme="classico"] p:not(.career-dropdown-item *):not(.career-dropdown-menu *),
-[data-theme="classico"] h1,
-[data-theme="classico"] h2,
-[data-theme="classico"] h3,
-[data-theme="classico"] h4,
-[data-theme="classico"] h5,
-[data-theme="classico"] h6,
-[data-theme="classico"] span:not(.career-dropdown-item *):not(.career-dropdown-menu *):not(.career-dropdown *):not(.career-btn-row-nav *),
-[data-theme="classico"] div:not(.career-dropdown-item *):not(.career-dropdown-menu *):not(.career-dropdown *):not(.career-dropdown-menu),
+/* Texto verde escuro no corpo do Layout Clássico (exceto cabeçalho do site, elementos de menu e botões) */
+[data-theme="classico"] p:not(.career-dropdown-item *):not(.career-dropdown-menu *):not(.header *),
+[data-theme="classico"] h1:not(.header *),
+[data-theme="classico"] h2:not(.header *),
+[data-theme="classico"] h3:not(.header *),
+[data-theme="classico"] h4:not(.header *),
+[data-theme="classico"] h5:not(.header *),
+[data-theme="classico"] h6:not(.header *),
+[data-theme="classico"] span:not(.career-dropdown-item *):not(.career-dropdown-menu *):not(.career-dropdown *):not(.career-btn-row-nav *):not(.header *),
+[data-theme="classico"] div:not(.career-dropdown-item *):not(.career-dropdown-menu *):not(.career-dropdown *):not(.career-dropdown-menu):not(.header *):not(.header),
 [data-theme="classico"] td,
 [data-theme="classico"] label,
-[data-theme="classico"] strong:not(.career-dropdown-item *):not(.career-dropdown-menu *),
-[data-theme="classico"] b:not(.career-dropdown-item *):not(.career-dropdown-menu *) {
+[data-theme="classico"] strong:not(.career-dropdown-item *):not(.career-dropdown-menu *):not(.header *),
+[data-theme="classico"] b:not(.career-dropdown-item *):not(.career-dropdown-menu *):not(.header *) {
   color: #005a2b;
 }
 
-/* Exceções: Barra do torneio, data da carreira, cabeçalho de tabelas e botões do menu mantêm texto estritamente BRANCO */
+/* Exceções: Cabeçalho principal (título e labels), barra do torneio, data da carreira, cabeçalho de tabelas e botões do menu mantêm texto estritamente BRANCO */
+[data-theme="classico"] .header,
+[data-theme="classico"] .header *,
+[data-theme="classico"] .header .title-main,
+[data-theme="classico"] .header .iss-label,
+[data-theme="classico"] .header .deluxe-label,
 [data-theme="classico"] .match-header,
 [data-theme="classico"] .match-header *,
 [data-theme="classico"] .career-header-card,
@@ -426,6 +435,8 @@
 [data-theme="classico"] .career-dropdown-item span,
 [data-theme="classico"] #btn-carreira-jogadores,
 [data-theme="classico"] #btn-carreira-jogadores *,
+[data-theme="classico"] #btn-carreira-ir-partida-nav,
+[data-theme="classico"] #btn-carreira-ir-partida-nav *,
 [data-theme="classico"] .btn-solid,
 [data-theme="classico"] .btn-solid * {
   color: #ffffff !important;
