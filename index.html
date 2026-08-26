@@ -470,6 +470,7 @@
               <div id="carreira-lista-jogadores" style="display:flex; flex-wrap:wrap; gap:16px; margin-bottom:12px;">
               </div>
               <div class="career-btn-row">
+                <button type="button" id="btn-ir-para-partida" class="btn-solid" data-i18n="irParaPartida">⚽ IR para Partida</button>
                 <button type="button" id="btn-comecar-carreira" class="btn-solid" disabled data-i18n="comecarTorneio">▶️
                   Começar Torneio</button>
                 <button type="button" id="btn-voltar-modo-carreira" class="btn-link" data-i18n="trocarModo">← Trocar
@@ -491,11 +492,10 @@
                 </div>
               </div>
 
-              <!-- 2. Menu Dropdown: Modo Carreira (Estatísticas, Rankings e Simulador Partida) -->
+              <!-- 2. Menu Dropdown: Modo Carreira (Estatísticas e Rankings) -->
               <div class="career-dropdown">
                 <button type="button" class="btn-solid career-dropdown-btn" data-i18n="menuModoCarreira">🏆 Modo Carreira ▾</button>
                 <div class="career-dropdown-menu">
-                  <button type="button" id="btn-toggle-carreira-partida" class="career-dropdown-item" onclick="selecionarVisaoCarreira('partida')"><span data-i18n="partidaSimulador">⚽ Partida</span></button>
                   <button type="button" id="btn-toggle-carreira-tabela" class="career-dropdown-item" onclick="selecionarVisaoCarreira('tabela')"><span data-i18n="classificacaoTitulo">📊 Classificação</span></button>
                   <button type="button" id="btn-toggle-carreira-artilharia" class="career-dropdown-item" onclick="selecionarVisaoCarreira('artilharia')"><span data-i18n="artilhariaTitulo">⚽ Artilharia</span></button>
                   <button type="button" id="btn-toggle-carreira-ranking" class="career-dropdown-item" onclick="selecionarVisaoCarreira('ranking')"><span data-i18n="rankingGlobalCarreira">🌍 Ranking Global</span></button>
@@ -4879,7 +4879,20 @@
         try { localStorage.setItem('wisktv-career-instant', this.checked ? 'true' : 'false'); } catch (e) { }
       });
 
-      // Fecha o menu dropdown imediatamente ao clicar em qualquer item
+      const btnIrPartida = document.getElementById('btn-ir-para-partida');
+      if (btnIrPartida) {
+        btnIrPartida.addEventListener('click', () => {
+          if (!carreira) {
+            const marcados = Array.prototype.slice.call(document.querySelectorAll('.career-check-jogador:checked')).map(cb => Number(cb.value));
+            const idsParaUsar = marcados.length ? marcados : [careerPool[0].id];
+            const semGoleiros = document.getElementById('carreira-sem-goleiros')?.checked ?? true;
+            novaCarreira(idsParaUsar, semGoleiros);
+          }
+          comecarPainelCarreira();
+        });
+      }
+
+      // Fecha o menu dropdown imediatamente ao clicar em qualquer item ou ao tirar o mouse
       document.addEventListener('click', (e) => {
         const item = e.target.closest('.career-dropdown-item');
         if (item) {
@@ -4899,7 +4912,14 @@
 
       document.querySelectorAll('.career-dropdown').forEach(dd => {
         dd.addEventListener('mouseleave', () => {
+          dd.classList.add('menu-closed');
+          const menu = dd.querySelector('.career-dropdown-menu');
+          if (menu) menu.style.display = 'none';
+        });
+        dd.addEventListener('mouseenter', () => {
           dd.classList.remove('menu-closed');
+          const menu = dd.querySelector('.career-dropdown-menu');
+          if (menu) menu.style.display = '';
         });
       });
 
