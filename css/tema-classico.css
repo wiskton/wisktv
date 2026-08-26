@@ -393,20 +393,20 @@
   border-color: #005a2b !important;
 }
 
-/* Texto verde escuro em todo o Layout Clássico */
-[data-theme="classico"] p,
+/* Texto verde escuro em todo o Layout Clássico (exceto elementos de menu e botões) */
+[data-theme="classico"] p:not(.career-dropdown-item *):not(.career-dropdown-menu *),
 [data-theme="classico"] h1,
 [data-theme="classico"] h2,
 [data-theme="classico"] h3,
 [data-theme="classico"] h4,
 [data-theme="classico"] h5,
 [data-theme="classico"] h6,
-[data-theme="classico"] span,
-[data-theme="classico"] div,
+[data-theme="classico"] span:not(.career-dropdown-item *):not(.career-dropdown-menu *):not(.career-dropdown *):not(.career-btn-row-nav *),
+[data-theme="classico"] div:not(.career-dropdown-item *):not(.career-dropdown-menu *):not(.career-dropdown *):not(.career-dropdown-menu),
 [data-theme="classico"] td,
 [data-theme="classico"] label,
-[data-theme="classico"] strong,
-[data-theme="classico"] b {
+[data-theme="classico"] strong:not(.career-dropdown-item *):not(.career-dropdown-menu *),
+[data-theme="classico"] b:not(.career-dropdown-item *):not(.career-dropdown-menu *) {
   color: #005a2b;
 }
 
@@ -426,7 +426,11 @@
 [data-theme="classico"] .player-table th,
 [data-theme="classico"] .career-dropdown-btn,
 [data-theme="classico"] .career-dropdown-btn *,
+[data-theme="classico"] .career-dropdown-menu,
 [data-theme="classico"] .career-dropdown-menu *,
+[data-theme="classico"] .career-dropdown-item,
+[data-theme="classico"] .career-dropdown-item *,
+[data-theme="classico"] .career-dropdown-item span,
 [data-theme="classico"] #btn-carreira-jogadores,
 [data-theme="classico"] #btn-carreira-jogadores *,
 [data-theme="classico"] .btn-solid,
