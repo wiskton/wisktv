@@ -234,13 +234,13 @@
 
     <div class="sections">
       <div class="sec-tab active" onclick="showTab('art')" data-i18n="tabArtilharia">⚽ ARTILHARIA</div>
-      <!-- Assistências removidas -->
+      <div class="sec-tab" onclick="showTab('assists')" data-i18n="tabAssistencias">🎯 ASSISTÊNCIAS</div>
       <div class="sec-tab" onclick="showTab('cls')" data-i18n="tabClassificacao">🏆 CLASSIFICAÇÃO</div>
       <div class="sec-tab" onclick="showTab('selecao')" data-i18n="tabSelecao">⭐ SELEÇÃO</div>
       <div class="sec-tab" onclick="showTab('jogos')" data-i18n="tabJogos">📅 JOGOS</div>
       <div class="sec-tab" onclick="showTab('simulador')" data-i18n="tabSimulador">⚽ SIMULADOR</div>
       <div class="sec-tab" onclick="showTab('jogadores')" data-i18n="tabRankingGeral">🌍 RANKING GERAL</div>
-      <!-- GERAL removido daqui (é global, exibido no cabeçalho) -->
+      <div class="sec-tab" onclick="showTab('curiosidades')" data-i18n="tabCuriosidades">📊 CURIOSIDADES</div>
       <div class="sec-tab" onclick="showTab('trans')" data-i18n="tabTransmissoes">📹 TRANSMISSÕES</div>
     </div>
 
@@ -248,7 +248,9 @@
       <div class="table-view active" id="tab-art">
         <div id="art-root"></div>
       </div>
-      <!-- tab-assists removed (assistências removidas) -->
+      <div class="table-view" id="tab-assists">
+        <div id="assists-root"></div>
+      </div>
       <div class="table-view" id="tab-cls">
         <div class="cls-desc" data-i18n-html="clsDescHtml"><strong>Como funciona a pontuação:</strong> A pontuação final
           é calculada seguindo a fórmula: (3 x Vitórias) + (1 x Empates) + (1 x Jogos).</div>
@@ -456,7 +458,9 @@
           style="width:100%; margin-bottom:8px; font-size:16px;" oninput="renderJogadoresList(this.value)" />
         <div id="jogadores-root"></div>
       </div>
-      <!-- tab-geral removido (ranking geral é global e mostrado no cabeçalho) -->
+      <div class="table-view" id="tab-curiosidades">
+        <div id="curiosidades-root"></div>
+      </div>
       <div class="table-view" id="tab-trans">
         <div class="transmissions-container">
           <div class="channel-card">
@@ -1534,8 +1538,8 @@
         pageTitle: 'WiskTV',
         themeDefault: 'Padrão', themeClassico: 'Clássico', themeDeluxe: 'Deluxe SNES', themeModerno: 'Moderno', themeUltimate: 'Ultimate',
         verRankingGeral: 'Ver Ranking Geral',
-        tabArtilharia: '⚽ ARTILHARIA', tabClassificacao: '🏆 CLASSIFICAÇÃO', tabSelecao: '⭐ SELEÇÃO', tabJogos: '📅 JOGOS',
-        tabSimulador: '⚽ SIMULADOR', tabRankingGeral: '🌍 RANKING GERAL', tabTransmissoes: '📹 TRANSMISSÕES',
+        tabArtilharia: '⚽ ARTILHARIA', tabAssistencias: '🎯 ASSISTÊNCIAS', tabClassificacao: '🏆 CLASSIFICAÇÃO', tabSelecao: '⭐ SELEÇÃO', tabJogos: '📅 JOGOS',
+        tabSimulador: '⚽ SIMULADOR', tabRankingGeral: '🌍 RANKING GERAL', tabCuriosidades: '📊 CURIOSIDADES', tabTransmissoes: '📹 TRANSMISSÕES',
         clsDescHtml: '<strong>Como funciona a pontuação:</strong> A pontuação final é calculada seguindo a fórmula: (3 x Vitórias) + (1 x Empates) + (1 x Jogos).',
         selecaoDescHtml: '<strong>Seleção do Campeonato:</strong> os melhores por posição (1 goleiro, 2 zagueiros, 2 meio-campos, 2 atacantes), ordenados por pontuação (nível). Empate é resolvido pela eficiência (gols por jogo no campeonato) e depois pelo saldo de gols do jogador.',
         buscarJogador: '🔎 Buscar jogador...',
@@ -1547,7 +1551,7 @@
         modalJogadoresCarreira: '👥 Jogadores da Carreira',
 
         // Tabelas comuns
-        colPos: 'POS', colJogador: 'JOGADOR', colGols: 'GOLS', colJogos: 'JOGOS', colGpj: 'GPJ',
+        colPos: 'POS', colJogador: 'JOGADOR', colGols: 'GOLS', colAssistencias: 'ASSIST.', colJogos: 'JOGOS', colGpj: 'GPJ', colApj: 'APJ',
         colP: 'P', colJ: 'J', colV: 'V', colE: 'E', colD: 'D', colPts: 'PTS',
         colGp: 'GP', colGc: 'GC', colSg: 'SG', colPontuacao: 'PONTUAÇÃO', colEficiencia: 'EFICIÊNCIA', colSaldoGols: 'SALDO DE GOLS',
 
@@ -1565,7 +1569,7 @@
         nenhumJogadorEncontrado: 'Nenhum jogador encontrado.',
         emAndamento: '(andamento)',
         statusAtivo: 'ATIVO', statusInativo: 'INATIVO',
-        titulosLabel: '🏆 Títulos:', artilheiroLabel: '⚽ Artilheiro:',
+        titulosLabel: '🏆 Títulos:', artilheiroLabel: '⚽ Artilheiro:', garconLabel: '🎯 Rei das Assistências:',
         totalGeral: '📊 TOTAL GERAL', desempenhoPorTorneio: 'DESEMPENHO POR TORNEIO', colTorneio: 'TORNEIO',
         nenhumaPartidaJogador: 'Este jogador ainda não disputou nenhuma partida.',
         historicoPartidas: 'HISTÓRICO DE PARTIDAS', rodadaAbrev: 'Rodada',
@@ -1617,8 +1621,8 @@
         pageTitle: 'WiskTV',
         themeDefault: 'Default', themeClassico: 'Classic', themeDeluxe: 'Deluxe SNES', themeModerno: 'Modern', themeUltimate: 'Ultimate',
         verRankingGeral: 'View Overall Ranking',
-        tabArtilharia: '⚽ TOP SCORERS', tabClassificacao: '🏆 STANDINGS', tabSelecao: '⭐ TEAM OF THE SEASON', tabJogos: '📅 MATCHES',
-        tabSimulador: '⚽ SIMULATOR', tabRankingGeral: '🌍 OVERALL RANKING', tabTransmissoes: '📹 BROADCASTS',
+        tabArtilharia: '⚽ TOP SCORERS', tabAssistencias: '🎯 ASSISTS', tabClassificacao: '🏆 STANDINGS', tabSelecao: '⭐ TEAM OF THE SEASON', tabJogos: '📅 MATCHES',
+        tabSimulador: '⚽ SIMULATOR', tabRankingGeral: '🌍 OVERALL RANKING', tabCuriosidades: '📊 TRIVIA', tabTransmissoes: '📹 BROADCASTS',
         clsDescHtml: '<strong>How the score works:</strong> The final score follows this formula: (3 x Wins) + (1 x Draws) + (1 x Matches played).',
         selecaoDescHtml: '<strong>Team of the Season:</strong> the best players by position (1 goalkeeper, 2 defenders, 2 midfielders, 2 forwards), ranked by score (rating). Ties are broken by efficiency (goals per match in this tournament), then by the player\'s goal difference.',
         buscarJogador: '🔎 Search player...',
@@ -1629,7 +1633,7 @@
         modalPerfilTitulo: 'Player Profile',
         modalJogadoresCarreira: '👥 Career Players',
 
-        colPos: 'RANK', colJogador: 'PLAYER', colGols: 'GOALS', colJogos: 'MATCHES', colGpj: 'GPM',
+        colPos: 'RANK', colJogador: 'PLAYER', colGols: 'GOALS', colAssistencias: 'ASSISTS', colJogos: 'MATCHES', colGpm: 'GPM', colApj: 'APG',
         colP: 'P', colJ: 'M', colV: 'W', colE: 'D', colD: 'L', colPts: 'PTS',
         colGp: 'GF', colGc: 'GA', colSg: 'GD', colPontuacao: 'SCORE', colEficiencia: 'EFFICIENCY', colSaldoGols: 'GOAL DIFF.',
 
@@ -1644,7 +1648,7 @@
         nenhumJogadorEncontrado: 'No player found.',
         emAndamento: '(in progress)',
         statusAtivo: 'ACTIVE', statusInativo: 'INACTIVE',
-        titulosLabel: '🏆 Titles:', artilheiroLabel: '⚽ Top scorer:',
+        titulosLabel: '🏆 Titles:', artilheiroLabel: '⚽ Top scorer:', garconLabel: '🎯 Assist King:',
         totalGeral: '📊 OVERALL TOTAL', desempenhoPorTorneio: 'PERFORMANCE BY TOURNAMENT', colTorneio: 'TOURNAMENT',
         nenhumaPartidaJogador: 'This player hasn\'t played any matches yet.',
         historicoPartidas: 'MATCH HISTORY', rodadaAbrev: 'Round',
@@ -1693,8 +1697,8 @@
         pageTitle: 'WiskTV',
         themeDefault: 'Predeterminado', themeClassico: 'Clásico', themeDeluxe: 'Deluxe SNES', themeModerno: 'Moderno', themeUltimate: 'Ultimate',
         verRankingGeral: 'Ver Ranking General',
-        tabArtilharia: '⚽ GOLEADORES', tabClassificacao: '🏆 CLASIFICACIÓN', tabSelecao: '⭐ SELECCIÓN', tabJogos: '📅 PARTIDOS',
-        tabSimulador: '⚽ SIMULADOR', tabRankingGeral: '🌍 RANKING GENERAL', tabTransmissoes: '📹 TRANSMISIONES',
+        tabArtilharia: '⚽ GOLEADORES', tabAssistencias: '🎯 ASISTENCIAS', tabClassificacao: '🏆 CLASIFICACIÓN', tabSelecao: '⭐ SELECCIÓN', tabJogos: '📅 PARTIDOS',
+        tabSimulador: '⚽ SIMULADOR', tabRankingGeral: '🌍 RANKING GENERAL', tabCuriosidades: '📊 CURIOSIDADES', tabTransmissoes: '📹 TRANSMISIONES',
         clsDescHtml: '<strong>Cómo funciona el puntaje:</strong> El puntaje final se calcula con la fórmula: (3 x Victorias) + (1 x Empates) + (1 x Partidos jugados).',
         selecaoDescHtml: '<strong>Selección del Campeonato:</strong> los mejores por posición (1 portero, 2 defensas, 2 mediocampistas, 2 delanteros), ordenados por puntaje (nivel). El empate se resuelve por eficiencia (goles por partido en el campeonato) y luego por la diferencia de gol del jugador.',
         buscarJogador: '🔎 Buscar jugador...',
@@ -1705,7 +1709,7 @@
         modalPerfilTitulo: 'Perfil del Jugador',
         modalJogadoresCarreira: '👥 Jugadores de la Carrera',
 
-        colPos: 'POS', colJogador: 'JUGADOR', colGols: 'GOLES', colJogos: 'PARTIDOS', colGpj: 'GPP',
+        colPos: 'POS', colJogador: 'JUGADOR', colGols: 'GOLES', colAssistencias: 'ASIST.', colJogos: 'PARTIDOS', colGpj: 'GPP', colApj: 'APJ',
         colP: 'P', colJ: 'J', colV: 'G', colE: 'E', colD: 'P', colPts: 'PTS',
         colGp: 'GF', colGc: 'GC', colSg: 'DG', colPontuacao: 'PUNTAJE', colEficiencia: 'EFICIENCIA', colSaldoGols: 'DIF. DE GOLES',
 
@@ -1720,7 +1724,7 @@
         nenhumJogadorEncontrado: 'No se encontró ningún jugador.',
         emAndamento: '(en curso)',
         statusAtivo: 'ACTIVO', statusInativo: 'INACTIVO',
-        titulosLabel: '🏆 Títulos:', artilheiroLabel: '⚽ Goleador:',
+        titulosLabel: '🏆 Títulos:', artilheiroLabel: '⚽ Goleador:', garconLabel: '🎯 Rey de Asistencias:',
         totalGeral: '📊 TOTAL GENERAL', desempenhoPorTorneio: 'DESEMPEÑO POR TORNEO', colTorneio: 'TORNEO',
         nenhumaPartidaJogador: 'Este jugador todavía no disputó ningún partido.',
         historicoPartidas: 'HISTORIAL DE PARTIDOS', rodadaAbrev: 'Jornada',
@@ -1945,9 +1949,10 @@
         escalacoes.forEach(e => {
           const partida = partidas.find(p => p.pk === e.partida);
           if (!partida) return;
-          const st = statsByPlayer[e.jogador] || (statsByPlayer[e.jogador] = { jogos: 0, v: 0, e: 0, d: 0, gols: 0 });
+          const st = statsByPlayer[e.jogador] || (statsByPlayer[e.jogador] = { jogos: 0, v: 0, e: 0, d: 0, gols: 0, assistencias: 0 });
           st.jogos += 1;
           st.gols += e.gols || 0;
+          st.assistencias += e.assistencias || 0;
           const meusGols = e.time === 'A' ? partida.placar_time_a : partida.placar_time_b;
           const golsAdversario = e.time === 'A' ? partida.placar_time_b : partida.placar_time_a;
           let resultado;
@@ -1962,6 +1967,7 @@
             data: partida.data,
             meuTime: e.time,
             meusGols: e.gols || 0,
+            minhasAssistencias: e.assistencias || 0,
             placarA: partida.placar_time_a,
             placarB: partida.placar_time_b,
             resultado
@@ -1973,14 +1979,14 @@
           const pts = 3 * st.v + 1 * st.e + 1 * st.jogos;
           getPlayerEntry(jid).tournaments.push({
             id: camp.pk, name: camp.nome, completed: camp.status === 'ENCERRADO',
-            jogos: st.jogos, v: st.v, e: st.e, d: st.d, gols: st.gols, pts
+            jogos: st.jogos, v: st.v, e: st.e, d: st.d, gols: st.gols, assists: st.assistencias, pts
           });
           return {
             id: Number(jid),
             name: jogador.nome || `Jogador ${jid}`,
             pais: jogador.pais,
             jogos: st.jogos, v: st.v, e: st.e, d: st.d,
-            gols: st.gols, pts, assists: 0
+            gols: st.gols, assists: st.assistencias, pts
           };
         });
 
@@ -1998,12 +2004,15 @@
             .filter(e => e.time === time)
             .map(e => {
               const j = jogadoresById[e.jogador] || {};
+              const foto = time === 'B' ? (j.foto_secundaria || j.foto || '') : (j.foto || '');
               return {
                 id: e.jogador,
                 name: j.nome || `Jogador ${e.jogador}`,
                 numero: j.numero,
-                foto: j.foto || '',
+                foto: foto,
+                fotoSecundaria: j.foto_secundaria || '',
                 gols: e.gols || 0,
+                assistencias: e.assistencias || 0,
                 reserva: !!e.reserva,
                 x: (e.posicao_x !== null && e.posicao_x !== undefined) ? parseFloat(e.posicao_x) : null,
                 y: (e.posicao_y !== null && e.posicao_y !== undefined) ? parseFloat(e.posicao_y) : null
@@ -2042,14 +2051,21 @@
     function computeGlobalTitles() {
       const campeaoCounts = {};
       const artilheiroCounts = {};
+      const garconCounts = {};
       tournaments.filter(t => t.completed !== false).forEach(t => {
         if (!t.players.length) return;
         const maxG = Math.max(...t.players.map(p => p.gols || 0));
-        t.players.filter(p => (p.gols || 0) === maxG).forEach(p => { artilheiroCounts[p.id] = (artilheiroCounts[p.id] || 0) + 1; });
+        if (maxG > 0) {
+          t.players.filter(p => (p.gols || 0) === maxG).forEach(p => { artilheiroCounts[p.id] = (artilheiroCounts[p.id] || 0) + 1; });
+        }
+        const maxA = Math.max(...t.players.map(p => p.assists || 0));
+        if (maxA > 0) {
+          t.players.filter(p => (p.assists || 0) === maxA).forEach(p => { garconCounts[p.id] = (garconCounts[p.id] || 0) + 1; });
+        }
         const maxPts = Math.max(...t.players.map(p => p.pts || 0));
         t.players.filter(p => (p.pts || 0) === maxPts).forEach(p => { campeaoCounts[p.id] = (campeaoCounts[p.id] || 0) + 1; });
       });
-      return { campeaoCounts, artilheiroCounts };
+      return { campeaoCounts, artilheiroCounts, garconCounts };
     }
 
     function getPosColor(i) {
@@ -2073,6 +2089,24 @@
       return pais === 'gb-sct' ? scotlandFlag() : brazilFlag();
     }
 
+    function renderAssists(idx) {
+      const t = tournaments[idx];
+      if (!t) return;
+      const garcons = [...t.players].filter(p => p.assists > 0).sort((a, b) => b.assists - a.assists || b.jogos - a.jogos || b.gols - a.gols);
+      let artHtml = `<table class="data-table art-table"><thead><tr><th>${tr('colPos')}</th><th class="cname">${tr('colJogador')}</th><th>${tr('colAssistencias')}</th><th>${tr('colJogos')}</th><th>${tr('colApj')}</th></tr></thead><tbody>`;
+      if (!garcons.length) {
+        artHtml += `<tr><td colspan="5" style="text-align:center; padding:12px; opacity:0.7;">Nenhuma assistência registrada neste campeonato.</td></tr>`;
+      } else {
+        garcons.forEach((p, i) => {
+          const apj = p.jogos ? p.assists / p.jogos : 0;
+          artHtml += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i + 1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td style="color:var(--win-color)">${p.assists}</td><td>${p.jogos}</td><td>${apj.toFixed(1)}</td></tr>`;
+        });
+      }
+      artHtml += `</tbody></table>`;
+      const root = document.getElementById('assists-root');
+      if (root) root.innerHTML = artHtml;
+    }
+
     function renderTournament(idx) {
       const t = tournaments[idx];
       if (!t) return;
@@ -2087,6 +2121,8 @@
       });
       artHtml += `</tbody></table>`;
       document.getElementById('art-root').innerHTML = artHtml;
+
+      renderAssists(idx);
 
       // classificacao
       const classificacao = [...t.players].sort((a, b) => b.pts - a.pts || b.gols - a.gols);
@@ -2197,8 +2233,9 @@
 
       onField.forEach(p => {
         const label = p.numero != null ? p.numero : initials(p.name);
+        const fotoUrl = teamClass === 'team-b' ? (p.fotoSecundaria || p.foto) : p.foto;
         html += `<div class="pitch-player ${teamClass}" style="left:${p.x}%; top:${p.y}%; cursor:pointer;" title="${p.name}${p.gols ? ' - ' + p.gols + ' gol(s)' : ''}" onclick="openPlayerModal(${p.id})">
-          <div class="dot">${p.foto ? `<img src="${p.foto}" alt="${p.name}" onerror="this.style.display='none'" />` : ''}<span class="dot-label">${label}</span>${p.gols > 0 ? `<span class="goals-badge">${p.gols}</span>` : ''}</div>
+          <div class="dot">${fotoUrl ? `<img src="${fotoUrl}" alt="${p.name}" onerror="this.style.display='none'" />` : ''}<span class="dot-label">${label}</span>${p.gols > 0 ? `<span class="goals-badge">${p.gols}</span>` : ''}</div>
           <div class="pname">${p.name.toUpperCase()}</div>
         </div>`;
       });
@@ -4514,7 +4551,11 @@
         html += `<div class="cls-desc">${tr('nenhumaPartida')}</div>`;
       }
       const listaGols = (list) => list.filter(p => p.gols > 0).map(p => `${p.name.toUpperCase()} (${p.gols})`).join(', ') || '—';
+      const listaAssists = (list) => list.filter(p => p.assistencias > 0).map(p => `${p.name.toUpperCase()} (${p.assistencias})`).join(', ');
+
       t.matches.forEach(m => {
+        const astA = listaAssists(m.timeA);
+        const astB = listaAssists(m.timeB);
         html += `
           <div class="match-card">
             <div class="match-header">
@@ -4528,8 +4569,8 @@
               <span class="team-name b">${tr('timeB')}</span>
             </div>
             <div class="match-scorers">
-              <div><strong>⚽ ${tr('timeA')}:</strong> ${listaGols(m.timeA)}</div>
-              <div><strong>⚽ ${tr('timeB')}:</strong> ${listaGols(m.timeB)}</div>
+              <div><strong>⚽ ${tr('timeA')}:</strong> ${listaGols(m.timeA)}${astA ? ` <span style="opacity:0.85; margin-left:6px;">🎯 ${astA}</span>` : ''}</div>
+              <div><strong>⚽ ${tr('timeB')}:</strong> ${listaGols(m.timeB)}${astB ? ` <span style="opacity:0.85; margin-left:6px;">🎯 ${astB}</span>` : ''}</div>
             </div>
             <div class="pitches-row">
               <div class="pitch-wrap">
@@ -4554,26 +4595,29 @@
         .filter(p => !term || p.name.toLowerCase().includes(term))
         .map(p => {
           const jogos = p.matches.length;
-          const gols = p.matches.reduce((s, m) => s + m.meusGols, 0);
+          const gols = p.matches.reduce((s, m) => s + (m.meusGols || 0), 0);
+          const assistencias = p.matches.reduce((s, m) => s + (m.minhasAssistencias || 0), 0);
           const v = p.matches.filter(m => m.resultado === 'V').length;
           const e = p.matches.filter(m => m.resultado === 'E').length;
           const d = p.matches.filter(m => m.resultado === 'D').length;
           const pts = 3 * v + e + jogos;
           const gpj = jogos ? gols / jogos : 0;
+          const apj = jogos ? assistencias / jogos : 0;
           return {
             id: p.id, name: p.name, pais: p.pais,
-            jogos, gols, v, e, d, pts, gpj,
+            jogos, gols, assistencias, v, e, d, pts, gpj, apj,
             gp: p.gp, gc: p.gc, sg: p.sg,
             titulos: globalTitles.campeaoCounts[p.id] || 0,
-            artilheiro: globalTitles.artilheiroCounts[p.id] || 0
+            artilheiro: globalTitles.artilheiroCounts[p.id] || 0,
+            garcon: globalTitles.garconCounts[p.id] || 0
           };
         })
-        .sort((a, b) => b.pts - a.pts || b.gols - a.gols || a.name.localeCompare(b.name));
+        .sort((a, b) => b.pts - a.pts || b.gols - a.gols || b.assistencias - a.assistencias || a.name.localeCompare(b.name));
 
-      let html = `<table class="data-table jog-table"><thead><tr><th>${tr('colPos')}</th><th class="cname">${tr('colJogador')}</th><th>${tr('colJ')}</th><th>${tr('colGols')}</th><th>${tr('colGpj')}</th><th>${tr('colGp')}</th><th>${tr('colGc')}</th><th>${tr('colSg')}</th><th>${tr('colPts')}</th><th>🏆</th><th>⚽</th></tr></thead><tbody>`;
+      let html = `<table class="data-table jog-table"><thead><tr><th>${tr('colPos')}</th><th class="cname">${tr('colJogador')}</th><th>${tr('colJ')}</th><th>${tr('colGols')}</th><th>${tr('colAssistencias')}</th><th>${tr('colGpj')}</th><th>${tr('colApj')}</th><th>${tr('colGp')}</th><th>${tr('colGc')}</th><th>${tr('colSg')}</th><th>${tr('colPts')}</th><th>🏆</th><th>⚽</th><th>🎯</th></tr></thead><tbody>`;
       list.forEach((p, i) => {
         const sgColor = p.sg > 0 ? 'var(--win-color)' : (p.sg < 0 ? 'var(--loss-color)' : 'var(--text-strong)');
-        html += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i + 1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.jogos}</td><td>${p.gols}</td><td>${p.gpj.toFixed(1)}</td><td>${p.gp != null ? p.gp : '-'}</td><td>${p.gc != null ? p.gc : '-'}</td><td style="color:${sgColor}">${p.sg != null ? (p.sg > 0 ? '+' : '') + p.sg : '-'}</td><td style="color:var(--win-color)">${p.pts}</td><td>${p.titulos}</td><td>${p.artilheiro}</td></tr>`;
+        html += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i + 1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.jogos}</td><td>${p.gols}</td><td>${p.assistencias}</td><td>${p.gpj.toFixed(1)}</td><td>${p.apj.toFixed(1)}</td><td>${p.gp != null ? p.gp : '-'}</td><td>${p.gc != null ? p.gc : '-'}</td><td style="color:${sgColor}">${p.sg != null ? (p.sg > 0 ? '+' : '') + p.sg : '-'}</td><td style="color:var(--win-color)">${p.pts}</td><td>${p.titulos}</td><td>${p.artilheiro}</td><td>${p.garcon}</td></tr>`;
       });
       html += `</tbody></table>`;
       root.innerHTML = html || `<div class="cls-desc">${tr('nenhumJogadorEncontrado')}</div>`;
@@ -4611,26 +4655,23 @@
     }
 
     function renderAggregate() {
-      // globalTitles já é agregado por id do jogador (calculado uma vez em init a partir dos torneios concluídos)
-      const { campeaoCounts, artilheiroCounts } = globalTitles;
-      const idsSet = new Set([...Object.keys(campeaoCounts), ...Object.keys(artilheiroCounts)].map(Number));
+      const { campeaoCounts, artilheiroCounts, garconCounts } = globalTitles;
+      const idsSet = new Set([...Object.keys(campeaoCounts), ...Object.keys(artilheiroCounts), ...Object.keys(garconCounts)].map(Number));
 
       const players = Array.from(idsSet).map(id => {
         const p = playersDirectory[String(id)] || {};
-        return { id, name: p.name || `Jogador ${id}`, pais: p.pais, campeoes: campeaoCounts[id] || 0, artilheiro: artilheiroCounts[id] || 0 };
+        return { id, name: p.name || `Jogador ${id}`, pais: p.pais, campeoes: campeaoCounts[id] || 0, artilheiro: artilheiroCounts[id] || 0, garcon: garconCounts[id] || 0 };
       });
 
-      // sort by campeoes desc, artilheiro desc
-      players.sort((a, b) => b.campeoes - a.campeoes || b.artilheiro - a.artilheiro || a.name.localeCompare(b.name));
+      players.sort((a, b) => b.campeoes - a.campeoes || b.artilheiro - a.artilheiro || b.garcon - a.garcon || a.name.localeCompare(b.name));
 
-      // build table HTML similar to classificacao/artilharia (columns: POS, JOGADOR, 🏆, ⚽)
-      let html = `<table class="data-table geral-table"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>🏆</th><th>⚽</th></tr></thead><tbody>`;
+      let html = `<table class="data-table geral-table"><thead><tr><th>POS</th><th class="cname">JOGADOR</th><th>🏆</th><th>⚽</th><th>🎯</th></tr></thead><tbody>`;
       players.forEach((p, i) => {
-        html += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i + 1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.campeoes}</td><td>${p.artilheiro}</td></tr>`;
+        html += `<tr onclick="openPlayerModal(${p.id})"><td class="cpos" style="color:${getPosColor(i)}">${i + 1}º</td><td class="cname">${flagByCountryCode(p.pais)} ${p.name.toUpperCase()}</td><td>${p.campeoes}</td><td>${p.artilheiro}</td><td>${p.garcon}</td></tr>`;
       });
       html += `</tbody></table>`;
       const gr = document.getElementById('geral-root'); if (gr) gr.innerHTML = html;
-      // populate compact winners table in header (only campeoes)
+
       const headerRoot = document.getElementById('geral-header-root');
       if (headerRoot) {
         const camArr = Object.entries(campeaoCounts).sort((a, b) => b[1] - a[1]);
@@ -4657,12 +4698,10 @@
       document.querySelectorAll('.sec-tab').forEach(el => el.classList.remove('active'));
       document.getElementById('tab-' + tab).classList.add('active');
       const contentEl = document.querySelector('.content');
-      if (contentEl) contentEl.classList.toggle('wide-tab', tab === 'jogadores');
-      // when clicked from header, event.target might be the element; safe guard
+      if (contentEl) contentEl.classList.toggle('wide-tab', tab === 'jogadores' || tab === 'curiosidades');
       try { event.target.classList.add('active'); } catch (e) { }
     }
 
-    // open geral modal
     document.getElementById('open-geral-modal').addEventListener('click', () => openGeralModal());
     document.getElementById('close-geral-modal').addEventListener('click', () => closeGeralModal());
     document.getElementById('close-player-modal').addEventListener('click', () => closePlayerModal());
@@ -4672,7 +4711,6 @@
       const m = document.getElementById('geral-modal');
       if (m) {
         m.style.display = 'flex';
-        // prevent background scroll while modal is open
         document.body.style.overflow = 'hidden';
       }
     }
@@ -4686,21 +4724,18 @@
     }
 
     function renderGeralModal() {
-      // globalTitles já é agregado por id do jogador (torneios concluídos)
-      const { campeaoCounts, artilheiroCounts } = globalTitles;
-      const idsSet = new Set([...Object.keys(campeaoCounts), ...Object.keys(artilheiroCounts)].map(Number));
+      const { campeaoCounts, artilheiroCounts, garconCounts } = globalTitles;
+      const idsSet = new Set([...Object.keys(campeaoCounts), ...Object.keys(artilheiroCounts), ...Object.keys(garconCounts)].map(Number));
 
       const rows = Array.from(idsSet).map(id => {
         const p = playersDirectory[String(id)] || {};
-        return { id, name: p.name || `Jogador ${id}`, pais: p.pais, artilheiro: artilheiroCounts[id] || 0, campeao: campeaoCounts[id] || 0 };
+        return { id, name: p.name || `Jogador ${id}`, pais: p.pais, artilheiro: artilheiroCounts[id] || 0, campeao: campeaoCounts[id] || 0, garcon: garconCounts[id] || 0 };
       });
-      // sort by campeao desc, gols desc
-      rows.sort((a, b) => b.campeao - a.campeao || b.artilheiro - a.artilheiro || a.name.localeCompare(b.name));
+      rows.sort((a, b) => b.campeao - a.campeao || b.artilheiro - a.artilheiro || b.garcon - a.garcon || a.name.localeCompare(b.name));
 
-      // columns order: TROFÉU, GOLS (assistências removidas)
-      let html = `<table class="data-table geral-table"><thead><tr><th>${tr('colPos')}</th><th class="cname">${tr('colJogador')}</th><th>🏆</th><th>⚽</th></tr></thead><tbody>`;
+      let html = `<table class="data-table geral-table"><thead><tr><th>${tr('colPos')}</th><th class="cname">${tr('colJogador')}</th><th>🏆</th><th>⚽</th><th>🎯</th></tr></thead><tbody>`;
       rows.forEach((r, i) => {
-        html += `<tr onclick="openPlayerModal(${r.id})"><td class="cpos" style="color:${getPosColor(i)}">${i + 1}º</td><td class="cname">${flagByCountryCode(r.pais)} ${r.name.toUpperCase()}</td><td>${r.campeao}</td><td>${r.artilheiro}</td></tr>`;
+        html += `<tr onclick="openPlayerModal(${r.id})"><td class="cpos" style="color:${getPosColor(i)}">${i + 1}º</td><td class="cname">${flagByCountryCode(r.pais)} ${r.name.toUpperCase()}</td><td>${r.campeao}</td><td>${r.artilheiro}</td><td>${r.garcon}</td></tr>`;
       });
       html += `</tbody></table>`;
       const root = document.getElementById('geral-modal-root'); if (root) root.innerHTML = html;
@@ -4729,12 +4764,14 @@
       if (!p || !root) return;
 
       const totalJogos = p.matches.length;
-      const totalGols = p.matches.reduce((s, m) => s + m.meusGols, 0);
+      const totalGols = p.matches.reduce((s, m) => s + (m.meusGols || 0), 0);
+      const totalAssistencias = p.matches.reduce((s, m) => s + (m.minhasAssistencias || 0), 0);
       const totalV = p.matches.filter(m => m.resultado === 'V').length;
       const totalE = p.matches.filter(m => m.resultado === 'E').length;
       const totalD = p.matches.filter(m => m.resultado === 'D').length;
       const titulos = globalTitles.campeaoCounts[p.id] || 0;
       const artTitulos = globalTitles.artilheiroCounts[p.id] || 0;
+      const garconTitulos = globalTitles.garconCounts[p.id] || 0;
 
       let html = `
         <div class="player-summary">
@@ -4748,9 +4785,10 @@
             <div class="player-summary-status" style="color:${p.ativo ? 'var(--win-color)' : 'var(--loss-color)'}">${p.ativo ? tr('statusAtivo') : tr('statusInativo')}</div>
           </div>
         </div>
-        <div class="cls-desc">
+        <div class="cls-desc" style="display:flex; gap:12px; flex-wrap:wrap;">
           <div>${tr('titulosLabel')} <strong>${titulos}</strong></div>
           <div>${tr('artilheiroLabel')} <strong>${artTitulos}</strong></div>
+          <div>${tr('garconLabel')} <strong>${garconTitulos}</strong></div>
         </div>
         <div class="pitch-label">${tr('totalGeral')}</div>
         <table class="player-table">
@@ -4758,6 +4796,7 @@
             <tr>
               <th>${tr('colJ')}</th>
               <th>${tr('colGols')}</th>
+              <th>${tr('colAssistencias')}</th>
               <th>${tr('colV')}</th>
               <th>${tr('colE')}</th>
               <th>${tr('colD')}</th>
@@ -4767,6 +4806,7 @@
             <tr>
               <td>${totalJogos}</td>
               <td>${totalGols}</td>
+              <td>${totalAssistencias}</td>
               <td>${totalV}</td>
               <td>${totalE}</td>
               <td>${totalD}</td>
@@ -4788,6 +4828,7 @@
                 <th>${tr('colE')}</th>
                 <th>${tr('colD')}</th>
                 <th>${tr('colGols')}</th>
+                <th>${tr('colAssistencias')}</th>
               </tr>
             </thead>
             <tbody>`;
@@ -4798,13 +4839,15 @@
           if (t && t.players.length) {
             const maxPts = Math.max(...t.players.map(pl => pl.pts || 0));
             const maxGols = Math.max(...t.players.map(pl => pl.gols || 0));
+            const maxAssists = Math.max(...t.players.map(pl => pl.assists || 0));
             const classificacao = [...t.players].sort((a, b) => b.pts - a.pts || b.gols - a.gols);
             const posClass = classificacao.findIndex(x => x.id === p.id) + 1;
             if (posClass > 0) posClassLabel = posClass + 'º';
             if ((pt.pts || 0) === maxPts) badges += ' 🏆';
-            if ((pt.gols || 0) === maxGols) badges += ' ⚽';
+            if ((pt.gols || 0) === maxGols && maxGols > 0) badges += ' ⚽';
+            if ((pt.assists || 0) === maxAssists && maxAssists > 0) badges += ' 🎯';
           }
-          html += `<tr><td class="cell cname">${pt.name}${badges}${pt.completed === false ? ' 🔸' : ''}</td><td class="cell" style="color:${posClassLabel === '1º' ? 'var(--win-color)' : 'var(--text-strong)'}">${posClassLabel}</td><td class="cell" style="color:var(--win-color)">${pt.pts}</td><td class="cell">${pt.jogos}</td><td class="cell">${pt.v}</td><td class="cell">${pt.e}</td><td class="cell">${pt.d}</td><td class="cell">${pt.gols}</td></tr>`;
+          html += `<tr><td class="cell cname">${pt.name}${badges}${pt.completed === false ? ' 🔸' : ''}</td><td class="cell" style="color:${posClassLabel === '1º' ? 'var(--win-color)' : 'var(--text-strong)'}">${posClassLabel}</td><td class="cell" style="color:var(--win-color)">${pt.pts}</td><td class="cell">${pt.jogos}</td><td class="cell">${pt.v}</td><td class="cell">${pt.e}</td><td class="cell">${pt.d}</td><td class="cell">${pt.gols}</td><td class="cell">${pt.assists || 0}</td></tr>`;
         });
         html += `</tbody></table>`;
       } else {
@@ -4814,19 +4857,122 @@
       if (p.matches.length) {
         html += `<div class="pitch-label" style="margin-top:10px;">${tr('historicoPartidas')}</div>`;
         p.matches.forEach(m => {
+          const statsTxt = `${m.meusGols}⚽${m.minhasAssistencias ? ' ' + m.minhasAssistencias + '🎯' : ''}`;
           html += `
             <div class="player-match-row">
               <div class="player-match-info">
                 <span class="t-name">${m.tournamentName}</span>
                 <span>${tr('rodadaAbrev')} ${m.numero} • ${formatDateBR(m.data)}</span>
               </div>
-              <span class="player-match-score">${m.placarA} x ${m.placarB} (${m.meusGols}⚽)</span>
+              <span class="player-match-score">${m.placarA} x ${m.placarB} (${statsTxt})</span>
               <span class="player-match-badge ${m.resultado}">${m.resultado}</span>
             </div>`;
         });
       }
 
       root.innerHTML = html;
+    }
+
+    function computePlayerGlobalStats(p) {
+      const matches = p.matches || [];
+      const jogos = matches.length;
+      const gols = matches.reduce((s, m) => s + (m.meusGols || 0), 0);
+      const assistencias = matches.reduce((s, m) => s + (m.minhasAssistencias || 0), 0);
+      const v = matches.filter(m => m.resultado === 'V').length;
+      const e = matches.filter(m => m.resultado === 'E').length;
+      const d = matches.filter(m => m.resultado === 'D').length;
+      const pts = 3 * v + e + jogos;
+      const gpj = jogos ? gols / jogos : 0;
+      const apj = jogos ? assistencias / jogos : 0;
+
+      let seqV = 0, maxSeqV = 0;
+      let seqD = 0, maxSeqD = 0;
+      matches.forEach(m => {
+        if (m.resultado === 'V') {
+          seqV++;
+          if (seqV > maxSeqV) maxSeqV = seqV;
+          seqD = 0;
+        } else if (m.resultado === 'D') {
+          seqD++;
+          if (seqD > maxSeqD) maxSeqD = seqD;
+          seqV = 0;
+        } else {
+          seqV = 0;
+          seqD = 0;
+        }
+      });
+
+      let golsTimeAFavor = 0;
+      let golsTimeContra = 0;
+      matches.forEach(m => {
+        if (m.meuTime === 'A') {
+          golsTimeAFavor += m.placarA;
+          golsTimeContra += m.placarB;
+        } else {
+          golsTimeAFavor += m.placarB;
+          golsTimeContra += m.placarA;
+        }
+      });
+
+      return {
+        id: p.id, name: p.name, pais: p.pais, posicao: p.posicao, ativo: p.ativo,
+        jogos, gols, assistencias, v, e, d, pts, gpj, apj,
+        maxSeqV, maxSeqD, golsTimeAFavor, golsTimeContra,
+        eficienciaGolsFavor: jogos ? (golsTimeAFavor / jogos) : 0
+      };
+    }
+
+    function renderCuriosidadesGlobal() {
+      const root = document.getElementById('curiosidades-root');
+      if (!root) return;
+
+      const list = Object.values(playersDirectory).map(p => computePlayerGlobalStats(p)).filter(l => l.jogos > 0);
+      if (!list.length) {
+        root.innerHTML = `<div class="cls-desc">Nenhum dado cadastrado para calcular curiosidades.</div>`;
+        return;
+      }
+
+      const inteiro = v => String(v);
+      const media = v => v.toFixed(2);
+
+      function montarCardGlobal(titulo, icone, ranking, getVal, fmtVal) {
+        const top5 = ranking.slice(0, 5);
+        const itens = top5.map(l =>
+          `<li style="display:flex; justify-content:space-between; margin-bottom:4px; gap:8px;">
+            <span>${flagByCountryCode(l.pais)} ${l.name.toUpperCase()}</span>
+            <strong style="color:var(--gold-text)">${fmtVal(getVal(l))}</strong>
+          </li>`
+        ).join('');
+        return `<div class="career-card" style="flex:1 1 240px; min-width:220px; text-align:left;">
+          <h4 style="margin:0 0 8px; font-size:14px; color:var(--text-strong);">${icone} ${titulo}</h4>
+          <ul style="list-style:none; margin:0; padding:0; font-size:13px;">${itens}</ul>
+        </div>`;
+      }
+
+      function ordenar(array, keyFn, desc = true) {
+        return [...array].sort((a, b) => desc ? keyFn(b) - keyFn(a) || a.name.localeCompare(b.name) : keyFn(a) - keyFn(b) || a.name.localeCompare(b.name));
+      }
+
+      const cardsHtml = [
+        montarCardGlobal('Maiores Vencedores', '🏆', ordenar(list, l => l.v, true), l => l.v, inteiro),
+        montarCardGlobal('Maiores Garçons', '👟', ordenar(list, l => l.assistencias, true), l => l.assistencias, inteiro),
+        montarCardGlobal('Maiores Artilheiros', '⚽', ordenar(list, l => l.gols, true), l => l.gols, inteiro),
+        montarCardGlobal('Maiores Perdedores', '🥲', ordenar(list, l => l.d, true), l => l.d, inteiro),
+        montarCardGlobal('Mais Empates', '🤝', ordenar(list, l => l.e, true), l => l.e, inteiro),
+        montarCardGlobal('Maior Sequência de Vitórias', '🔥', ordenar(list, l => l.maxSeqV, true), l => l.maxSeqV, inteiro),
+        montarCardGlobal('Maior Sequência de Derrotas', '🥶', ordenar(list, l => l.maxSeqD, true), l => l.maxSeqD, inteiro),
+        montarCardGlobal('Menor Sequência de Vitórias', '🐢', ordenar(list, l => l.maxSeqV, false), l => l.maxSeqV, inteiro),
+        montarCardGlobal('Menor Sequência de Derrotas', '🛡️', ordenar(list, l => l.maxSeqD, false), l => l.maxSeqD, inteiro),
+        montarCardGlobal('Maior Desempenho (APJ)', '📈', ordenar(list.filter(l => l.jogos >= 2), l => l.pts / l.jogos, true), l => (l.pts / l.jogos), media),
+        montarCardGlobal('Pior Desempenho (APJ)', '📉', ordenar(list.filter(l => l.jogos >= 2), l => l.pts / l.jogos, false), l => (l.pts / l.jogos), media),
+        montarCardGlobal('Time Que Mais Fez Gol', '⚽', ordenar(list, l => l.golsTimeAFavor, true), l => l.golsTimeAFavor, inteiro),
+        montarCardGlobal('Time Que Mais Sofreu Gol', '🧤', ordenar(list, l => l.golsTimeContra, true), l => l.golsTimeContra, inteiro),
+        montarCardGlobal('Eficiência de Gols a Favor', '🎯', ordenar(list.filter(l => l.jogos >= 2), l => l.eficienciaGolsFavor, true), l => l.eficienciaGolsFavor, media),
+        montarCardGlobal('Mais Eficientes na Artilharia', '🥅', ordenar(list.filter(l => l.jogos >= 2), l => l.gpj, true), l => l.gpj, media),
+        montarCardGlobal('Mais Eficientes nas Assistências', '🎯', ordenar(list.filter(l => l.jogos >= 2), l => l.apj, true), l => l.apj, media)
+      ].join('');
+
+      root.innerHTML = `<div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:8px;">${cardsHtml}</div>`;
     }
 
     // close modals when clicking on backdrop (use capture to ensure it runs before inner clicks)
@@ -4895,6 +5041,7 @@
       const busca = document.getElementById('jogadores-search');
       renderJogadoresList(busca ? busca.value : '');
       renderAggregate();
+      renderCuriosidadesGlobal();
     }
 
     // init - carrega data.json e abre no último torneio cadastrado por padrão
