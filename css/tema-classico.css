@@ -618,9 +618,25 @@ body[data-theme="classico"] #btn-carreira-ir-partida-nav:hover *,
 [data-theme="classico"] .career-dropdown-btn:hover,
 [data-theme="classico"] .career-dropdown-btn:hover *,
 [data-theme="classico"] #btn-carreira-jogadores:hover,
-[data-theme="classico"] #btn-carreira-jogadores:hover *,
+[data-theme="classico"] #btn-carreira-jogadores:hover *:not(.career-train-badge),
 [data-theme="classico"] #btn-carreira-ir-partida-nav:hover,
 [data-theme="classico"] #btn-carreira-ir-partida-nav:hover * {
   background-color: #00723a !important;
   color: #ffffff !important;
+}
+
+/* Badge de Treinos Disponíveis no Botão Jogadores: Fundo Vermelho (#e74c3c) e Texto Branco (#ffffff) */
+html[data-theme="classico"] .career-train-badge,
+body[data-theme="classico"] .career-train-badge,
+[data-theme="classico"] .career-train-badge,
+[data-theme="classico"] #btn-carreira-jogadores .career-train-badge,
+[data-theme="classico"] #btn-carreira-jogadores:hover .career-train-badge {
+  background-color: #e74c3c !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  padding: 1px 6px !important;
+  font-size: 11px !important;
+  margin-left: 4px !important;
+  font-weight: bold !important;
+  display: inline-block !important;
 }

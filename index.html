@@ -1807,7 +1807,7 @@
         totalTreinos += (p.treinosDisponiveis || 0);
       });
       if (totalTreinos > 0) {
-        elBtn.innerHTML = `${labelTraduzido} <span style="background-color: #e74c3c; color: #fff; border-radius: 10px; padding: 1px 6px; font-size: 11px; margin-left: 4px; font-weight: bold;">${totalTreinos}</span>`;
+        elBtn.innerHTML = `${labelTraduzido} <span class="career-train-badge" style="background-color: #e74c3c !important; color: #ffffff !important; border-radius: 10px; padding: 1px 6px; font-size: 11px; margin-left: 4px; font-weight: bold;">${totalTreinos}</span>`;
       } else {
         elBtn.innerHTML = labelTraduzido;
       }
@@ -2953,7 +2953,7 @@
 
       if (simulatorState.review) {
         html += `
-          <div class="simulator-review">
+          <div class="simulator-review" id="simulador-review">
             <div class="simulator-team-header">${tr('reviewFinal')}</div>
             <div class="simulator-review-score">${simulatorState.review.score.teamA} x ${simulatorState.review.score.teamB}</div>
             <div class="simulator-review-text">${simulatorState.review.text}</div>
@@ -3261,6 +3261,12 @@
                 };
                 simulatorState.notice = 'Partida finalizada. Confira o review abaixo.';
                 renderSimulador();
+                setTimeout(() => {
+                  const elReview = document.getElementById('simulador-review');
+                  if (elReview) {
+                    elReview.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }, 100);
                 return;
               }
 
@@ -4042,7 +4048,16 @@
             activeVisualMatch.stop();
             activeVisualMatch = null;
           }
+          if (elCanvasContainer) elCanvasContainer.style.display = 'none';
+
           aoTerminar();
+
+          setTimeout(() => {
+            const elResumo = document.getElementById('carreira-resultado-rodada') || document.getElementById('carreira-eventos-ao-vivo');
+            if (elResumo) {
+              elResumo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 150);
           return;
         }
 
@@ -4335,6 +4350,9 @@
     function renderizarResultadoRodada(resultado, presencas, atraso, itensQuebrados) {
       const el = document.getElementById('carreira-resultado-rodada');
       el.style.display = 'block';
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
       const artilheiros = Object.keys(resultado.golsPorJogador).map(id => {
         const j = buscarJogadorCarreira(Number(id));
         return (j ? j.name.toUpperCase() : '?') + ' (' + resultado.golsPorJogador[id] + ')';
