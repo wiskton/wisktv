@@ -47,6 +47,20 @@
   --radius-panel: 0px;
 }
 
+/* Removida a borda principal de todas as telas no Tema Clássico */
+[data-theme="classico"] .screen,
+[data-theme="classico"] .app-container,
+[data-theme="classico"] .main-container,
+[data-theme="classico"] #modo-selecao-root,
+[data-theme="classico"] #simulador-root,
+[data-theme="classico"] #career-root,
+[data-theme="classico"] #tab-simulador,
+[data-theme="classico"] #tab-carreira,
+[data-theme="classico"] .cls-desc {
+  border: none !important;
+  box-shadow: none !important;
+}
+
 [data-theme="classico"] .header {
   background: linear-gradient(90deg, #ffdc00 0%, #ffdc00 100%);
 }
