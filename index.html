@@ -649,12 +649,19 @@
 
       if (!elenco.length) return [];
 
+      // Garante que haja pelo menos um goleiro no time para defender a baliza correta
+      let goleiros = elenco.filter(p => p.posicao === 'GOL');
+      let outros = elenco.filter(p => p.posicao !== 'GOL');
+      if (!goleiros.length && outros.length > 0) {
+        goleiros = [outros.shift()];
+      }
+
       const porPosicao = {
-        GOL: elenco.filter(p => p.posicao === 'GOL'),
-        ZAG: elenco.filter(p => p.posicao === 'ZAG'),
-        MEI: elenco.filter(p => p.posicao === 'MEI'),
-        ATA: elenco.filter(p => p.posicao === 'ATA'),
-        OUT: elenco.filter(p => !['GOL', 'ZAG', 'MEI', 'ATA'].includes(p.posicao))
+        GOL: goleiros,
+        ZAG: outros.filter(p => p.posicao === 'ZAG'),
+        MEI: outros.filter(p => p.posicao === 'MEI'),
+        ATA: outros.filter(p => p.posicao === 'ATA'),
+        OUT: outros.filter(p => !['ZAG', 'MEI', 'ATA'].includes(p.posicao))
       };
 
       // Jogadores fora de posição entram na linha mais avançada disponível.
@@ -828,7 +835,9 @@
           const sidePlayers = teamSide === 'TIME B' ? this.playersB : this.playersA;
           visualScorer = sidePlayers.filter(p => p.role === 'ATA')[0] || sidePlayers[5] || sidePlayers[0];
         }
-        const defendingGk = teamSide === 'TIME B' ? this.playersA[0] : this.playersB[0];
+        const defendingGk = teamSide === 'TIME B'
+          ? (this.playersA.find(p => p.isGk) || this.playersA[0])
+          : (this.playersB.find(p => p.isGk) || this.playersB[0]);
         this.activeSequence = {
           scorer: visualScorer,
           gk: defendingGk,
@@ -918,8 +927,23 @@
             }
           }
         }
-        // Garante que nenhum jogador saiu do campo e permanece no próprio lado
+        // Garante que nenhum jogador saiu do campo e que os goleiros fiquem estritamente na sua baliza
         this.allPlayers.forEach(p => {
+          if (p.isGk) {
+            if (!p.isTeamB) {
+              // Goleiro Time A: fica restrito à área do gol esquerdo (x: 20-80, y: 115-235)
+              p.x       = Math.max(20, Math.min(80, p.x));
+              p.targetX = Math.max(20, Math.min(80, p.targetX));
+            } else {
+              // Goleiro Time B: fica restrito à área do gol direito (x: 520-580, y: 115-235)
+              p.x       = Math.max(520, Math.min(580, p.x));
+              p.targetX = Math.max(520, Math.min(580, p.targetX));
+            }
+            p.y       = Math.max(115, Math.min(235, p.y));
+            p.targetY = Math.max(115, Math.min(235, p.targetY));
+            return;
+          }
+
           p.x       = Math.max(20, Math.min(580, p.x));
           p.y       = Math.max(20, Math.min(330, p.y));
           p.targetX = Math.max(20, Math.min(580, p.targetX));
