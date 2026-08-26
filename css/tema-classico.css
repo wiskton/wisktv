@@ -102,15 +102,22 @@
   color: #005a2b !important;
 }
 
-/* Placar (Score do jogo) com fundo BRANCO e texto verde */
+/* Placar no Tema Clássico: fundo amarelo padrão (#ffdc00), texto e borda verde (#005a2b), sem borda preta */
 [data-theme="classico"] .match-score,
 [data-theme="classico"] #carreira-placar,
 [data-theme="classico"] .simulator-scoreboard,
-[data-theme="classico"] .match-score .score {
-  background: #ffffff !important;
+[data-theme="classico"] .career-score-summary-box,
+[data-theme="classico"] #carreira-resultado-rodada .career-score-summary-box {
+  background: #ffdc00 !important;
   color: #005a2b !important;
   border: 1px solid #005a2b !important;
   border-radius: 6px;
+  box-shadow: none !important;
+}
+
+[data-theme="classico"] .career-score-summary-box *,
+[data-theme="classico"] #carreira-resultado-rodada .career-score-summary-box * {
+  color: #005a2b !important;
 }
 
 /* Barra do torneio e rodada em Layout Clássico: fundo verde e texto estritamente BRANCO */
@@ -152,15 +159,17 @@
   color: #005a2b !important;
 }
 
-/* Barra do menu: fundo verde e texto branco no Layout Clássico */
+/* Menu do Modo Carreira no Layout Clássico: fundo verde (#005a2b) e texto estritamente BRANCO */
 [data-theme="classico"] .career-btn-row-nav {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
 }
 
+[data-theme="classico"] .career-dropdown,
 [data-theme="classico"] .career-dropdown-btn,
 [data-theme="classico"] .career-dropdown-menu,
+[data-theme="classico"] .career-dropdown-item,
 [data-theme="classico"] #btn-carreira-jogadores {
   background: #005a2b !important;
   color: #ffffff !important;
@@ -179,7 +188,7 @@
 [data-theme="classico"] .career-dropdown-btn:hover,
 [data-theme="classico"] #btn-carreira-jogadores:hover {
   background: #00723a !important;
-  color: #ffdc00 !important;
+  color: #ffffff !important;
 }
 
 [data-theme="classico"] .sec-tab {
