@@ -94,18 +94,71 @@
   border-color: #c59e00;
 }
 
+/* Barra do torneio em Layout Clássico: fundo verde e texto branco */
 [data-theme="classico"] .match-header,
-[data-theme="classico"] .match-scorers {
-  color: #003d12;
+[data-theme="classico"] .career-header-card,
+[data-theme="classico"] #carreira-cabecalho-container,
+[data-theme="classico"] #carreira-cabecalho {
+  background: #005a2b !important;
+  color: #ffffff !important;
+  border-color: #003d12 !important;
 }
 
+[data-theme="classico"] #carreira-data {
+  color: #ffffff !important;
+  opacity: 0.9 !important;
+}
+
+/* Barra da escalação e dados da partida: fundo amarelo normal e texto verde */
+[data-theme="classico"] #carreira-escalacao-rodada,
+[data-theme="classico"] .simulator-team-card {
+  background: #ffdc00 !important;
+  border: 1px solid #005a2b !important;
+  color: #005a2b !important;
+}
+
+[data-theme="classico"] #carreira-escalacao-rodada h6,
+[data-theme="classico"] #carreira-escalacao-rodada div,
+[data-theme="classico"] #carreira-escalacao-rodada p,
+[data-theme="classico"] #carreira-escalacao-rodada strong,
+[data-theme="classico"] #carreira-escalacao-a,
+[data-theme="classico"] #carreira-escalacao-b,
+[data-theme="classico"] .career-lineup-row,
+[data-theme="classico"] .match-scorers,
 [data-theme="classico"] .match-score .score,
 [data-theme="classico"] .match-score .team-name {
-  color: #000000;
+  color: #005a2b !important;
 }
 
-[data-theme="classico"] .match-score .team-name.b {
-  color: #000000;
+/* Barra do menu: sem borda e sem tom amarelo escuro */
+.career-btn-row-nav {
+  border: none !important;
+}
+
+[data-theme="classico"] .career-btn-row-nav {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[data-theme="classico"] .career-dropdown-btn {
+  background: #005a2b !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+[data-theme="classico"] .career-dropdown-menu {
+  background: #005a2b !important;
+  border: none !important;
+}
+
+[data-theme="classico"] .career-dropdown-item {
+  color: #ffffff !important;
+}
+
+[data-theme="classico"] .career-dropdown-item:hover {
+  background: #00723a !important;
+  color: #ffdc00 !important;
 }
 
 [data-theme="classico"] .sec-tab {
