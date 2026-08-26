@@ -126,7 +126,16 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.5);
       padding: 6px 0;
       z-index: 10000;
-      margin-top: 4px;
+      margin-top: 0;
+    }
+
+    .career-dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: 0;
+      right: 0;
+      height: 12px;
     }
 
     .career-dropdown-menu-right {
@@ -415,60 +424,7 @@
               <button type="button" id="btn-novo-torneio" class="btn-solid" style="display:none;" data-i18n="simularOutroTorneio">🏆 Simular Outro Torneio</button>
             </div>
 
-            <div class="career-card" style="text-align:center; margin-bottom:12px;">
-              <div id="carreira-cabecalho" style="font-weight:bold;"></div>
-              <div id="carreira-data" style="font-size:12px; opacity:0.8; margin-top:2px;"></div>
-            </div>
-
-            <div id="carreira-escalacao-rodada" class="career-card" style="display:none; margin-bottom:12px;">
-              <h6 style="margin:0 0 8px;" data-i18n="escalacaoDaRodada">📋 Escalação da Rodada</h6>
-              <div style="display:flex; gap:16px; flex-wrap:wrap;">
-                <div style="flex:1; min-width:200px;">
-                  <div style="font-weight:600; margin-bottom:4px; font-size:13px;" data-i18n="timeAmarelo">🟡 Time
-                    Amarelo</div>
-                  <div id="carreira-escalacao-a"></div>
-                </div>
-                <div style="flex:1; min-width:200px;">
-                  <div style="font-weight:600; margin-bottom:4px; font-size:13px;" data-i18n="timeAzul">🔵 Time Azul
-                  </div>
-                  <div id="carreira-escalacao-b"></div>
-                </div>
-              </div>
-              <div style="margin-top:8px;">
-                <p style="display:none;"><span data-i18n="diferencaDeForca">Diferença de força:</span>
-                  <strong id="carreira-escalacao-forca">0</strong></p>
-                <div id="carreira-escalacao-badges" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
-              </div>
-            </div>
-
-            <div id="carreira-atraso" class="career-card" style="display:none; margin-bottom:12px;">
-              <h6 style="margin:0 0 8px;" data-i18n="atrasoTitulo">⏰ Atraso</h6>
-              <div id="carreira-atraso-texto" style="font-size:13px; margin-bottom:8px;"></div>
-              <div class="career-progress-outer">
-                <div id="carreira-atraso-barra" class="career-progress-inner" style="background:var(--gold-text);">
-                </div>
-              </div>
-            </div>
-
-            <div id="carreira-partida-ao-vivo" class="career-card" style="display:none; margin-bottom:12px;">
-              <div
-                style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
-                <div style="font-size:22px; font-weight:bold;">🟡 <span id="carreira-score-a">0</span> x <span
-                    id="carreira-score-b">0</span> 🔵</div>
-                <div id="carreira-minuto" style="font-size:13px; opacity:0.8;">0 min</div>
-              </div>
-              <div class="career-progress-outer" style="margin-bottom:8px;">
-                <div id="carreira-barra" class="career-progress-inner" style="background:var(--win-color, #2ecc71);">
-                </div>
-              </div>
-              <div class="soccer-pitch-container">
-                <canvas id="carreira-canvas" class="soccer-pitch-canvas" width="600" height="350"></canvas>
-              </div>
-              <div id="carreira-eventos-ao-vivo"></div>
-            </div>
-
-            <div id="carreira-resultado-rodada" class="career-card" style="display:none; margin-bottom:12px;"></div>
-
+            <!-- Seções de Rankings, Classificação e Estatísticas (Posicionadas antes do torneio e mapa) -->
             <div id="carreira-secao-classificacao" class="career-card" style="display:none; margin-bottom:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <h6 style="margin:0;" data-i18n="classificacaoTitulo">📊 Classificação</h6>
@@ -559,6 +515,60 @@
               </div>
               <div id="carreira-rankings-extra-corpo" style="display:flex; flex-wrap:wrap; gap:12px;"></div>
             </div>
+
+            <div class="career-card" style="text-align:center; margin-bottom:12px;">
+              <div id="carreira-cabecalho" style="font-weight:bold;"></div>
+              <div id="carreira-data" style="font-size:12px; opacity:0.8; margin-top:2px;"></div>
+            </div>
+
+            <div id="carreira-escalacao-rodada" class="career-card" style="display:none; margin-bottom:12px;">
+              <h6 style="margin:0 0 8px;" data-i18n="escalacaoDaRodada">📋 Escalação da Rodada</h6>
+              <div style="display:flex; gap:16px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:200px;">
+                  <div style="font-weight:600; margin-bottom:4px; font-size:13px;" data-i18n="timeAmarelo">🟡 Time
+                    Amarelo</div>
+                  <div id="carreira-escalacao-a"></div>
+                </div>
+                <div style="flex:1; min-width:200px;">
+                  <div style="font-weight:600; margin-bottom:4px; font-size:13px;" data-i18n="timeAzul">🔵 Time Azul
+                  </div>
+                  <div id="carreira-escalacao-b"></div>
+                </div>
+              </div>
+              <div style="margin-top:8px;">
+                <p style="display:none;"><span data-i18n="diferencaDeForca">Diferença de força:</span>
+                  <strong id="carreira-escalacao-forca">0</strong></p>
+                <div id="carreira-escalacao-badges" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+              </div>
+            </div>
+
+            <div id="carreira-atraso" class="career-card" style="display:none; margin-bottom:12px;">
+              <h6 style="margin:0 0 8px;" data-i18n="atrasoTitulo">⏰ Atraso</h6>
+              <div id="carreira-atraso-texto" style="font-size:13px; margin-bottom:8px;"></div>
+              <div class="career-progress-outer">
+                <div id="carreira-atraso-barra" class="career-progress-inner" style="background:var(--gold-text);">
+                </div>
+              </div>
+            </div>
+
+            <div id="carreira-partida-ao-vivo" class="career-card" style="display:none; margin-bottom:12px;">
+              <div
+                style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+                <div style="font-size:22px; font-weight:bold;">🟡 <span id="carreira-score-a">0</span> x <span
+                    id="carreira-score-b">0</span> 🔵</div>
+                <div id="carreira-minuto" style="font-size:13px; opacity:0.8;">0 min</div>
+              </div>
+              <div class="career-progress-outer" style="margin-bottom:8px;">
+                <div id="carreira-barra" class="career-progress-inner" style="background:var(--win-color, #2ecc71);">
+                </div>
+              </div>
+              <div class="soccer-pitch-container">
+                <canvas id="carreira-canvas" class="soccer-pitch-canvas" width="600" height="350"></canvas>
+              </div>
+              <div id="carreira-eventos-ao-vivo"></div>
+            </div>
+
+            <div id="carreira-resultado-rodada" class="career-card" style="display:none; margin-bottom:12px;"></div>
 
             <div id="carreira-fim-torneio" class="career-card"
               style="display:none; text-align:center; margin-bottom:12px;">
@@ -3887,13 +3897,26 @@
       let placarA = 0, placarB = 0;
       let minuto = 0;
       let indiceEvento = 0;
+      let timerId = null;
 
-      const timer = window.setInterval(() => {
+      function rodarPassoMinuto() {
+        if (minuto >= duracao) {
+          if (timerId) clearTimeout(timerId);
+          if (activeVisualMatch) {
+            activeVisualMatch.stop();
+            activeVisualMatch = null;
+          }
+          aoTerminar();
+          return;
+        }
+
         minuto += 1;
         elMinuto.textContent = minuto + ' min';
         elBarra.style.width = ((minuto / duracao) * 100) + '%';
 
+        let teveGol = false;
         while (indiceEvento < resultado.eventos.length && resultado.eventos[indiceEvento].minuto === minuto) {
+          teveGol = true;
           const ev = resultado.eventos[indiceEvento];
           if (ev.lado === 'A') { placarA += 1; elScoreA.textContent = placarA; }
           else { placarB += 1; elScoreB.textContent = placarB; }
@@ -3914,15 +3937,12 @@
           indiceEvento++;
         }
 
-        if (minuto >= duracao) {
-          window.clearInterval(timer);
-          if (activeVisualMatch) {
-            activeVisualMatch.stop();
-            activeVisualMatch = null;
-          }
-          aoTerminar();
-        }
-      }, 200);
+        // Se houve gol, desacelera o cronômetro por 3.2s para que a animação e comemoração aconteçam completas no mapa
+        const delay = teveGol ? 3200 : 350;
+        timerId = setTimeout(rodarPassoMinuto, delay);
+      }
+
+      timerId = setTimeout(rodarPassoMinuto, 350);
     }
 
     // Mesma fórmula de pontuação da Classificação (1 ponto de participação
@@ -4149,26 +4169,50 @@
         const jogador = buscarJogadorCarreira(id);
         const nome = jogador ? jogador.name.toUpperCase() : '?';
         const p = presencas[id];
-        if (!p.jogou) return `<p style="margin:2px 0; color:var(--gold-text);">🤕 ${nome} não jogou: ${p.motivo}</p>`;
+        if (!p.jogou) return `<div style="padding:8px 12px; margin:6px 0; background:rgba(230,126,34,0.15); border-left:3px solid #e67e22; border-radius:6px; color:var(--gold-text); font-size:14px;">🤕 <strong>${nome}</strong> não jogou: ${p.motivo}</div>`;
         const gols = resultado.golsPorJogador[id] || 0;
-        return `<p style="margin:2px 0;">${gols ? '⭐ ' + nome + ' marcou ' + gols + ' gol(s) nessa rodada!' : nome + ' jogou, mas não balançou as redes dessa vez.'}</p>`;
+        return `<div style="padding:8px 12px; margin:6px 0; background:rgba(255,255,255,0.04); border-radius:6px; font-size:14px;">${gols ? '⭐ <strong>' + nome + '</strong> marcou <span style="color:#2ecc71; font-weight:bold;">' + gols + ' gol(s)</span> nessa rodada!' : '🏃 <strong>' + nome + '</strong> jogou, mas não balançou as redes dessa vez.'}</div>`;
       }).join('');
 
       const textoAtraso = atraso && atraso.minutos
-        ? `<p style="opacity:0.75; margin:0 0 8px;">⏰ ${atraso.culpado ? atraso.culpado.name.toUpperCase() : 'Alguém'} atrasou ${atraso.minutos} min — o jogo teve só ${60 - atraso.minutos} minutos.</p>`
+        ? `<div style="font-size:13px; opacity:0.85; margin-bottom:12px; padding:6px 12px; background:rgba(0,0,0,0.2); border-radius:6px;">⏰ ${atraso.culpado ? atraso.culpado.name.toUpperCase() : 'Alguém'} atrasou ${atraso.minutos} min — o jogo teve só ${60 - atraso.minutos} minutos.</div>`
         : '';
 
       const textoItensQuebrados = (itensQuebrados && itensQuebrados.length)
-        ? `<p style="color:var(--loss-color); margin:0 0 8px;">👟 ${itensQuebrados.map(linha => 'Estragou: ' + linha).join(' · ')}</p>`
+        ? `<div style="color:var(--loss-color); margin-top:12px; padding:8px 12px; background:rgba(231,76,60,0.12); border-radius:6px; font-size:13px;">👟 ${itensQuebrados.map(linha => 'Estragou: ' + linha).join(' · ')}</div>`
         : '';
 
       el.innerHTML =
-        `<h6 style="margin:0 0 8px;">Rodada ${Math.min(carreira.rodada, 8)}</h6>` +
-        `<div style="font-size:22px; font-weight:bold; margin-bottom:4px;">🟡 ${resultado.placarA} x ${resultado.placarB} 🔵</div>` +
+        `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.1);">` +
+          `<h5 style="margin:0; font-size:18px; color:var(--gold-text);">📋 Resumo da Rodada ${Math.min(carreira.rodada, 8)}</h5>` +
+        `</div>` +
+        `<div style="text-align:center; padding:14px; margin-bottom:14px; background:rgba(0,0,0,0.25); border-radius:8px; border:1px solid var(--row-border);">` +
+          `<div style="font-size:26px; font-weight:bold; letter-spacing:1px;">🟡 ${resultado.placarA} x ${resultado.placarB} 🔵</div>` +
+        `</div>` +
         textoAtraso +
-        `<p style="margin:0 0 8px;"><strong>Gols:</strong> ${artilheiros}</p>` +
+        `<div style="margin-bottom:14px; padding:10px 12px; background:rgba(255,255,255,0.03); border-radius:6px; font-size:14px;">` +
+          `<strong style="color:var(--gold-text);">⚽ Gols da partida:</strong> ${artilheiros}` +
+        `</div>` +
+        `<div style="margin-bottom:10px;"><strong style="font-size:14px;">👥 Seu Desempenho:</strong></div>` +
         statusJogadores +
         textoItensQuebrados;
+    }
+
+    function limparDadosPartidaAnteriorCarreira() {
+      const elResultado = document.getElementById('carreira-resultado-rodada');
+      if (elResultado) { elResultado.style.display = 'none'; elResultado.innerHTML = ''; }
+      const elVivo = document.getElementById('carreira-partida-ao-vivo');
+      if (elVivo) elVivo.style.display = 'none';
+      const elEventos = document.getElementById('carreira-eventos-ao-vivo');
+      if (elEventos) elEventos.innerHTML = '';
+      const elScoreA = document.getElementById('carreira-score-a');
+      if (elScoreA) elScoreA.textContent = '0';
+      const elScoreB = document.getElementById('carreira-score-b');
+      if (elScoreB) elScoreB.textContent = '0';
+      const elMinuto = document.getElementById('carreira-minuto');
+      if (elMinuto) elMinuto.textContent = '0 min';
+      const elBarra = document.getElementById('carreira-barra');
+      if (elBarra) elBarra.style.width = '0%';
     }
 
     function sortearPresencas() {
@@ -4183,7 +4227,7 @@
     function simularProximaRodada() {
       const botao = document.getElementById('btn-simular-rodada');
       botao.disabled = true;
-      document.getElementById('carreira-resultado-rodada').style.display = 'none';
+      limparDadosPartidaAnteriorCarreira();
 
       // Uma rodada = uma semana de pelada.
       carreira.dataAtual = (carreira.dataAtual || Date.now()) + 7 * 24 * 60 * 60 * 1000;
