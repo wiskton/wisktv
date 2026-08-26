@@ -945,7 +945,7 @@
           }
 
           const isUser = typeof souEu === 'function' && p.id && souEu(p.id);
-          const isGk = (role === 'GOL' || ehGoleiro(p));
+          const isGk = (role === 'GOL');
           const color = isGk
             ? (isTeamB ? '#1f618d' : '#e67e22')
             : (isTeamB ? '#2980b9' : '#f1c40f');
@@ -977,9 +977,9 @@
       const restantes = elenco.filter(p => !idsMapeados.has(p.id));
 
       restantes.forEach((p, index) => {
-        const isGk = ehGoleiro(p);
-        const x = isGk ? (isTeamB ? 565 : 35) : (isTeamB ? 320 : 280);
-        const y = isGk ? 175 : (70 + ((index % 5) * 55));
+        const isGk = false;
+        const x = isTeamB ? 320 : 280;
+        const y = 70 + ((index % 5) * 55);
         const isUser = typeof souEu === 'function' && p.id && souEu(p.id);
 
         resultado.push({
@@ -988,13 +988,13 @@
           baseY: y,
           x,
           y,
-          role: isGk ? 'GOL' : 'MEI',
-          color: isGk ? (isTeamB ? '#e74c3c' : '#27ae60') : (isTeamB ? '#2980b9' : '#f1c40f'),
-          textColor: (isGk || isTeamB) ? '#ffffff' : '#000000',
+          role: 'MEI',
+          color: isTeamB ? '#2980b9' : '#f1c40f',
+          textColor: isTeamB ? '#ffffff' : '#000000',
           initials: p.name ? initials(p.name) : '?',
           targetX: x,
           targetY: y,
-          isGk,
+          isGk: false,
           isTeamB,
           isUser
         });
