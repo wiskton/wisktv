@@ -465,33 +465,33 @@
           <div id="carreira-painel" style="display:none; margin-top: 16px;">
             
             <!-- Linha Superior de Menus e Navegação -->
-            <div class="career-btn-row career-btn-row-nav" style="align-items: center; justify-content: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; padding: 8px 12px; background: #005a2b !important; color: #ffffff !important; border-radius: 8px; border: none;">
+            <div class="career-btn-row career-btn-row-nav" style="align-items: center; justify-content: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; padding: 8px 12px; background: rgba(0, 0, 0, 0.15); border-radius: 8px; border: none;">
               <!-- 1. Menu Dropdown: Arquivos -->
-              <div class="career-dropdown" style="background-color:#005a2b !important; color:#ffffff !important;">
-                <button type="button" class="btn-solid career-dropdown-btn" style="background-color:#005a2b !important; color:#ffffff !important;" data-i18n="menuArquivos">📁 Arquivos ▾</button>
-                <div class="career-dropdown-menu" style="background-color:#005a2b !important; color:#ffffff !important;">
-                  <button type="button" id="btn-salvar-carreira" class="career-dropdown-item" style="background-color:#005a2b !important; color:#ffffff !important;" data-i18n="salvarContinuarDepois">💾 Salvar e Continuar Depois</button>
-                  <button type="button" id="btn-apagar-carreira" class="career-dropdown-item career-dropdown-danger" style="background-color:#005a2b !important; color:#ffffff !important;" data-i18n="apagarEstaCarreira">🗑️ Apagar Esta Carreira</button>
+              <div class="career-dropdown">
+                <button type="button" class="btn-solid career-dropdown-btn" data-i18n="menuArquivos">📁 Arquivos ▾</button>
+                <div class="career-dropdown-menu">
+                  <button type="button" id="btn-salvar-carreira" class="career-dropdown-item" data-i18n="salvarContinuarDepois">💾 Salvar e Continuar Depois</button>
+                  <button type="button" id="btn-apagar-carreira" class="career-dropdown-item career-dropdown-danger" data-i18n="apagarEstaCarreira">🗑️ Apagar Esta Carreira</button>
                 </div>
               </div>
 
               <!-- 2. Menu Dropdown: Modo Carreira (Estatísticas e Rankings) -->
-              <div class="career-dropdown" style="background-color:#005a2b !important; color:#ffffff !important;">
-                <button type="button" class="btn-solid career-dropdown-btn" style="background-color:#005a2b !important; color:#ffffff !important;" data-i18n="menuModoCarreira">🏆 Modo Carreira ▾</button>
-                <div class="career-dropdown-menu" style="background-color:#005a2b !important; color:#ffffff !important;">
-                  <button type="button" id="btn-toggle-carreira-tabela" class="career-dropdown-item" style="background-color:#005a2b !important; color:#ffffff !important;" onclick="selecionarVisaoCarreira('tabela')"><span style="color:#ffffff !important;" data-i18n="classificacaoTitulo">📊 Classificação</span></button>
-                  <button type="button" id="btn-toggle-carreira-artilharia" class="career-dropdown-item" style="background-color:#005a2b !important; color:#ffffff !important;" onclick="selecionarVisaoCarreira('artilharia')"><span style="color:#ffffff !important;" data-i18n="artilhariaTitulo">⚽ Artilharia</span></button>
-                  <button type="button" id="btn-toggle-carreira-ranking" class="career-dropdown-item" style="background-color:#005a2b !important; color:#ffffff !important;" onclick="selecionarVisaoCarreira('ranking')"><span style="color:#ffffff !important;" data-i18n="rankingGlobalCarreira">🌍 Ranking Global</span></button>
-                  <button type="button" id="btn-toggle-carreira-curiosidades" class="career-dropdown-item" style="background-color:#005a2b !important; color:#ffffff !important;" onclick="selecionarVisaoCarreira('curiosidades')"><span style="color:#ffffff !important;" data-i18n="curiosidadesDaCarreira">📊 Curiosidades</span></button>
-                  <button type="button" id="btn-toggle-carreira-hall" class="career-dropdown-item" style="background-color:#005a2b !important; color:#ffffff !important;" onclick="selecionarVisaoCarreira('hall')"><span style="color:#ffffff !important;" data-i18n="hallDaFama">🏛️ Hall da Fama</span></button>
+              <div class="career-dropdown">
+                <button type="button" class="btn-solid career-dropdown-btn" data-i18n="menuModoCarreira">🏆 Modo Carreira ▾</button>
+                <div class="career-dropdown-menu">
+                  <button type="button" id="btn-toggle-carreira-tabela" class="career-dropdown-item" onclick="selecionarVisaoCarreira('tabela')"><span data-i18n="classificacaoTitulo">📊 Classificação</span></button>
+                  <button type="button" id="btn-toggle-carreira-artilharia" class="career-dropdown-item" onclick="selecionarVisaoCarreira('artilharia')"><span data-i18n="artilhariaTitulo">⚽ Artilharia</span></button>
+                  <button type="button" id="btn-toggle-carreira-ranking" class="career-dropdown-item" onclick="selecionarVisaoCarreira('ranking')"><span data-i18n="rankingGlobalCarreira">🌍 Ranking Global</span></button>
+                  <button type="button" id="btn-toggle-carreira-curiosidades" class="career-dropdown-item" onclick="selecionarVisaoCarreira('curiosidades')"><span data-i18n="curiosidadesDaCarreira">📊 Curiosidades</span></button>
+                  <button type="button" id="btn-toggle-carreira-hall" class="career-dropdown-item" onclick="selecionarVisaoCarreira('hall')"><span data-i18n="hallDaFama">🏛️ Hall da Fama</span></button>
                 </div>
               </div>
 
               <!-- 3. Botão Jogadores -->
-              <button type="button" id="btn-carreira-jogadores" class="btn-solid" style="background-color:#005a2b !important; color:#ffffff !important;" onclick="selecionarVisaoCarreira('jogadores')" data-i18n="jogadoresBtn">👥 Jogadores</button>
+              <button type="button" id="btn-carreira-jogadores" class="btn-solid" onclick="selecionarVisaoCarreira('jogadores')" data-i18n="jogadoresBtn">👥 Jogadores</button>
 
               <!-- 4. Botão Trocar Modo -->
-              <button type="button" id="btn-voltar-modo-carreira-2" class="btn-link" style="background-color:#005a2b !important; color:#ffffff !important;" data-i18n="trocarModo">← Trocar modo</button>
+              <button type="button" id="btn-voltar-modo-carreira-2" class="btn-link" data-i18n="trocarModo">← Trocar modo</button>
             </div>
 
             <!-- VISÃO 1: PARTIDA E SIMULADOR DA RODADA -->
@@ -565,7 +565,7 @@
             <div id="carreira-secao-classificacao" class="career-card" style="display:none; margin-bottom:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <h6 style="margin:0;" data-i18n="classificacaoTitulo">📊 Classificação</h6>
-                <button type="button" class="btn-solid" style="padding:2px 8px; font-size:12px;" onclick="selecionarVisaoCarreira('partida')">⚽ Voltar para Partida</button>
+                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px; background-color:#005a2b !important; color:#ffffff !important; border:none !important;" onclick="selecionarVisaoCarreira('partida')"><span style="color:#ffffff !important;">⚽ Voltar para Partida</span></button>
               </div>
               <table class="data-table cls-table" id="carreira-tabela-classificacao">
                 <thead>
@@ -587,7 +587,7 @@
             <div id="carreira-secao-artilharia" class="career-card" style="display:none; margin-bottom:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <h6 style="margin:0;" data-i18n="artilhariaTitulo">⚽ Artilharia</h6>
-                <button type="button" class="btn-solid" style="padding:2px 8px; font-size:12px;" onclick="selecionarVisaoCarreira('partida')">⚽ Voltar para Partida</button>
+                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px; background-color:#005a2b !important; color:#ffffff !important; border:none !important;" onclick="selecionarVisaoCarreira('partida')"><span style="color:#ffffff !important;">⚽ Voltar para Partida</span></button>
               </div>
               <table class="data-table art-table" id="carreira-tabela-artilharia">
                 <thead>
@@ -605,7 +605,7 @@
             <div id="carreira-hall-fama" class="career-card" style="display:none; margin-bottom:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <h6 style="margin:0;" data-i18n="hallDaFama">🏛️ Hall da Fama da Carreira</h6>
-                <button type="button" class="btn-solid" style="padding:2px 8px; font-size:12px;" onclick="selecionarVisaoCarreira('partida')">⚽ Voltar para Partida</button>
+                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px; background-color:#005a2b !important; color:#ffffff !important; border:none !important;" onclick="selecionarVisaoCarreira('partida')"><span style="color:#ffffff !important;">⚽ Voltar para Partida</span></button>
               </div>
               <table class="data-table">
                 <thead>
@@ -622,7 +622,7 @@
             <div id="carreira-ranking-global" class="career-card" style="display:none; margin-bottom:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                 <h6 style="margin:0;" data-i18n="rankingGlobalCarreira">🌍 Ranking Global da Carreira</h6>
-                <button type="button" class="btn-solid" style="padding:2px 8px; font-size:12px;" onclick="selecionarVisaoCarreira('partida')">⚽ Voltar para Partida</button>
+                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px; background-color:#005a2b !important; color:#ffffff !important; border:none !important;" onclick="selecionarVisaoCarreira('partida')"><span style="color:#ffffff !important;">⚽ Voltar para Partida</span></button>
               </div>
               <p style="font-size:12px; opacity:0.8; margin:0 0 8px;" data-i18n="rankingGlobalCarreiraDesc">Todo mundo que já jogou nessa carreira, somando todos os torneios já disputados.</p>
               <table class="data-table">
@@ -647,7 +647,7 @@
             <div id="carreira-rankings-extra" class="career-card" style="display:none; margin-bottom:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <h5 style="margin:0;" data-i18n="curiosidadesDaCarreira">📊 Curiosidades da Carreira</h5>
-                <button type="button" class="btn-solid" style="padding:2px 8px; font-size:12px;" onclick="selecionarVisaoCarreira('partida')">⚽ Voltar para Partida</button>
+                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px; background-color:#005a2b !important; color:#ffffff !important; border:none !important;" onclick="selecionarVisaoCarreira('partida')"><span style="color:#ffffff !important;">⚽ Voltar para Partida</span></button>
               </div>
               <div id="carreira-rankings-extra-corpo" style="display:flex; flex-wrap:wrap; gap:12px;"></div>
             </div>
@@ -655,8 +655,8 @@
             <!-- SEÇÃO JOGADORES INLINE NO MEIO DA PÁGINA (Sem Modal Overlay) -->
             <div id="carreira-secao-jogadores" class="career-card" style="display:none; margin-bottom:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.1);">
-                <h5 style="margin:0; font-size:18px; color:var(--gold-text);" data-i18n="jogadoresTitulo">👥 Jogadores da Carreira</h5>
-                <button type="button" class="btn-solid" style="padding:2px 8px; font-size:12px;" onclick="selecionarVisaoCarreira('partida')">⚽ Voltar para Partida</button>
+                <h5 style="margin:0; font-size:18px; color:var(--gold-text);" data-i18n="jogadoresTitulo">👥 Meus Jogadores do Modo Carreira</h5>
+                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px; background-color:#005a2b !important; color:#ffffff !important; border:none !important;" onclick="selecionarVisaoCarreira('partida')"><span style="color:#ffffff !important;">⚽ Voltar para Partida</span></button>
               </div>
               <div id="carreira-jogadores-corpo" style="display:flex; flex-direction:column; gap:8px;"></div>
             </div>
@@ -4169,21 +4169,31 @@
 
     function renderizarListaJogadoresCarreira() {
       carreiraJogadorDetalheAberto = false;
-      const linhas = (linhasRankingGlobalCompletasCarreira() || [])
-        .sort((a, b) => a.nome.localeCompare(b.nome));
+      const todas = linhasRankingGlobalCompletasCarreira() || [];
+      const meusIds = (carreira && carreira.meusIds) ? carreira.meusIds : [];
+      let linhas = todas.filter(l => souEu(l.id) || meusIds.includes(l.id));
+      if (!linhas.length) linhas = todas;
+      linhas.sort((a, b) => a.nome.localeCompare(b.nome));
+
       const corpo = document.getElementById('carreira-jogadores-corpo');
       if (!corpo) return;
       corpo.innerHTML = linhas.map(l => {
         const voce = souEu(l.id);
         const p = progressaoDoJogador(l.id);
-        const treinos = p.treinosDisponiveis || 0;
-        const bubble = treinos > 0 ? `<span style="background-color: #e74c3c; color: #fff; border-radius: 10px; padding: 1px 6px; font-size: 11px; margin-left: 6px; font-weight: bold;">${treinos} pts</span>` : '';
+        const treinos = p ? (p.treinosDisponiveis || 0) : 0;
+        const bubble = treinos > 0 ? `<span style="background-color: #d32f2f !important; color: #ffffff !important; border-radius: 12px; padding: 2px 8px; font-size: 11px; margin-left: 8px; font-weight: bold; display: inline-block;">${treinos} pts</span>` : '';
         return `
-        <div class="career-card" style="display:flex; justify-content:space-between; align-items:center; cursor:pointer; margin-bottom:0;" onclick="abrirModalJogadorCarreira(${l.id})">
-          <strong>${l.nome.toUpperCase()} ${voce ? '⭐' : ''}${bubble}</strong>
-          <span style="opacity:0.7; font-size:12px;">${l.jogos} jogos</span>
+        <div class="career-card" style="display:flex; justify-content:space-between; align-items:center; cursor:pointer; margin-bottom:8px; padding:10px 14px;" onclick="abrirModalJogadorCarreira(${l.id})">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:16px;">👤</span>
+            <strong>${l.nome.toUpperCase()} ${voce ? '⭐' : ''}${bubble}</strong>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:12px; opacity:0.8;">${l.jogos} jogos</span>
+            <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px;" onclick="event.stopPropagation(); abrirModalJogadorCarreira(${l.id});">Ver Perfil / Treinar</button>
+          </div>
         </div>`;
-      }).join('') || '<p style="opacity:0.7;">Ninguém jogou ainda.</p>';
+      }).join('') || '<p style="opacity:0.7;">Nenhum jogador encontrado.</p>';
     }
 
     function renderizarRankingGlobalCarreira() {

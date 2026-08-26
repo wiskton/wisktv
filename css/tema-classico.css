@@ -434,7 +434,7 @@
   color: #ffffff !important;
 }
 
-/* Curiosidades no Tema Clássico: Container Amarelo, Quadros de Rankings Internos Brancos */
+/* Curiosidades no Tema Clássico: Container Amarelo, sem fundo branco nos quadros internos */
 [data-theme="classico"] #tab-curiosidades,
 [data-theme="classico"] #curiosidades-root,
 [data-theme="classico"] #carreira-rankings-extra {
@@ -446,18 +446,18 @@
 [data-theme="classico"] #curiosidades-root .career-card,
 [data-theme="classico"] #carreira-rankings-extra .career-card,
 [data-theme="classico"] #carreira-rankings-extra-corpo .career-card {
-  background: #ffffff !important;
+  background: transparent !important;
   color: #005a2b !important;
   border: 1px solid #005a2b !important;
 }
 
-[data-theme="classico"] #tab-curiosidades *,
-[data-theme="classico"] #curiosidades-root *,
-[data-theme="classico"] #carreira-rankings-extra * {
+[data-theme="classico"] #tab-curiosidades *:not(button):not(button *),
+[data-theme="classico"] #curiosidades-root *:not(button):not(button *),
+[data-theme="classico"] #carreira-rankings-extra *:not(button):not(button *) {
   color: #005a2b !important;
 }
 
-/* Hall da Fama no Layout Clássico: Fundo AMARELO (#ffdc00) e quadros de estatísticas em branco (#ffffff) */
+/* Hall da Fama no Layout Clássico: Fundo AMARELO (#ffdc00) */
 [data-theme="classico"] #carreira-hall-fama,
 [data-theme="classico"] #hall-fama-root {
   background: #ffdc00 !important;
@@ -472,9 +472,23 @@
   border: 1px solid #005a2b !important;
 }
 
-[data-theme="classico"] #carreira-hall-fama *,
-[data-theme="classico"] #hall-fama-root * {
+[data-theme="classico"] #carreira-hall-fama *:not(button):not(button *),
+[data-theme="classico"] #hall-fama-root *:not(button):not(button *) {
   color: #005a2b !important;
+}
+
+/* Forçar botões "Voltar para Partida" e de ação no Hall da Fama e Curiosidades com TEXTO BRANCO e FUNDO VERDE */
+[data-theme="classico"] #carreira-hall-fama button,
+[data-theme="classico"] #carreira-hall-fama button *,
+[data-theme="classico"] #hall-fama-root button,
+[data-theme="classico"] #hall-fama-root button *,
+[data-theme="classico"] #carreira-rankings-extra button,
+[data-theme="classico"] #carreira-rankings-extra button *,
+[data-theme="classico"] #curiosidades-root button,
+[data-theme="classico"] #curiosidades-root button * {
+  background-color: #005a2b !important;
+  color: #ffffff !important;
+  border: none !important;
 }
 
 /* TODOS os botões de ação e navegação no Layout Clássico: FUNDO VERDE (#005a2b) e TEXTO ESTRITAMENTE BRANCO (#ffffff) */
