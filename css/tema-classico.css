@@ -477,13 +477,20 @@
   color: #005a2b !important;
 }
 
-/* Todos os botões de Voltar e botões de ação: fundo verde (#005a2b) e texto estritamente BRANCO (#ffffff) */
+/* TODOS os botões de ação e navegação no Layout Clássico: FUNDO VERDE (#005a2b) e TEXTO ESTRITAMENTE BRANCO (#ffffff) */
 [data-theme="classico"] .btn-solid,
 [data-theme="classico"] .btn-link,
+[data-theme="classico"] button,
+[data-theme="classico"] #btn-ir-para-partida,
+[data-theme="classico"] #btn-comecar-carreira,
+[data-theme="classico"] #btn-simular-rodada,
+[data-theme="classico"] #btn-novo-torneio,
 [data-theme="classico"] #btn-voltar-modo-carreira,
 [data-theme="classico"] #btn-voltar-modo-carreira-2,
 [data-theme="classico"] button[onclick*="Voltar"],
-[data-theme="classico"] button[onclick*="voltar"] {
+[data-theme="classico"] button[onclick*="voltar"],
+[data-theme="classico"] button[onclick*="Partida"],
+[data-theme="classico"] button[onclick*="partida"] {
   background: #005a2b !important;
   color: #ffffff !important;
   border: none !important;
@@ -491,10 +498,24 @@
 
 [data-theme="classico"] .btn-solid *,
 [data-theme="classico"] .btn-link *,
+[data-theme="classico"] button *,
+[data-theme="classico"] #btn-ir-para-partida *,
+[data-theme="classico"] #btn-comecar-carreira *,
+[data-theme="classico"] #btn-simular-rodada *,
+[data-theme="classico"] #btn-novo-torneio *,
 [data-theme="classico"] #btn-voltar-modo-carreira *,
 [data-theme="classico"] #btn-voltar-modo-carreira-2 *,
 [data-theme="classico"] button[onclick*="Voltar"] *,
-[data-theme="classico"] button[onclick*="voltar"] * {
+[data-theme="classico"] button[onclick*="voltar"] *,
+[data-theme="classico"] button[onclick*="Partida"] *,
+[data-theme="classico"] button[onclick*="partida"] * {
+  color: #ffffff !important;
+}
+
+[data-theme="classico"] .btn-solid:hover,
+[data-theme="classico"] .btn-link:hover,
+[data-theme="classico"] button:hover {
+  background: #00723a !important;
   color: #ffffff !important;
 }
 
