@@ -100,6 +100,59 @@
       border-color: var(--win-color, #2ecc71) !important;
     }
 
+    .career-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .career-dropdown-btn {
+      cursor: pointer;
+    }
+
+    .career-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      min-width: 230px;
+      background: #1e293b;
+      border: 1px solid var(--row-border, rgba(255,255,255,0.15));
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      padding: 6px 0;
+      z-index: 1000;
+      margin-top: 4px;
+    }
+
+    .career-dropdown:hover .career-dropdown-menu,
+    .career-dropdown:focus-within .career-dropdown-menu {
+      display: block;
+    }
+
+    .career-dropdown-item {
+      display: block;
+      width: 100%;
+      padding: 8px 14px;
+      text-align: left;
+      background: transparent;
+      border: none;
+      color: var(--text-color, #e2e8f0);
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .career-dropdown-item:hover {
+      background: var(--tab-active-bg, rgba(255,255,255,0.1));
+      color: var(--gold-text, #f1c40f);
+    }
+
+    .career-dropdown-danger:hover {
+      background: rgba(231, 76, 60, 0.2);
+      color: #e74c3c;
+    }
+
     .career-progress-outer {
       height: 6px;
       background: rgba(0, 0, 0, 0.25);
@@ -184,7 +237,7 @@
 
     .soccer-pitch-container {
       width: 100%;
-      max-width: 600px;
+      max-width: 900px;
       margin: 12px auto;
       aspect-ratio: 600 / 350;
       background-color: #1b5e20;
@@ -297,34 +350,50 @@
             </div>
           </div>
 
-          <div id="carreira-painel" style="display:none;">
-            <div class="career-btn-row" style="align-items: center;">
-              <button type="button" id="btn-simular-rodada" class="btn-solid" data-i18n="simularProximaRodada">▶️
-                Simular Próxima Rodada</button>
-              <label
-                style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 4px; user-select: none;">
-                <input type="checkbox" id="chk-carreira-instantaneo" style="cursor: pointer;" />
-                <span data-i18n="simulacaoInstantanea">Simulação Instantânea</span>
-              </label>
-              <button type="button" id="btn-novo-torneio" class="btn-solid" style="display:none;"
-                data-i18n="simularOutroTorneio">🏆 Simular Outro Torneio</button>
-              <button type="button" id="btn-salvar-carreira" class="btn-solid" data-i18n="salvarContinuarDepois">💾
-                Salvar e Continuar Depois</button>
-              <button type="button" id="btn-apagar-carreira" class="btn-solid" data-i18n="apagarEstaCarreira">🗑️ Apagar
-                Esta Carreira</button>
-              <button type="button" id="btn-carreira-jogadores" class="btn-solid" data-i18n="jogadoresBtn">👥
-                Jogadores</button>
-              <button type="button" id="btn-voltar-modo-carreira-2" class="btn-link" data-i18n="trocarModo">← Trocar
-                modo</button>
-            </div>
+          <div id="carreira-painel" style="display:none; margin-top: 20px;">
+            <div class="career-btn-row" style="align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; padding: 10px 14px; background: rgba(0, 0, 0, 0.2); border-radius: 8px; border: 1px solid var(--row-border);">
+              
+              <!-- Ações Principais de Simulação -->
+              <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <button type="button" id="btn-simular-rodada" class="btn-solid" data-i18n="simularProximaRodada">▶️ Simular Próxima Rodada</button>
+                <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 4px; user-select: none;">
+                  <input type="checkbox" id="chk-carreira-instantaneo" style="cursor: pointer;" />
+                  <span data-i18n="simulacaoInstantanea">Simulação Instantânea</span>
+                </label>
+                <button type="button" id="btn-novo-torneio" class="btn-solid" style="display:none;" data-i18n="simularOutroTorneio">🏆 Simular Outro Torneio</button>
+              </div>
 
-            <div class="career-btn-row" id="carreira-botoes-secoes" style="align-items: center; margin-top: 6px; padding: 6px; background: rgba(0, 0, 0, 0.15); border-radius: 8px; border: 1px solid var(--row-border);">
-              <span style="font-size: 12px; font-weight: bold; opacity: 0.8; margin-right: 4px;" data-i18n="verSecoes">Ver:</span>
-              <button type="button" id="btn-toggle-carreira-tabela" class="btn-solid" onclick="toggleSecaoCarreira('tabela')"><span data-i18n="classificacaoTitulo">📊 Classificação</span></button>
-              <button type="button" id="btn-toggle-carreira-artilharia" class="btn-solid" onclick="toggleSecaoCarreira('artilharia')"><span data-i18n="artilhariaTitulo">⚽ Artilharia</span></button>
-              <button type="button" id="btn-toggle-carreira-ranking" class="btn-solid" onclick="toggleSecaoCarreira('ranking')"><span data-i18n="rankingGlobalCarreira">🌍 Ranking Global</span></button>
-              <button type="button" id="btn-toggle-carreira-curiosidades" class="btn-solid" onclick="toggleSecaoCarreira('curiosidades')"><span data-i18n="curiosidadesDaCarreira">📊 Curiosidades</span></button>
-              <button type="button" id="btn-toggle-carreira-hall" class="btn-solid" onclick="toggleSecaoCarreira('hall')"><span data-i18n="hallDaFama">🏛️ Hall da Fama</span></button>
+              <!-- Menu Suspenso e Ações de Navegação -->
+              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                
+                <!-- Menu Dropdown: Arquivos -->
+                <div class="career-dropdown">
+                  <button type="button" class="btn-solid career-dropdown-btn" data-i18n="menuArquivos">📁 Arquivos ▾</button>
+                  <div class="career-dropdown-menu">
+                    <button type="button" id="btn-salvar-carreira" class="career-dropdown-item" data-i18n="salvarContinuarDepois">💾 Salvar e Continuar Depois</button>
+                    <button type="button" id="btn-apagar-carreira" class="career-dropdown-item career-dropdown-danger" data-i18n="apagarEstaCarreira">🗑️ Apagar Esta Carreira</button>
+                  </div>
+                </div>
+
+                <!-- Botão Jogadores -->
+                <button type="button" id="btn-carreira-jogadores" class="btn-solid" data-i18n="jogadoresBtn">👥 Jogadores</button>
+
+                <!-- Botão Trocar Modo -->
+                <button type="button" id="btn-voltar-modo-carreira-2" class="btn-link" data-i18n="trocarModo">← Trocar modo</button>
+
+                <!-- Menu Dropdown: Modo Carreira (Estatísticas e Rankings) -->
+                <div class="career-dropdown">
+                  <button type="button" class="btn-solid career-dropdown-btn" data-i18n="menuModoCarreira">🏆 Modo Carreira ▾</button>
+                  <div class="career-dropdown-menu">
+                    <button type="button" id="btn-toggle-carreira-tabela" class="career-dropdown-item" onclick="toggleSecaoCarreira('tabela')"><span data-i18n="classificacaoTitulo">📊 Classificação</span></button>
+                    <button type="button" id="btn-toggle-carreira-artilharia" class="career-dropdown-item" onclick="toggleSecaoCarreira('artilharia')"><span data-i18n="artilhariaTitulo">⚽ Artilharia</span></button>
+                    <button type="button" id="btn-toggle-carreira-ranking" class="career-dropdown-item" onclick="toggleSecaoCarreira('ranking')"><span data-i18n="rankingGlobalCarreira">🌍 Ranking Global</span></button>
+                    <button type="button" id="btn-toggle-carreira-curiosidades" class="career-dropdown-item" onclick="toggleSecaoCarreira('curiosidades')"><span data-i18n="curiosidadesDaCarreira">📊 Curiosidades</span></button>
+                    <button type="button" id="btn-toggle-carreira-hall" class="career-dropdown-item" onclick="toggleSecaoCarreira('hall')"><span data-i18n="hallDaFama">🏛️ Hall da Fama</span></button>
+                  </div>
+                </div>
+
+              </div>
             </div>
 
             <div class="career-card" style="text-align:center; margin-bottom:12px;">
@@ -1669,6 +1738,8 @@
         salvo: '✅ Salvo!',
         simulacaoInstantanea: 'Simulação Instantânea',
         verSecoes: 'Ver:',
+        menuArquivos: '📁 Arquivos ▾',
+        menuModoCarreira: '🏆 Modo Carreira ▾',
       },
       en: {
         pageTitle: 'WiskTV',
@@ -1746,6 +1817,8 @@
         salvo: '✅ Saved!',
         simulacaoInstantanea: 'Instant Simulation',
         verSecoes: 'View:',
+        menuArquivos: '📁 Files ▾',
+        menuModoCarreira: '🏆 Career Mode ▾',
       },
       es: {
         pageTitle: 'WiskTV',
@@ -1823,6 +1896,8 @@
         salvo: '✅ ¡Guardado!',
         simulacaoInstantanea: 'Simulación Instantánea',
         verSecoes: 'Ver:',
+        menuArquivos: '📁 Archivos ▾',
+        menuModoCarreira: '🏆 Modo Carrera ▾',
       }
     };
 
@@ -3707,18 +3782,10 @@
     function renderizarDiferencasRodada(timeA, timeB) {
       const mediaA = Math.round((timeA.length ? totalNivelCarreira(timeA) / timeA.length : 0) * 10) / 10;
       const mediaB = Math.round((timeB.length ? totalNivelCarreira(timeB) / timeB.length : 0) * 10) / 10;
-      document.getElementById('carreira-escalacao-forca').textContent = Math.abs(mediaA - mediaB).toFixed(1);
-
-      const ICONES_HABILIDADE = { marcacao: '🛡️', visaoDeJogo: '👁️', energia: '🔋', velocidade: '🏃' };
-      const ROTULOS_HABILIDADE = { marcacao: 'Marcação', visaoDeJogo: 'Armação', energia: 'Energia', velocidade: 'Velocidade' };
-      const somaA = somaHabilidadesCarreira(timeA), somaB = somaHabilidadesCarreira(timeB);
-      let somaDiferencas = 0;
-      let badges = HABILIDADES_BALANCEAR.map(campo => {
-        const diferenca = somaA[campo] - somaB[campo];
-        somaDiferencas += Math.abs(diferenca);
-        return `<span class="career-badge">${ICONES_HABILIDADE[campo]} ${ROTULOS_HABILIDADE[campo]}: ${rotuloDiferencaHabilidade(diferenca)}</span>`;
-      }).join('') + `<span class="career-badge">⚖️ Média das 4: ${(somaDiferencas / HABILIDADES_BALANCEAR.length).toFixed(1)}</span>`;
-      document.getElementById('carreira-escalacao-badges').innerHTML = badges;
+      const elForca = document.getElementById('carreira-escalacao-forca');
+      if (elForca) elForca.textContent = Math.abs(mediaA - mediaB).toFixed(1);
+      const elBadges = document.getElementById('carreira-escalacao-badges');
+      if (elBadges) elBadges.innerHTML = '';
     }
 
     function renderizarEscalacaoRodada(timeA, timeB) {

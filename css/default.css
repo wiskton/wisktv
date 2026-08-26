@@ -72,8 +72,8 @@ body { background: var(--bg-page); color: var(--text-strong); font-family: var(-
 .sections { display: flex; gap: 0; padding: 8px 8px 0; }
 .sec-tab { padding: 7px 18px; font-size: 16px; letter-spacing: 1px; cursor: pointer; border: 2px solid var(--border-accent); border-bottom: none; background: var(--tab-bg); color: var(--text-muted); transition: background 0.2s; }
 .sec-tab.active { background: var(--tab-active-bg); color: var(--gold-text); }
-.content { padding: 0 10px 10px; flex: 1; max-width: 760px; width: 100%; margin: 0 auto; }
-.content.wide-tab { max-width: 800px; }
+.content { padding: 0 10px 10px; flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; }
+.content.wide-tab { max-width: 1200px; }
 .table-view { display: none; padding-top: 6px; }
 .table-view.active { display: block; }
 .table-view { overflow-x: auto; -webkit-overflow-scrolling: touch; }
