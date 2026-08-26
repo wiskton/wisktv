@@ -1114,7 +1114,7 @@
             }
           }
         }
-        // Garante que nenhum jogador saiu do campo e que os goleiros fiquem estritamente na sua grande área
+        // Garante que os goleiros fiquem estritamente na sua grande área e que jogadores de linha não entrem na área
         this.allPlayers.forEach(p => {
           if (p.isGk) {
             if (!p.isTeamB) {
@@ -1135,7 +1135,8 @@
           p.y       = Math.max(20, Math.min(330, p.y));
           p.targetX = Math.max(20, Math.min(580, p.targetX));
           p.targetY = Math.max(20, Math.min(330, p.targetY));
-          // Portador pode avançar ao campo adversário — demais ficam no próprio lado
+
+          // Restrição de campo por lado para jogadores de linha que não estão com a bola
           if (p !== holder) {
             if (!p.isTeamB) {
               // Time A: fica entre x=20 e x=300 (seu campo)
@@ -1146,6 +1147,16 @@
               p.x       = Math.max(300, p.x);
               p.targetX = Math.max(300, p.targetX);
             }
+          }
+
+          // Impedir estritamente que jogadores de linha entrem nas grandes áreas dos goleiros (evita bugs)
+          if (p.x <= 95 && p.y >= 105 && p.y <= 245) {
+            p.x = 96;
+            if (p.targetX <= 95) p.targetX = 96;
+          }
+          if (p.x >= 505 && p.y >= 105 && p.y <= 245) {
+            p.x = 504;
+            if (p.targetX >= 505) p.targetX = 504;
           }
         });
       }
@@ -5127,12 +5138,32 @@
     }
 
     function openPlayerModal(id) {
-      renderPlayerModal(id);
-      const m = document.getElementById('player-modal');
-      if (m) {
-        m.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+      ['player-modal', 'career-player-modal', 'career-list-modal', 'geral-modal'].forEach(mId => {
+        const el = document.getElementById(mId);
+        if (el) { el.style.display = 'none'; el.classList.remove('active'); }
+      });
+      document.body.style.overflow = '';
+
+      const modoCarreiraEl = document.getElementById('career-root');
+      if (modoCarreiraEl && modoCarreiraEl.style.display !== 'none') {
+        abrirModalJogadorCarreira(id);
+        return;
       }
+
+      const p = playersDirectory[String(id)];
+      if (!p) return;
+
+      const profileHtml = buildPlayerProfileInlineHtml(p);
+      const root = document.getElementById('jogadores-root');
+      if (root) {
+        root.innerHTML = `
+          <div style="margin-bottom:12px;">
+            <button type="button" class="btn-solid" onclick="renderPlayersView()" style="font-size:12px; padding:6px 14px; font-weight:bold;">← Voltar para a Lista de Jogadores</button>
+          </div>
+          ${profileHtml}
+        `;
+      }
+      showTab('jogadores');
     }
 
     function closePlayerModal() {
@@ -5144,9 +5175,11 @@
     }
 
     function renderPlayerModal(id) {
-      const p = playersDirectory[String(id)];
-      const root = document.getElementById('player-modal-root');
-      if (!p || !root) return;
+      openPlayerModal(id);
+    }
+
+    function buildPlayerProfileInlineHtml(p) {
+      if (!p) return '';
 
       const totalJogos = p.matches.length;
       const totalGols = p.matches.reduce((s, m) => s + (m.meusGols || 0), 0);
@@ -5255,7 +5288,7 @@
         });
       }
 
-      root.innerHTML = html;
+      return html;
     }
 
     function computePlayerGlobalStats(p) {
