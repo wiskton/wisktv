@@ -93,6 +93,13 @@
       font-weight: bold;
     }
 
+    .career-btn-active {
+      background: var(--win-color, #2ecc71) !important;
+      color: #06110d !important;
+      font-weight: bold !important;
+      border-color: var(--win-color, #2ecc71) !important;
+    }
+
     .career-progress-outer {
       height: 6px;
       background: rgba(0, 0, 0, 0.25);
@@ -311,6 +318,15 @@
                 modo</button>
             </div>
 
+            <div class="career-btn-row" id="carreira-botoes-secoes" style="align-items: center; margin-top: 6px; padding: 6px; background: rgba(0, 0, 0, 0.15); border-radius: 8px; border: 1px solid var(--row-border);">
+              <span style="font-size: 12px; font-weight: bold; opacity: 0.8; margin-right: 4px;" data-i18n="verSecoes">Ver:</span>
+              <button type="button" id="btn-toggle-carreira-tabela" class="btn-solid" onclick="toggleSecaoCarreira('tabela')">📊 <span data-i18n="classificacaoTitulo">Classificação</span></button>
+              <button type="button" id="btn-toggle-carreira-artilharia" class="btn-solid" onclick="toggleSecaoCarreira('artilharia')">⚽ <span data-i18n="artilhariaTitulo">Artilharia</span></button>
+              <button type="button" id="btn-toggle-carreira-ranking" class="btn-solid" onclick="toggleSecaoCarreira('ranking')">🌍 <span data-i18n="rankingGlobalCarreira">Ranking Global</span></button>
+              <button type="button" id="btn-toggle-carreira-curiosidades" class="btn-solid" onclick="toggleSecaoCarreira('curiosidades')">📊 <span data-i18n="curiosidadesDaCarreira">Curiosidades</span></button>
+              <button type="button" id="btn-toggle-carreira-hall" class="btn-solid" onclick="toggleSecaoCarreira('hall')">🏛️ <span data-i18n="hallDaFama">Hall da Fama</span></button>
+            </div>
+
             <div class="career-card" style="text-align:center; margin-bottom:12px;">
               <div id="carreira-cabecalho" style="font-weight:bold;"></div>
               <div id="carreira-data" style="font-size:12px; opacity:0.8; margin-top:2px;"></div>
@@ -331,7 +347,7 @@
                 </div>
               </div>
               <div style="margin-top:8px;">
-                <p style="margin:0 0 6px; font-size:13px;"><span data-i18n="diferencaDeForca">Diferença de força:</span>
+                <p style="display:none;"><span data-i18n="diferencaDeForca">Diferença de força:</span>
                   <strong id="carreira-escalacao-forca">0</strong></p>
                 <div id="carreira-escalacao-badges" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
               </div>
@@ -365,43 +381,51 @@
 
             <div id="carreira-resultado-rodada" class="career-card" style="display:none; margin-bottom:12px;"></div>
 
-            <div style="display:flex; flex-wrap:wrap; gap:16px; margin-bottom:12px;">
-              <div style="flex:2; min-width:280px;">
-                <h6 style="margin:0 0 6px;" data-i18n="classificacaoTitulo">📊 Classificação</h6>
-                <table class="data-table cls-table" id="carreira-tabela-classificacao">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th class="cname" data-i18n="colJogador">Jogador</th>
-                      <th data-i18n="colP">P</th>
-                      <th data-i18n="colJ">J</th>
-                      <th data-i18n="colV">V</th>
-                      <th data-i18n="colE">E</th>
-                      <th data-i18n="colD">D</th>
-                      <th data-i18n="colGols">Gols</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
+            <div id="carreira-secao-classificacao" class="career-card" style="display:none; margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h6 style="margin:0;" data-i18n="classificacaoTitulo">📊 Classificação</h6>
+                <button type="button" class="btn-solid" style="padding:2px 8px; font-size:12px;" onclick="toggleSecaoCarreira('tabela')">✖ <span data-i18n="fechar">Fechar</span></button>
               </div>
-              <div style="flex:1; min-width:220px;">
-                <h6 style="margin:0 0 6px;" data-i18n="artilhariaTitulo">⚽ Artilharia</h6>
-                <table class="data-table art-table" id="carreira-tabela-artilharia">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th class="cname" data-i18n="colJogador">Jogador</th>
-                      <th data-i18n="colJ">J</th>
-                      <th data-i18n="colGols">Gols</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
+              <table class="data-table cls-table" id="carreira-tabela-classificacao">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th class="cname" data-i18n="colJogador">Jogador</th>
+                    <th data-i18n="colP">P</th>
+                    <th data-i18n="colJ">J</th>
+                    <th data-i18n="colV">V</th>
+                    <th data-i18n="colE">E</th>
+                    <th data-i18n="colD">D</th>
+                    <th data-i18n="colGols">Gols</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
+            <div id="carreira-secao-artilharia" class="career-card" style="display:none; margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h6 style="margin:0;" data-i18n="artilhariaTitulo">⚽ Artilharia</h6>
+                <button type="button" class="btn-solid" style="padding:2px 8px; font-size:12px;" onclick="toggleSecaoCarreira('artilharia')">✖ <span data-i18n="fechar">Fechar</span></button>
               </div>
+              <table class="data-table art-table" id="carreira-tabela-artilharia">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th class="cname" data-i18n="colJogador">Jogador</th>
+                    <th data-i18n="colJ">J</th>
+                    <th data-i18n="colGols">Gols</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
             </div>
 
             <div id="carreira-hall-fama" class="career-card" style="display:none; margin-bottom:12px;">
-              <h6 style="margin:0 0 8px;" data-i18n="hallDaFama">🏛️ Hall da Fama da Carreira</h6>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h6 style="margin:0;" data-i18n="hallDaFama">🏛️ Hall da Fama da Carreira</h6>
+                <button type="button" class="btn-solid" style="padding:2px 8px; font-size:12px;" onclick="toggleSecaoCarreira('hall')">✖ <span data-i18n="fechar">Fechar</span></button>
+              </div>
               <table class="data-table">
                 <thead>
                   <tr>
@@ -415,7 +439,10 @@
             </div>
 
             <div id="carreira-ranking-global" class="career-card" style="display:none; margin-bottom:12px;">
-              <h6 style="margin:0 0 4px;" data-i18n="rankingGlobalCarreira">🌍 Ranking Global da Carreira</h6>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <h6 style="margin:0;" data-i18n="rankingGlobalCarreira">🌍 Ranking Global da Carreira</h6>
+                <button type="button" class="btn-solid" style="padding:2px 8px; font-size:12px;" onclick="toggleSecaoCarreira('ranking')">✖ <span data-i18n="fechar">Fechar</span></button>
+              </div>
               <p style="font-size:12px; opacity:0.8; margin:0 0 8px;" data-i18n="rankingGlobalCarreiraDesc">Todo mundo
                 que já jogou nessa carreira, somando todos os torneios já disputados.</p>
               <table class="data-table">
@@ -437,8 +464,11 @@
               </table>
             </div>
 
-            <div id="carreira-rankings-extra" style="display:none; margin-bottom:12px;">
-              <h5 style="margin:0 0 8px;" data-i18n="curiosidadesDaCarreira">📊 Curiosidades da Carreira</h5>
+            <div id="carreira-rankings-extra" class="career-card" style="display:none; margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h5 style="margin:0;" data-i18n="curiosidadesDaCarreira">📊 Curiosidades da Carreira</h5>
+                <button type="button" class="btn-solid" style="padding:2px 8px; font-size:12px;" onclick="toggleSecaoCarreira('curiosidades')">✖ <span data-i18n="fechar">Fechar</span></button>
+              </div>
               <div id="carreira-rankings-extra-corpo" style="display:flex; flex-wrap:wrap; gap:12px;"></div>
             </div>
 
@@ -784,13 +814,15 @@
         if (!this.running) return;
         const dt = Math.min(100, timestamp - (this.lastTime || timestamp)) / 1000;
         this.lastTime = timestamp;
-        this.update(dt);
+        const animSpeed = 1.8;
+        this.update(dt * animSpeed);
         this.draw();
         this.animationFrameId = requestAnimationFrame((t) => this.loop(t));
       }
       triggerGoal(teamSide, scorerPlayer) {
         this.gameState = 'goal-sequence';
         this.sequenceTimer = 0;
+        this.flashingGoalText = false;
         let visualScorer = this.allPlayers.find(p => p.player && p.player.id === scorerPlayer.id);
         if (!visualScorer) {
           const sidePlayers = teamSide === 'TIME B' ? this.playersB : this.playersA;
@@ -804,11 +836,11 @@
           step: 'receive-ball',
           timer: 0
         };
-        this.setAlert((visualScorer.player && visualScorer.player.name ? visualScorer.player.name.toUpperCase() : 'ATAQUE') + ' avança com perigo!');
+        this.setAlert((visualScorer.player && visualScorer.player.name ? visualScorer.player.name.toUpperCase() : 'ATAQUE') + ' GOL!');
       }
       setAlert(text) {
         this.textAlert = text;
-        this.textAlertTimer = 2.0;
+        this.textAlertTimer = 1.5;
       }
       update(dt) {
         if (this.textAlertTimer > 0) {
@@ -1145,7 +1177,7 @@
         this.allPlayers.forEach(p => {
           if (p === scorer || p === gk || p.isGk) return;
           p._seqMoveTimer = (p._seqMoveTimer || 0) + dt;
-          if (p._seqMoveTimer > 0.4 + Math.random() * 0.3) {
+          if (p._seqMoveTimer > 0.3 + Math.random() * 0.2) {
             p._seqMoveTimer = 0;
             if (p.isTeamB === scorer.isTeamB) {
               p.targetX = scorer.x + (Math.random() - 0.5) * 60;
@@ -1163,36 +1195,36 @@
             p.targetX = Math.max(20, Math.min(580, p.targetX));
             p.targetY = Math.max(20, Math.min(330, p.targetY));
           }
-          p.x += (p.targetX - p.x) * dt * 3.5;
-          p.y += (p.targetY - p.y) * dt * 3.5;
+          p.x += (p.targetX - p.x) * dt * 5.5;
+          p.y += (p.targetY - p.y) * dt * 5.5;
         });
 
         if (seq.step === 'receive-ball') {
           const dx = scorer.x - this.ball.x;
           const dy = scorer.y - this.ball.y;
           const dist = Math.hypot(dx, dy);
-          if (dist < 12) {
+          if (dist < 15) {
             seq.step = 'dribble';
             seq.timer = 0;
             this.ball.holder = scorer;
           } else {
-            this.ball.x += (dx / (dist || 1)) * dt * 380;
-            this.ball.y += (dy / (dist || 1)) * dt * 380;
+            this.ball.x += (dx / (dist || 1)) * dt * 700;
+            this.ball.y += (dy / (dist || 1)) * dt * 700;
           }
         } else if (seq.step === 'dribble') {
           const targetGoalX = scorer.isTeamB ? 70 : 530;
           const dx = targetGoalX - scorer.x;
           const dy = 175 - scorer.y;
           const dist = Math.hypot(dx, dy);
-          scorer.x += (dx / (dist || 1)) * dt * 170;
-          scorer.y += (dy / (dist || 1)) * dt * 170;
+          scorer.x += (dx / (dist || 1)) * dt * 280;
+          scorer.y += (dy / (dist || 1)) * dt * 280;
           this.ball.x = scorer.x;
           this.ball.y = scorer.y;
           gk.targetX = gk.baseX;
           gk.targetY = 175 + (scorer.y - 175) * 0.55;
-          gk.x += (gk.targetX - gk.x) * dt * 5;
-          gk.y += (gk.targetY - gk.y) * dt * 5;
-          if (seq.timer > 1.0 || Math.abs(scorer.x - targetGoalX) < 30) {
+          gk.x += (gk.targetX - gk.x) * dt * 8;
+          gk.y += (gk.targetY - gk.y) * dt * 8;
+          if (seq.timer > 0.35 || Math.abs(scorer.x - targetGoalX) < 40) {
             seq.step = 'shoot';
             seq.timer = 0;
             this.ball.holder = null;
@@ -1200,15 +1232,15 @@
             this.ball.targetY = 150 + Math.random() * 50;
             gk.targetY = this.ball.targetY + (Math.random() - 0.5) * 15;
             gk.targetX = gk.isTeamB ? 555 : 45;
-            this.setAlert('CHUTE DE ' + (scorer.player && scorer.player.name ? scorer.player.name.toUpperCase() : 'CHUTE') + '!');
+            this.setAlert('GOL DE ' + (scorer.player && scorer.player.name ? scorer.player.name.toUpperCase() : 'JOGADOR') + '!');
           }
         } else if (seq.step === 'shoot') {
           const dx = this.ball.targetX - this.ball.x;
           const dy = this.ball.targetY - this.ball.y;
           const dist = Math.hypot(dx, dy);
-          gk.x += (gk.targetX - gk.x) * dt * 9;
-          gk.y += (gk.targetY - gk.y) * dt * 9;
-          if (dist < 10) {
+          gk.x += (gk.targetX - gk.x) * dt * 12;
+          gk.y += (gk.targetY - gk.y) * dt * 12;
+          if (dist < 12) {
             this.gameState = 'celebration';
             seq.step = 'celebrate';
             seq.timer = 0;
@@ -1219,8 +1251,8 @@
               p.targetY = p.baseY;
             });
           } else {
-            this.ball.x += (dx / (dist || 1)) * dt * 550;
-            this.ball.y += (dy / (dist || 1)) * dt * 550;
+            this.ball.x += (dx / (dist || 1)) * dt * 850;
+            this.ball.y += (dy / (dist || 1)) * dt * 850;
           }
         }
       }
@@ -1233,11 +1265,10 @@
         seq.timer += dt;
         const scorer = seq.scorer;
 
-        // Companheiros do scorer correm para celebrar junto; adversários ficam abatidos
         this.allPlayers.forEach(p => {
           if (p === scorer || p.isGk) return;
           p._seqMoveTimer = (p._seqMoveTimer || 0) + dt;
-          if (p._seqMoveTimer > 0.3 + Math.random() * 0.3) {
+          if (p._seqMoveTimer > 0.2 + Math.random() * 0.2) {
             p._seqMoveTimer = 0;
             if (p.isTeamB === scorer.isTeamB) {
               p.targetX = scorer.x + (Math.random() - 0.5) * 50;
@@ -1246,7 +1277,6 @@
               p.targetX = p.baseX + (Math.random() - 0.5) * 20;
               p.targetY = p.baseY + (Math.random() - 0.5) * 20;
             }
-            // Clamp a 200px da base
             const ddx = p.targetX - p.baseX;
             const ddy = p.targetY - p.baseY;
             const dd = Math.hypot(ddx, ddy);
@@ -1254,11 +1284,11 @@
             p.targetX = Math.max(20, Math.min(580, p.targetX));
             p.targetY = Math.max(20, Math.min(330, p.targetY));
           }
-          p.x += (p.targetX - p.x) * dt * 3.0;
-          p.y += (p.targetY - p.y) * dt * 3.0;
+          p.x += (p.targetX - p.x) * dt * 5.0;
+          p.y += (p.targetY - p.y) * dt * 5.0;
         });
         scorer.timer = (scorer.timer || 0) + dt;
-        if (scorer.timer > 0.25) {
+        if (scorer.timer > 0.2) {
           scorer.timer = 0;
           scorer.targetX = scorer.x + (Math.random() - 0.5) * 90;
           scorer.targetY = scorer.y + (Math.random() - 0.5) * 90;
@@ -1266,18 +1296,17 @@
           scorer.targetY = Math.max(60, Math.min(290, scorer.targetY));
           this.createExplosion(scorer.x, scorer.y, scorer.color);
         }
-        scorer.x += (scorer.targetX - scorer.x) * dt * 5;
-        scorer.y += (scorer.targetY - scorer.y) * dt * 5;
-        this.ball.x += (this.ball.targetX - this.ball.x) * dt * 3;
-        this.ball.y += (this.ball.targetY - this.ball.y) * dt * 3;
-        if (seq.timer > 2.2) {
+        scorer.x += (scorer.targetX - scorer.x) * dt * 8;
+        scorer.y += (scorer.targetY - scorer.y) * dt * 8;
+        this.ball.x += (this.ball.targetX - this.ball.x) * dt * 5;
+        this.ball.y += (this.ball.targetY - this.ball.y) * dt * 5;
+        if (seq.timer > 0.7) {
           this.gameState = 'kickoff';
           this.flashingGoalText = false;
           this.ball.targetX = 300;
           this.ball.targetY = 175;
           this.ball.holder = null;
           this.ball.state = 'free';
-          // Time que tomou o gol sai com a bola no kickoff
           this.kickoffTeam = seq.teamSide === 'TIME B' ? 'A' : 'B';
           this.allPlayers.forEach(p => {
             p.targetX = p.baseX;
@@ -1291,20 +1320,19 @@
         this.allPlayers.forEach(p => {
           const dx = p.baseX - p.x;
           const dy = p.baseY - p.y;
-          p.x += dx * dt * 6;
-          p.y += dy * dt * 6;
-          if (Math.hypot(dx, dy) > 8) settled = false;
+          p.x += dx * dt * 18;
+          p.y += dy * dt * 18;
+          if (Math.hypot(dx, dy) > 15) settled = false;
         });
         const bdx = 300 - this.ball.x;
         const bdy = 175 - this.ball.y;
-        this.ball.x += bdx * dt * 6;
-        this.ball.y += bdy * dt * 6;
-        if (settled && Math.hypot(bdx, bdy) < 5) {
+        this.ball.x += bdx * dt * 18;
+        this.ball.y += bdy * dt * 18;
+        if (settled && Math.hypot(bdx, bdy) < 15) {
           this.gameState = 'play';
           this.ball.x = 300;
           this.ball.y = 175;
           this.activeSequence = null;
-          // Entrega a bola ao time que tomou o gol (kickoffTeam = 'A' ou 'B')
           const kickTeamPlayers = this.kickoffTeam === 'B' ? this.playersB : this.playersA;
           const kickCandidates = kickTeamPlayers.filter(p => !p.isGk);
           let kickReceiver = null, kickDist = 9999;
@@ -1315,7 +1343,7 @@
           if (kickReceiver) {
             this.ball.holder = kickReceiver;
             this.ball.state = 'dribbling';
-            this.ball.timer = 1.2 + Math.random() * 0.5;
+            this.ball.timer = 0.5 + Math.random() * 0.3;
           } else {
             this.ball.state = 'free';
           }
@@ -1616,6 +1644,7 @@
         fimDeTorneioDica: 'Use o botão "Simular Outro Torneio" lá em cima pra continuar.',
         salvo: '✅ Salvo!',
         simulacaoInstantanea: 'Simulação Instantânea',
+        verSecoes: 'Ver:',
       },
       en: {
         pageTitle: 'WiskTV',
@@ -1692,6 +1721,7 @@
         fimDeTorneioDica: 'Use the "Simulate Another Tournament" button above to keep going.',
         salvo: '✅ Saved!',
         simulacaoInstantanea: 'Instant Simulation',
+        verSecoes: 'View:',
       },
       es: {
         pageTitle: 'WiskTV',
@@ -1768,6 +1798,7 @@
         fimDeTorneioDica: 'Usá el botón "Simular Otro Torneo" de arriba para continuar.',
         salvo: '✅ ¡Guardado!',
         simulacaoInstantanea: 'Simulación Instantánea',
+        verSecoes: 'Ver:',
       }
     };
 
@@ -3846,11 +3877,40 @@
         .sort((a, b) => b.titulos - a.titulos || b.artilharias - a.artilharias || b.pts - a.pts || b.gols - a.gols);
     }
 
+    const secoesCarreiraAbertas = {
+      tabela: true,
+      artilharia: false,
+      ranking: false,
+      curiosidades: false,
+      hall: false
+    };
+
+    function toggleSecaoCarreira(id) {
+      if (!(id in secoesCarreiraAbertas)) return;
+      secoesCarreiraAbertas[id] = !secoesCarreiraAbertas[id];
+      atualizarVisibilidadeSecoesCarreira();
+    }
+
+    function atualizarVisibilidadeSecoesCarreira() {
+      const ids = ['tabela', 'artilharia', 'ranking', 'curiosidades', 'hall'];
+      ids.forEach(id => {
+        const elSecao = document.getElementById('carreira-secao-' + id);
+        const elBtn = document.getElementById('btn-toggle-carreira-' + id);
+        const aberta = !!secoesCarreiraAbertas[id];
+        if (elSecao) {
+          elSecao.style.display = aberta ? 'block' : 'none';
+        }
+        if (elBtn) {
+          if (aberta) elBtn.classList.add('career-btn-active');
+          else elBtn.classList.remove('career-btn-active');
+        }
+      });
+    }
+
     function renderizarRankingGlobalCarreira() {
       const linhas = linhasRankingGlobalCarreira();
       const el = document.getElementById('carreira-ranking-global');
-      if (!linhas.length) { el.style.display = 'none'; return; }
-      el.style.display = 'block';
+      if (!linhas.length) return;
       const corpo = document.querySelector('#carreira-ranking-global-corpo');
       corpo.innerHTML = linhas.map((l, i) => {
         const voce = souEu(l.id);
@@ -3958,6 +4018,7 @@
 
       renderizarRankingGlobalCarreira();
       renderizarRankingsExtrasCarreira();
+      atualizarVisibilidadeSecoesCarreira();
     }
 
     function renderizarResultadoRodada(resultado, presencas, atraso, itensQuebrados) {
