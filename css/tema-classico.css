@@ -159,7 +159,7 @@
   color: #005a2b !important;
 }
 
-/* Menu do Modo Carreira no Layout Clássico: fundo verde (#005a2b) e texto estritamente BRANCO */
+/* TODAS as barras de menu e botões de menu no Layout Clássico: FUNDO VERDE (#005a2b) e TEXTO ESTRITAMENTE BRANCO (#ffffff) */
 [data-theme="classico"] .career-btn-row-nav {
   background: transparent !important;
   border: none !important;
@@ -170,23 +170,33 @@
 [data-theme="classico"] .career-dropdown-btn,
 [data-theme="classico"] .career-dropdown-menu,
 [data-theme="classico"] .career-dropdown-item,
-[data-theme="classico"] #btn-carreira-jogadores {
+[data-theme="classico"] #btn-carreira-jogadores,
+[data-theme="classico"] .menu-bar,
+[data-theme="classico"] .menu-btn {
   background: #005a2b !important;
   color: #ffffff !important;
   border: none !important;
 }
 
-[data-theme="classico"] .career-dropdown-item,
-[data-theme="classico"] .career-dropdown-item *,
+[data-theme="classico"] .career-btn-row-nav *,
+[data-theme="classico"] .career-dropdown *,
 [data-theme="classico"] .career-dropdown-btn *,
-[data-theme="classico"] #btn-carreira-jogadores * {
+[data-theme="classico"] .career-dropdown-menu *,
+[data-theme="classico"] .career-dropdown-item *,
+[data-theme="classico"] #btn-carreira-jogadores *,
+[data-theme="classico"] .menu-bar *,
+[data-theme="classico"] .menu-btn * {
   color: #ffffff !important;
 }
 
 [data-theme="classico"] .career-dropdown-item:hover,
 [data-theme="classico"] .career-dropdown-item:hover *,
 [data-theme="classico"] .career-dropdown-btn:hover,
-[data-theme="classico"] #btn-carreira-jogadores:hover {
+[data-theme="classico"] .career-dropdown-btn:hover *,
+[data-theme="classico"] #btn-carreira-jogadores:hover,
+[data-theme="classico"] #btn-carreira-jogadores:hover *,
+[data-theme="classico"] .menu-btn:hover,
+[data-theme="classico"] .menu-btn:hover * {
   background: #00723a !important;
   color: #ffffff !important;
 }
@@ -357,11 +367,17 @@
   color: #005a2b;
 }
 
-/* Exceções: Barra do torneio, cabeçalho de tabelas e botões do menu mantêm texto branco */
+/* Exceções: Barra do torneio, data da carreira, cabeçalho de tabelas e botões do menu mantêm texto estritamente BRANCO */
+[data-theme="classico"] .match-header,
 [data-theme="classico"] .match-header *,
+[data-theme="classico"] .career-header-card,
 [data-theme="classico"] .career-header-card *,
+[data-theme="classico"] #carreira-cabecalho-container,
 [data-theme="classico"] #carreira-cabecalho-container *,
+[data-theme="classico"] #carreira-cabecalho,
 [data-theme="classico"] #carreira-cabecalho *,
+[data-theme="classico"] #carreira-data,
+[data-theme="classico"] #carreira-data *,
 [data-theme="classico"] .trow.header-row *,
 [data-theme="classico"] .data-table th,
 [data-theme="classico"] .player-table th,
