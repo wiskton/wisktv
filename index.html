@@ -1132,20 +1132,20 @@
             }
           }
         }
-        // Garante que nenhum jogador saiu do campo e que os goleiros fiquem estritamente na sua baliza
+        // Garante que nenhum jogador saiu do campo e que os goleiros fiquem estritamente na sua grande área
         this.allPlayers.forEach(p => {
           if (p.isGk) {
             if (!p.isTeamB) {
-              // Goleiro Time A: fica restrito à área do gol esquerdo (x: 20-80, y: 115-235)
-              p.x       = Math.max(20, Math.min(80, p.x));
-              p.targetX = Math.max(20, Math.min(80, p.targetX));
+              // Goleiro Time A: fica restrito à área do gol esquerdo (x: 20-95, y: 110-240)
+              p.x       = Math.max(20, Math.min(95, p.x));
+              p.targetX = Math.max(20, Math.min(95, p.targetX));
             } else {
-              // Goleiro Time B: fica restrito à área do gol direito (x: 520-580, y: 115-235)
-              p.x       = Math.max(520, Math.min(580, p.x));
-              p.targetX = Math.max(520, Math.min(580, p.targetX));
+              // Goleiro Time B: fica restrito à área do gol direito (x: 505-580, y: 110-240)
+              p.x       = Math.max(505, Math.min(580, p.x));
+              p.targetX = Math.max(505, Math.min(580, p.targetX));
             }
-            p.y       = Math.max(115, Math.min(235, p.y));
-            p.targetY = Math.max(115, Math.min(235, p.targetY));
+            p.y       = Math.max(110, Math.min(240, p.y));
+            p.targetY = Math.max(110, Math.min(240, p.targetY));
             return;
           }
 
@@ -4736,8 +4736,6 @@
       }).join('');
     }
 
-    // Lembra qual aba tava aberta entre um clique de ação e outro — o modal
-    // inteiro é reconstruído a cada treino/compra/equipada.
     let abaProgressaoAtiva = 'estatisticas';
 
     function blocoEstatisticasJogadorCarreira(id) {
@@ -4787,12 +4785,10 @@
 
     function abrirModalJogadorCarreira(id) {
       const jogador = buscarJogadorCarreira(id);
-      const linha = carreira.rankingGlobal[id];
-      if (!jogador || !linha) return;
+      if (!jogador) return;
       const voce = souEu(id);
 
-      document.getElementById('career-player-modal-nome').textContent = jogador.name.toUpperCase() + (voce ? ' ⭐' : '');
-      document.getElementById('career-player-modal-root').innerHTML = `
+      const html = `
         <div class="player-summary">
           <div class="player-avatar-lg">
             ${jogador.foto ? `<img src="${jogador.foto}" alt="${jogador.name}" onerror="this.style.display='none'" />` : ''}
