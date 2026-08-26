@@ -26,14 +26,14 @@
   --accent-glow: #0a7030;
 
   --tab-bg: #005a2b;
-  --tab-active-bg: #ffd000;
+  --tab-active-bg: #ffdc00;
   --gold-text: #ffdc00;
   --link-btn: #005a2b;
 
   --row-border: #005a2b;
-  --row-bg: #ffcd00;
+  --row-bg: #ffdc00;
   --row-alt-bg: #ffdc00;
-  --row-hover-bg: #ffcd00;
+  --row-hover-bg: #ffdc00;
   --cell-border: #0b4a1d;
 
   --win-color: #1c7a1c;
@@ -69,7 +69,7 @@
 }
 
 [data-theme="classico"] #player-modal .modal-box {
-  background: linear-gradient(90deg, #c59e00, var(--tab-active-bg));
+  background: #ffdc00;
 }
 
 [data-theme="classico"] .trow.data-row {
@@ -86,7 +86,7 @@
 }
 
 [data-theme="classico"] .trow.data-row:hover {
-  background: #f7e000;
+  background: #ffdc00;
 }
 
 [data-theme="classico"] .match-card,
