@@ -481,6 +481,8 @@
                 <div class="career-dropdown-menu">
                   <button type="button" id="btn-toggle-carreira-tabela" class="career-dropdown-item" onclick="selecionarVisaoCarreira('tabela')"><span data-i18n="classificacaoTitulo">📊 Classificação</span></button>
                   <button type="button" id="btn-toggle-carreira-artilharia" class="career-dropdown-item" onclick="selecionarVisaoCarreira('artilharia')"><span data-i18n="artilhariaTitulo">⚽ Artilharia</span></button>
+                  <button type="button" id="btn-toggle-carreira-assistencias" class="career-dropdown-item" onclick="selecionarVisaoCarreira('assistencias')"><span>🅰️ Assistências</span></button>
+                  <button type="button" id="btn-toggle-carreira-desarmes" class="career-dropdown-item" onclick="selecionarVisaoCarreira('desarmes')"><span>🛡️ Desarmes</span></button>
                   <button type="button" id="btn-toggle-carreira-ranking" class="career-dropdown-item" onclick="selecionarVisaoCarreira('ranking')"><span data-i18n="rankingGlobalCarreira">🌍 Ranking Global</span></button>
                   <button type="button" id="btn-toggle-carreira-curiosidades" class="career-dropdown-item" onclick="selecionarVisaoCarreira('curiosidades')"><span data-i18n="curiosidadesDaCarreira">📊 Curiosidades</span></button>
                   <button type="button" id="btn-toggle-carreira-hall" class="career-dropdown-item" onclick="selecionarVisaoCarreira('hall')"><span data-i18n="hallDaFama">🏛️ Hall da Fama</span></button>
@@ -581,6 +583,8 @@
                     <th data-i18n="colE">E</th>
                     <th data-i18n="colD">D</th>
                     <th data-i18n="colGols">Gols</th>
+                    <th>Ast</th>
+                    <th>Des</th>
                   </tr>
                 </thead>
                 <tbody></tbody>
@@ -599,6 +603,42 @@
                     <th class="cname" data-i18n="colJogador">Jogador</th>
                     <th data-i18n="colJ">J</th>
                     <th data-i18n="colGols">Gols</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
+            <div id="carreira-secao-assistencias" class="career-card" style="display:none; margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h6 style="margin:0;">🅰️ Assistências</h6>
+                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px;" onclick="selecionarVisaoCarreira('partida')">⚽ Voltar para Partida</button>
+              </div>
+              <table class="data-table art-table" id="carreira-tabela-assistencias">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th class="cname" data-i18n="colJogador">Jogador</th>
+                    <th data-i18n="colJ">J</th>
+                    <th>Assistências</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
+            <div id="carreira-secao-desarmes" class="career-card" style="display:none; margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h6 style="margin:0;">🛡️ Desarmes</h6>
+                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px;" onclick="selecionarVisaoCarreira('partida')">⚽ Voltar para Partida</button>
+              </div>
+              <table class="data-table art-table" id="carreira-tabela-desarmes">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th class="cname" data-i18n="colJogador">Jogador</th>
+                    <th data-i18n="colJ">J</th>
+                    <th>Desarmes</th>
                   </tr>
                 </thead>
                 <tbody></tbody>
@@ -641,6 +681,8 @@
                     <th data-i18n="colE">E</th>
                     <th data-i18n="colD">D</th>
                     <th data-i18n="colGols">Gols</th>
+                    <th>Ast</th>
+                    <th>Des</th>
                   </tr>
                 </thead>
                 <tbody id="carreira-ranking-global-corpo"></tbody>
@@ -3901,6 +3943,8 @@
     }
 
     const PESO_GOL_POSICAO = { ATA: 3, MEI: 2, ZAG: 0.55, GOL: 0.05 };
+    const PESO_ASSISTENCIA_POSICAO = { MEI: 5, ATA: 3, ZAG: 1, GOL: 0.1 };
+    const PESO_DESARME_POSICAO = { ZAG: 5, MEI: 3, ATA: 1, GOL: 0.2 };
 
     function totalNivelCarreira(time) {
       return time.reduce((s, p) => s + nivelDoJogadorNaRodada(p), 0);
@@ -3913,6 +3957,39 @@
         const posicaoFator = Math.sqrt(PESO_GOL_POSICAO[p.posicao] || 1);
         const historicoFator = 2 + Math.pow(Math.max(0, p.golsPorJogo || 0), 1) * 4;
         return nivelFator * posicaoFator * historicoFator;
+      });
+      const total = pesos.reduce((a, b) => a + b, 0);
+      let r = Math.random() * total;
+      for (let i = 0; i < time.length; i++) {
+        r -= pesos[i];
+        if (r <= 0) return time[i];
+      }
+      return time[time.length - 1];
+    }
+
+    function escolherAssistenteCarreira(time, artilheiro) {
+      const candidatos = time.filter(p => p.id !== artilheiro.id);
+      if (!candidatos.length) return null;
+      const pesos = candidatos.map(p => {
+        const posFator = PESO_ASSISTENCIA_POSICAO[p.posicao] || 1;
+        const nivFator = Math.sqrt(Math.max(5, nivelDoJogadorNaRodada(p)));
+        return posFator * nivFator;
+      });
+      const total = pesos.reduce((a, b) => a + b, 0);
+      let r = Math.random() * total;
+      for (let i = 0; i < candidatos.length; i++) {
+        r -= pesos[i];
+        if (r <= 0) return candidatos[i];
+      }
+      return candidatos[candidatos.length - 1];
+    }
+
+    function escolherDesarmadorCarreira(time) {
+      if (!time || !time.length) return null;
+      const pesos = time.map(p => {
+        const posFator = PESO_DESARME_POSICAO[p.posicao] || 1;
+        const nivFator = Math.sqrt(Math.max(5, nivelDoJogadorNaRodada(p)));
+        return posFator * nivFator;
       });
       const total = pesos.reduce((a, b) => a + b, 0);
       let r = Math.random() * total;
@@ -3961,17 +4038,19 @@
     }
 
     // Gera a partida inteira de uma vez (minuto a minuto, mas em memória) —
-    // devolve os gols já em ordem cronológica, pra depois `animarPartidaCarreira`
-    // ir revelando um por um.
+    // devolve os gols e estatísticas já em ordem cronológica.
     function gerarEventosPartidaCarreira(timeA, timeB, duracao) {
       duracao = duracao || 60;
       let placarA = 0, placarB = 0;
       const golsPorJogador = {};
+      const assistenciasPorJogador = {};
+      const desarmesPorJogador = {};
       const eventos = [];
       const totalA = Math.max(1, totalNivelCarreira(timeA));
       const totalB = Math.max(1, totalNivelCarreira(timeB));
       const probA = Math.max(0.25, Math.min(0.75, totalA / (totalA + totalB)));
       for (let minuto = 1; minuto <= duracao; minuto++) {
+        // Gols e Assistências
         if (Math.random() < 0.33) {
           const lado = Math.random() < probA ? 'A' : 'B';
           const time = lado === 'A' ? timeA : timeB;
@@ -3979,11 +4058,27 @@
           if (artilheiro) {
             if (lado === 'A') placarA++; else placarB++;
             golsPorJogador[artilheiro.id] = (golsPorJogador[artilheiro.id] || 0) + 1;
-            eventos.push({ minuto, lado, artilheiro });
+            let assistente = null;
+            if (Math.random() < 0.70) {
+              assistente = escolherAssistenteCarreira(time, artilheiro);
+              if (assistente) {
+                assistenciasPorJogador[assistente.id] = (assistenciasPorJogador[assistente.id] || 0) + 1;
+              }
+            }
+            eventos.push({ minuto, lado, artilheiro, assistente });
+          }
+        }
+        // Desarmes na partida
+        if (Math.random() < 0.25) {
+          const ladoA = Math.random() < 0.5;
+          const timeDesarme = ladoA ? timeA : timeB;
+          const desarmador = escolherDesarmadorCarreira(timeDesarme);
+          if (desarmador) {
+            desarmesPorJogador[desarmador.id] = (desarmesPorJogador[desarmador.id] || 0) + 1;
           }
         }
       }
-      return { placarA, placarB, golsPorJogador, eventos };
+      return { placarA, placarB, golsPorJogador, assistenciasPorJogador, desarmesPorJogador, eventos };
     }
 
     function animarPartidaCarreira(resultado, duracao, times, aoTerminar) {
@@ -4097,12 +4192,14 @@
 
       function registrarEm(alvo, jogador, meuLado) {
         const linha = alvo[jogador.id] || {
-          nome: jogador.name, jogos: 0, v: 0, e: 0, d: 0, gols: 0, pts: 0, titulos: 0, artilharias: 0,
+          nome: jogador.name, jogos: 0, v: 0, e: 0, d: 0, gols: 0, assistencias: 0, desarmes: 0, pts: 0, titulos: 0, artilharias: 0,
           sequenciaV: 0, sequenciaD: 0, melhorSequenciaV: 0, piorSequenciaD: 0, golsTimeAFavor: 0, golsTimeContra: 0
         };
         linha.jogos += 1;
         linha.pts += 1;
-        linha.gols += resultado.golsPorJogador[jogador.id] || 0;
+        linha.gols += (resultado.golsPorJogador && resultado.golsPorJogador[jogador.id]) || 0;
+        linha.assistencias = (linha.assistencias || 0) + ((resultado.assistenciasPorJogador && resultado.assistenciasPorJogador[jogador.id]) || 0);
+        linha.desarmes = (linha.desarmes || 0) + ((resultado.desarmesPorJogador && resultado.desarmesPorJogador[jogador.id]) || 0);
         linha.golsTimeAFavor = (linha.golsTimeAFavor || 0) + (meuLado === 'A' ? resultado.placarA : resultado.placarB);
         linha.golsTimeContra = (linha.golsTimeContra || 0) + (meuLado === 'A' ? resultado.placarB : resultado.placarA);
         if (resultadoTime === 'E') {
@@ -4135,7 +4232,10 @@
       return Object.keys(carreira.classificacao)
         .map(id => {
           const linha = carreira.classificacao[id];
-          return { id: Number(id), nome: linha.nome, jogos: linha.jogos, v: linha.v, e: linha.e, d: linha.d, gols: linha.gols, pts: linha.pts };
+          return {
+            id: Number(id), nome: linha.nome, jogos: linha.jogos, v: linha.v, e: linha.e, d: linha.d,
+            gols: linha.gols, assistencias: linha.assistencias || 0, desarmes: linha.desarmes || 0, pts: linha.pts
+          };
         })
         .sort((a, b) => b.pts - a.pts || b.gols - a.gols);
     }
@@ -4145,7 +4245,8 @@
         .map(id => {
           const linha = carreira.rankingGlobal[id];
           return {
-            id: Number(id), nome: linha.nome, jogos: linha.jogos, v: linha.v, e: linha.e, d: linha.d, gols: linha.gols, pts: linha.pts,
+            id: Number(id), nome: linha.nome, jogos: linha.jogos, v: linha.v, e: linha.e, d: linha.d,
+            gols: linha.gols, assistencias: linha.assistencias || 0, desarmes: linha.desarmes || 0, pts: linha.pts,
             titulos: linha.titulos || 0, artilharias: linha.artilharias || 0
           };
         })
@@ -4175,6 +4276,8 @@
         partida: 'carreira-visao-partida',
         tabela: 'carreira-secao-classificacao',
         artilharia: 'carreira-secao-artilharia',
+        assistencias: 'carreira-secao-assistencias',
+        desarmes: 'carreira-secao-desarmes',
         ranking: 'carreira-ranking-global',
         curiosidades: 'carreira-rankings-extra',
         hall: 'carreira-hall-fama',
@@ -4234,7 +4337,7 @@
       const corpo = document.querySelector('#carreira-ranking-global-corpo');
       corpo.innerHTML = linhas.map((l, i) => {
         const voce = souEu(l.id);
-        return `<tr onclick="abrirModalJogadorCarreira(${l.id})" style="cursor:pointer;${voce ? 'font-weight:bold;' : ''}"><td>${i + 1}</td><td class="cname">${l.nome.toUpperCase()}${voce ? ' ⭐' : ''}</td><td>${l.titulos ? '🏆 ' + l.titulos : '—'}</td><td>${l.artilharias ? '👑 ' + l.artilharias : '—'}</td><td><strong>${l.pts}</strong></td><td>${l.jogos}</td><td>${l.v}</td><td>${l.e}</td><td>${l.d}</td><td>${l.gols}</td></tr>`;
+        return `<tr onclick="abrirModalJogadorCarreira(${l.id})" style="cursor:pointer;${voce ? 'font-weight:bold;' : ''}"><td>${i + 1}</td><td class="cname">${l.nome.toUpperCase()}${voce ? ' ⭐' : ''}</td><td>${l.titulos ? '🏆 ' + l.titulos : '—'}</td><td>${l.artilharias ? '👑 ' + l.artilharias : '—'}</td><td><strong>${l.pts}</strong></td><td>${l.jogos}</td><td>${l.v}</td><td>${l.e}</td><td>${l.d}</td><td>${l.gols}</td><td>${l.assistencias}</td><td>${l.desarmes}</td></tr>`;
       }).join('');
     }
 
@@ -4244,7 +4347,7 @@
         const linha = carreira.rankingGlobal[id];
         return {
           id: Number(id), nome: linha.nome, jogos: linha.jogos || 0, v: linha.v || 0,
-          e: linha.e || 0, d: linha.d || 0, gols: linha.gols || 0, pts: linha.pts || 0,
+          e: linha.e || 0, d: linha.d || 0, gols: linha.gols || 0, assistencias: linha.assistencias || 0, desarmes: linha.desarmes || 0, pts: linha.pts || 0,
           melhorSequenciaV: linha.melhorSequenciaV || 0, piorSequenciaD: linha.piorSequenciaD || 0,
           golsTimeAFavor: linha.golsTimeAFavor || 0, golsTimeContra: linha.golsTimeContra || 0
         };
@@ -4295,6 +4398,10 @@
         montarMiniRankingCarreira('Eficiência de Gols a Favor', '🎯', ordenarPorCarreira(comJogos, l => l.golsTimeAFavor / l.jogos, true), l => l.golsTimeAFavor / l.jogos, mediaPorJogo),
         montarMiniRankingCarreira('Maior Goleador', '🥇', ordenarPorCarreira(comJogos, l => l.gols, true), l => l.gols, inteiro),
         montarMiniRankingCarreira('Mais Eficientes na Artilharia', '🥅', ordenarPorCarreira(comJogos, l => l.gols / l.jogos, true), l => l.gols / l.jogos, mediaPorJogo),
+        montarMiniRankingCarreira('Maiores Garçons (Assistências)', '🅰️', ordenarPorCarreira(comJogos, l => l.assistencias, true), l => l.assistencias, inteiro),
+        montarMiniRankingCarreira('Maiores Ladrões de Bola (Desarmes)', '🛡️', ordenarPorCarreira(comJogos, l => l.desarmes, true), l => l.desarmes, inteiro),
+        montarMiniRankingCarreira('Eficiência de Assistências', '🅰️', ordenarPorCarreira(comJogos, l => l.assistencias / l.jogos, true), l => l.assistencias / l.jogos, mediaPorJogo),
+        montarMiniRankingCarreira('Eficiência de Desarmes', '🛡️', ordenarPorCarreira(comJogos, l => l.desarmes / l.jogos, true), l => l.desarmes / l.jogos, mediaPorJogo),
         montarMiniRankingCarreira('O Passe Mais Caro do Elenco', '💸', ordenarPorCarreira(comJogos, l => l.jogos * 25, true), l => l.jogos * 25, reais)
       ].join('');
       atualizarVisibilidadeSecoesCarreira();
@@ -4322,8 +4429,8 @@
       const corpoClass = document.querySelector('#carreira-tabela-classificacao tbody');
       corpoClass.innerHTML = linhas.map((l, i) => {
         const voce = souEu(l.id);
-        return `<tr onclick="abrirModalJogadorCarreira(${l.id})" style="cursor:pointer;${voce ? 'font-weight:bold;' : ''}"><td>${i + 1}</td><td class="cname">${l.nome.toUpperCase()}${voce ? ' ⭐' : ''}</td><td><strong>${l.pts}</strong></td><td>${l.jogos}</td><td>${l.v}</td><td>${l.e}</td><td>${l.d}</td><td>${l.gols}</td></tr>`;
-      }).join('') || '<tr><td colspan="8" style="opacity:0.7;">Nenhuma rodada disputada ainda.</td></tr>';
+        return `<tr onclick="abrirModalJogadorCarreira(${l.id})" style="cursor:pointer;${voce ? 'font-weight:bold;' : ''}"><td>${i + 1}</td><td class="cname">${l.nome.toUpperCase()}${voce ? ' ⭐' : ''}</td><td><strong>${l.pts}</strong></td><td>${l.jogos}</td><td>${l.v}</td><td>${l.e}</td><td>${l.d}</td><td>${l.gols}</td><td>${l.assistencias}</td><td>${l.desarmes}</td></tr>`;
+      }).join('') || '<tr><td colspan="10" style="opacity:0.7;">Nenhuma rodada disputada ainda.</td></tr>';
 
       const artilharia = linhas.filter(l => l.gols > 0).sort((a, b) => b.gols - a.gols);
       const corpoArt = document.querySelector('#carreira-tabela-artilharia tbody');
@@ -4331,6 +4438,24 @@
         const voce = souEu(l.id);
         return `<tr onclick="abrirModalJogadorCarreira(${l.id})" style="cursor:pointer;${voce ? 'font-weight:bold;' : ''}"><td>${i + 1}</td><td class="cname">${l.nome.toUpperCase()}${voce ? ' ⭐' : ''}</td><td>${l.jogos}</td><td><strong>${l.gols}</strong></td></tr>`;
       }).join('') || '<tr><td colspan="4" style="opacity:0.7;">Ninguém marcou ainda.</td></tr>';
+
+      const assistenciasList = linhas.filter(l => l.assistencias > 0).sort((a, b) => b.assistencias - a.assistencias);
+      const corpoAst = document.querySelector('#carreira-tabela-assistencias tbody');
+      if (corpoAst) {
+        corpoAst.innerHTML = assistenciasList.map((l, i) => {
+          const voce = souEu(l.id);
+          return `<tr onclick="abrirModalJogadorCarreira(${l.id})" style="cursor:pointer;${voce ? 'font-weight:bold;' : ''}"><td>${i + 1}</td><td class="cname">${l.nome.toUpperCase()}${voce ? ' ⭐' : ''}</td><td>${l.jogos}</td><td><strong>${l.assistencias}</strong></td></tr>`;
+        }).join('') || '<tr><td colspan="4" style="opacity:0.7;">Nenhuma assistência registrada ainda.</td></tr>';
+      }
+
+      const desarmesList = linhas.filter(l => l.desarmes > 0).sort((a, b) => b.desarmes - a.desarmes);
+      const corpoDes = document.querySelector('#carreira-tabela-desarmes tbody');
+      if (corpoDes) {
+        corpoDes.innerHTML = desarmesList.map((l, i) => {
+          const voce = souEu(l.id);
+          return `<tr onclick="abrirModalJogadorCarreira(${l.id})" style="cursor:pointer;${voce ? 'font-weight:bold;' : ''}"><td>${i + 1}</td><td class="cname">${l.nome.toUpperCase()}${voce ? ' ⭐' : ''}</td><td>${l.jogos}</td><td><strong>${l.desarmes}</strong></td></tr>`;
+        }).join('') || '<tr><td colspan="4" style="opacity:0.7;">Nenhum desarme registrado ainda.</td></tr>';
+      }
 
       document.getElementById('carreira-cabecalho').textContent =
         'Torneio ' + carreira.torneio + ' — Rodada ' + Math.min(carreira.rodada, 8) + ' / 8';
