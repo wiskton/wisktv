@@ -286,3 +286,9 @@
 [data-theme="classico"] .simulator-lineup-initials {
   color: #005a2b;
 }
+
+[data-theme="classico"] .career-save-card {
+  background: #ffffff !important;
+  color: #005a2b !important;
+  border: 1px solid #005a2b !important;
+}
