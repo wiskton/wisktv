@@ -113,19 +113,20 @@
   border-radius: 6px;
 }
 
-/* Barra do torneio em Layout Clássico: fundo verde e texto branco */
+/* Barra do torneio e rodada em Layout Clássico: fundo verde e texto estritamente BRANCO */
 [data-theme="classico"] .match-header,
+[data-theme="classico"] .match-header *,
 [data-theme="classico"] .career-header-card,
+[data-theme="classico"] .career-header-card *,
 [data-theme="classico"] #carreira-cabecalho-container,
-[data-theme="classico"] #carreira-cabecalho {
+[data-theme="classico"] #carreira-cabecalho-container *,
+[data-theme="classico"] #carreira-cabecalho,
+[data-theme="classico"] #carreira-cabecalho *,
+[data-theme="classico"] #carreira-data,
+[data-theme="classico"] #carreira-data * {
   background: #005a2b !important;
   color: #ffffff !important;
   border-color: #003d12 !important;
-}
-
-[data-theme="classico"] #carreira-data {
-  color: #ffffff !important;
-  opacity: 0.9 !important;
 }
 
 /* Barra da escalação e dados da partida: fundo amarelo normal e texto verde */
