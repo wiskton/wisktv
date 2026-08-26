@@ -1105,6 +1105,7 @@
               const a = this.allPlayers[i];
               const b = this.allPlayers[j];
               if (a.isGk || b.isGk) continue;
+              if (a.role === 'ATA' || a.role === 'MEI' || b.role === 'ATA' || b.role === 'MEI') continue;
               const sameTeam = a.isTeamB === b.isTeamB;
               if (!sameTeam) continue; // Ataque pode se aproximar da defesa adversária sem espaçamento mínimo
               const minD = MIN_SAME;
