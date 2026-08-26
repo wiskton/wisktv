@@ -579,7 +579,9 @@ body[data-theme="classico"] button.career-dropdown-item *,
 [data-theme="classico"] .career-dropdown-item,
 [data-theme="classico"] .career-dropdown-item *,
 [data-theme="classico"] #btn-carreira-jogadores,
-[data-theme="classico"] #btn-carreira-jogadores * {
+[data-theme="classico"] #btn-carreira-jogadores *,
+[data-theme="classico"] #btn-carreira-ir-partida-nav,
+[data-theme="classico"] #btn-carreira-ir-partida-nav * {
   background-color: #005a2b !important;
   color: #ffffff !important;
   border: none !important;
