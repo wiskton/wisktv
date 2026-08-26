@@ -365,9 +365,16 @@
   color: #ffffff !important;
 }
 
-/* Fundo das tabelas e quadros de curiosidades no Layout Clássico: BRANCO */
+/* Curiosidades no Tema Clássico: Container Amarelo, Quadros de Rankings Internos Brancos */
+[data-theme="classico"] #tab-curiosidades,
+[data-theme="classico"] #curiosidades-root,
+[data-theme="classico"] #carreira-rankings-extra {
+  background: #ffdc00 !important;
+  color: #005a2b !important;
+  border-color: #005a2b !important;
+}
+
 [data-theme="classico"] #curiosidades-root .career-card,
-[data-theme="classico"] #carreira-rankings-extra,
 [data-theme="classico"] #carreira-rankings-extra .career-card,
 [data-theme="classico"] #carreira-rankings-extra-corpo .career-card {
   background: #ffffff !important;
@@ -375,9 +382,9 @@
   border: 1px solid #005a2b !important;
 }
 
-[data-theme="classico"] #curiosidades-root .career-card *,
-[data-theme="classico"] #carreira-rankings-extra *,
-[data-theme="classico"] #carreira-rankings-extra-corpo .career-card * {
+[data-theme="classico"] #tab-curiosidades *,
+[data-theme="classico"] #curiosidades-root *,
+[data-theme="classico"] #carreira-rankings-extra * {
   color: #005a2b !important;
 }
 
