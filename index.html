@@ -4637,28 +4637,19 @@
     // um jogador específico (aberto clicando em qualquer linha das
     // tabelas/rankings, ou na lista do botão "Jogadores"). ----------
     function openCareerListModal() {
-      const linhas = linhasRankingGlobalCompletasCarreira()
-        .filter(l => souEu(l.id))
-        .sort((a, b) => a.nome.localeCompare(b.nome));
-      const corpo = document.getElementById('career-list-modal-root');
-      corpo.innerHTML = linhas.map(l => {
-        const p = progressaoDoJogador(l.id);
-        const treinos = p.treinosDisponiveis || 0;
-        const bubble = treinos > 0 ? `<span style="background-color: #e74c3c; color: #fff; border-radius: 10px; padding: 1px 6px; font-size: 11px; margin-left: 6px; font-weight: bold;">${treinos} pts</span>` : '';
-        return `
-        <div class="career-card" style="display:flex; justify-content:space-between; align-items:center; cursor:pointer; margin-bottom:6px;" onclick="abrirModalJogadorCarreira(${l.id})">
-          <strong>${l.nome.toUpperCase()} ⭐${bubble}</strong>
-          <span style="opacity:0.7; font-size:12px;">${l.jogos} jogos</span>
-        </div>`;
-      }).join('') || '<p style="opacity:0.7;">Ninguém jogou ainda.</p>';
-      const m = document.getElementById('career-list-modal');
-      m.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      ['career-list-modal', 'career-player-modal', 'player-modal', 'geral-modal'].forEach(mId => {
+        const el = document.getElementById(mId);
+        if (el) { el.style.display = 'none'; el.classList.remove('active'); }
+      });
+      document.body.style.overflow = '';
+
+      selecionarVisaoCarreira('jogadores');
+      renderizarListaJogadoresCarreira();
     }
 
     function closeCareerListModal() {
       const m = document.getElementById('career-list-modal');
-      m.style.display = 'none';
+      if (m) m.style.display = 'none';
       document.body.style.overflow = '';
     }
 
@@ -4781,7 +4772,16 @@
       if (!jogador) return;
       const voce = souEu(id);
 
+      ['career-player-modal', 'career-list-modal', 'player-modal', 'geral-modal'].forEach(mId => {
+        const el = document.getElementById(mId);
+        if (el) { el.style.display = 'none'; el.classList.remove('active'); }
+      });
+      document.body.style.overflow = '';
+
       const html = `
+        <div style="margin-bottom:12px;">
+          <button type="button" class="btn-solid" onclick="renderizarListaJogadoresCarreira()" style="font-size:12px; padding:6px 14px; font-weight:bold;">← Voltar para Todos os Jogadores</button>
+        </div>
         <div class="player-summary">
           <div class="player-avatar-lg">
             ${jogador.foto ? `<img src="${jogador.foto}" alt="${jogador.name}" onerror="this.style.display='none'" />` : ''}
@@ -4795,28 +4795,26 @@
         ${blocoProgressaoJogadorCarreira(id)}
       `;
 
-      const modalListaAberta = document.getElementById('career-list-modal').style.display === 'flex';
-      if (modalListaAberta) closeCareerListModal();
-
-      const m = document.getElementById('career-player-modal');
-      m.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      const corpo = document.getElementById('carreira-jogadores-corpo');
+      if (corpo) {
+        corpo.innerHTML = html;
+      }
+      selecionarVisaoCarreira('jogadores');
     }
 
     function closeCareerPlayerModal() {
       const m = document.getElementById('career-player-modal');
-      m.style.display = 'none';
+      if (m) m.style.display = 'none';
       document.body.style.overflow = '';
     }
 
     // Delegação das ações de progressão (treinar/comprar/equipar/
-    // desequipar) e das abas do modal de jogador — funciona mesmo depois
-    // do innerHTML ser reconstruído a cada ação.
+    // desequipar) e das abas do painel de jogador — funciona no miolo do site.
     document.addEventListener('click', ev => {
       const abaBtn = ev.target.closest('[data-aba-progressao]');
       if (abaBtn) {
         abaProgressaoAtiva = abaBtn.dataset.abaProgressao;
-        const container = abaBtn.closest('#career-player-modal-root');
+        const container = abaBtn.closest('#carreira-jogadores-corpo') || abaBtn.closest('#career-player-modal-root') || abaBtn.closest('#jogadores-root');
         if (container) {
           container.querySelectorAll('[data-aba-progressao]').forEach(b => b.classList.toggle('active', b === abaBtn));
           container.querySelectorAll('[data-painel-progressao]').forEach(p => {
