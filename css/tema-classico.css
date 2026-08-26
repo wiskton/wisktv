@@ -457,9 +457,14 @@
   color: #005a2b !important;
 }
 
-/* Fundo do Hall da Fama no Layout Clássico: BRANCO */
+/* Hall da Fama no Layout Clássico: Fundo AMARELO (#ffdc00) e quadros de estatísticas em branco (#ffffff) */
 [data-theme="classico"] #carreira-hall-fama,
-[data-theme="classico"] #hall-fama-root,
+[data-theme="classico"] #hall-fama-root {
+  background: #ffdc00 !important;
+  color: #005a2b !important;
+  border-color: #005a2b !important;
+}
+
 [data-theme="classico"] #hall-fama-root .career-card,
 [data-theme="classico"] .hall-fama-card {
   background: #ffffff !important;
@@ -470,6 +475,27 @@
 [data-theme="classico"] #carreira-hall-fama *,
 [data-theme="classico"] #hall-fama-root * {
   color: #005a2b !important;
+}
+
+/* Todos os botões de Voltar e botões de ação: fundo verde (#005a2b) e texto estritamente BRANCO (#ffffff) */
+[data-theme="classico"] .btn-solid,
+[data-theme="classico"] .btn-link,
+[data-theme="classico"] #btn-voltar-modo-carreira,
+[data-theme="classico"] #btn-voltar-modo-carreira-2,
+[data-theme="classico"] button[onclick*="Voltar"],
+[data-theme="classico"] button[onclick*="voltar"] {
+  background: #005a2b !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+[data-theme="classico"] .btn-solid *,
+[data-theme="classico"] .btn-link *,
+[data-theme="classico"] #btn-voltar-modo-carreira *,
+[data-theme="classico"] #btn-voltar-modo-carreira-2 *,
+[data-theme="classico"] button[onclick*="Voltar"] *,
+[data-theme="classico"] button[onclick*="voltar"] * {
+  color: #ffffff !important;
 }
 
 /* ==========================================================================
