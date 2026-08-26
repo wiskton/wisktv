@@ -1098,8 +1098,7 @@
       // Separa jogadores que ficaram próximos demais — chamado após qualquer estado.
       _enforceSpacing() {
         const holder = this.ball.state === 'dribbling' ? this.ball.holder : null;
-        const MIN_SAME = 100;
-        const MIN_OPP  = 28;
+        const MIN_SAME = 90;
         for (let iter = 0; iter < 3; iter++) {
           for (let i = 0; i < this.allPlayers.length; i++) {
             for (let j = i + 1; j < this.allPlayers.length; j++) {
@@ -1107,7 +1106,8 @@
               const b = this.allPlayers[j];
               if (a.isGk || b.isGk) continue;
               const sameTeam = a.isTeamB === b.isTeamB;
-              const minD = sameTeam ? MIN_SAME : MIN_OPP;
+              if (!sameTeam) continue; // Ataque pode se aproximar da defesa adversária sem espaçamento mínimo
+              const minD = MIN_SAME;
               const dx = b.x - a.x;
               const dy = b.y - a.y;
               const dist = Math.hypot(dx, dy) || 0.1;
@@ -1130,12 +1130,10 @@
                   a.y -= ny * push;
                   b.x += nx * push;
                   b.y += ny * push;
-                  if (sameTeam) {
-                    a.targetX -= nx * push * 0.8;
-                    a.targetY -= ny * push * 0.8;
-                    b.targetX += nx * push * 0.8;
-                    b.targetY += ny * push * 0.8;
-                  }
+                  a.targetX -= nx * push * 0.8;
+                  a.targetY -= ny * push * 0.8;
+                  b.targetX += nx * push * 0.8;
+                  b.targetY += ny * push * 0.8;
                 }
               }
             }
@@ -1160,10 +1158,11 @@
             return;
           }
 
-          p.x       = Math.max(20, Math.min(580, p.x));
-          p.y       = Math.max(20, Math.min(330, p.y));
-          p.targetX = Math.max(20, Math.min(580, p.targetX));
-          p.targetY = Math.max(20, Math.min(330, p.targetY));
+          // Jogadores 10px mais para dentro do campo (30 até 570 no x, 30 até 320 no y)
+          p.x       = Math.max(30, Math.min(570, p.x));
+          p.y       = Math.max(30, Math.min(320, p.y));
+          p.targetX = Math.max(30, Math.min(570, p.targetX));
+          p.targetY = Math.max(30, Math.min(320, p.targetY));
 
           // Restrição de campo por lado para jogadores de linha que não estão com a bola
           if (p !== holder) {
