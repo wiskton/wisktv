@@ -320,11 +320,11 @@
 
             <div class="career-btn-row" id="carreira-botoes-secoes" style="align-items: center; margin-top: 6px; padding: 6px; background: rgba(0, 0, 0, 0.15); border-radius: 8px; border: 1px solid var(--row-border);">
               <span style="font-size: 12px; font-weight: bold; opacity: 0.8; margin-right: 4px;" data-i18n="verSecoes">Ver:</span>
-              <button type="button" id="btn-toggle-carreira-tabela" class="btn-solid" onclick="toggleSecaoCarreira('tabela')">📊 <span data-i18n="classificacaoTitulo">Classificação</span></button>
-              <button type="button" id="btn-toggle-carreira-artilharia" class="btn-solid" onclick="toggleSecaoCarreira('artilharia')">⚽ <span data-i18n="artilhariaTitulo">Artilharia</span></button>
-              <button type="button" id="btn-toggle-carreira-ranking" class="btn-solid" onclick="toggleSecaoCarreira('ranking')">🌍 <span data-i18n="rankingGlobalCarreira">Ranking Global</span></button>
-              <button type="button" id="btn-toggle-carreira-curiosidades" class="btn-solid" onclick="toggleSecaoCarreira('curiosidades')">📊 <span data-i18n="curiosidadesDaCarreira">Curiosidades</span></button>
-              <button type="button" id="btn-toggle-carreira-hall" class="btn-solid" onclick="toggleSecaoCarreira('hall')">🏛️ <span data-i18n="hallDaFama">Hall da Fama</span></button>
+              <button type="button" id="btn-toggle-carreira-tabela" class="btn-solid" onclick="toggleSecaoCarreira('tabela')"><span data-i18n="classificacaoTitulo">📊 Classificação</span></button>
+              <button type="button" id="btn-toggle-carreira-artilharia" class="btn-solid" onclick="toggleSecaoCarreira('artilharia')"><span data-i18n="artilhariaTitulo">⚽ Artilharia</span></button>
+              <button type="button" id="btn-toggle-carreira-ranking" class="btn-solid" onclick="toggleSecaoCarreira('ranking')"><span data-i18n="rankingGlobalCarreira">🌍 Ranking Global</span></button>
+              <button type="button" id="btn-toggle-carreira-curiosidades" class="btn-solid" onclick="toggleSecaoCarreira('curiosidades')"><span data-i18n="curiosidadesDaCarreira">📊 Curiosidades</span></button>
+              <button type="button" id="btn-toggle-carreira-hall" class="btn-solid" onclick="toggleSecaoCarreira('hall')"><span data-i18n="hallDaFama">🏛️ Hall da Fama</span></button>
             </div>
 
             <div class="career-card" style="text-align:center; margin-bottom:12px;">
@@ -3902,7 +3902,7 @@
     }
 
     const secoesCarreiraAbertas = {
-      tabela: true,
+      tabela: false,
       artilharia: false,
       ranking: false,
       curiosidades: false,
