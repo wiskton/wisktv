@@ -1105,6 +1105,7 @@
             for (let j = i + 1; j < this.allPlayers.length; j++) {
               const a = this.allPlayers[i];
               const b = this.allPlayers[j];
+              if (a.isGk || b.isGk) continue;
               const sameTeam = a.isTeamB === b.isTeamB;
               const minD = sameTeam ? MIN_SAME : MIN_OPP;
               const dx = b.x - a.x;
@@ -1222,6 +1223,7 @@
             const enemies = p.isTeamB ? this.playersA : this.playersB;
             let evadeX = 0, evadeY = 0;
             enemies.forEach(e => {
+              if (e.isGk) return;
               const ed = Math.hypot(e.x - p.x, e.y - p.y);
               if (ed < 40) {
                 evadeX -= (e.x - p.x) / (ed + 1) * (40 - ed) * 0.5;
