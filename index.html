@@ -886,9 +886,7 @@
       let goleiros = elenco.filter(ehGoleiro);
       let outros = elenco.filter(p => !ehGoleiro(p));
 
-      if (!goleiros.length && outros.length > 0) {
-        goleiros = [outros.shift()];
-      } else if (goleiros.length > 1) {
+      if (goleiros.length > 1) {
         outros = outros.concat(goleiros.slice(1));
         goleiros = [goleiros[0]];
       }
