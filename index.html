@@ -830,8 +830,9 @@
       const ehGoleiro = (p) => {
         if (!p) return false;
         if (p.isGk === true) return true;
-        const pos = String(p.posicao || p.position || p.pos || '').trim().toUpperCase();
-        return pos === 'GOL' || pos === 'GOLEIRO' || pos === 'GK' || pos === 'GL';
+        const pos = String(p.posicao || p.position || p.pos || p.role || '').trim().toUpperCase();
+        const nome = String(p.name || p.nome || '').trim().toUpperCase();
+        return pos === 'GOL' || pos === 'GOLEIRO' || pos === 'GK' || pos === 'GL' || pos.includes('GOL') || pos.includes('GK') || nome.includes('GOLEIRO') || nome.includes('(GK)') || nome.includes('[GK]');
       };
 
       const elenco = Array.isArray(team)
@@ -845,6 +846,9 @@
 
       if (!goleiros.length && outros.length > 0) {
         goleiros = [outros.shift()];
+      } else if (goleiros.length > 1) {
+        outros = outros.concat(goleiros.slice(1));
+        goleiros = [goleiros[0]];
       }
 
       const porPosicao = {
@@ -1139,6 +1143,8 @@
         // Garante que os goleiros fiquem estritamente na sua grande área e que jogadores de linha não entrem na área
         this.allPlayers.forEach(p => {
           if (p.isGk) {
+            p.baseX = p.isTeamB ? 565 : 35;
+            p.baseY = 175;
             if (!p.isTeamB) {
               // Goleiro Time A: fica restrito à área do gol esquerdo (x: 20-95, y: 110-240)
               p.x       = Math.max(20, Math.min(95, p.x));
@@ -1317,9 +1323,9 @@
 
         // ---- FÍSICA DA BOLA ----
         if (this.ball.state === 'free') {
-          // Busca o jogador mais próximo para pegar a bola
+          // Busca o jogador de linha mais próximo para pegar a bola (goleiros nunca pegam a bola pra conduzir)
           let closest = null, minDist = 9999;
-          this.allPlayers.forEach(p => {
+          this.allPlayers.filter(p => !p.isGk).forEach(p => {
             const d = Math.hypot(p.x - this.ball.x, p.y - this.ball.y);
             if (d < minDist) { minDist = d; closest = p; }
           });
