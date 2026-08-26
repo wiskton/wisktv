@@ -593,20 +593,26 @@ html[data-theme="classico"] .career-dropdown-btn:hover,
 html[data-theme="classico"] .career-dropdown-btn:hover *,
 html[data-theme="classico"] #btn-carreira-jogadores:hover,
 html[data-theme="classico"] #btn-carreira-jogadores:hover *,
+html[data-theme="classico"] #btn-carreira-ir-partida-nav:hover,
+html[data-theme="classico"] #btn-carreira-ir-partida-nav:hover *,
 body[data-theme="classico"] .career-dropdown-item:hover,
 body[data-theme="classico"] .career-dropdown-item:hover *,
-body[data-theme="classico"] body .career-dropdown-item:hover span,
+body[data-theme="classico"] .career-dropdown-item:hover span,
 body[data-theme="classico"] .career-dropdown-btn:hover,
 body[data-theme="classico"] .career-dropdown-btn:hover *,
 body[data-theme="classico"] #btn-carreira-jogadores:hover,
 body[data-theme="classico"] #btn-carreira-jogadores:hover *,
+body[data-theme="classico"] #btn-carreira-ir-partida-nav:hover,
+body[data-theme="classico"] #btn-carreira-ir-partida-nav:hover *,
 [data-theme="classico"] .career-dropdown-item:hover,
 [data-theme="classico"] .career-dropdown-item:hover *,
 [data-theme="classico"] .career-dropdown-item:hover span,
 [data-theme="classico"] .career-dropdown-btn:hover,
 [data-theme="classico"] .career-dropdown-btn:hover *,
 [data-theme="classico"] #btn-carreira-jogadores:hover,
-[data-theme="classico"] #btn-carreira-jogadores:hover * {
+[data-theme="classico"] #btn-carreira-jogadores:hover *,
+[data-theme="classico"] #btn-carreira-ir-partida-nav:hover,
+[data-theme="classico"] #btn-carreira-ir-partida-nav:hover * {
   background-color: #00723a !important;
   color: #ffffff !important;
 }
