@@ -565,7 +565,7 @@
             <div id="carreira-secao-classificacao" class="career-card" style="display:none; margin-bottom:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <h6 style="margin:0;" data-i18n="classificacaoTitulo">📊 Classificação</h6>
-                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px; background-color:#005a2b !important; color:#ffffff !important; border:none !important;" onclick="selecionarVisaoCarreira('partida')"><span style="color:#ffffff !important;">⚽ Voltar para Partida</span></button>
+                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px;" onclick="selecionarVisaoCarreira('partida')">⚽ Voltar para Partida</button>
               </div>
               <table class="data-table cls-table" id="carreira-tabela-classificacao">
                 <thead>
@@ -587,7 +587,7 @@
             <div id="carreira-secao-artilharia" class="career-card" style="display:none; margin-bottom:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <h6 style="margin:0;" data-i18n="artilhariaTitulo">⚽ Artilharia</h6>
-                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px; background-color:#005a2b !important; color:#ffffff !important; border:none !important;" onclick="selecionarVisaoCarreira('partida')"><span style="color:#ffffff !important;">⚽ Voltar para Partida</span></button>
+                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px;" onclick="selecionarVisaoCarreira('partida')">⚽ Voltar para Partida</button>
               </div>
               <table class="data-table art-table" id="carreira-tabela-artilharia">
                 <thead>
@@ -605,7 +605,7 @@
             <div id="carreira-hall-fama" class="career-card" style="display:none; margin-bottom:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <h6 style="margin:0;" data-i18n="hallDaFama">🏛️ Hall da Fama da Carreira</h6>
-                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px; background-color:#005a2b !important; color:#ffffff !important; border:none !important;" onclick="selecionarVisaoCarreira('partida')"><span style="color:#ffffff !important;">⚽ Voltar para Partida</span></button>
+                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px;" onclick="selecionarVisaoCarreira('partida')">⚽ Voltar para Partida</button>
               </div>
               <table class="data-table">
                 <thead>
@@ -622,7 +622,7 @@
             <div id="carreira-ranking-global" class="career-card" style="display:none; margin-bottom:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                 <h6 style="margin:0;" data-i18n="rankingGlobalCarreira">🌍 Ranking Global da Carreira</h6>
-                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px; background-color:#005a2b !important; color:#ffffff !important; border:none !important;" onclick="selecionarVisaoCarreira('partida')"><span style="color:#ffffff !important;">⚽ Voltar para Partida</span></button>
+                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px;" onclick="selecionarVisaoCarreira('partida')">⚽ Voltar para Partida</button>
               </div>
               <p style="font-size:12px; opacity:0.8; margin:0 0 8px;" data-i18n="rankingGlobalCarreiraDesc">Todo mundo que já jogou nessa carreira, somando todos os torneios já disputados.</p>
               <table class="data-table">
@@ -647,7 +647,7 @@
             <div id="carreira-rankings-extra" class="career-card" style="display:none; margin-bottom:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <h5 style="margin:0;" data-i18n="curiosidadesDaCarreira">📊 Curiosidades da Carreira</h5>
-                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px; background-color:#005a2b !important; color:#ffffff !important; border:none !important;" onclick="selecionarVisaoCarreira('partida')"><span style="color:#ffffff !important;">⚽ Voltar para Partida</span></button>
+                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px;" onclick="selecionarVisaoCarreira('partida')">⚽ Voltar para Partida</button>
               </div>
               <div id="carreira-rankings-extra-corpo" style="display:flex; flex-wrap:wrap; gap:12px;"></div>
             </div>
@@ -656,7 +656,7 @@
             <div id="carreira-secao-jogadores" class="career-card" style="display:none; margin-bottom:12px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.1);">
                 <h5 style="margin:0; font-size:18px; color:var(--gold-text);" data-i18n="jogadoresTitulo">👥 Meus Jogadores do Modo Carreira</h5>
-                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px; background-color:#005a2b !important; color:#ffffff !important; border:none !important;" onclick="selecionarVisaoCarreira('partida')"><span style="color:#ffffff !important;">⚽ Voltar para Partida</span></button>
+                <button type="button" class="btn-solid" style="padding:4px 10px; font-size:12px;" onclick="selecionarVisaoCarreira('partida')">⚽ Voltar para Partida</button>
               </div>
               <div id="carreira-jogadores-corpo" style="display:flex; flex-direction:column; gap:8px;"></div>
             </div>
@@ -3565,7 +3565,8 @@
 
     function souEu(id) {
       if (!carreira || !carreira.meusIds) return false;
-      return carreira.meusIds.indexOf(id) !== -1;
+      const nid = Number(id);
+      return carreira.meusIds.map(Number).indexOf(nid) !== -1;
     }
 
     function estatisticaDoJogador(id) {
@@ -4787,9 +4788,12 @@
     }
 
     function abrirModalJogadorCarreira(id) {
-      const jogador = buscarJogadorCarreira(id);
+      const nid = Number(id);
+      const jogador = buscarJogadorCarreira(nid);
       if (!jogador) return;
-      const voce = souEu(id);
+      const voce = souEu(nid);
+
+      carreiraJogadorDetalheAberto = true;
 
       ['career-player-modal', 'career-list-modal', 'player-modal', 'geral-modal'].forEach(mId => {
         const el = document.getElementById(mId);
@@ -4798,10 +4802,10 @@
       document.body.style.overflow = '';
 
       const html = `
-        <div style="margin-bottom:12px;">
-          <button type="button" class="btn-solid" onclick="renderizarListaJogadoresCarreira()" style="font-size:12px; padding:6px 14px; font-weight:bold;">← Voltar para Todos os Jogadores</button>
+        <div style="margin-bottom:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <button type="button" class="btn-solid" onclick="renderizarListaJogadoresCarreira()" style="font-size:12px; padding:6px 14px; font-weight:bold;">← Voltar para Meus Jogadores</button>
         </div>
-        <div class="player-summary">
+        <div class="player-summary" style="margin-bottom:14px;">
           <div class="player-avatar-lg">
             ${jogador.foto ? `<img src="${jogador.foto}" alt="${jogador.name}" onerror="this.style.display='none'" />` : ''}
             <span class="avatar-initials">${initials(jogador.name)}</span>
@@ -4811,14 +4815,14 @@
             <div class="player-summary-meta">${jogador.posicao || '-'}</div>
           </div>
         </div>
-        ${blocoProgressaoJogadorCarreira(id)}
+        ${blocoProgressaoJogadorCarreira(nid)}
       `;
 
       const corpo = document.getElementById('carreira-jogadores-corpo');
       if (corpo) {
         corpo.innerHTML = html;
       }
-      selecionarVisaoCarreira('jogadores');
+      selecionarVisaoCarreira('jogadores', true);
     }
 
     function closeCareerPlayerModal() {
