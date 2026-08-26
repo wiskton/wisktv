@@ -1656,8 +1656,9 @@
     function atualizarTreinoBadges() {
       const elBtn = document.getElementById('btn-carreira-jogadores');
       if (!elBtn) return;
+      const labelTraduzido = tr('jogadoresBtn') || '👥 Jogadores';
       if (!carreira || !carreira.meusIds) {
-        elBtn.innerHTML = `👥 ${tr('jogadoresBtn')}`;
+        elBtn.innerHTML = labelTraduzido;
         return;
       }
       let totalTreinos = 0;
@@ -1665,11 +1666,10 @@
         const p = progressaoDoJogador(id);
         totalTreinos += (p.treinosDisponiveis || 0);
       });
-      const labelTraduzido = tr('jogadoresBtn') || 'Jogadores';
       if (totalTreinos > 0) {
-        elBtn.innerHTML = `👥 ${labelTraduzido} <span style="background-color: #e74c3c; color: #fff; border-radius: 10px; padding: 1px 6px; font-size: 11px; margin-left: 4px; font-weight: bold;">${totalTreinos}</span>`;
+        elBtn.innerHTML = `${labelTraduzido} <span style="background-color: #e74c3c; color: #fff; border-radius: 10px; padding: 1px 6px; font-size: 11px; margin-left: 4px; font-weight: bold;">${totalTreinos}</span>`;
       } else {
-        elBtn.innerHTML = `👥 ${labelTraduzido}`;
+        elBtn.innerHTML = labelTraduzido;
       }
     }
 
