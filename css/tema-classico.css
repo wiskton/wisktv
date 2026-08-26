@@ -136,6 +136,21 @@
   border-color: #003d12 !important;
 }
 
+/* Bloco e caixa de informação de atraso no Tema Clássico: fundo BRANCO (#ffffff) e texto verde (#005a2b) */
+[data-theme="classico"] #carreira-atraso,
+[data-theme="classico"] #carreira-atraso-texto,
+[data-theme="classico"] .career-atraso-box {
+  background: #ffffff !important;
+  color: #005a2b !important;
+  border: 1px solid #005a2b !important;
+}
+
+[data-theme="classico"] #carreira-atraso *,
+[data-theme="classico"] #carreira-atraso-texto *,
+[data-theme="classico"] .career-atraso-box * {
+  color: #005a2b !important;
+}
+
 /* Barra da escalação e dados da partida: fundo amarelo normal e texto verde */
 [data-theme="classico"] #carreira-escalacao-rodada,
 [data-theme="classico"] .simulator-team-card {

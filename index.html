@@ -4309,7 +4309,7 @@
       }).join('');
 
       const textoAtraso = atraso && atraso.minutos
-        ? `<div style="font-size:13px; opacity:0.85; margin-bottom:12px; padding:6px 12px; background:rgba(0,0,0,0.2); border-radius:6px;">⏰ ${atraso.culpado ? atraso.culpado.name.toUpperCase() : 'Alguém'} atrasou ${atraso.minutos} min — o jogo teve só ${60 - atraso.minutos} minutos.</div>`
+        ? `<div class="career-atraso-box" style="font-size:13px; margin-bottom:12px; padding:6px 12px; border-radius:6px;">⏰ ${atraso.culpado ? atraso.culpado.name.toUpperCase() : 'Alguém'} atrasou ${atraso.minutos} min — o jogo teve só ${60 - atraso.minutos} minutos.</div>`
         : '';
 
       const textoItensQuebrados = (itensQuebrados && itensQuebrados.length)
