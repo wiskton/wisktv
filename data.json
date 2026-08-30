@@ -38,15 +38,15 @@
       "movimentacao": "4.5",
       "visao_de_jogo": "4.0",
       "energia": "4.5",
-      "numero": 15,
+      "numero": null,
       "posicao": "GOL",
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-07-26T06:54:53.366Z",
       "nivel": "89.3",
-      "GP": 141,
-      "GC": 138,
-      "SG": 3
+      "GP": 167,
+      "GC": 144,
+      "SG": 23
     }
   },
   {
@@ -68,15 +68,15 @@
       "movimentacao": "4.0",
       "visao_de_jogo": "4.0",
       "energia": "4.0",
-      "numero": 16,
+      "numero": null,
       "posicao": "GOL",
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-07-26T06:54:53.369Z",
       "nivel": "84.3",
-      "GP": 127,
-      "GC": 126,
-      "SG": 1
+      "GP": 133,
+      "GC": 152,
+      "SG": -19
     }
   },
   {
@@ -98,7 +98,7 @@
       "movimentacao": "4.0",
       "visao_de_jogo": "4.0",
       "energia": "5.0",
-      "numero": 9,
+      "numero": null,
       "posicao": "MEI",
       "ativo": true,
       "usuario": null,
@@ -158,15 +158,15 @@
       "movimentacao": "4.5",
       "visao_de_jogo": "3.5",
       "energia": "4.0",
-      "numero": 3,
+      "numero": null,
       "posicao": "ATA",
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-07-26T06:54:53.340Z",
       "nivel": "80.5",
-      "GP": 122,
-      "GC": 120,
-      "SG": 2
+      "GP": 128,
+      "GC": 146,
+      "SG": -18
     }
   },
   {
@@ -291,6 +291,36 @@
   },
   {
     "model": "jogadores.jogador",
+    "pk": 109,
+    "fields": {
+      "horario": 68,
+      "nome": "Celo",
+      "pais": "br",
+      "foto": "imgs/109.jpg",
+      "foto_secundaria": "imgs/secundarias/109.jpg",
+      "chute": "3.5",
+      "toque_de_bola": "4.0",
+      "drible": "3.5",
+      "posicionamento": "3.5",
+      "defesa": "3.5",
+      "marcacao": "4.0",
+      "velocidade": "3.5",
+      "movimentacao": "4.0",
+      "visao_de_jogo": "5.0",
+      "energia": "3.5",
+      "numero": null,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.360Z",
+      "nivel": "76.9",
+      "GP": 55,
+      "GC": 50,
+      "SG": 5
+    }
+  },
+  {
+    "model": "jogadores.jogador",
     "pk": 122,
     "fields": {
       "horario": 68,
@@ -308,7 +338,7 @@
       "movimentacao": "4.0",
       "visao_de_jogo": "3.0",
       "energia": "5.0",
-      "numero": 25,
+      "numero": null,
       "posicao": "MEI",
       "ativo": true,
       "usuario": null,
@@ -344,39 +374,9 @@
       "usuario": null,
       "criado_em": "2026-08-01T00:17:21.293Z",
       "nivel": "75.4",
-      "GP": 32,
-      "GC": 32,
-      "SG": 0
-    }
-  },
-  {
-    "model": "jogadores.jogador",
-    "pk": 109,
-    "fields": {
-      "horario": 68,
-      "nome": "Celo",
-      "pais": "br",
-      "foto": "imgs/109.jpg",
-      "foto_secundaria": "imgs/secundarias/109.jpg",
-      "chute": "3.0",
-      "toque_de_bola": "4.0",
-      "drible": "3.0",
-      "posicionamento": "3.5",
-      "defesa": "3.5",
-      "marcacao": "4.0",
-      "velocidade": "3.0",
-      "movimentacao": "4.0",
-      "visao_de_jogo": "5.0",
-      "energia": "3.5",
-      "numero": 12,
-      "posicao": "MEI",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.360Z",
-      "nivel": "74.6",
-      "GP": 55,
-      "GC": 50,
-      "SG": 5
+      "GP": 58,
+      "GC": 38,
+      "SG": 20
     }
   },
   {
@@ -428,7 +428,7 @@
       "movimentacao": "3.5",
       "visao_de_jogo": "4.5",
       "energia": "3.0",
-      "numero": 21,
+      "numero": null,
       "posicao": "MEI",
       "ativo": true,
       "usuario": null,
@@ -458,7 +458,7 @@
       "movimentacao": "3.5",
       "visao_de_jogo": "4.0",
       "energia": "4.0",
-      "numero": 24,
+      "numero": null,
       "posicao": "MEI",
       "ativo": true,
       "usuario": null,
@@ -488,7 +488,7 @@
       "movimentacao": "3.5",
       "visao_de_jogo": "3.5",
       "energia": "4.0",
-      "numero": 10,
+      "numero": null,
       "posicao": "MEI",
       "ativo": true,
       "usuario": null,
@@ -518,7 +518,7 @@
       "movimentacao": "3.5",
       "visao_de_jogo": "3.0",
       "energia": "4.0",
-      "numero": 7,
+      "numero": null,
       "posicao": "ATA",
       "ativo": true,
       "usuario": null,
@@ -584,9 +584,9 @@
       "usuario": 35,
       "criado_em": "2026-07-26T06:54:53.333Z",
       "nivel": "71.1",
-      "GP": 133,
-      "GC": 155,
-      "SG": -22
+      "GP": 159,
+      "GC": 161,
+      "SG": -2
     }
   },
   {
@@ -638,15 +638,45 @@
       "movimentacao": "2.5",
       "visao_de_jogo": "3.0",
       "energia": "3.0",
-      "numero": 6,
+      "numero": null,
       "posicao": "ZAG",
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-07-26T06:54:53.347Z",
-      "nivel": "69.0",
+      "nivel": "69.5",
       "GP": 101,
       "GC": 96,
       "SG": 5
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 119,
+    "fields": {
+      "horario": 68,
+      "nome": "Wesley",
+      "pais": "br",
+      "foto": "imgs/119.jpg",
+      "foto_secundaria": "imgs/secundarias/119.jpg",
+      "chute": "3.5",
+      "toque_de_bola": "4.0",
+      "drible": "4.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.5",
+      "movimentacao": "3.5",
+      "visao_de_jogo": "3.0",
+      "energia": "3.5",
+      "numero": null,
+      "posicao": "ATA",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.385Z",
+      "nivel": "69.5",
+      "GP": 74,
+      "GC": 92,
+      "SG": -18
     }
   },
   {
@@ -711,6 +741,36 @@
   },
   {
     "model": "jogadores.jogador",
+    "pk": 156,
+    "fields": {
+      "horario": 68,
+      "nome": "ElFo",
+      "pais": "br",
+      "foto": "imgs/156.jpg",
+      "foto_secundaria": "imgs/secundarias/156.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.5",
+      "marcacao": "3.5",
+      "velocidade": "4.0",
+      "movimentacao": "3.5",
+      "visao_de_jogo": "3.0",
+      "energia": "4.0",
+      "numero": null,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-08-16T01:58:14.520Z",
+      "nivel": "66.9",
+      "GP": 9,
+      "GC": 14,
+      "SG": -5
+    }
+  },
+  {
+    "model": "jogadores.jogador",
     "pk": 110,
     "fields": {
       "horario": 68,
@@ -728,45 +788,15 @@
       "movimentacao": "3.5",
       "visao_de_jogo": "3.0",
       "energia": "4.0",
-      "numero": 21,
+      "numero": null,
       "posicao": "MEI",
       "ativo": true,
       "usuario": 36,
       "criado_em": "2026-07-26T06:54:53.362Z",
       "nivel": "65.8",
-      "GP": 170,
-      "GC": 189,
-      "SG": -19
-    }
-  },
-  {
-    "model": "jogadores.jogador",
-    "pk": 111,
-    "fields": {
-      "horario": 68,
-      "nome": "Mendes",
-      "pais": "br",
-      "foto": "imgs/111.jpg",
-      "foto_secundaria": "imgs/secundarias/111.jpg",
-      "chute": "3.5",
-      "toque_de_bola": "3.4",
-      "drible": "3.2",
-      "posicionamento": "3.4",
-      "defesa": "3.0",
-      "marcacao": "3.0",
-      "velocidade": "3.0",
-      "movimentacao": "3.0",
-      "visao_de_jogo": "3.0",
-      "energia": "3.0",
-      "numero": 14,
-      "posicao": "MEI",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.364Z",
-      "nivel": "62.9",
-      "GP": 93,
-      "GC": 78,
-      "SG": 15
+      "GP": 176,
+      "GC": 215,
+      "SG": -39
     }
   },
   {
@@ -779,9 +809,9 @@
       "foto": "imgs/140.jpg",
       "foto_secundaria": "imgs/secundarias/140.jpg",
       "chute": "3.0",
-      "toque_de_bola": "3.0",
+      "toque_de_bola": "3.5",
       "drible": "3.0",
-      "posicionamento": "3.0",
+      "posicionamento": "3.5",
       "defesa": "3.0",
       "marcacao": "3.0",
       "velocidade": "3.0",
@@ -793,10 +823,40 @@
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-08-01T00:13:58.951Z",
-      "nivel": "61.2",
-      "GP": 23,
-      "GC": 18,
-      "SG": 5
+      "nivel": "63.5",
+      "GP": 29,
+      "GC": 44,
+      "SG": -15
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 111,
+    "fields": {
+      "horario": 68,
+      "nome": "Mendes",
+      "pais": "br",
+      "foto": "imgs/111.jpg",
+      "foto_secundaria": "imgs/secundarias/111.jpg",
+      "chute": "3.5",
+      "toque_de_bola": "3.5",
+      "drible": "2.5",
+      "posicionamento": "3.0",
+      "defesa": "2.5",
+      "marcacao": "2.5",
+      "velocidade": "3.5",
+      "movimentacao": "3.5",
+      "visao_de_jogo": "3.0",
+      "energia": "4.0",
+      "numero": null,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.364Z",
+      "nivel": "63.5",
+      "GP": 93,
+      "GC": 78,
+      "SG": 15
     }
   },
   {
@@ -811,22 +871,52 @@
       "chute": "3.0",
       "toque_de_bola": "3.0",
       "drible": "3.0",
-      "posicionamento": "3.0",
-      "defesa": "2.5",
-      "marcacao": "2.5",
+      "posicionamento": "3.5",
+      "defesa": "3.0",
+      "marcacao": "3.0",
       "velocidade": "3.0",
       "movimentacao": "3.0",
       "visao_de_jogo": "3.0",
-      "energia": "4.0",
-      "numero": 23,
+      "energia": "3.5",
+      "numero": null,
       "posicao": "MEI",
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-07-26T06:54:53.387Z",
-      "nivel": "60.4",
-      "GP": 94,
-      "GC": 109,
-      "SG": -15
+      "nivel": "62.3",
+      "GP": 100,
+      "GC": 135,
+      "SG": -35
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 101,
+    "fields": {
+      "horario": 68,
+      "nome": "Fábio",
+      "pais": "br",
+      "foto": "imgs/101.jpg",
+      "foto_secundaria": "imgs/secundarias/101.jpg",
+      "chute": "2.5",
+      "toque_de_bola": "3.5",
+      "drible": "3.0",
+      "posicionamento": "2.5",
+      "defesa": "1.0",
+      "marcacao": "1.5",
+      "velocidade": "5.0",
+      "movimentacao": "4.0",
+      "visao_de_jogo": "2.5",
+      "energia": "5.0",
+      "numero": null,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.342Z",
+      "nivel": "61.5",
+      "GP": 151,
+      "GC": 124,
+      "SG": 27
     }
   },
   {
@@ -848,15 +938,45 @@
       "movimentacao": "3.0",
       "visao_de_jogo": "3.0",
       "energia": "3.0",
-      "numero": 29,
+      "numero": null,
       "posicao": "MEI",
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-07-26T06:54:53.400Z",
       "nivel": "60.4",
-      "GP": 90,
-      "GC": 98,
-      "SG": -8
+      "GP": 116,
+      "GC": 104,
+      "SG": 12
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 128,
+    "fields": {
+      "horario": 68,
+      "nome": "Daniel",
+      "pais": "br",
+      "foto": "imgs/128.jpg",
+      "foto_secundaria": "imgs/secundarias/128.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
+      "numero": null,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.408Z",
+      "nivel": "60.0",
+      "GP": 23,
+      "GC": 15,
+      "SG": 8
     }
   },
   {
@@ -891,6 +1011,36 @@
   },
   {
     "model": "jogadores.jogador",
+    "pk": 124,
+    "fields": {
+      "horario": 68,
+      "nome": "Iury",
+      "pais": "br",
+      "foto": "imgs/124.jpg",
+      "foto_secundaria": "imgs/secundarias/124.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
+      "numero": null,
+      "posicao": "ZAG",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.395Z",
+      "nivel": "60.0",
+      "GP": 30,
+      "GC": 29,
+      "SG": 1
+    }
+  },
+  {
+    "model": "jogadores.jogador",
     "pk": 132,
     "fields": {
       "horario": 68,
@@ -921,32 +1071,62 @@
   },
   {
     "model": "jogadores.jogador",
-    "pk": 101,
+    "pk": 99,
     "fields": {
       "horario": 68,
-      "nome": "Fábio",
+      "nome": "Lucas",
       "pais": "br",
-      "foto": "imgs/101.jpg",
-      "foto_secundaria": "imgs/secundarias/101.jpg",
-      "chute": "2.5",
+      "foto": "imgs/99.jpg",
+      "foto_secundaria": "imgs/secundarias/99.jpg",
+      "chute": "3.0",
       "toque_de_bola": "3.0",
       "drible": "3.0",
-      "posicionamento": "2.0",
-      "defesa": "1.0",
-      "marcacao": "1.5",
-      "velocidade": "5.0",
-      "movimentacao": "4.0",
-      "visao_de_jogo": "2.0",
-      "energia": "5.0",
-      "numero": 4,
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
+      "numero": null,
       "posicao": "MEI",
       "ativo": true,
       "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.342Z",
-      "nivel": "58.1",
-      "GP": 125,
-      "GC": 118,
-      "SG": 7
+      "criado_em": "2026-07-26T06:54:53.336Z",
+      "nivel": "60.0",
+      "GP": 35,
+      "GC": 41,
+      "SG": -6
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 116,
+    "fields": {
+      "horario": 68,
+      "nome": "Tchelo",
+      "pais": "br",
+      "foto": "imgs/116.jpg",
+      "foto_secundaria": "imgs/secundarias/116.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "3.0",
+      "posicionamento": "3.0",
+      "defesa": "3.0",
+      "marcacao": "3.0",
+      "velocidade": "3.0",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.0",
+      "energia": "3.0",
+      "numero": null,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.377Z",
+      "nivel": "60.0",
+      "GP": 33,
+      "GC": 37,
+      "SG": -4
     }
   },
   {
@@ -981,6 +1161,66 @@
   },
   {
     "model": "jogadores.jogador",
+    "pk": 102,
+    "fields": {
+      "horario": 68,
+      "nome": "Shitake",
+      "pais": "br",
+      "foto": "imgs/102.jpg",
+      "foto_secundaria": "imgs/secundarias/102.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.5",
+      "drible": "2.5",
+      "posicionamento": "3.0",
+      "defesa": "2.5",
+      "marcacao": "2.5",
+      "velocidade": "2.5",
+      "movimentacao": "3.0",
+      "visao_de_jogo": "3.5",
+      "energia": "2.0",
+      "numero": null,
+      "posicao": "MEI",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.345Z",
+      "nivel": "56.5",
+      "GP": 97,
+      "GC": 91,
+      "SG": 6
+    }
+  },
+  {
+    "model": "jogadores.jogador",
+    "pk": 114,
+    "fields": {
+      "horario": 68,
+      "nome": "P2",
+      "pais": "br",
+      "foto": "imgs/114.jpg",
+      "foto_secundaria": "imgs/secundarias/114.jpg",
+      "chute": "3.0",
+      "toque_de_bola": "3.0",
+      "drible": "2.5",
+      "posicionamento": "4.0",
+      "defesa": "1.0",
+      "marcacao": "1.0",
+      "velocidade": "2.5",
+      "movimentacao": "3.5",
+      "visao_de_jogo": "2.0",
+      "energia": "3.5",
+      "numero": null,
+      "posicao": "ATA",
+      "ativo": true,
+      "usuario": null,
+      "criado_em": "2026-07-26T06:54:53.372Z",
+      "nivel": "55.9",
+      "GP": 70,
+      "GC": 79,
+      "SG": -9
+    }
+  },
+  {
+    "model": "jogadores.jogador",
     "pk": 127,
     "fields": {
       "horario": 68,
@@ -998,15 +1238,15 @@
       "movimentacao": "3.5",
       "visao_de_jogo": "2.5",
       "energia": "3.5",
-      "numero": 30,
+      "numero": null,
       "posicao": "ATA",
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-07-26T06:54:53.402Z",
       "nivel": "55.9",
-      "GP": 80,
-      "GC": 64,
-      "SG": 16
+      "GP": 106,
+      "GC": 70,
+      "SG": 36
     }
   },
   {
@@ -1018,7 +1258,7 @@
       "pais": "br",
       "foto": "imgs/105.jpg",
       "foto_secundaria": "imgs/secundarias/105.jpg",
-      "chute": "1.0",
+      "chute": "1.5",
       "toque_de_bola": "2.0",
       "drible": "1.0",
       "posicionamento": "3.0",
@@ -1028,12 +1268,12 @@
       "movimentacao": "3.0",
       "visao_de_jogo": "2.0",
       "energia": "3.0",
-      "numero": 8,
+      "numero": null,
       "posicao": "ZAG",
       "ativo": true,
       "usuario": null,
       "criado_em": "2026-07-26T06:54:53.351Z",
-      "nivel": "55.3",
+      "nivel": "55.8",
       "GP": 92,
       "GC": 103,
       "SG": -11
@@ -1071,32 +1311,32 @@
   },
   {
     "model": "jogadores.jogador",
-    "pk": 119,
+    "pk": 115,
     "fields": {
       "horario": 68,
-      "nome": "Wesley",
+      "nome": "Luís",
       "pais": "br",
-      "foto": "imgs/119.jpg",
-      "foto_secundaria": "imgs/secundarias/119.jpg",
-      "chute": "3.0",
-      "toque_de_bola": "3.0",
-      "drible": "3.0",
+      "foto": "imgs/115.jpg",
+      "foto_secundaria": "imgs/secundarias/115.jpg",
+      "chute": "1.0",
+      "toque_de_bola": "2.5",
+      "drible": "1.0",
       "posicionamento": "3.0",
-      "defesa": "3.0",
-      "marcacao": "3.0",
-      "velocidade": "3.0",
-      "movimentacao": "3.0",
-      "visao_de_jogo": "3.0",
-      "energia": "3.0",
-      "numero": 22,
-      "posicao": "ATA",
+      "defesa": "3.5",
+      "marcacao": "3.5",
+      "velocidade": "2.0",
+      "movimentacao": "2.5",
+      "visao_de_jogo": "2.5",
+      "energia": "2.5",
+      "numero": null,
+      "posicao": "ZAG",
       "ativo": true,
       "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.385Z",
-      "nivel": "55.0",
-      "GP": 74,
-      "GC": 92,
-      "SG": -18
+      "criado_em": "2026-07-26T06:54:53.374Z",
+      "nivel": "53.7",
+      "GP": 41,
+      "GC": 55,
+      "SG": -14
     }
   },
   {
@@ -1131,66 +1371,6 @@
   },
   {
     "model": "jogadores.jogador",
-    "pk": 115,
-    "fields": {
-      "horario": 68,
-      "nome": "Luís",
-      "pais": "br",
-      "foto": "imgs/115.jpg",
-      "foto_secundaria": "imgs/secundarias/115.jpg",
-      "chute": "1.0",
-      "toque_de_bola": "2.5",
-      "drible": "1.0",
-      "posicionamento": "2.5",
-      "defesa": "3.5",
-      "marcacao": "3.5",
-      "velocidade": "2.0",
-      "movimentacao": "2.5",
-      "visao_de_jogo": "2.5",
-      "energia": "2.5",
-      "numero": 18,
-      "posicao": "ZAG",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.374Z",
-      "nivel": "52.0",
-      "GP": 35,
-      "GC": 29,
-      "SG": 6
-    }
-  },
-  {
-    "model": "jogadores.jogador",
-    "pk": 114,
-    "fields": {
-      "horario": 68,
-      "nome": "P2",
-      "pais": "br",
-      "foto": "imgs/114.jpg",
-      "foto_secundaria": "imgs/secundarias/114.jpg",
-      "chute": "3.0",
-      "toque_de_bola": "3.0",
-      "drible": "2.0",
-      "posicionamento": "3.0",
-      "defesa": "1.0",
-      "marcacao": "1.0",
-      "velocidade": "3.0",
-      "movimentacao": "3.0",
-      "visao_de_jogo": "2.0",
-      "energia": "3.0",
-      "numero": 17,
-      "posicao": "ATA",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.372Z",
-      "nivel": "51.8",
-      "GP": 64,
-      "GC": 53,
-      "SG": 11
-    }
-  },
-  {
-    "model": "jogadores.jogador",
     "pk": 158,
     "fields": {
       "horario": 68,
@@ -1208,7 +1388,7 @@
       "movimentacao": "2.5",
       "visao_de_jogo": "2.5",
       "energia": "2.5",
-      "numero": 7,
+      "numero": null,
       "posicao": "MEI",
       "ativo": true,
       "usuario": null,
@@ -1217,66 +1397,6 @@
       "GP": 0,
       "GC": 0,
       "SG": 0
-    }
-  },
-  {
-    "model": "jogadores.jogador",
-    "pk": 128,
-    "fields": {
-      "horario": 68,
-      "nome": "Daniel",
-      "pais": "br",
-      "foto": "imgs/128.jpg",
-      "foto_secundaria": "imgs/secundarias/128.jpg",
-      "chute": "3.0",
-      "toque_de_bola": "3.0",
-      "drible": "3.0",
-      "posicionamento": "3.0",
-      "defesa": "3.0",
-      "marcacao": "3.0",
-      "velocidade": "3.0",
-      "movimentacao": "3.0",
-      "visao_de_jogo": "3.0",
-      "energia": "3.0",
-      "numero": 31,
-      "posicao": "MEI",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.408Z",
-      "nivel": "50.0",
-      "GP": 23,
-      "GC": 15,
-      "SG": 8
-    }
-  },
-  {
-    "model": "jogadores.jogador",
-    "pk": 156,
-    "fields": {
-      "horario": 68,
-      "nome": "ElFo",
-      "pais": "br",
-      "foto": "imgs/156.jpg",
-      "foto_secundaria": "imgs/secundarias/156.jpg",
-      "chute": "3.0",
-      "toque_de_bola": "3.0",
-      "drible": "3.0",
-      "posicionamento": "3.0",
-      "defesa": "3.0",
-      "marcacao": "3.0",
-      "velocidade": "3.0",
-      "movimentacao": "3.0",
-      "visao_de_jogo": "3.0",
-      "energia": "3.0",
-      "numero": null,
-      "posicao": "MEI",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-08-16T01:58:14.520Z",
-      "nivel": "45.0",
-      "GP": 9,
-      "GC": 14,
-      "SG": -5
     }
   },
   {
@@ -1337,126 +1457,6 @@
       "GP": 36,
       "GC": 32,
       "SG": 4
-    }
-  },
-  {
-    "model": "jogadores.jogador",
-    "pk": 124,
-    "fields": {
-      "horario": 68,
-      "nome": "Iury",
-      "pais": "br",
-      "foto": "imgs/124.jpg",
-      "foto_secundaria": "imgs/secundarias/124.jpg",
-      "chute": "3.0",
-      "toque_de_bola": "3.0",
-      "drible": "3.0",
-      "posicionamento": "3.0",
-      "defesa": "3.0",
-      "marcacao": "3.0",
-      "velocidade": "3.0",
-      "movimentacao": "3.0",
-      "visao_de_jogo": "3.0",
-      "energia": "3.0",
-      "numero": 27,
-      "posicao": "ZAG",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.395Z",
-      "nivel": "40.0",
-      "GP": 30,
-      "GC": 29,
-      "SG": 1
-    }
-  },
-  {
-    "model": "jogadores.jogador",
-    "pk": 99,
-    "fields": {
-      "horario": 68,
-      "nome": "Lucas",
-      "pais": "br",
-      "foto": "imgs/99.jpg",
-      "foto_secundaria": "imgs/secundarias/99.jpg",
-      "chute": "3.0",
-      "toque_de_bola": "3.0",
-      "drible": "3.0",
-      "posicionamento": "3.0",
-      "defesa": "3.0",
-      "marcacao": "3.0",
-      "velocidade": "3.0",
-      "movimentacao": "3.0",
-      "visao_de_jogo": "3.0",
-      "energia": "3.0",
-      "numero": 2,
-      "posicao": "MEI",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.336Z",
-      "nivel": "40.0",
-      "GP": 35,
-      "GC": 41,
-      "SG": -6
-    }
-  },
-  {
-    "model": "jogadores.jogador",
-    "pk": 102,
-    "fields": {
-      "horario": 68,
-      "nome": "Shitake",
-      "pais": "br",
-      "foto": "imgs/102.jpg",
-      "foto_secundaria": "imgs/secundarias/102.jpg",
-      "chute": "3.0",
-      "toque_de_bola": "2.5",
-      "drible": "2.5",
-      "posicionamento": "2.0",
-      "defesa": "2.0",
-      "marcacao": "1.5",
-      "velocidade": "2.0",
-      "movimentacao": "1.5",
-      "visao_de_jogo": "2.5",
-      "energia": "1.0",
-      "numero": 5,
-      "posicao": "MEI",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.345Z",
-      "nivel": "40.0",
-      "GP": 71,
-      "GC": 85,
-      "SG": -14
-    }
-  },
-  {
-    "model": "jogadores.jogador",
-    "pk": 116,
-    "fields": {
-      "horario": 68,
-      "nome": "Tchelo",
-      "pais": "br",
-      "foto": "imgs/116.jpg",
-      "foto_secundaria": "imgs/secundarias/116.jpg",
-      "chute": "3.0",
-      "toque_de_bola": "3.0",
-      "drible": "3.0",
-      "posicionamento": "3.0",
-      "defesa": "3.0",
-      "marcacao": "3.0",
-      "velocidade": "3.0",
-      "movimentacao": "3.0",
-      "visao_de_jogo": "3.0",
-      "energia": "3.0",
-      "numero": 19,
-      "posicao": "MEI",
-      "ativo": true,
-      "usuario": null,
-      "criado_em": "2026-07-26T06:54:53.377Z",
-      "nivel": "37.5",
-      "GP": 33,
-      "GC": 37,
-      "SG": -4
     }
   },
   {
@@ -1549,15 +1549,15 @@
   },
   {
     "model": "partidas.partida",
-    "pk": 67,
+    "pk": 190,
     "fields": {
-      "campeonato": 11,
-      "numero": 1,
-      "data": "2026-05-02",
-      "placar_time_a": 4,
+      "campeonato": 20,
+      "numero": 2,
+      "data": "2026-08-28",
+      "placar_time_a": 26,
       "placar_time_b": 6,
       "encerrada": true,
-      "criada_em": "2026-07-26T06:54:58.383Z"
+      "criada_em": "2026-08-29T00:32:29.995Z"
     }
   },
   {
@@ -1575,15 +1575,15 @@
   },
   {
     "model": "partidas.partida",
-    "pk": 68,
+    "pk": 67,
     "fields": {
       "campeonato": 11,
-      "numero": 2,
-      "data": "2026-05-09",
-      "placar_time_a": 10,
-      "placar_time_b": 14,
+      "numero": 1,
+      "data": "2026-05-02",
+      "placar_time_a": 4,
+      "placar_time_b": 6,
       "encerrada": true,
-      "criada_em": "2026-07-26T06:54:58.394Z"
+      "criada_em": "2026-07-26T06:54:58.383Z"
     }
   },
   {
@@ -1597,6 +1597,19 @@
       "placar_time_b": 10,
       "encerrada": true,
       "criada_em": "2026-07-26T08:55:27.995Z"
+    }
+  },
+  {
+    "model": "partidas.partida",
+    "pk": 68,
+    "fields": {
+      "campeonato": 11,
+      "numero": 2,
+      "data": "2026-05-09",
+      "placar_time_a": 10,
+      "placar_time_b": 14,
+      "encerrada": true,
+      "criada_em": "2026-07-26T06:54:58.394Z"
     }
   },
   {
@@ -1653,19 +1666,6 @@
   },
   {
     "model": "partidas.partida",
-    "pk": 71,
-    "fields": {
-      "campeonato": 11,
-      "numero": 5,
-      "data": "2026-05-30",
-      "placar_time_a": 10,
-      "placar_time_b": 14,
-      "encerrada": true,
-      "criada_em": "2026-07-26T06:54:58.424Z"
-    }
-  },
-  {
-    "model": "partidas.partida",
     "pk": 113,
     "fields": {
       "campeonato": 12,
@@ -1679,15 +1679,15 @@
   },
   {
     "model": "partidas.partida",
-    "pk": 146,
+    "pk": 71,
     "fields": {
-      "campeonato": 12,
-      "numero": 6,
-      "data": "2026-08-01",
-      "placar_time_a": 9,
-      "placar_time_b": 9,
+      "campeonato": 11,
+      "numero": 5,
+      "data": "2026-05-30",
+      "placar_time_a": 10,
+      "placar_time_b": 14,
       "encerrada": true,
-      "criada_em": "2026-08-01T00:25:57.068Z"
+      "criada_em": "2026-07-26T06:54:58.424Z"
     }
   },
   {
@@ -1701,6 +1701,19 @@
       "placar_time_b": 12,
       "encerrada": true,
       "criada_em": "2026-07-26T06:54:58.434Z"
+    }
+  },
+  {
+    "model": "partidas.partida",
+    "pk": 146,
+    "fields": {
+      "campeonato": 12,
+      "numero": 6,
+      "data": "2026-08-01",
+      "placar_time_a": 9,
+      "placar_time_b": 9,
+      "encerrada": true,
+      "criada_em": "2026-08-01T00:25:57.068Z"
     }
   },
   {
@@ -1731,19 +1744,6 @@
   },
   {
     "model": "partidas.partida",
-    "pk": 151,
-    "fields": {
-      "campeonato": 12,
-      "numero": 8,
-      "data": "2026-08-15",
-      "placar_time_a": 9,
-      "placar_time_b": 14,
-      "encerrada": true,
-      "criada_em": "2026-08-16T02:01:00.574Z"
-    }
-  },
-  {
-    "model": "partidas.partida",
     "pk": 74,
     "fields": {
       "campeonato": 11,
@@ -1756,6 +1756,19 @@
     }
   },
   {
+    "model": "partidas.partida",
+    "pk": 151,
+    "fields": {
+      "campeonato": 12,
+      "numero": 8,
+      "data": "2026-08-15",
+      "placar_time_a": 9,
+      "placar_time_b": 14,
+      "encerrada": true,
+      "criada_em": "2026-08-16T02:01:00.574Z"
+    }
+  },
+  {
     "model": "partidas.escalacao",
     "pk": 1876,
     "fields": {
@@ -1763,6 +1776,7 @@
       "jogador": 134,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.74",
       "posicao_y": "88.69"
@@ -1776,6 +1790,7 @@
       "jogador": 105,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.01",
       "posicao_y": "66.77"
@@ -1789,6 +1804,7 @@
       "jogador": 116,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.40",
       "posicao_y": "40.04"
@@ -1802,6 +1818,7 @@
       "jogador": 126,
       "time": "B",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "82.59",
       "posicao_y": "36.50"
@@ -1815,6 +1832,7 @@
       "jogador": 98,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "25.90",
       "posicao_y": "67.13"
@@ -1828,6 +1846,7 @@
       "jogador": 100,
       "time": "A",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "29.06",
       "posicao_y": "13.42"
@@ -1841,6 +1860,7 @@
       "jogador": 110,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "81.90",
       "posicao_y": "46.30"
@@ -1854,6 +1874,7 @@
       "jogador": 99,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "18.79",
       "posicao_y": "46.20"
@@ -1867,6 +1888,7 @@
       "jogador": 104,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.68",
       "posicao_y": "13.70"
@@ -1880,6 +1902,7 @@
       "jogador": 122,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "74.69",
       "posicao_y": "67.52"
@@ -1893,6 +1916,7 @@
       "jogador": 118,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "48.91",
       "posicao_y": "48.02"
@@ -1906,6 +1930,7 @@
       "jogador": 111,
       "time": "B",
       "gols": 6,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "16.62",
       "posicao_y": "36.55"
@@ -1919,6 +1944,7 @@
       "jogador": 113,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.30",
       "posicao_y": "88.83"
@@ -1932,6 +1958,7 @@
       "jogador": 119,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "69.75",
       "posicao_y": "13.47"
@@ -1945,6 +1972,7 @@
       "jogador": 120,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "82.31",
       "posicao_y": "42.23"
@@ -1958,6 +1986,7 @@
       "jogador": 108,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "19.16",
       "posicao_y": "29.21"
@@ -1971,6 +2000,7 @@
       "jogador": 101,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.09",
       "posicao_y": "13.40"
@@ -1984,6 +2014,7 @@
       "jogador": 132,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.40",
       "posicao_y": "84.95"
@@ -1997,6 +2028,7 @@
       "jogador": 98,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "28.65",
       "posicao_y": "61.82"
@@ -2010,6 +2042,7 @@
       "jogador": 121,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.33",
       "posicao_y": "35.37"
@@ -2023,6 +2056,7 @@
       "jogador": 114,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "29.98",
       "posicao_y": "12.68"
@@ -2036,6 +2070,7 @@
       "jogador": 131,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.07",
       "posicao_y": "88.72"
@@ -2049,6 +2084,7 @@
       "jogador": 119,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "67.11",
       "posicao_y": "12.51"
@@ -2062,6 +2098,7 @@
       "jogador": 133,
       "time": "B",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "16.59",
       "posicao_y": "40.59"
@@ -2075,6 +2112,7 @@
       "jogador": 103,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.30",
       "posicao_y": "63.52"
@@ -2088,6 +2126,7 @@
       "jogador": 110,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "81.80",
       "posicao_y": "29.09"
@@ -2101,6 +2140,7 @@
       "jogador": 102,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.79",
       "posicao_y": "42.14"
@@ -2114,6 +2154,7 @@
       "jogador": 115,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "72.72",
       "posicao_y": "61.97"
@@ -2127,6 +2168,7 @@
       "jogador": 101,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "74.11",
       "posicao_y": "11.85"
@@ -2140,6 +2182,7 @@
       "jogador": 105,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.96",
       "posicao_y": "43.25"
@@ -2153,6 +2196,7 @@
       "jogador": 113,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.36",
       "posicao_y": "86.87"
@@ -2166,6 +2210,7 @@
       "jogador": 106,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.63",
       "posicao_y": "30.31"
@@ -2179,6 +2224,7 @@
       "jogador": 100,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.88",
       "posicao_y": "13.33"
@@ -2192,6 +2238,7 @@
       "jogador": 136,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "82.89",
       "posicao_y": "27.72"
@@ -2205,6 +2252,7 @@
       "jogador": 126,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "18.79",
       "posicao_y": "27.91"
@@ -2218,6 +2266,7 @@
       "jogador": 111,
       "time": "B",
       "gols": 10,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "26.89",
       "posicao_y": "11.71"
@@ -2231,6 +2280,7 @@
       "jogador": 110,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "74.79",
       "posicao_y": "64.80"
@@ -2244,6 +2294,7 @@
       "jogador": 124,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "52.17",
       "posicao_y": "64.56"
@@ -2257,6 +2308,7 @@
       "jogador": 112,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.99",
       "posicao_y": "87.21"
@@ -2270,6 +2322,7 @@
       "jogador": 107,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "82.00",
       "posicao_y": "48.03"
@@ -2283,6 +2336,7 @@
       "jogador": 125,
       "time": "B",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "18.49",
       "posicao_y": "48.51"
@@ -2296,6 +2350,7 @@
       "jogador": 98,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "25.60",
       "posicao_y": "64.99"
@@ -2309,6 +2364,7 @@
       "jogador": 113,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.36",
       "posicao_y": "86.24"
@@ -2322,6 +2378,7 @@
       "jogador": 104,
       "time": "A",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.28",
       "posicao_y": "12.75"
@@ -2335,6 +2392,7 @@
       "jogador": 98,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "24.62",
       "posicao_y": "64.98"
@@ -2348,6 +2406,7 @@
       "jogador": 111,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "18.84",
       "posicao_y": "27.11"
@@ -2361,6 +2420,7 @@
       "jogador": 100,
       "time": "B",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.52",
       "posicao_y": "14.66"
@@ -2374,6 +2434,7 @@
       "jogador": 106,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "80.23",
       "posicao_y": "28.14"
@@ -2387,6 +2448,7 @@
       "jogador": 103,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "26.77",
       "posicao_y": "66.94"
@@ -2400,6 +2462,7 @@
       "jogador": 102,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "70.75",
       "posicao_y": "67.42"
@@ -2413,6 +2476,7 @@
       "jogador": 101,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "80.81",
       "posicao_y": "29.86"
@@ -2426,6 +2490,7 @@
       "jogador": 108,
       "time": "A",
       "gols": 5,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "20.86",
       "posicao_y": "29.62"
@@ -2439,6 +2504,7 @@
       "jogador": 99,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.89",
       "posicao_y": "45.72"
@@ -2452,6 +2518,7 @@
       "jogador": 105,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "77.26",
       "posicao_y": "64.98"
@@ -2465,6 +2532,7 @@
       "jogador": 112,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.37",
       "posicao_y": "87.92"
@@ -2478,6 +2546,7 @@
       "jogador": 110,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "48.98",
       "posicao_y": "43.16"
@@ -2491,6 +2560,7 @@
       "jogador": 98,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "29.83",
       "posicao_y": "61.44"
@@ -2504,6 +2574,7 @@
       "jogador": 100,
       "time": "B",
       "gols": 5,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "32.44",
       "posicao_y": "15.73"
@@ -2517,6 +2588,7 @@
       "jogador": 104,
       "time": "B",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "66.89",
       "posicao_y": "15.68"
@@ -2530,6 +2602,7 @@
       "jogador": 126,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "83.38",
       "posicao_y": "28.05"
@@ -2543,6 +2616,7 @@
       "jogador": 110,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "72.52",
       "posicao_y": "61.60"
@@ -2556,6 +2630,7 @@
       "jogador": 103,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "73.01",
       "posicao_y": "63.99"
@@ -2569,6 +2644,7 @@
       "jogador": 122,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.84",
       "posicao_y": "39.64"
@@ -2582,6 +2658,7 @@
       "jogador": 135,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.30",
       "posicao_y": "11.36"
@@ -2595,6 +2672,7 @@
       "jogador": 112,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.29",
       "posicao_y": "85.91"
@@ -2608,6 +2686,7 @@
       "jogador": 105,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "30.83",
       "posicao_y": "64.43"
@@ -2621,6 +2700,7 @@
       "jogador": 111,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "16.79",
       "posicao_y": "41.16"
@@ -2634,6 +2714,7 @@
       "jogador": 121,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "18.49",
       "posicao_y": "28.53"
@@ -2647,6 +2728,7 @@
       "jogador": 109,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "84.47",
       "posicao_y": "40.76"
@@ -2660,6 +2742,7 @@
       "jogador": 117,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "48.11",
       "posicao_y": "88.53"
@@ -2673,6 +2756,7 @@
       "jogador": 108,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.19",
       "posicao_y": "39.14"
@@ -2686,6 +2770,7 @@
       "jogador": 123,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "67.64",
       "posicao_y": "11.42"
@@ -2699,6 +2784,7 @@
       "jogador": 108,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.21",
       "posicao_y": "38.22"
@@ -2712,6 +2798,7 @@
       "jogador": 120,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "17.80",
       "posicao_y": "42.57"
@@ -2725,6 +2812,7 @@
       "jogador": 99,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "82.69",
       "posicao_y": "42.23"
@@ -2738,6 +2826,7 @@
       "jogador": 110,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.10",
       "posicao_y": "37.17"
@@ -2751,6 +2840,7 @@
       "jogador": 132,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.47",
       "posicao_y": "88.73"
@@ -2764,6 +2854,7 @@
       "jogador": 112,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "48.22",
       "posicao_y": "88.28"
@@ -2777,6 +2868,7 @@
       "jogador": 103,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.13",
       "posicao_y": "64.54"
@@ -2790,6 +2882,7 @@
       "jogador": 119,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "70.59",
       "posicao_y": "13.87"
@@ -2803,6 +2896,7 @@
       "jogador": 115,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "48.32",
       "posicao_y": "63.69"
@@ -2816,6 +2910,7 @@
       "jogador": 118,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "16.62",
       "posicao_y": "38.46"
@@ -2829,6 +2924,7 @@
       "jogador": 100,
       "time": "B",
       "gols": 10,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "31.14",
       "posicao_y": "13.47"
@@ -2842,6 +2938,7 @@
       "jogador": 126,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "82.49",
       "posicao_y": "37.93"
@@ -2855,6 +2952,7 @@
       "jogador": 104,
       "time": "A",
       "gols": 6,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "32.72",
       "posicao_y": "11.41"
@@ -2868,6 +2966,7 @@
       "jogador": 119,
       "time": "B",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "69.71",
       "posicao_y": "15.49"
@@ -2881,6 +2980,7 @@
       "jogador": 132,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "47.79",
       "posicao_y": "89.21"
@@ -2894,6 +2994,7 @@
       "jogador": 98,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "48.62",
       "posicao_y": "64.17"
@@ -2907,6 +3008,7 @@
       "jogador": 101,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "83.19",
       "posicao_y": "26.62"
@@ -2920,6 +3022,7 @@
       "jogador": 111,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "17.60",
       "posicao_y": "27.76"
@@ -2933,6 +3036,7 @@
       "jogador": 131,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.90",
       "posicao_y": "88.09"
@@ -2946,6 +3050,7 @@
       "jogador": 104,
       "time": "B",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "28.94",
       "posicao_y": "15.70"
@@ -2959,6 +3064,7 @@
       "jogador": 114,
       "time": "A",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.98",
       "posicao_y": "11.10"
@@ -2972,6 +3078,7 @@
       "jogador": 110,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "30.58",
       "posicao_y": "62.37"
@@ -2985,6 +3092,7 @@
       "jogador": 108,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.68",
       "posicao_y": "38.13"
@@ -2998,6 +3106,7 @@
       "jogador": 109,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "73.41",
       "posicao_y": "62.17"
@@ -3011,6 +3120,7 @@
       "jogador": 120,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.59",
       "posicao_y": "38.23"
@@ -3024,6 +3134,7 @@
       "jogador": 126,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "15.04",
       "posicao_y": "43.58"
@@ -3037,6 +3148,7 @@
       "jogador": 116,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "84.47",
       "posicao_y": "43.10"
@@ -3050,6 +3162,7 @@
       "jogador": 114,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "48.36",
       "posicao_y": "11.12"
@@ -3063,6 +3176,7 @@
       "jogador": 109,
       "time": "B",
       "gols": 5,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "17.70",
       "posicao_y": "36.83"
@@ -3076,6 +3190,7 @@
       "jogador": 126,
       "time": "A",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "82.10",
       "posicao_y": "35.40"
@@ -3089,6 +3204,7 @@
       "jogador": 119,
       "time": "A",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.21",
       "posicao_y": "46.54"
@@ -3102,6 +3218,7 @@
       "jogador": 108,
       "time": "B",
       "gols": 6,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.59",
       "posicao_y": "39.27"
@@ -3115,6 +3232,7 @@
       "jogador": 101,
       "time": "B",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "52.90",
       "posicao_y": "15.04"
@@ -3128,6 +3246,7 @@
       "jogador": 120,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "76.16",
       "posicao_y": "66.80"
@@ -3141,6 +3260,7 @@
       "jogador": 132,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.19",
       "posicao_y": "89.32"
@@ -3154,6 +3274,7 @@
       "jogador": 98,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "28.49",
       "posicao_y": "65.89"
@@ -3167,6 +3288,7 @@
       "jogador": 115,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "70.68",
       "posicao_y": "65.94"
@@ -3180,6 +3302,7 @@
       "jogador": 116,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "83.78",
       "posicao_y": "36.60"
@@ -3193,6 +3316,7 @@
       "jogador": 110,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "27.14",
       "posicao_y": "66.32"
@@ -3206,6 +3330,7 @@
       "jogador": 131,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "52.00",
       "posicao_y": "86.85"
@@ -3219,6 +3344,7 @@
       "jogador": 111,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "17.80",
       "posicao_y": "35.45"
@@ -3232,6 +3358,7 @@
       "jogador": 136,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "81.93",
       "posicao_y": "35.35"
@@ -3245,6 +3372,7 @@
       "jogador": 127,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "67.65",
       "posicao_y": "12.77"
@@ -3258,6 +3386,7 @@
       "jogador": 113,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.59",
       "posicao_y": "88.85"
@@ -3271,6 +3400,7 @@
       "jogador": 112,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.70",
       "posicao_y": "88.52"
@@ -3284,6 +3414,7 @@
       "jogador": 120,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "79.43",
       "posicao_y": "33.55"
@@ -3297,6 +3428,7 @@
       "jogador": 98,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "28.47",
       "posicao_y": "64.76"
@@ -3310,6 +3442,7 @@
       "jogador": 100,
       "time": "B",
       "gols": 6,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "32.42",
       "posicao_y": "12.67"
@@ -3323,6 +3456,7 @@
       "jogador": 121,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "17.21",
       "posicao_y": "36.13"
@@ -3336,6 +3470,7 @@
       "jogador": 110,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.80",
       "posicao_y": "46.93"
@@ -3349,6 +3484,7 @@
       "jogador": 102,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "71.90",
       "posicao_y": "64.76"
@@ -3362,6 +3498,7 @@
       "jogador": 111,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "20.81",
       "posicao_y": "33.83"
@@ -3375,6 +3512,7 @@
       "jogador": 118,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.31",
       "posicao_y": "49.80"
@@ -3388,6 +3526,7 @@
       "jogador": 124,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "23.63",
       "posicao_y": "69.68"
@@ -3401,6 +3540,7 @@
       "jogador": 104,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.59",
       "posicao_y": "13.77"
@@ -3414,6 +3554,7 @@
       "jogador": 103,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "77.26",
       "posicao_y": "69.82"
@@ -3427,6 +3568,7 @@
       "jogador": 100,
       "time": "B",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.33",
       "posicao_y": "10.63"
@@ -3440,6 +3582,7 @@
       "jogador": 106,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.59",
       "posicao_y": "12.40"
@@ -3453,6 +3596,7 @@
       "jogador": 113,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.79",
       "posicao_y": "88.59"
@@ -3466,6 +3610,7 @@
       "jogador": 109,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "81.51",
       "posicao_y": "25.50"
@@ -3479,6 +3624,7 @@
       "jogador": 111,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "20.74",
       "posicao_y": "30.49"
@@ -3492,6 +3638,7 @@
       "jogador": 102,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.53",
       "posicao_y": "39.43"
@@ -3505,6 +3652,7 @@
       "jogador": 110,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "78.43",
       "posicao_y": "65.58"
@@ -3518,6 +3666,7 @@
       "jogador": 122,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "52.82",
       "posicao_y": "43.54"
@@ -3531,6 +3680,7 @@
       "jogador": 120,
       "time": "B",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "85.04",
       "posicao_y": "29.46"
@@ -3544,6 +3694,7 @@
       "jogador": 124,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "72.11",
       "posicao_y": "64.25"
@@ -3557,6 +3708,7 @@
       "jogador": 98,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "29.22",
       "posicao_y": "63.36"
@@ -3570,6 +3722,7 @@
       "jogador": 101,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "18.03",
       "posicao_y": "26.67"
@@ -3583,6 +3736,7 @@
       "jogador": 112,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.39",
       "posicao_y": "88.52"
@@ -3596,6 +3750,7 @@
       "jogador": 103,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "26.91",
       "posicao_y": "65.22"
@@ -3609,6 +3764,7 @@
       "jogador": 110,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "70.22",
       "posicao_y": "44.75"
@@ -3622,6 +3778,7 @@
       "jogador": 112,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.32",
       "posicao_y": "87.60"
@@ -3635,6 +3792,7 @@
       "jogador": 104,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.28",
       "posicao_y": "14.40"
@@ -3648,6 +3806,7 @@
       "jogador": 101,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "15.63",
       "posicao_y": "36.33"
@@ -3661,6 +3820,7 @@
       "jogador": 106,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.60",
       "posicao_y": "43.65"
@@ -3674,6 +3834,7 @@
       "jogador": 98,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "30.05",
       "posicao_y": "64.67"
@@ -3687,6 +3848,7 @@
       "jogador": 100,
       "time": "B",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.31",
       "posicao_y": "11.87"
@@ -3700,6 +3862,7 @@
       "jogador": 128,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "31.43",
       "posicao_y": "45.08"
@@ -3713,6 +3876,7 @@
       "jogador": 103,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.10",
       "posicao_y": "67.64"
@@ -3726,6 +3890,7 @@
       "jogador": 113,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.60",
       "posicao_y": "88.38"
@@ -3739,6 +3904,7 @@
       "jogador": 105,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "73.01",
       "posicao_y": "64.91"
@@ -3752,6 +3918,7 @@
       "jogador": 119,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "16.32",
       "posicao_y": "21.14"
@@ -3765,6 +3932,7 @@
       "jogador": 127,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "83.78",
       "posicao_y": "20.90"
@@ -3778,6 +3946,7 @@
       "jogador": 120,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "82.79",
       "posicao_y": "36.81"
@@ -3791,6 +3960,7 @@
       "jogador": 101,
       "time": "B",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "16.69",
       "posicao_y": "15.07"
@@ -3804,6 +3974,7 @@
       "jogador": 114,
       "time": "B",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.27",
       "posicao_y": "12.22"
@@ -3817,6 +3988,7 @@
       "jogador": 104,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "52.31",
       "posicao_y": "11.52"
@@ -3830,6 +4002,7 @@
       "jogador": 106,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "17.95",
       "posicao_y": "28.22"
@@ -3843,6 +4016,7 @@
       "jogador": 110,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.66",
       "posicao_y": "55.58"
@@ -3856,6 +4030,7 @@
       "jogador": 108,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "32.37",
       "posicao_y": "40.25"
@@ -3869,6 +4044,7 @@
       "jogador": 112,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.53",
       "posicao_y": "89.03"
@@ -3882,6 +4058,7 @@
       "jogador": 113,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.31",
       "posicao_y": "89.27"
@@ -3895,6 +4072,7 @@
       "jogador": 105,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "83.38",
       "posicao_y": "27.67"
@@ -3908,6 +4086,7 @@
       "jogador": 109,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.28",
       "posicao_y": "34.13"
@@ -3921,6 +4100,7 @@
       "jogador": 129,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "20.96",
       "posicao_y": "68.30"
@@ -3934,6 +4114,7 @@
       "jogador": 102,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "80.22",
       "posicao_y": "68.82"
@@ -3947,6 +4128,7 @@
       "jogador": 122,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "68.67",
       "posicao_y": "40.19"
@@ -3960,6 +4142,7 @@
       "jogador": 103,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "30.94",
       "posicao_y": "65.76"
@@ -3973,6 +4156,7 @@
       "jogador": 126,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "71.93",
       "posicao_y": "66.00"
@@ -3986,6 +4170,7 @@
       "jogador": 120,
       "time": "B",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "84.07",
       "posicao_y": "15.01"
@@ -3999,6 +4184,7 @@
       "jogador": 141,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "27.63",
       "posicao_y": "65.83"
@@ -4012,6 +4198,7 @@
       "jogador": 102,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "66.94",
       "posicao_y": "66.10"
@@ -4025,6 +4212,7 @@
       "jogador": 112,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "48.15",
       "posicao_y": "88.96"
@@ -4038,6 +4226,7 @@
       "jogador": 127,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.93",
       "posicao_y": "14.46"
@@ -4051,6 +4240,7 @@
       "jogador": 140,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "79.21",
       "posicao_y": "71.00"
@@ -4064,6 +4254,7 @@
       "jogador": 114,
       "time": "B",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "67.23",
       "posicao_y": "13.87"
@@ -4077,6 +4268,7 @@
       "jogador": 103,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "19.52",
       "posicao_y": "70.27"
@@ -4090,6 +4282,7 @@
       "jogador": 138,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "25.42",
       "posicao_y": "39.98"
@@ -4103,6 +4296,7 @@
       "jogador": 142,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": true,
       "posicao_x": "30.35",
       "posicao_y": "12.18"
@@ -4116,6 +4310,7 @@
       "jogador": 108,
       "time": "A",
       "gols": 6,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.92",
       "posicao_y": "49.82"
@@ -4129,6 +4324,7 @@
       "jogador": 110,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "72.07",
       "posicao_y": "40.33"
@@ -4142,6 +4338,7 @@
       "jogador": 113,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "46.19",
       "posicao_y": "88.50"
@@ -4155,6 +4352,7 @@
       "jogador": 101,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "18.59",
       "posicao_y": "33.22"
@@ -4168,6 +4366,7 @@
       "jogador": 137,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "80.02",
       "posicao_y": "33.50"
@@ -4181,6 +4380,7 @@
       "jogador": 119,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "30.05",
       "posicao_y": "14.05"
@@ -4194,6 +4394,7 @@
       "jogador": 112,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.76",
       "posicao_y": "89.85"
@@ -4207,6 +4408,7 @@
       "jogador": 113,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.80",
       "posicao_y": "88.69"
@@ -4220,6 +4422,7 @@
       "jogador": 110,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "78.84",
       "posicao_y": "33.65"
@@ -4233,6 +4436,7 @@
       "jogador": 138,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "20.86",
       "posicao_y": "32.79"
@@ -4246,6 +4450,7 @@
       "jogador": 141,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "80.42",
       "posicao_y": "67.96"
@@ -4259,6 +4464,7 @@
       "jogador": 98,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "22.54",
       "posicao_y": "67.77"
@@ -4272,6 +4478,7 @@
       "jogador": 108,
       "time": "A",
       "gols": 5,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.79",
       "posicao_y": "13.67"
@@ -4285,6 +4492,7 @@
       "jogador": 101,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "29.46",
       "posicao_y": "40.00"
@@ -4298,6 +4506,7 @@
       "jogador": 100,
       "time": "B",
       "gols": 7,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "31.43",
       "posicao_y": "15.87"
@@ -4311,6 +4520,7 @@
       "jogador": 129,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "73.01",
       "posicao_y": "66.14"
@@ -4324,6 +4534,7 @@
       "jogador": 106,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "70.58",
       "posicao_y": "40.04"
@@ -4337,6 +4548,7 @@
       "jogador": 127,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "70.35",
       "posicao_y": "15.63"
@@ -4350,6 +4562,7 @@
       "jogador": 102,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.70",
       "posicao_y": "51.00"
@@ -4363,6 +4576,7 @@
       "jogador": 139,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "27.98",
       "posicao_y": "66.38"
@@ -4376,6 +4590,7 @@
       "jogador": 112,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "51.13",
       "posicao_y": "89.14"
@@ -4389,6 +4604,7 @@
       "jogador": 113,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "48.77",
       "posicao_y": "90.01"
@@ -4402,6 +4618,7 @@
       "jogador": 114,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "34.69",
       "posicao_y": "15.88"
@@ -4415,6 +4632,7 @@
       "jogador": 127,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "68.96",
       "posicao_y": "15.98"
@@ -4428,6 +4646,7 @@
       "jogador": 110,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "27.68",
       "posicao_y": "68.07"
@@ -4441,6 +4660,7 @@
       "jogador": 118,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.20",
       "posicao_y": "48.90"
@@ -4454,6 +4674,7 @@
       "jogador": 128,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "17.90",
       "posicao_y": "42.88"
@@ -4467,6 +4688,7 @@
       "jogador": 119,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.99",
       "posicao_y": "14.21"
@@ -4480,6 +4702,7 @@
       "jogador": 107,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "82.20",
       "posicao_y": "42.98"
@@ -4493,6 +4716,7 @@
       "jogador": 106,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.40",
       "posicao_y": "37.19"
@@ -4506,6 +4730,7 @@
       "jogador": 98,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "32.62",
       "posicao_y": "69.12"
@@ -4519,6 +4744,7 @@
       "jogador": 120,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "84.37",
       "posicao_y": "44.51"
@@ -4532,6 +4758,7 @@
       "jogador": 101,
       "time": "B",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "15.93",
       "posicao_y": "44.36"
@@ -4545,6 +4772,7 @@
       "jogador": 105,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "70.05",
       "posicao_y": "69.55"
@@ -4558,6 +4786,7 @@
       "jogador": 129,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "75.38",
       "posicao_y": "68.64"
@@ -4571,6 +4800,7 @@
       "jogador": 104,
       "time": "A",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.69",
       "posicao_y": "15.40"
@@ -4584,6 +4814,7 @@
       "jogador": 108,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "78.15",
       "posicao_y": "33.75"
@@ -4597,6 +4828,7 @@
       "jogador": 156,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "20.86",
       "posicao_y": "33.94"
@@ -4610,6 +4842,7 @@
       "jogador": 112,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.30",
       "posicao_y": "87.95"
@@ -4623,6 +4856,7 @@
       "jogador": 98,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "24.12",
       "posicao_y": "68.88"
@@ -4636,6 +4870,7 @@
       "jogador": 110,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.51",
       "posicao_y": "50.62"
@@ -4649,6 +4884,7 @@
       "jogador": 102,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "76.07",
       "posicao_y": "68.83"
@@ -4662,6 +4898,7 @@
       "jogador": 105,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "70.74",
       "posicao_y": "64.67"
@@ -4675,6 +4912,7 @@
       "jogador": 140,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "34.10",
       "posicao_y": "64.86"
@@ -4688,6 +4926,7 @@
       "jogador": 143,
       "time": "B",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "81.60",
       "posicao_y": "40.16"
@@ -4701,6 +4940,7 @@
       "jogador": 157,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": true,
       "posicao_x": null,
       "posicao_y": null
@@ -4714,6 +4954,7 @@
       "jogador": 137,
       "time": "B",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "19.68",
       "posicao_y": "40.49"
@@ -4727,6 +4968,7 @@
       "jogador": 127,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "71.93",
       "posicao_y": "14.92"
@@ -4740,6 +4982,7 @@
       "jogador": 100,
       "time": "B",
       "gols": 4,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "27.88",
       "posicao_y": "15.21"
@@ -4753,6 +4996,7 @@
       "jogador": 113,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "49.94",
       "posicao_y": "87.80"
@@ -4766,6 +5010,7 @@
       "jogador": 113,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.00",
       "posicao_y": "88.00"
@@ -4779,6 +5024,7 @@
       "jogador": 100,
       "time": "A",
       "gols": 5,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.00",
       "posicao_y": "15.00"
@@ -4792,6 +5038,7 @@
       "jogador": 98,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "33.33",
       "posicao_y": "65.00"
@@ -4805,6 +5052,7 @@
       "jogador": 105,
       "time": "A",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "66.67",
       "posicao_y": "65.00"
@@ -4818,6 +5066,7 @@
       "jogador": 137,
       "time": "A",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "25.00",
       "posicao_y": "40.00"
@@ -4831,6 +5080,7 @@
       "jogador": 141,
       "time": "A",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.00",
       "posicao_y": "40.00"
@@ -4844,6 +5094,7 @@
       "jogador": 126,
       "time": "A",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "75.00",
       "posicao_y": "40.00"
@@ -4857,6 +5108,7 @@
       "jogador": 112,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.00",
       "posicao_y": "88.00"
@@ -4870,6 +5122,7 @@
       "jogador": 127,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.00",
       "posicao_y": "15.00"
@@ -4883,6 +5136,7 @@
       "jogador": 103,
       "time": "B",
       "gols": 0,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "50.00",
       "posicao_y": "65.00"
@@ -4896,6 +5150,7 @@
       "jogador": 108,
       "time": "B",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "20.00",
       "posicao_y": "40.00"
@@ -4909,6 +5164,7 @@
       "jogador": 110,
       "time": "B",
       "gols": 2,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "40.00",
       "posicao_y": "40.00"
@@ -4922,6 +5178,7 @@
       "jogador": 120,
       "time": "B",
       "gols": 3,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "60.00",
       "posicao_y": "40.00"
@@ -4935,9 +5192,206 @@
       "jogador": 101,
       "time": "B",
       "gols": 1,
+      "assistencias": 0,
       "reserva": false,
       "posicao_x": "80.00",
       "posicao_y": "40.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2416,
+    "fields": {
+      "partida": 190,
+      "jogador": 112,
+      "time": "A",
+      "gols": 0,
+      "assistencias": 0,
+      "reserva": false,
+      "posicao_x": "50.00",
+      "posicao_y": "88.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2417,
+    "fields": {
+      "partida": 190,
+      "jogador": 98,
+      "time": "A",
+      "gols": 1,
+      "assistencias": 0,
+      "reserva": false,
+      "posicao_x": "33.33",
+      "posicao_y": "65.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2418,
+    "fields": {
+      "partida": 190,
+      "jogador": 115,
+      "time": "B",
+      "gols": 0,
+      "assistencias": 0,
+      "reserva": false,
+      "posicao_x": "66.67",
+      "posicao_y": "65.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2419,
+    "fields": {
+      "partida": 190,
+      "jogador": 101,
+      "time": "A",
+      "gols": 5,
+      "assistencias": 0,
+      "reserva": false,
+      "posicao_x": "25.00",
+      "posicao_y": "40.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2420,
+    "fields": {
+      "partida": 190,
+      "jogador": 141,
+      "time": "A",
+      "gols": 4,
+      "assistencias": 0,
+      "reserva": false,
+      "posicao_x": "50.00",
+      "posicao_y": "40.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2421,
+    "fields": {
+      "partida": 190,
+      "jogador": 102,
+      "time": "A",
+      "gols": 0,
+      "assistencias": 0,
+      "reserva": false,
+      "posicao_x": "75.00",
+      "posicao_y": "40.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2422,
+    "fields": {
+      "partida": 190,
+      "jogador": 127,
+      "time": "A",
+      "gols": 10,
+      "assistencias": 0,
+      "reserva": false,
+      "posicao_x": "50.00",
+      "posicao_y": "15.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2423,
+    "fields": {
+      "partida": 190,
+      "jogador": 113,
+      "time": "B",
+      "gols": 0,
+      "assistencias": 0,
+      "reserva": false,
+      "posicao_x": "50.00",
+      "posicao_y": "88.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2425,
+    "fields": {
+      "partida": 190,
+      "jogador": 120,
+      "time": "B",
+      "gols": 6,
+      "assistencias": 0,
+      "reserva": false,
+      "posicao_x": "25.00",
+      "posicao_y": "40.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2426,
+    "fields": {
+      "partida": 190,
+      "jogador": 140,
+      "time": "B",
+      "gols": 1,
+      "assistencias": 0,
+      "reserva": false,
+      "posicao_x": "50.00",
+      "posicao_y": "40.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2427,
+    "fields": {
+      "partida": 190,
+      "jogador": 110,
+      "time": "B",
+      "gols": 2,
+      "assistencias": 0,
+      "reserva": false,
+      "posicao_x": "75.00",
+      "posicao_y": "40.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2428,
+    "fields": {
+      "partida": 190,
+      "jogador": 100,
+      "time": "B",
+      "gols": 1,
+      "assistencias": 0,
+      "reserva": false,
+      "posicao_x": "33.33",
+      "posicao_y": "15.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2429,
+    "fields": {
+      "partida": 190,
+      "jogador": 114,
+      "time": "B",
+      "gols": 0,
+      "assistencias": 0,
+      "reserva": false,
+      "posicao_x": "66.67",
+      "posicao_y": "15.00"
+    }
+  },
+  {
+    "model": "partidas.escalacao",
+    "pk": 2431,
+    "fields": {
+      "partida": 190,
+      "jogador": 126,
+      "time": "A",
+      "gols": 2,
+      "assistencias": 0,
+      "reserva": false,
+      "posicao_x": null,
+      "posicao_y": null
     }
   },
   {
